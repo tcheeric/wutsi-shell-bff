@@ -36,7 +36,7 @@ class HomeScreen(
             appBar = AppBar(
                 foregroundColor = Theme.HOME_TEXT_COLOR,
                 backgroundColor = Theme.HOME_BACKGROUND_COLOR,
-                elevation = 0,
+                elevation = 0.0,
                 actions = listOf(
                     IconButton(
                         icon = Theme.ICON_SETTINGS,
