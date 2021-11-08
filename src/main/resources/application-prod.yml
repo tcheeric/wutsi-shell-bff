@@ -1,0 +1,3 @@
+wutsi:
+  application:
+    server-url: https://wutsi-home-bff-prod.herokuapp.com

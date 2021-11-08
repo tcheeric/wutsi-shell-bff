@@ -1,0 +1,66 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center"
+          },
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "Your Balance"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center"
+          },
+          "children": [
+            {
+              "type": "MoneyText",
+              "attributes": {
+                "value": 0.0,
+                "currency": "XAF"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#ffffff",
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "e57f"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0//settings"
+          }
+        }
+      ]
+    },
+    "children": []
+  }
+}
