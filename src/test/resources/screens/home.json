@@ -55,7 +55,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "elevation": 0,
+      "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
       "foregroundColor": "#ffffff",
       "actions": [
