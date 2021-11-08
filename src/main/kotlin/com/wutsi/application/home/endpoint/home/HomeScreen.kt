@@ -14,6 +14,9 @@ import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment.Center
+import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceEvenly
+import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.tenant.WutsiTenantApi
 import org.springframework.web.bind.annotation.PostMapping
@@ -33,6 +36,7 @@ class HomeScreen(
             appBar = AppBar(
                 foregroundColor = Theme.HOME_TEXT_COLOR,
                 backgroundColor = Theme.HOME_BACKGROUND_COLOR,
+                elevation = 0,
                 actions = listOf(
                     IconButton(
                         icon = Theme.ICON_SETTINGS,
@@ -43,18 +47,29 @@ class HomeScreen(
                     )
                 )
             ),
+            backgroundColor = Theme.HOME_BACKGROUND_COLOR,
             child = Column(
                 children = listOf(
                     Container(
                         alignment = Center,
-                        child = Text(caption = getText("page.home.your-balance"))
+                        background = Theme.HOME_BACKGROUND_COLOR,
+                        child = Text(
+                            caption = getText("page.home.your-balance"),
+                            color = Theme.HOME_TEXT_COLOR,
+                            alignment = TextAlignment.Center
+                        )
                     ),
                     Container(
                         alignment = Center,
-                        child = MoneyText(value = 0.0, currency = "XAF")
+                        background = Theme.HOME_BACKGROUND_COLOR,
+                        padding = 10.0,
+                        child = MoneyText(value = 0.0, currency = "XAF", color = Theme.HOME_TEXT_COLOR)
                     ),
-                )
+                ),
+                crossAxisAlignment = CrossAxisAlignment.center,
+                mainAxisAlignment = spaceEvenly
             ),
-        ).toWidget()
+
+            ).toWidget()
     }
 }
