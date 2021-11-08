@@ -1,23 +1,30 @@
 {
   "type": "Screen",
   "attributes": {
-    "safe": false
+    "safe": false,
+    "backgroundColor": "#1D7EDF"
   },
   "children": [
     {
       "type": "Column",
-      "attributes": {},
+      "attributes": {
+        "mainAxisAlignment": "spaceEvenly",
+        "crossAxisAlignment": "center"
+      },
       "children": [
         {
           "type": "Container",
           "attributes": {
-            "alignment": "Center"
+            "alignment": "Center",
+            "background": "#1D7EDF"
           },
           "children": [
             {
               "type": "Text",
               "attributes": {
-                "caption": "Your Balance"
+                "caption": "Your Balance",
+                "color": "#ffffff",
+                "alignment": "Center"
               },
               "children": []
             }
@@ -26,13 +33,16 @@
         {
           "type": "Container",
           "attributes": {
-            "alignment": "Center"
+            "alignment": "Center",
+            "padding": 10.0,
+            "background": "#1D7EDF"
           },
           "children": [
             {
               "type": "MoneyText",
               "attributes": {
                 "value": 0.0,
+                "color": "#ffffff",
                 "currency": "XAF"
               },
               "children": []
@@ -45,6 +55,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
+      "elevation": 0,
       "backgroundColor": "#1D7EDF",
       "foregroundColor": "#ffffff",
       "actions": [
