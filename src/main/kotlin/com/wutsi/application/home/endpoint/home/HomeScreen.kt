@@ -69,7 +69,6 @@ class HomeScreen(
                 crossAxisAlignment = CrossAxisAlignment.center,
                 mainAxisAlignment = spaceEvenly
             ),
-
-            ).toWidget()
+        ).toWidget()
     }
 }
