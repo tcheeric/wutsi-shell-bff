@@ -16,36 +16,129 @@
           "type": "Container",
           "attributes": {
             "alignment": "Center",
-            "background": "#1D7EDF"
+            "padding": 10.0,
+            "borderColor": "#ff0000"
           },
           "children": [
             {
-              "type": "Text",
-              "attributes": {
-                "caption": "Your Balance",
-                "color": "#ffffff",
-                "alignment": "Center"
-              },
-              "children": []
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "background": "#1D7EDF"
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Your Balance",
+                        "color": "#ffffff",
+                        "alignment": "Center"
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 10.0,
+                    "background": "#1D7EDF"
+                  },
+                  "children": [
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 0.0,
+                        "color": "#ffffff",
+                        "currency": "XAF"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
         {
-          "type": "Container",
+          "type": "Flexible",
           "attributes": {
-            "alignment": "Center",
-            "padding": 10.0,
-            "background": "#1D7EDF"
+            "flex": 1,
+            "fit": "Tight"
           },
           "children": [
             {
-              "type": "MoneyText",
+              "type": "Container",
               "attributes": {
-                "value": 0.0,
-                "color": "#ffffff",
-                "currency": "XAF"
+                "alignment": "BottomCenter",
+                "margin": 30.0,
+                "background": "#ffffff",
+                "borderColor": "#8c8c8c"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 20.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "You Accounts",
+                            "bold": true
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Divider",
+                      "attributes": {
+                        "color": "#8c8c8c"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 20.0
+                      },
+                      "children": [
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Link Account",
+                            "padding": 15.0,
+                            "type": "Elevated"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Prompt",
+                            "url": "",
+                            "prompt": {
+                              "type": "Alert",
+                              "title": "",
+                              "message": "Not implemented yet"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }
@@ -66,8 +159,13 @@
           },
           "children": [],
           "action": {
-            "type": "Route",
-            "url": "http://localhost:0//settings"
+            "type": "Prompt",
+            "url": "",
+            "prompt": {
+              "type": "Alert",
+              "title": "",
+              "message": "Not implemented yet"
+            }
           }
         }
       ]
