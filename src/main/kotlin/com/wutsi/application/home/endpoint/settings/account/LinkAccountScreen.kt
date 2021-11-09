@@ -37,6 +37,9 @@ class LinkAccountScreen(
         return Screen(
             appBar = AppBar(
                 elevation = 0.0,
+                backgroundColor = Theme.SETTINGS_BACKGROUND_COLOR,
+                foregroundColor = Theme.SETTINGS_TEXT_COLOR,
+                title = getText("page.link-account-mobile.app-bar.title")
             ),
             child = Container(
                 padding = 20.0,

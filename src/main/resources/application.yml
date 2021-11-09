@@ -39,6 +39,9 @@ wutsi:
     name: wutsi-home-bff
     server-url: http://localhost:${server.port}
   platform:
+    cache:
+      name: ${wutsi.application.name}
+      type: local
     security:
       type: none
       token-provider:
