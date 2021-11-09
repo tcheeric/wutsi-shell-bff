@@ -19,8 +19,8 @@
   </parent>
 
   <properties>
-    <jacoco.threshold.line>0.20</jacoco.threshold.line>
-    <jacoco.threshold.class>0.20</jacoco.threshold.class>
+    <jacoco.threshold.line>0.77</jacoco.threshold.line>
+    <jacoco.threshold.class>0.87</jacoco.threshold.class>
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     <jdk.version>11</jdk.version>
 
@@ -35,7 +35,7 @@
     <wutsi-platform-core.version>0.0.68</wutsi-platform-core.version>
     <wutsi-account.version>1.0.9</wutsi-account.version>
     <wutsi-sms.version>1.0.2</wutsi-sms.version>
-    <wutsi-tenant.version>0.0.1</wutsi-tenant.version>
+    <wutsi-tenant.version>0.0.4</wutsi-tenant.version>
     <wutsi-platform-payment.version>0.0.47</wutsi-platform-payment.version>
   </properties>
 

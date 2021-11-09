@@ -17,13 +17,12 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
+import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment.BottomCenter
 import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceEvenly
 import com.wutsi.flutter.sdui.enums.TextAlignment
-import com.wutsi.platform.account.WutsiAccountApi
-import com.wutsi.platform.tenant.WutsiTenantApi
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -31,9 +30,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/")
 class HomeScreen(
-    private val urlBuilder: URLBuilder,
-    private val accountApi: WutsiAccountApi,
-    private val tenant: WutsiTenantApi
+    private val urlBuilder: URLBuilder
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -109,8 +106,8 @@ class HomeScreen(
                 child = Button(
                     caption = getText("page.home.button.add-account"),
                     action = Action(
-                        type = Prompt,
-                        prompt = Dialog(message = "Not implemented yet")
+                        type = Route,
+                        url = urlBuilder.build("settings/accounts/link/mobile")
                     )
                 )
             ),

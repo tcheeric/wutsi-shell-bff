@@ -26,13 +26,15 @@ import com.wutsi.platform.security.dto.Key
 import com.wutsi.platform.tenant.WutsiTenantApi
 import com.wutsi.platform.tenant.dto.GetTenantResponse
 import com.wutsi.platform.tenant.dto.Logo
+import com.wutsi.platform.tenant.dto.MobileCarrier
+import com.wutsi.platform.tenant.dto.PhonePrefix
 import com.wutsi.platform.tenant.dto.Tenant
+import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.web.client.RestTemplate
 import java.util.Base64
 import java.util.UUID
-import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 
 abstract class AbstractEndpointTest {
@@ -51,7 +53,7 @@ abstract class AbstractEndpointTest {
     private lateinit var tenantApi: WutsiTenantApi
 
     @MockBean
-    private lateinit var securityAPI: WutsiSecurityApi
+    private lateinit var securityApi: WutsiSecurityApi
 
     @MockBean
     private lateinit var accountApi: WutsiAccountApi
@@ -63,7 +65,7 @@ abstract class AbstractEndpointTest {
 
     lateinit var traceId: String
 
-    @BeforeTest
+    @BeforeEach
     open fun setUp() {
         apiKeyProvider = TestApiKeyProvider("00000000-00000000-00000000-00000000")
         keyProvider = TestRSAKeyProvider()
@@ -71,7 +73,7 @@ abstract class AbstractEndpointTest {
             algorithm = "RSA",
             content = Base64.getEncoder().encodeToString(keyProvider.getPublicKeyById("1").encoded)
         )
-        doReturn(GetKeyResponse(key)).whenever(securityAPI).getKey(any())
+        doReturn(GetKeyResponse(key)).whenever(securityApi).getKey(any())
 
         traceId = UUID.randomUUID().toString()
         doReturn(DEVICE_ID).whenever(tracingContext).deviceId()
@@ -86,7 +88,23 @@ abstract class AbstractEndpointTest {
             countries = listOf("CM"),
             languages = listOf("en", "fr"),
             currency = "XAF",
-            domainName = "www.wutsi.com"
+            domainName = "www.wutsi.com",
+            mobileCarriers = listOf(
+                MobileCarrier(
+                    code = "mtn",
+                    name = "MTN",
+                    countries = listOf("CM", "CD"),
+                    phonePrefixes = listOf(
+                        PhonePrefix(
+                            country = "CM",
+                            prefixes = listOf("+23795")
+                        ),
+                    ),
+                    logos = listOf(
+                        Logo(type = "PICTORIAL", url = "http://www.goole.com/images/mtn.png")
+                    )
+                )
+            )
         )
         doReturn(GetTenantResponse(tenant)).whenever(tenantApi).getTenant(any())
 
@@ -109,7 +127,8 @@ abstract class AbstractEndpointTest {
             "payment-method-manage",
             "payment-method-read",
             "payment-manage",
-            "payment-read"
+            "payment-read",
+            "tenant-read",
         ),
         subjectId: Long = 7777,
         subjectType: SubjectType = USER
