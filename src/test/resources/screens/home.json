@@ -35,7 +35,7 @@
                       "type": "Text",
                       "attributes": {
                         "caption": "Your Balance",
-                        "color": "#ffffff",
+                        "color": "#FFFFFF",
                         "alignment": "Center"
                       },
                       "children": []
@@ -54,7 +54,7 @@
                       "type": "MoneyText",
                       "attributes": {
                         "value": 0.0,
-                        "color": "#ffffff",
+                        "color": "#FFFFFF",
                         "currency": "XAF"
                       },
                       "children": []
@@ -77,7 +77,7 @@
               "attributes": {
                 "alignment": "BottomCenter",
                 "margin": 30.0,
-                "background": "#ffffff",
+                "background": "#FFFFFF",
                 "borderColor": "#8c8c8c"
               },
               "children": [
@@ -145,7 +145,7 @@
     "attributes": {
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#ffffff",
+      "foregroundColor": "#FFFFFF",
       "actions": [
         {
           "type": "IconButton",

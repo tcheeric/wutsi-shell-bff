@@ -40,7 +40,7 @@ import kotlin.test.assertEquals
 abstract class AbstractEndpointTest {
     companion object {
         const val DEVICE_ID = "0000-1111"
-        const val PHONE_NUMBER = "+15147550011"
+        const val PHONE_NUMBER = "+2379505677"
     }
 
     @Autowired

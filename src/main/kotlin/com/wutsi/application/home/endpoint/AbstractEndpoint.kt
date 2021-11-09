@@ -2,9 +2,7 @@ package com.wutsi.application.home.endpoint
 
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
-import com.wutsi.flutter.sdui.enums.ActionType.Page
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
-import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.DialogType.Error
 import com.wutsi.platform.core.logging.KVLogger
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,7 +16,7 @@ abstract class AbstractEndpoint {
     @Autowired
     private lateinit var logger: KVLogger
 
-    private fun createErrorAction(e: Throwable, messageKey: String): Action {
+    protected fun createErrorAction(e: Throwable, messageKey: String): Action {
         val action = Action(
             type = Prompt,
             prompt = Dialog(
@@ -46,15 +44,4 @@ abstract class AbstractEndpoint {
         } catch (ex: Exception) {
             key
         }
-
-    protected fun gotoPage(page: Int) = Action(
-        type = Page,
-        url = "page:/$page"
-    )
-
-    protected fun gotoRoute(path: String, replacement: Boolean? = null) = Action(
-        type = Route,
-        url = "route:$path",
-        replacement = replacement
-    )
 }

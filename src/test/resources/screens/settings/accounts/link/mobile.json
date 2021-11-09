@@ -154,7 +154,10 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "elevation": 0.0
+      "title": "Link Account",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
     },
     "children": []
   }
