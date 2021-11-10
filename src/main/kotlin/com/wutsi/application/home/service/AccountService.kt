@@ -1,10 +1,13 @@
 package com.wutsi.application.home.service
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.home.dto.SendSmsCodeRequest
 import com.wutsi.application.home.dto.VerifySmsCodeRequest
 import com.wutsi.application.home.entity.SmsCodeEntity
+import com.wutsi.application.home.exception.AccountAlreadyLinkedException
 import com.wutsi.application.home.exception.InvalidPhoneNumberException
 import com.wutsi.application.home.exception.SmsCodeMismatchException
+import com.wutsi.application.home.exception.toErrorResponse
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.AddPaymentMethodRequest
 import com.wutsi.platform.account.dto.PaymentMethodSummary
@@ -15,6 +18,7 @@ import com.wutsi.platform.sms.WutsiSmsApi
 import com.wutsi.platform.sms.dto.SendVerificationRequest
 import com.wutsi.platform.tenant.dto.MobileCarrier
 import com.wutsi.platform.tenant.dto.Tenant
+import feign.FeignException
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.cache.CacheManager
 import org.springframework.stereotype.Service
@@ -33,9 +37,14 @@ class AccountService(
     private val togglesProvider: TogglesProvider,
     private val userProvider: UserProvider,
     private val logger: KVLogger,
+    private val objectMapper: ObjectMapper,
 
     @Value("\${wutsi.platform.cache.name}") private val cacheName: String,
 ) {
+    companion object {
+        val ERROR_ACCOUNT_OWNERSHIP = "urn:error:wutsi:account:payment-method-ownership"
+    }
+
     fun sendVerificationCode(request: SendSmsCodeRequest) {
         val tenant = tenantProvider.get()
         val carrier = findCarrier(request.phoneNumber, tenant)
@@ -60,7 +69,6 @@ class AccountService(
     fun verifyCode(request: VerifySmsCodeRequest) {
         val state = getSmsCodeEntity()
 
-        // Verify
         logger.add("phone_number", state.phoneNumber)
         logger.add("code", request.code)
         if (togglesProvider.get().verifySmsCode) {
@@ -73,21 +81,31 @@ class AccountService(
                 throw SmsCodeMismatchException(ex)
             }
         }
+    }
 
-        // Create account
-        val principal = userProvider.principal()
-        val paymentProvider = toPaymentProvider(state.carrier)
-        val response = accountApi.addPaymentMethod(
-            principal.id.toLong(),
-            request = AddPaymentMethodRequest(
-                ownerName = principal.name,
-                phoneNumber = state.phoneNumber,
-                type = paymentProvider!!.paymentType.name,
-                provider = paymentProvider.name
+    fun linkAccount() {
+        try {
+            val state = getSmsCodeEntity()
+            val principal = userProvider.principal()
+            val paymentProvider = toPaymentProvider(state.carrier)
+            val response = accountApi.addPaymentMethod(
+                principal.id.toLong(),
+                request = AddPaymentMethodRequest(
+                    ownerName = principal.name,
+                    phoneNumber = state.phoneNumber,
+                    type = paymentProvider!!.paymentType.name,
+                    provider = paymentProvider.name
+                )
             )
-        )
-        logger.add("payment_provider", paymentProvider)
-        logger.add("payment_method_token", response.token)
+            logger.add("payment_provider", paymentProvider)
+            logger.add("payment_method_token", response.token)
+        } catch (ex: FeignException) {
+            val code = ex.toErrorResponse(objectMapper)?.error?.code ?: throw ex
+            if (code == ERROR_ACCOUNT_OWNERSHIP)
+                throw AccountAlreadyLinkedException(ex)
+            else
+                throw ex
+        }
     }
 
     fun getPaymentMethods(tenant: Tenant): List<PaymentMethodSummary> {

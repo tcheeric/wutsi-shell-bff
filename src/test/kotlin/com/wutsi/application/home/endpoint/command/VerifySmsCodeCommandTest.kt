@@ -5,11 +5,13 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.eq
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.home.dto.VerifySmsCodeRequest
 import com.wutsi.application.home.endpoint.AbstractEndpointTest
 import com.wutsi.application.home.entity.SmsCodeEntity
+import com.wutsi.application.home.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
@@ -18,13 +20,17 @@ import com.wutsi.platform.account.dto.AddPaymentMethodResponse
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.sms.WutsiSmsApi
+import feign.FeignException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
+import org.springframework.context.MessageSource
 import org.springframework.test.context.ActiveProfiles
+import java.util.Locale
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("qa")
@@ -36,6 +42,9 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
 
     @MockBean
     lateinit var smsApi: WutsiSmsApi
+
+    @Autowired
+    lateinit var messageSource: MessageSource
 
     private lateinit var state: SmsCodeEntity
 
@@ -91,5 +100,38 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
         val action = response.body
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Error, action.prompt?.type)
+        assertEquals(messageSource.getMessage("page.verify-account-mobile.error.invalid-code", emptyArray(), Locale.ENGLISH), action.prompt?.message)
+    }
+
+    @Test
+    fun accountAlreadyLinked() {
+        // GIVEN
+        val ex = toFeignException(AccountService.ERROR_ACCOUNT_OWNERSHIP)
+        doThrow(ex).whenever(accountApi).addPaymentMethod(any(), any())
+
+        // WHEN
+        val request = VerifySmsCodeRequest(
+            code = "123456"
+        )
+        val response = rest.postForEntity(url, request, Action::class.java)
+
+        assertEquals(200, response.statusCodeValue)
+        val action = response.body
+        assertEquals(ActionType.Prompt, action.type)
+        assertEquals(DialogType.Error, action.prompt?.type)
+        assertEquals(messageSource.getMessage("page.verify-account-mobile.error.already-linked", emptyArray(), Locale.ENGLISH), action.prompt?.message)
+    }
+
+    private fun toFeignException(code: String): FeignException {
+        val ex: FeignException = mock()
+        val content = """
+        {
+            "error":{
+                "code": "$code"
+            }
+        }
+        """
+        doReturn(content).whenever(ex).contentUTF8()
+        return ex
     }
 }
