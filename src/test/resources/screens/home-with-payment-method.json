@@ -1,0 +1,282 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "safe": false,
+    "backgroundColor": "#1D7EDF"
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {
+        "crossAxisAlignment": "center"
+      },
+      "children": [
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 3,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0,
+                "borderColor": "#ff0000"
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisSize": "min"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "background": "#1D7EDF"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Your Balance",
+                            "color": "#FFFFFF",
+                            "alignment": "Center"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Column",
+                      "attributes": {
+                        "mainAxisAlignment": "center",
+                        "mainAxisSize": "min",
+                        "crossAxisAlignment": "center"
+                      },
+                      "children": [
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 10.0,
+                            "background": "#1D7EDF"
+                          },
+                          "children": [
+                            {
+                              "type": "MoneyText",
+                              "attributes": {
+                                "value": 0.0,
+                                "color": "#FFFFFF",
+                                "currency": "XAF"
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Add Cash",
+                            "padding": 5.0,
+                            "type": "Elevated",
+                            "stretched": false
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Prompt",
+                            "url": "",
+                            "prompt": {
+                              "type": "Information",
+                              "title": "",
+                              "message": "Not implemented"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 9,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "BottomCenter",
+                "margin": 30.0,
+                "background": "#FFFFFF",
+                "borderRadius": 20.0,
+                "borderColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 20.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "You Accounts",
+                            "bold": true
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Divider",
+                      "attributes": {
+                        "color": "#8c8c8c"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Row",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 5.0
+                          },
+                          "children": [
+                            {
+                              "type": "Image",
+                              "attributes": {
+                                "url": "http://www.goole.com/images/mtn.png",
+                                "width": 48.0,
+                                "height": 48.0
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 5.0
+                          },
+                          "children": [
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "xxxxx",
+                                "bold": true
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Divider",
+                      "attributes": {
+                        "color": "#8c8c8c"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Row",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 5.0
+                          },
+                          "children": [
+                            {
+                              "type": "Image",
+                              "attributes": {
+                                "url": "http://www.goole.com/images/orange.png",
+                                "width": 48.0,
+                                "height": 48.0
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 5.0
+                          },
+                          "children": [
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "yyy",
+                                "bold": true
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Divider",
+                      "attributes": {
+                        "color": "#8c8c8c"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "e57f"
+          },
+          "children": [],
+          "action": {
+            "type": "Prompt",
+            "url": "",
+            "prompt": {
+              "type": "Alert",
+              "title": "",
+              "message": "Not implemented yet"
+            }
+          }
+        }
+      ]
+    },
+    "children": []
+  }
+}

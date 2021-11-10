@@ -43,7 +43,7 @@ wutsi:
       name: ${wutsi.application.name}
       type: local
     security:
-      type: none
+      type: jwt
       token-provider:
         type: header
       api-key-provider:
@@ -52,6 +52,9 @@ wutsi:
       client-id: ${wutsi.application.name}
       device-id-provider:
         type: header
+  toggles:
+    send-sms-code: false
+    verify-sms-code: false
 
 logging:
   level:

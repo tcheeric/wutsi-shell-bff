@@ -5,9 +5,11 @@ import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.DialogType.Error
 import com.wutsi.platform.core.logging.KVLogger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
+import org.springframework.web.bind.annotation.ExceptionHandler
 
 abstract class AbstractEndpoint {
     @Autowired
@@ -15,6 +17,10 @@ abstract class AbstractEndpoint {
 
     @Autowired
     private lateinit var logger: KVLogger
+
+    @ExceptionHandler
+    fun onThrowable(ex: Throwable): Action =
+        createErrorAction(ex, "prompt.error.unexpected-error")
 
     protected fun createErrorAction(e: Throwable, messageKey: String): Action {
         val action = Action(
@@ -36,12 +42,10 @@ abstract class AbstractEndpoint {
         logger.add("action_prompt_message", action.prompt?.message)
         logger.add("exception", e::class.java)
         logger.add("exception_message", e.message)
+
+        LoggerFactory.getLogger(this::class.java).error("Unexpected error", e)
     }
 
     protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
-        try {
-            messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
-        } catch (ex: Exception) {
-            key
-        }
+        messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
 }

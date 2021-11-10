@@ -3,7 +3,7 @@ package com.wutsi.application.home.endpoint.command
 import com.wutsi.application.home.dto.SendSmsCodeRequest
 import com.wutsi.application.home.endpoint.AbstractCommand
 import com.wutsi.application.home.exception.InvalidPhoneNumberException
-import com.wutsi.application.home.service.SettingsAccountService
+import com.wutsi.application.home.service.AccountService
 import com.wutsi.application.home.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType.Route
@@ -18,7 +18,7 @@ import javax.validation.Valid
 @RequestMapping("/commands/send-sms-code")
 class SendSmsCodeCommand(
     private val urlBuilder: URLBuilder,
-    private val service: SettingsAccountService
+    private val service: AccountService
 ) : AbstractCommand() {
     @PostMapping
     fun index(@Valid @RequestBody request: SendSmsCodeRequest): Action {

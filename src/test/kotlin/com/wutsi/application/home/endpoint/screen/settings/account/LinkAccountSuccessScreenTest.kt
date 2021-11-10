@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class LinkAccountScreenTest : AbstractEndpointTest() {
+internal class LinkAccountSuccessScreenTest : AbstractEndpointTest() {
     @LocalServerPort
     public val port: Int = 0
 
@@ -17,9 +17,9 @@ internal class LinkAccountScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/settings/accounts/link/mobile"
+        url = "http://localhost:$port/settings/accounts/link/success"
     }
 
     @Test
-    fun index() = assertEndpointEquals("/screens/settings/accounts/link/mobile.json", url)
+    fun index() = assertEndpointEquals("/screens/settings/accounts/link/success.json", url)
 }

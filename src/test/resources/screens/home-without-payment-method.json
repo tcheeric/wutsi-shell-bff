@@ -8,56 +8,66 @@
     {
       "type": "Column",
       "attributes": {
-        "mainAxisAlignment": "spaceEvenly",
         "crossAxisAlignment": "center"
       },
       "children": [
         {
-          "type": "Container",
+          "type": "Flexible",
           "attributes": {
-            "alignment": "Center",
-            "padding": 10.0,
-            "borderColor": "#ff0000"
+            "flex": 3,
+            "fit": "Tight"
           },
           "children": [
             {
-              "type": "Column",
-              "attributes": {},
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0,
+                "borderColor": "#ff0000"
+              },
               "children": [
                 {
-                  "type": "Container",
+                  "type": "Column",
                   "attributes": {
-                    "alignment": "Center",
-                    "background": "#1D7EDF"
+                    "mainAxisSize": "min"
                   },
                   "children": [
                     {
-                      "type": "Text",
+                      "type": "Container",
                       "attributes": {
-                        "caption": "Your Balance",
-                        "color": "#FFFFFF",
-                        "alignment": "Center"
+                        "alignment": "Center",
+                        "background": "#1D7EDF"
                       },
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "alignment": "Center",
-                    "padding": 10.0,
-                    "background": "#1D7EDF"
-                  },
-                  "children": [
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Your Balance",
+                            "color": "#FFFFFF",
+                            "alignment": "Center"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
                     {
-                      "type": "MoneyText",
+                      "type": "Container",
                       "attributes": {
-                        "value": 0.0,
-                        "color": "#FFFFFF",
-                        "currency": "XAF"
+                        "alignment": "Center",
+                        "padding": 10.0,
+                        "background": "#1D7EDF"
                       },
-                      "children": []
+                      "children": [
+                        {
+                          "type": "MoneyText",
+                          "attributes": {
+                            "value": 0.0,
+                            "color": "#FFFFFF",
+                            "currency": "XAF"
+                          },
+                          "children": []
+                        }
+                      ]
                     }
                   ]
                 }
@@ -68,7 +78,7 @@
         {
           "type": "Flexible",
           "attributes": {
-            "flex": 1,
+            "flex": 9,
             "fit": "Tight"
           },
           "children": [
@@ -78,6 +88,7 @@
                 "alignment": "BottomCenter",
                 "margin": 30.0,
                 "background": "#FFFFFF",
+                "borderRadius": 20.0,
                 "borderColor": "#8c8c8c"
               },
               "children": [

@@ -4,6 +4,7 @@ import com.auth0.jwt.interfaces.RSAKeyProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
@@ -19,7 +20,6 @@ import com.wutsi.platform.core.test.TestRSAKeyProvider
 import com.wutsi.platform.core.test.TestTokenProvider
 import com.wutsi.platform.core.tracing.TracingContext
 import com.wutsi.platform.core.tracing.spring.SpringTracingRequestInterceptor
-import com.wutsi.platform.core.util.URN
 import com.wutsi.platform.security.WutsiSecurityApi
 import com.wutsi.platform.security.dto.GetKeyResponse
 import com.wutsi.platform.security.dto.Key
@@ -32,6 +32,8 @@ import com.wutsi.platform.tenant.dto.Tenant
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.cache.Cache
+import org.springframework.cache.CacheManager
 import org.springframework.web.client.RestTemplate
 import java.util.Base64
 import java.util.UUID
@@ -41,6 +43,8 @@ abstract class AbstractEndpointTest {
     companion object {
         const val DEVICE_ID = "0000-1111"
         const val PHONE_NUMBER = "+2379505677"
+        const val ACCOUNT_ID = 77777L
+        const val ACCOUNT_NAME = "Ray Sponsible"
     }
 
     @Autowired
@@ -56,7 +60,11 @@ abstract class AbstractEndpointTest {
     private lateinit var securityApi: WutsiSecurityApi
 
     @MockBean
-    private lateinit var accountApi: WutsiAccountApi
+    protected lateinit var accountApi: WutsiAccountApi
+
+    @MockBean
+    private lateinit var cacheManager: CacheManager
+    protected lateinit var cache: Cache
 
     private lateinit var keyProvider: RSAKeyProvider
     private lateinit var apiKeyProvider: ApiKeyProvider
@@ -103,13 +111,27 @@ abstract class AbstractEndpointTest {
                     logos = listOf(
                         Logo(type = "PICTORIAL", url = "http://www.goole.com/images/mtn.png")
                     )
+                ),
+                MobileCarrier(
+                    code = "orange",
+                    name = "ORANGE",
+                    countries = listOf("CM"),
+                    phonePrefixes = listOf(
+                        PhonePrefix(
+                            country = "CM",
+                            prefixes = listOf("+23722")
+                        ),
+                    ),
+                    logos = listOf(
+                        Logo(type = "PICTORIAL", url = "http://www.goole.com/images/orange.png")
+                    )
                 )
             )
         )
         doReturn(GetTenantResponse(tenant)).whenever(tenantApi).getTenant(any())
 
         val account = Account(
-            id = 7777,
+            id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
             country = "CM",
             language = "en",
@@ -118,6 +140,9 @@ abstract class AbstractEndpointTest {
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         rest = createResTemplate()
+
+        cache = mock()
+        doReturn(cache).whenever(cacheManager).getCache(any())
     }
 
     private fun createResTemplate(
@@ -130,14 +155,14 @@ abstract class AbstractEndpointTest {
             "payment-read",
             "tenant-read",
         ),
-        subjectId: Long = 7777,
+        subjectId: Long = ACCOUNT_ID,
         subjectType: SubjectType = USER
     ): RestTemplate {
         val rest = RestTemplate()
         val tokenProvider = TestTokenProvider(
             JWTBuilder(
                 subject = subjectId.toString(),
-                name = URN.of("user", subjectId.toString()).value,
+                name = ACCOUNT_NAME,
                 subjectType = subjectType,
                 scope = scope,
                 keyProvider = keyProvider,

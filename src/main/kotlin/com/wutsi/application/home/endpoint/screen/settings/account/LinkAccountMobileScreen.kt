@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/accounts/link/mobile")
-class LinkAccountScreen(
+class LinkAccountMobileScreen(
     private val urlBuilder: URLBuilder,
     private val tenantProvider: TenantProvider
 ) : AbstractQuery() {
@@ -46,9 +46,6 @@ class LinkAccountScreen(
                 alignment = Center,
                 child = Column(
                     children = listOf(
-                        Container(
-                            padding = 20.0
-                        ),
                         Container(
                             alignment = Center,
                             padding = 10.0,
@@ -85,7 +82,8 @@ class LinkAccountScreen(
                                 Container(
                                     padding = 10.0,
                                     child = Row(
-                                        children = tenantProvider.mobileCarriers(tenant).mapNotNull { tenantProvider.logo(it) }
+                                        children = tenantProvider.mobileCarriers(tenant)
+                                            .mapNotNull { tenantProvider.logo(it) }
                                             .map {
                                                 Image(
                                                     width = 48.0,
@@ -100,7 +98,7 @@ class LinkAccountScreen(
                                     child = Input(
                                         name = "command",
                                         type = Submit,
-                                        caption = getText("page.link-account-mobile.submit"),
+                                        caption = getText("page.link-account-mobile.button.submit"),
                                         action = Action(
                                             type = Command,
                                             url = urlBuilder.build("commands/send-sms-code")

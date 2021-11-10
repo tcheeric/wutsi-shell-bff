@@ -9,3 +9,6 @@ wutsi:
         password: ${MEMCACHIER_PASSWORD}
         servers: ${MEMCACHIER_SERVERS}
         ttl: 86400
+  toggles:
+    send-sms-code: true
+    verify-sms-code: true

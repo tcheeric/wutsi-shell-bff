@@ -10,4 +10,6 @@ object Theme {
     const val ICON_SETTINGS = "e57f"
     const val SETTINGS_BACKGROUND_COLOR = "#FFFFFF"
     const val SETTINGS_TEXT_COLOR = "#000000"
+    const val ICON_CHECK = "e15a"
+    const val ICON_MONEY = "e3f7"
 }
