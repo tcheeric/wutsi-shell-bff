@@ -2,15 +2,20 @@ package com.wutsi.application.home.endpoint.screen.home
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.doThrow
+import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.home.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
+import com.wutsi.platform.payment.WutsiPaymentApi
+import feign.FeignException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -20,22 +25,22 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     private lateinit var url: String
 
+    @MockBean
+    private lateinit var paymentApi: WutsiPaymentApi
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
 
         url = "http://localhost:$port"
-    }
 
-    @Test
-    fun noPaymentMethod() {
-        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+        val account = com.wutsi.platform.payment.dto.Account(
+            name = "Ray Sponsible",
+            currency = "XAF",
+            balance = 150000.0
+        )
+        doReturn(com.wutsi.platform.payment.dto.GetAccountResponse(account)).whenever(paymentApi).getUserAccount(any())
 
-        assertEndpointEquals("/screens/home-without-payment-method.json", url)
-    }
-
-    @Test
-    fun withPaymentMethods() {
         val m1 = PaymentMethodSummary(
             token = "123",
             type = PaymentMethodType.MOBILE.name,
@@ -49,7 +54,19 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             maskedNumber = "yyy"
         )
         doReturn(ListPaymentMethodResponse(listOf(m1, m2))).whenever(accountApi).listPaymentMethods(any())
+    }
 
+    @Test
+    fun noPaymentMethod() {
+        // GIVEN
+        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+
+        // THEN
+        assertEndpointEquals("/screens/home-without-payment-method.json", url)
+    }
+
+    @Test
+    fun withPaymentMethods() {
         assertEndpointEquals("/screens/home-with-payment-method.json", url)
     }
 
@@ -64,5 +81,15 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse(listOf(m1))).whenever(accountApi).listPaymentMethods(any())
 
         assertEndpointEquals("/screens/home-without-payment-method.json", url)
+    }
+
+    @Test
+    fun noBalance() {
+        // GIVEN
+        val ex = mock<FeignException.NotFound>()
+        doThrow(ex).whenever(paymentApi).getUserAccount(any())
+
+        // THEN
+        assertEndpointEquals("/screens/home-no-balance.json", url)
     }
 }

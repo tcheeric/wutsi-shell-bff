@@ -3,6 +3,7 @@ package com.wutsi.application.home.endpoint.screen.home
 import com.wutsi.application.home.endpoint.AbstractQuery
 import com.wutsi.application.home.endpoint.Theme
 import com.wutsi.application.home.service.AccountService
+import com.wutsi.application.home.service.PaymentService
 import com.wutsi.application.home.service.TenantProvider
 import com.wutsi.application.home.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
@@ -43,7 +44,8 @@ import org.springframework.web.bind.annotation.RestController
 class HomeScreen(
     private val urlBuilder: URLBuilder,
     private val tenantProvider: TenantProvider,
-    private val accountService: AccountService
+    private val accountService: AccountService,
+    private val paymentService: PaymentService,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -111,13 +113,14 @@ class HomeScreen(
         ).toWidget()
     }
 
-    private fun balance(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware =
-        if (paymentMethods.isEmpty()) {
+    private fun balance(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {
+        val balance = paymentService.getBalance(tenant)
+        return if (paymentMethods.isEmpty()) {
             Container(
                 alignment = Center,
                 background = Theme.HOME_BACKGROUND_COLOR,
                 padding = 10.0,
-                child = MoneyText(value = 0.0, currency = tenant.currency, color = Theme.HOME_TEXT_COLOR)
+                child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.HOME_TEXT_COLOR)
             )
         } else {
             Column(
@@ -126,7 +129,7 @@ class HomeScreen(
                         alignment = Center,
                         background = Theme.HOME_BACKGROUND_COLOR,
                         padding = 10.0,
-                        child = MoneyText(value = 0.0, currency = tenant.currency, color = Theme.HOME_TEXT_COLOR)
+                        child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.HOME_TEXT_COLOR)
                     ),
                     Button(
                         caption = getText("page.home.button.add-cash"),
@@ -146,6 +149,7 @@ class HomeScreen(
                 mainAxisSize = min
             )
         }
+    }
 
     private fun accountListWidget(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {
         val children = mutableListOf<WidgetAware>()
