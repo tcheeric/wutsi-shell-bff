@@ -45,6 +45,7 @@ abstract class AbstractEndpointTest {
         const val PHONE_NUMBER = "+2379505677"
         const val ACCOUNT_ID = 77777L
         const val ACCOUNT_NAME = "Ray Sponsible"
+        const val TENANT_ID = "1"
     }
 
     @Autowired
@@ -86,6 +87,7 @@ abstract class AbstractEndpointTest {
         traceId = UUID.randomUUID().toString()
         doReturn(DEVICE_ID).whenever(tracingContext).deviceId()
         doReturn(traceId).whenever(tracingContext).traceId()
+        doReturn(TENANT_ID).whenever(tracingContext).tenantId()
 
         val tenant = Tenant(
             id = 1,

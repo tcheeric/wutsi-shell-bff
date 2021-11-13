@@ -21,5 +21,5 @@ class TenantProvider(
         carrier.logos.find { it.type == "PICTORIAL" }?.url
 
     private fun tenantId(): Long =
-        tracingContext.tenantId()?.toLong() ?: 1
+        tracingContext.tenantId()!!.toLong()
 }
