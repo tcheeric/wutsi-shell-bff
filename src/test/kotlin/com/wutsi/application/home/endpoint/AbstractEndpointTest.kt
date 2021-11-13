@@ -1,6 +1,5 @@
 package com.wutsi.application.home.endpoint
 
-import com.auth0.jwt.interfaces.RSAKeyProvider
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
@@ -20,9 +19,6 @@ import com.wutsi.platform.core.test.TestRSAKeyProvider
 import com.wutsi.platform.core.test.TestTokenProvider
 import com.wutsi.platform.core.tracing.TracingContext
 import com.wutsi.platform.core.tracing.spring.SpringTracingRequestInterceptor
-import com.wutsi.platform.security.WutsiSecurityApi
-import com.wutsi.platform.security.dto.GetKeyResponse
-import com.wutsi.platform.security.dto.Key
 import com.wutsi.platform.tenant.WutsiTenantApi
 import com.wutsi.platform.tenant.dto.GetTenantResponse
 import com.wutsi.platform.tenant.dto.Logo
@@ -35,7 +31,6 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.cache.Cache
 import org.springframework.cache.CacheManager
 import org.springframework.web.client.RestTemplate
-import java.util.Base64
 import java.util.UUID
 import kotlin.test.assertEquals
 
@@ -58,16 +53,12 @@ abstract class AbstractEndpointTest {
     private lateinit var tenantApi: WutsiTenantApi
 
     @MockBean
-    private lateinit var securityApi: WutsiSecurityApi
-
-    @MockBean
     protected lateinit var accountApi: WutsiAccountApi
 
     @MockBean
     private lateinit var cacheManager: CacheManager
     protected lateinit var cache: Cache
 
-    private lateinit var keyProvider: RSAKeyProvider
     private lateinit var apiKeyProvider: ApiKeyProvider
 
     protected lateinit var rest: RestTemplate
@@ -77,12 +68,6 @@ abstract class AbstractEndpointTest {
     @BeforeEach
     open fun setUp() {
         apiKeyProvider = TestApiKeyProvider("00000000-00000000-00000000-00000000")
-        keyProvider = TestRSAKeyProvider()
-        val key = Key(
-            algorithm = "RSA",
-            content = Base64.getEncoder().encodeToString(keyProvider.getPublicKeyById("1").encoded)
-        )
-        doReturn(GetKeyResponse(key)).whenever(securityApi).getKey(any())
 
         traceId = UUID.randomUUID().toString()
         doReturn(DEVICE_ID).whenever(tracingContext).deviceId()
@@ -167,7 +152,7 @@ abstract class AbstractEndpointTest {
                 name = ACCOUNT_NAME,
                 subjectType = subjectType,
                 scope = scope,
-                keyProvider = keyProvider,
+                keyProvider = TestRSAKeyProvider(),
                 admin = false
             ).build()
         )
