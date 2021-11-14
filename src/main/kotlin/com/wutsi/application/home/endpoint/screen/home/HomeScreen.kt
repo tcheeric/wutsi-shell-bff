@@ -11,7 +11,6 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
@@ -23,7 +22,6 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
-import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment.BottomCenter
 import com.wutsi.flutter.sdui.enums.Alignment.Center
@@ -63,8 +61,8 @@ class HomeScreen(
                     IconButton(
                         icon = Theme.ICON_SETTINGS,
                         action = Action(
-                            type = Prompt,
-                            prompt = Dialog(message = "Not implemented yet")
+                            type = Route,
+                            url = urlBuilder.build("settings")
                         )
                     )
                 )
