@@ -1,149 +1,91 @@
 {
   "type": "Screen",
   "attributes": {
-    "safe": false,
-    "backgroundColor": "#1D7EDF"
+    "safe": false
   },
   "children": [
     {
-      "type": "Column",
+      "type": "Container",
       "attributes": {
-        "crossAxisAlignment": "center"
+        "alignment": "Center",
+        "padding": 20.0
       },
       "children": [
         {
-          "type": "Flexible",
-          "attributes": {
-            "flex": 3,
-            "fit": "Tight"
-          },
+          "type": "Column",
+          "attributes": {},
           "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Ray Sponsible",
+                    "bold": true,
+                    "size": 25.0,
+                    "alignment": "Center"
+                  },
+                  "children": []
+                }
+              ]
+            },
             {
               "type": "Container",
               "attributes": {
                 "alignment": "TopCenter",
-                "padding": 10.0,
-                "borderColor": "#ff0000"
+                "padding": 10.0
               },
               "children": [
                 {
-                  "type": "Column",
+                  "type": "Text",
                   "attributes": {
-                    "mainAxisSize": "min"
+                    "caption": "",
+                    "size": 18.0,
+                    "alignment": "Center"
                   },
-                  "children": [
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "background": "#1D7EDF"
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "Your Balance",
-                            "color": "#FFFFFF",
-                            "alignment": "Center"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 10.0,
-                        "background": "#1D7EDF"
-                      },
-                      "children": [
-                        {
-                          "type": "MoneyText",
-                          "attributes": {
-                            "value": 0.0,
-                            "color": "#FFFFFF",
-                            "currency": "XAF",
-                            "numberFormat": "#,###,##0"
-                          },
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
+                  "children": []
                 }
               ]
-            }
-          ]
-        },
-        {
-          "type": "Flexible",
-          "attributes": {
-            "flex": 9,
-            "fit": "Tight"
-          },
-          "children": [
+            },
             {
               "type": "Container",
               "attributes": {
-                "alignment": "BottomCenter",
-                "margin": 30.0,
-                "background": "#FFFFFF",
-                "borderRadius": 20.0,
-                "borderColor": "#8c8c8c"
+                "padding": 20.0
               },
+              "children": []
+            },
+            {
+              "type": "Divider",
+              "attributes": {
+                "color": "#8c8c8c"
+              },
+              "children": []
+            },
+            {
+              "type": "ListView",
+              "attributes": {},
               "children": [
                 {
-                  "type": "Column",
-                  "attributes": {},
-                  "children": [
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 20.0
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "You Accounts",
-                            "bold": true
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Divider",
-                      "attributes": {
-                        "color": "#8c8c8c"
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 20.0
-                      },
-                      "children": [
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "Link Account",
-                            "padding": 15.0,
-                            "type": "Elevated"
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Route",
-                            "url": "http://localhost:0/settings/accounts/link/mobile"
-                          }
-                        }
-                      ]
-                    }
-                  ]
+                  "type": "ListItem",
+                  "attributes": {
+                    "caption": "Account",
+                    "subCaption": "Manage your payment accounts",
+                    "iconLeft": "e3f7",
+                    "iconRight": "e15f"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Divider",
+                  "attributes": {
+                    "color": "#8c8c8c"
+                  },
+                  "children": []
                 }
               ]
             }
@@ -155,22 +97,10 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
+      "title": "Settings",
       "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF",
-      "actions": [
-        {
-          "type": "IconButton",
-          "attributes": {
-            "icon": "e57f"
-          },
-          "children": [],
-          "action": {
-            "type": "Route",
-            "url": "http://localhost:0/settings"
-          }
-        }
-      ]
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
     },
     "children": []
   }
