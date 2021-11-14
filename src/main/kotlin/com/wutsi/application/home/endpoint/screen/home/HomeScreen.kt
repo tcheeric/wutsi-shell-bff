@@ -136,7 +136,12 @@ class HomeScreen(
                         alignment = Center,
                         background = Theme.PRIMARY_COLOR,
                         padding = 10.0,
-                        child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.WHITE_COLOR)
+                        child = MoneyText(
+                            value = balance.value,
+                            currency = balance.currency,
+                            color = Theme.WHITE_COLOR,
+                            numberFormat = tenant.numberFormat
+                        )
                     ),
                     Button(
                         caption = getText("page.home.button.add-cash"),

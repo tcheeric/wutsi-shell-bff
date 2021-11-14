@@ -71,7 +71,8 @@
                               "attributes": {
                                 "value": 150000.0,
                                 "color": "#FFFFFF",
-                                "currency": "XAF"
+                                "currency": "XAF",
+                                "numberFormat": "#,###,##0"
                               },
                               "children": []
                             }
