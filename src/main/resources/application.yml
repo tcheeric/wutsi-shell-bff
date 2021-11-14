@@ -36,7 +36,7 @@ spring:
 
 wutsi:
   application:
-    name: wutsi-home-bff
+    name: wutsi-shell-bff
     server-url: http://localhost:${server.port}
     cash-url: https://wutsi-cash-bff-test.herokuapp.com
   platform:

@@ -31,7 +31,7 @@ jobs:
       - name: Heroku-Deploy-Test
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY_TEST}}
-          HEROKU_APP: wutsi-home-bff-test
+          HEROKU_APP: wutsi-shell-bff-test
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
           heroku buildpacks:clear --app ${HEROKU_APP}
@@ -39,7 +39,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} APP_PROFILE=test
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
           heroku addons -a ${HEROKU_APP} | grep memcachier && echo 'addon: memcachier exists' ||  heroku addons:create memcachier -a ${HEROKU_APP}
-          heroku deploy:jar target/wutsi-home-bff.jar --app ${HEROKU_APP}
+          heroku deploy:jar target/wutsi-shell-bff.jar --app ${HEROKU_APP}
           echo Health check....
           sleep 90
           curl -sSf https://${HEROKU_APP}.herokuapp.com/actuator/health >> /dev/null
@@ -47,7 +47,7 @@ jobs:
       - name: Heroku-Deploy-Prod
         env:
           HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY_PROD}}
-          HEROKU_APP: wutsi-home-bff-test-prod
+          HEROKU_APP: wutsi-shell-bff-prod
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
           heroku buildpacks:clear --app ${HEROKU_APP}
@@ -55,7 +55,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} APP_PROFILE=prod
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
           heroku addons -a ${HEROKU_APP} | grep memcachier && echo 'addon: memcachier exists' ||  heroku addons:create memcachier -a ${HEROKU_APP}
-          heroku deploy:jar target/wutsi-home-bff.jar --app ${HEROKU_APP}
+          heroku deploy:jar target/wutsi-shell-bff.jar --app ${HEROKU_APP}
           echo Health check....
           sleep 90
           curl -sSf https://${HEROKU_APP}.herokuapp.com/actuator/health >> /dev/null

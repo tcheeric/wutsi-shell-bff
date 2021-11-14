@@ -6,11 +6,11 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>wutsi-home-bff</artifactId>
+  <artifactId>wutsi-shell-bff</artifactId>
   <groupId>com.wutsi.application.home</groupId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-  <name>wutsi-home-bff</name>
+  <name>wutsi-shell-bff</name>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -31,7 +31,7 @@
     <klint.version>0.43.0</klint.version>
     <libphonenumber.version>8.12.37</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-    <sdui-kotlin.version>0.0.19-SNAPSHOT</sdui-kotlin.version>
+    <sdui-kotlin.version>0.0.19</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.74</wutsi-platform-core.version>
     <wutsi-account.version>1.0.9</wutsi-account.version>
     <wutsi-payment.version>0.0.1</wutsi-payment.version>
