@@ -29,12 +29,12 @@ import com.wutsi.flutter.sdui.enums.Alignment.BottomCenter
 import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.flutter.sdui.enums.DialogType.Information
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.center
 import com.wutsi.flutter.sdui.enums.MainAxisSize.min
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.tenant.dto.Tenant
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -46,6 +46,8 @@ class HomeScreen(
     private val tenantProvider: TenantProvider,
     private val accountService: AccountService,
     private val paymentService: PaymentService,
+
+    @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -54,8 +56,8 @@ class HomeScreen(
 
         return Screen(
             appBar = AppBar(
-                foregroundColor = Theme.HOME_TEXT_COLOR,
-                backgroundColor = Theme.HOME_BACKGROUND_COLOR,
+                foregroundColor = Theme.WHITE_COLOR,
+                backgroundColor = Theme.PRIMARY_COLOR,
                 elevation = 0.0,
                 actions = listOf(
                     IconButton(
@@ -67,7 +69,7 @@ class HomeScreen(
                     )
                 )
             ),
-            backgroundColor = Theme.HOME_BACKGROUND_COLOR,
+            backgroundColor = Theme.PRIMARY_COLOR,
             child = Column(
                 children = listOf(
                     Flexible(
@@ -80,10 +82,10 @@ class HomeScreen(
                                 children = listOf(
                                     Container(
                                         alignment = Center,
-                                        background = Theme.HOME_BACKGROUND_COLOR,
+                                        background = Theme.PRIMARY_COLOR,
                                         child = Text(
                                             caption = getText("page.home.your-balance"),
-                                            color = Theme.HOME_TEXT_COLOR,
+                                            color = Theme.WHITE_COLOR,
                                             alignment = TextAlignment.Center
                                         )
                                     ),
@@ -97,7 +99,7 @@ class HomeScreen(
                         flex = 9,
                         child = Container(
                             margin = 30.0,
-                            background = Theme.HOME_TEXT_COLOR,
+                            background = Theme.WHITE_COLOR,
                             borderColor = Theme.DIVIDER_COLOR,
                             alignment = BottomCenter,
                             borderRadius = 20.0,
@@ -118,29 +120,26 @@ class HomeScreen(
         return if (paymentMethods.isEmpty()) {
             Container(
                 alignment = Center,
-                background = Theme.HOME_BACKGROUND_COLOR,
+                background = Theme.PRIMARY_COLOR,
                 padding = 10.0,
-                child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.HOME_TEXT_COLOR)
+                child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.WHITE_COLOR)
             )
         } else {
             Column(
                 children = listOf(
                     Container(
                         alignment = Center,
-                        background = Theme.HOME_BACKGROUND_COLOR,
+                        background = Theme.PRIMARY_COLOR,
                         padding = 10.0,
-                        child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.HOME_TEXT_COLOR)
+                        child = MoneyText(value = balance.value, currency = balance.currency, color = Theme.WHITE_COLOR)
                     ),
                     Button(
                         caption = getText("page.home.button.add-cash"),
                         padding = 5.0,
                         stretched = false,
                         action = Action(
-                            type = Prompt,
-                            prompt = Dialog(
-                                type = Information,
-                                message = "Not implemented"
-                            )
+                            type = Route,
+                            url = urlBuilder.build(cashUrl, "cashin")
                         )
                     )
                 ),

@@ -14,6 +14,7 @@ import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.core.logging.KVLogger
 import com.wutsi.platform.core.tracing.DeviceIdProvider
 import com.wutsi.platform.payment.PaymentMethodProvider
+import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.sms.WutsiSmsApi
 import com.wutsi.platform.sms.dto.SendVerificationRequest
 import com.wutsi.platform.tenant.dto.MobileCarrier
@@ -83,7 +84,7 @@ class AccountService(
         }
     }
 
-    fun linkAccount() {
+    fun linkAccount(type: PaymentMethodType) {
         try {
             val state = getSmsCodeEntity()
             val principal = userProvider.principal()
@@ -93,8 +94,8 @@ class AccountService(
                 request = AddPaymentMethodRequest(
                     ownerName = principal.name,
                     phoneNumber = state.phoneNumber,
-                    type = paymentProvider!!.paymentType.name,
-                    provider = paymentProvider.name
+                    type = type.name,
+                    provider = paymentProvider!!.name
                 )
             )
             logger.add("payment_provider", paymentProvider)

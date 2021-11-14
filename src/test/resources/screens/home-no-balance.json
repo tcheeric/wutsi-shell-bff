@@ -87,13 +87,8 @@
                           },
                           "children": [],
                           "action": {
-                            "type": "Prompt",
-                            "url": "",
-                            "prompt": {
-                              "type": "Information",
-                              "title": "",
-                              "message": "Not implemented"
-                            }
+                            "type": "Route",
+                            "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
                           }
                         }
                       ]

@@ -1,6 +1,7 @@
 wutsi:
   application:
     server-url: https://wutsi-home-bff-prod.herokuapp.com
+    cash-url: https://wutsi-cash-bff-prod.herokuapp.com
   platform:
     cache:
       type: memcached

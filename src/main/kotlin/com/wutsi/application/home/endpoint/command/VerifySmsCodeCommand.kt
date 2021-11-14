@@ -8,6 +8,7 @@ import com.wutsi.application.home.service.AccountService
 import com.wutsi.application.home.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.platform.payment.PaymentMethodType.MOBILE
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -24,7 +25,7 @@ class VerifySmsCodeCommand(
     @PostMapping
     fun index(@RequestBody @Valid request: VerifySmsCodeRequest): Action {
         service.verifyCode(request)
-        service.linkAccount()
+        service.linkAccount(MOBILE)
         return Action(
             type = ActionType.Route,
             url = urlBuilder.build("settings/accounts/link/success")

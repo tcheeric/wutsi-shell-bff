@@ -28,8 +28,9 @@ class LinkAccountSuccessScreen : AbstractQuery() {
             safe = true,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.SETTINGS_BACKGROUND_COLOR,
-                foregroundColor = Theme.SETTINGS_TEXT_COLOR,
+                backgroundColor = Theme.WHITE_COLOR,
+                foregroundColor = Theme.BLACK_COLOR,
+                automaticallyImplyLeading = false
             ),
             child = Column(
                 children = listOf(
