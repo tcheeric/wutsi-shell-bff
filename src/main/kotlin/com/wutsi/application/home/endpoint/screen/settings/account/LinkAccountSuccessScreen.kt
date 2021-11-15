@@ -1,6 +1,7 @@
 package com.wutsi.application.home.endpoint.screen.settings.account
 
 import com.wutsi.application.home.endpoint.AbstractQuery
+import com.wutsi.application.home.endpoint.Page
 import com.wutsi.application.home.endpoint.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
@@ -25,6 +26,7 @@ class LinkAccountSuccessScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         return Screen(
+            id = Page.SETTINGS_ACCOUNT_LINK_SUCCESS,
             safe = true,
             appBar = AppBar(
                 elevation = 0.0,

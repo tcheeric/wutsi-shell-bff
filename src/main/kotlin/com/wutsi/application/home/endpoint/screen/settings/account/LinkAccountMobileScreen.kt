@@ -1,6 +1,7 @@
 package com.wutsi.application.home.endpoint.screen.settings.account
 
 import com.wutsi.application.home.endpoint.AbstractQuery
+import com.wutsi.application.home.endpoint.Page
 import com.wutsi.application.home.endpoint.Theme
 import com.wutsi.application.home.service.TenantProvider
 import com.wutsi.application.home.service.URLBuilder
@@ -35,6 +36,7 @@ class LinkAccountMobileScreen(
     fun index(): Widget {
         val tenant = tenantProvider.get()
         return Screen(
+            id = Page.SETTINGS_ACCOUNT_LINK_MOBILE,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.WHITE_COLOR,

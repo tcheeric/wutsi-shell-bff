@@ -1,6 +1,7 @@
 package com.wutsi.application.home.endpoint.screen.home
 
 import com.wutsi.application.home.endpoint.AbstractQuery
+import com.wutsi.application.home.endpoint.Page
 import com.wutsi.application.home.endpoint.Theme
 import com.wutsi.application.home.service.AccountService
 import com.wutsi.application.home.service.PaymentService
@@ -53,6 +54,7 @@ class HomeScreen(
         val paymentMethods = accountService.getPaymentMethods(tenant)
 
         return Screen(
+            id = Page.HOME,
             appBar = AppBar(
                 foregroundColor = Theme.WHITE_COLOR,
                 backgroundColor = Theme.PRIMARY_COLOR,

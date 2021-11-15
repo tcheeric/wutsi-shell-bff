@@ -2,6 +2,7 @@ package com.wutsi.application.home.endpoint.screen.settings
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wutsi.application.home.endpoint.AbstractQuery
+import com.wutsi.application.home.endpoint.Page
 import com.wutsi.application.home.endpoint.Theme
 import com.wutsi.application.home.service.UserProvider
 import com.wutsi.flutter.sdui.AppBar
@@ -29,8 +30,10 @@ class SettingsScreen(
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
+
         val user = userProvider.get()
         return Screen(
+            id = Page.SETTINGS,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.WHITE_COLOR,
