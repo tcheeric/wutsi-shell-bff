@@ -1,6 +1,6 @@
 wutsi:
   application:
-    server-url: https://wutsi-home-bff-test.herokuapp.com
+    server-url: https://wutsi-shell-bff-test.herokuapp.com
   platform:
     cache:
       type: memcached
