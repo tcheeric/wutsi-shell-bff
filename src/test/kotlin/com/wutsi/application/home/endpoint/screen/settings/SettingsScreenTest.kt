@@ -21,7 +21,7 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun noPaymentMethod() {
+    fun index() {
         // THEN
         assertEndpointEquals("/screens/settings/settings.json", url)
     }

@@ -1,6 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
+    "id": "page.home",
     "safe": false,
     "backgroundColor": "#1D7EDF"
   },
