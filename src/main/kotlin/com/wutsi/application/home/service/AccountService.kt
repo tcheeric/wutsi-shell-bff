@@ -43,35 +43,35 @@ class AccountService(
     @Value("\${wutsi.platform.cache.name}") private val cacheName: String,
 ) {
     companion object {
-        val ERROR_ACCOUNT_OWNERSHIP = "urn:error:wutsi:account:payment-method-ownership"
+        const val ERROR_ACCOUNT_OWNERSHIP = "urn:error:wutsi:account:payment-method-ownership"
     }
 
     fun sendVerificationCode(request: SendSmsCodeRequest) {
+        logger.add("phone_number", request.phoneNumber)
+
         val tenant = tenantProvider.get()
         val carrier = findCarrier(request.phoneNumber, tenant)
             ?: throw InvalidPhoneNumberException()
 
         val verificationId = sendVerificationCode(request.phoneNumber)
-        storeVerificationNumber(request.phoneNumber, verificationId, carrier.code)
-
-        logger.add("phone_number", request.phoneNumber)
         logger.add("verification_id", verificationId)
+        storeVerificationNumber(request.phoneNumber, verificationId, carrier.code)
     }
 
     fun resentVerificationCode() {
         val state = getSmsCodeEntity()
-        val verificationId = sendVerificationCode(state.phoneNumber)
-        storeVerificationNumber(state.phoneNumber, verificationId, state.carrier)
+        log(state)
 
-        logger.add("phone_number", state.phoneNumber)
+        val verificationId = sendVerificationCode(state.phoneNumber)
         logger.add("verification_id", verificationId)
+        storeVerificationNumber(state.phoneNumber, verificationId, state.carrier)
     }
 
     fun verifyCode(request: VerifySmsCodeRequest) {
         val state = getSmsCodeEntity()
+        log(state)
+        logger.add("verification_code", request.code)
 
-        logger.add("phone_number", state.phoneNumber)
-        logger.add("code", request.code)
         if (togglesProvider.get().verifySmsCode) {
             try {
                 smsApi.validateVerification(
@@ -87,18 +87,18 @@ class AccountService(
     fun linkAccount(type: PaymentMethodType) {
         try {
             val state = getSmsCodeEntity()
+            log(state)
+
             val principal = userProvider.principal()
-            val paymentProvider = toPaymentProvider(state.carrier)
             val response = accountApi.addPaymentMethod(
                 principal.id.toLong(),
                 request = AddPaymentMethodRequest(
                     ownerName = principal.name,
                     phoneNumber = state.phoneNumber,
                     type = type.name,
-                    provider = paymentProvider!!.name
+                    provider = toPaymentProvider(state.carrier)!!.name
                 )
             )
-            logger.add("payment_provider", paymentProvider)
             logger.add("payment_method_token", response.token)
         } catch (ex: FeignException) {
             val code = ex.toErrorResponse(objectMapper)?.error?.code ?: throw ex
@@ -123,13 +123,19 @@ class AccountService(
         return null
     }
 
+    private fun log(state: SmsCodeEntity) {
+        logger.add("phone_carrier", state.carrier)
+        logger.add("phone_number", state.phoneNumber)
+        logger.add("verification_id", state.verificationId)
+    }
+
     private fun findMobileCarrier(tenant: Tenant, paymentMethod: PaymentMethodSummary): MobileCarrier? =
         tenant.mobileCarriers.find { it.code.equals(paymentMethod.provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =
         cacheManager.getCache(cacheName).get(cacheKey(), SmsCodeEntity::class.java)
 
-    fun storeVerificationNumber(phoneNumber: String, verificationId: Long, carrier: String) {
+    private fun storeVerificationNumber(phoneNumber: String, verificationId: Long, carrier: String) {
         cacheManager.getCache(cacheName).put(
             cacheKey(),
             SmsCodeEntity(
