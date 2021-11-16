@@ -8,6 +8,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.GetAccountResponse
+import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.core.security.ApiKeyProvider
 import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.SubjectType.USER
@@ -125,6 +126,10 @@ abstract class AbstractEndpointTest {
             country = "CM",
             language = "en",
             status = "ACTIVE",
+            phone = Phone(
+                id = 1,
+                number = "+1237666666666"
+            )
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 

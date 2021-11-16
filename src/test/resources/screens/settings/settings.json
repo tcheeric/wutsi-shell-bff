@@ -45,7 +45,7 @@
                 {
                   "type": "Text",
                   "attributes": {
-                    "caption": "",
+                    "caption": "+1237666666666",
                     "size": 18.0,
                     "alignment": "Center"
                   },
@@ -61,32 +61,27 @@
               "children": []
             },
             {
-              "type": "Divider",
+              "type": "Container",
               "attributes": {
-                "color": "#8c8c8c"
+                "alignment": "TopCenter",
+                "padding": 10.0
               },
-              "children": []
-            },
-            {
-              "type": "ListView",
-              "attributes": {},
               "children": [
                 {
-                  "type": "ListItem",
+                  "type": "Button",
                   "attributes": {
-                    "caption": "Account",
-                    "subCaption": "Manage your payment accounts",
-                    "iconLeft": "e3f7",
-                    "iconRight": "e15f"
+                    "caption": "Logout",
+                    "padding": 15.0,
+                    "type": "Elevated"
                   },
-                  "children": []
-                },
-                {
-                  "type": "Divider",
-                  "attributes": {
-                    "color": "#8c8c8c"
-                  },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "route:/login",
+                    "parameters": {
+                      "phoneNumber": "+1237666666666"
+                    }
+                  }
                 }
               ]
             }
