@@ -59,6 +59,7 @@ class HomeScreen(
                 foregroundColor = Theme.WHITE_COLOR,
                 backgroundColor = Theme.PRIMARY_COLOR,
                 elevation = 0.0,
+                automaticallyImplyLeading = false,
                 actions = listOf(
                     IconButton(
                         icon = Theme.ICON_SETTINGS,
