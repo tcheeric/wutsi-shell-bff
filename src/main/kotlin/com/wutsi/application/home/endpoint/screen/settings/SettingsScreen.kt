@@ -75,7 +75,7 @@ class SettingsScreen(
                                     type = Route,
                                     url = "route:/login",
                                     parameters = mapOf(
-                                        "phoneNumber" to user.phone?.number!!
+                                        "phone" to user.phone?.number!!
                                     )
                                 )
                             )

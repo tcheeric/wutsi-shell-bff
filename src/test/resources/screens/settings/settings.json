@@ -79,7 +79,7 @@
                     "type": "Route",
                     "url": "route:/login",
                     "parameters": {
-                      "phoneNumber": "+1237666666666"
+                      "phone": "+1237666666666"
                     }
                   }
                 }
