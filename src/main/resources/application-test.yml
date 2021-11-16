@@ -11,4 +11,4 @@ wutsi:
         ttl: 86400
   toggles:
     send-sms-code: true
-    verify-sms-code: true
+    verify-sms-code: false
