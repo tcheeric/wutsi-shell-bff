@@ -29,9 +29,11 @@ import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.center
+import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
 import com.wutsi.flutter.sdui.enums.MainAxisSize.min
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.PaymentMethodSummary
+import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
@@ -144,21 +146,44 @@ class HomeScreen(
                             numberFormat = tenant.numberFormat
                         )
                     ),
-                    Button(
-                        caption = getText("page.home.button.add-cash"),
-                        padding = 5.0,
-                        stretched = false,
-                        action = Action(
-                            type = Route,
-                            url = urlBuilder.build(cashUrl, "cashin")
-                        )
-                    )
+                    Row(
+                        mainAxisAlignment = spaceAround,
+                        crossAxisAlignment = CrossAxisAlignment.center,
+                        children = balanceButtons(balance)
+                    ),
                 ),
                 mainAxisAlignment = center,
                 crossAxisAlignment = CrossAxisAlignment.center,
                 mainAxisSize = min
             )
         }
+    }
+
+    private fun balanceButtons(balance: Money): List<WidgetAware> {
+        val buttons = mutableListOf<WidgetAware>()
+        buttons.add(
+            Button(
+                caption = getText("page.home.button.add-cash"),
+                padding = 5.0,
+                stretched = false,
+                action = Action(
+                    type = Route,
+                    url = urlBuilder.build(cashUrl, "cashin")
+                )
+            )
+        )
+        if (balance.value > 0) {
+            Button(
+                caption = getText("page.home.button.send"),
+                padding = 5.0,
+                stretched = false,
+                action = Action(
+                    type = Route,
+                    url = urlBuilder.build(cashUrl, "send")
+                )
+            )
+        }
+        return buttons
     }
 
     private fun accountListWidget(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {

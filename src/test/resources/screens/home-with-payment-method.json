@@ -80,18 +80,27 @@
                           ]
                         },
                         {
-                          "type": "Button",
+                          "type": "Row",
                           "attributes": {
-                            "caption": "Add Cash",
-                            "padding": 5.0,
-                            "type": "Elevated",
-                            "stretched": false
+                            "mainAxisAlignment": "spaceAround",
+                            "crossAxisAlignment": "center"
                           },
-                          "children": [],
-                          "action": {
-                            "type": "Route",
-                            "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
-                          }
+                          "children": [
+                            {
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "Add Cash",
+                                "padding": 5.0,
+                                "type": "Elevated",
+                                "stretched": false
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Route",
+                                "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
+                              }
+                            }
+                          ]
                         }
                       ]
                     }
