@@ -173,13 +173,15 @@ class HomeScreen(
             )
         )
         if (balance.value > 0) {
-            Button(
-                caption = getText("page.home.button.send"),
-                padding = 5.0,
-                stretched = false,
-                action = Action(
-                    type = Route,
-                    url = urlBuilder.build(cashUrl, "send")
+            buttons.add(
+                Button(
+                    caption = getText("page.home.button.send"),
+                    padding = 5.0,
+                    stretched = false,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "send")
+                    )
                 )
             )
         }
