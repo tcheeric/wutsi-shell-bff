@@ -52,69 +52,22 @@
                       ]
                     },
                     {
-                      "type": "Column",
+                      "type": "Container",
                       "attributes": {
-                        "mainAxisAlignment": "center",
-                        "mainAxisSize": "min",
-                        "crossAxisAlignment": "center"
+                        "alignment": "Center",
+                        "padding": 10.0,
+                        "background": "#1D7EDF"
                       },
                       "children": [
                         {
-                          "type": "Container",
+                          "type": "MoneyText",
                           "attributes": {
-                            "alignment": "Center",
-                            "padding": 10.0,
-                            "background": "#1D7EDF"
+                            "value": 150000.0,
+                            "color": "#FFFFFF",
+                            "currency": "XAF",
+                            "numberFormat": "#,###,##0"
                           },
-                          "children": [
-                            {
-                              "type": "MoneyText",
-                              "attributes": {
-                                "value": 150000.0,
-                                "color": "#FFFFFF",
-                                "currency": "XAF",
-                                "numberFormat": "#,###,##0"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Row",
-                          "attributes": {
-                            "mainAxisAlignment": "spaceAround",
-                            "crossAxisAlignment": "center"
-                          },
-                          "children": [
-                            {
-                              "type": "Button",
-                              "attributes": {
-                                "caption": "Add Cash",
-                                "padding": 5.0,
-                                "type": "Elevated",
-                                "stretched": false
-                              },
-                              "children": [],
-                              "action": {
-                                "type": "Route",
-                                "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
-                              }
-                            },
-                            {
-                              "type": "Button",
-                              "attributes": {
-                                "caption": "Send",
-                                "padding": 5.0,
-                                "type": "Elevated",
-                                "stretched": false
-                              },
-                              "children": [],
-                              "action": {
-                                "type": "Route",
-                                "url": "https://wutsi-cash-bff-test.herokuapp.com/send"
-                              }
-                            }
-                          ]
+                          "children": []
                         }
                       ]
                     }
@@ -170,98 +123,26 @@
                       "children": []
                     },
                     {
-                      "type": "Row",
-                      "attributes": {},
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 20.0
+                      },
                       "children": [
                         {
-                          "type": "Container",
+                          "type": "Button",
                           "attributes": {
-                            "padding": 5.0
+                            "caption": "Link Account",
+                            "padding": 15.0,
+                            "type": "Elevated"
                           },
-                          "children": [
-                            {
-                              "type": "Image",
-                              "attributes": {
-                                "url": "http://www.goole.com/images/mtn.png",
-                                "width": 48.0,
-                                "height": 48.0
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center",
-                            "padding": 5.0
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "xxxxx",
-                                "bold": true
-                              },
-                              "children": []
-                            }
-                          ]
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/accounts/link/mobile"
+                          }
                         }
                       ]
-                    },
-                    {
-                      "type": "Divider",
-                      "attributes": {
-                        "color": "#8c8c8c"
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "Row",
-                      "attributes": {},
-                      "children": [
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "padding": 5.0
-                          },
-                          "children": [
-                            {
-                              "type": "Image",
-                              "attributes": {
-                                "url": "http://www.goole.com/images/orange.png",
-                                "width": 48.0,
-                                "height": 48.0
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center",
-                            "padding": 5.0
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "yyy",
-                                "bold": true
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Divider",
-                      "attributes": {
-                        "color": "#8c8c8c"
-                      },
-                      "children": []
                     }
                   ]
                 }
