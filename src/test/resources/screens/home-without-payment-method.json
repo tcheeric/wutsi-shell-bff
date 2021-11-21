@@ -108,7 +108,7 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "You Accounts",
+                            "caption": "Your Accounts",
                             "bold": true
                           },
                           "children": []
