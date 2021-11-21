@@ -18,7 +18,7 @@ abstract class AbstractEndpoint {
     @Autowired
     private lateinit var logger: KVLogger
 
-    @ExceptionHandler
+    @ExceptionHandler(Throwable::class)
     fun onThrowable(ex: Throwable): Action =
         createErrorAction(ex, "prompt.error.unexpected-error")
 
