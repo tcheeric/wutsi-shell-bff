@@ -60,4 +60,3 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
         assertEndpointEquals("/screens/settings/account.json", url)
     }
 }
-
