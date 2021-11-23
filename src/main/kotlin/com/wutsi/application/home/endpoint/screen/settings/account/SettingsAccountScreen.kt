@@ -26,6 +26,7 @@ import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
@@ -64,36 +65,30 @@ class SettingsAccountScreen(
             ),
             child = Column(
                 children = listOf(
-                    Flexible(
-                        flex = 4,
-                        child = Container(
-                            padding = 10.0,
-                            alignment = TopCenter,
-                            child = Column(
-                                mainAxisSize = MainAxisSize.min,
-                                children = listOf(
-                                    Container(
-                                        alignment = Center,
-                                        child = Text(
-                                            caption = getText("page.settings.account.your-balance"),
-                                            color = Theme.BLACK_COLOR,
-                                            alignment = TextAlignment.Center
-                                        )
-                                    ),
-                                    balance(paymentMethods, tenant)
-                                )
-                            ),
-                            borderColor = "#ff0000",
+                    Container(
+                        padding = 10.0,
+                        alignment = TopCenter,
+                        child = Column(
+                            mainAxisSize = MainAxisSize.min,
+                            children = listOf(
+                                Container(
+                                    alignment = Center,
+                                    child = Text(
+                                        caption = getText("page.settings.account.your-balance"),
+                                        color = Theme.BLACK_COLOR,
+                                        alignment = TextAlignment.Center
+                                    )
+                                ),
+                                balance(paymentMethods, tenant)
+                            )
                         ),
+                        borderColor = "#ff0000",
                     ),
+                    Divider(color = Theme.DIVIDER_COLOR),
                     Flexible(
-                        flex = 8,
                         child = Container(
-                            margin = 30.0,
-                            background = Theme.WHITE_COLOR,
-                            borderColor = Theme.DIVIDER_COLOR,
-                            alignment = Alignment.BottomCenter,
-                            borderRadius = 20.0,
+                            margin = 10.0,
+                            alignment = Alignment.TopCenter,
                             child = accountListWidget(paymentMethods, tenant),
                         )
                     )
@@ -105,24 +100,16 @@ class SettingsAccountScreen(
 
     private fun accountListWidget(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {
         val children = mutableListOf<WidgetAware>()
-        children.add(
-            Container(
-                padding = 20.0,
-                alignment = Center,
-                child = Text(caption = getText("page.settings.account.your-accounts"), bold = true)
-            )
-        )
-        children.add(Divider(color = Theme.DIVIDER_COLOR))
         children.addAll(
             paymentMethods.map {
                 ListItem(
                     caption = it.maskedNumber,
                     iconLeft = accountService.getLogoUrl(tenant, it),
-                    iconRight = Theme.ICON_CHEVRON_RIGHT
+                    iconRight = Theme.ICON_CHEVRON_RIGHT,
+                    padding = 10.0
                 )
             }
         )
-        children.add(Divider(color = Theme.DIVIDER_COLOR))
         children.add(
             Container(
                 padding = 20.0,
@@ -149,7 +136,7 @@ class SettingsAccountScreen(
                     value = balance.value,
                     currency = balance.currency,
                     color = Theme.BLACK_COLOR,
-                    numberFormat = tenant.numberFormat
+                    numberFormat = tenant.numberFormat,
                 )
             )
         } else {
@@ -188,7 +175,8 @@ class SettingsAccountScreen(
                 action = Action(
                     type = Route,
                     url = urlBuilder.build(cashUrl, "cashin")
-                )
+                ),
+                type = ButtonType.Text
             )
         )
         if (balance.value > 0) {
@@ -201,6 +189,7 @@ class SettingsAccountScreen(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashout")
                     ),
+                    type = ButtonType.Text
                 )
             )
         }
