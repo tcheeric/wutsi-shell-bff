@@ -3,7 +3,6 @@ package com.wutsi.application.home.service
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
-import feign.FeignException
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
@@ -19,13 +18,11 @@ class PaymentService(
     fun getBalance(tenant: Tenant): Money {
         try {
             val userId = userProvider.id()
-            val account = paymentApi.getUserAccount(userId).account
+            val balance = paymentApi.getBalance(userId).balance
             return Money(
-                value = account.balance,
-                currency = account.currency
+                value = balance.amount,
+                currency = balance.currency
             )
-        } catch (ex: FeignException.NotFound) {
-            return Money(currency = tenant.currency)
         } catch (ex: Throwable) {
             LOGGER.error("Unexpected error while resolving the balance", ex)
             return Money(currency = tenant.currency)

@@ -11,6 +11,8 @@ import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.payment.WutsiPaymentApi
+import com.wutsi.platform.payment.dto.Balance
+import com.wutsi.platform.payment.dto.GetBalanceResponse
 import feign.FeignException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -34,12 +36,11 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
         url = "http://localhost:$port"
 
-        val account = com.wutsi.platform.payment.dto.Account(
-            name = "Ray Sponsible",
+        val balance = Balance(
             currency = "XAF",
-            balance = 150000.0
+            amount = 150000.0
         )
-        doReturn(com.wutsi.platform.payment.dto.GetAccountResponse(account)).whenever(paymentApi).getUserAccount(any())
+        doReturn(GetBalanceResponse(balance)).whenever(paymentApi).getBalance(any())
 
         val m1 = PaymentMethodSummary(
             token = "123",
@@ -86,8 +87,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     @Test
     fun noBalance() {
         // GIVEN
-        val ex = mock<FeignException.NotFound>()
-        doThrow(ex).whenever(paymentApi).getUserAccount(any())
+        doReturn(GetBalanceResponse(balance = Balance(currency = "XAF"))).whenever(paymentApi).getBalance(any())
 
         // THEN
         assertEndpointEquals("/screens/home-no-balance.json", url)
