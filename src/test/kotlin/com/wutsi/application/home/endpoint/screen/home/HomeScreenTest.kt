@@ -2,8 +2,6 @@ package com.wutsi.application.home.endpoint.screen.home
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.doThrow
-import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.home.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
@@ -13,7 +11,6 @@ import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
-import feign.FeignException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
