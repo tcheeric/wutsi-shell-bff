@@ -1,0 +1,236 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.account",
+    "safe": false,
+    "backgroundColor": "#FFFFFF"
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {
+        "crossAxisAlignment": "center"
+      },
+      "children": [
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 4,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0,
+                "borderColor": "#ff0000"
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisSize": "min"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Your Balance",
+                            "color": "#000000",
+                            "alignment": "Center"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Column",
+                      "attributes": {
+                        "mainAxisAlignment": "center",
+                        "mainAxisSize": "min",
+                        "crossAxisAlignment": "center"
+                      },
+                      "children": [
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "alignment": "Center",
+                            "padding": 10.0
+                          },
+                          "children": [
+                            {
+                              "type": "MoneyText",
+                              "attributes": {
+                                "value": 150000.0,
+                                "color": "#000000",
+                                "currency": "XAF",
+                                "numberFormat": "#,###,##0"
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Row",
+                          "attributes": {
+                            "mainAxisAlignment": "spaceAround",
+                            "crossAxisAlignment": "center"
+                          },
+                          "children": [
+                            {
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "Add Cash",
+                                "padding": 5.0,
+                                "type": "Elevated",
+                                "stretched": false
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Route",
+                                "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
+                              }
+                            },
+                            {
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "Cash Out",
+                                "padding": 5.0,
+                                "type": "Elevated",
+                                "stretched": false
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Route",
+                                "url": "https://wutsi-cash-bff-test.herokuapp.com/cashout"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Flexible",
+          "attributes": {
+            "flex": 8,
+            "fit": "Tight"
+          },
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "BottomCenter",
+                "margin": 30.0,
+                "background": "#FFFFFF",
+                "borderRadius": 20.0,
+                "borderColor": "#8c8c8c"
+              },
+              "children": [
+                {
+                  "type": "ListView",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 20.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Your Accounts",
+                            "bold": true
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Divider",
+                      "attributes": {
+                        "color": "#8c8c8c"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "ListItem",
+                      "attributes": {
+                        "caption": "xxxxx",
+                        "iconLeft": "http://www.goole.com/images/mtn.png",
+                        "iconRight": "e15f"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "ListItem",
+                      "attributes": {
+                        "caption": "yyy",
+                        "iconLeft": "http://www.goole.com/images/orange.png",
+                        "iconRight": "e15f"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Divider",
+                      "attributes": {
+                        "color": "#8c8c8c"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "Center",
+                        "padding": 20.0
+                      },
+                      "children": [
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Add Account",
+                            "padding": 15.0,
+                            "type": "Elevated"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/accounts/link/mobile"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Accounts",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

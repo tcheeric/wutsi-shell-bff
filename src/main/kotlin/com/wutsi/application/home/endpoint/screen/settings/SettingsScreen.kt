@@ -4,6 +4,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wutsi.application.home.endpoint.AbstractQuery
 import com.wutsi.application.home.endpoint.Page
 import com.wutsi.application.home.endpoint.Theme
+import com.wutsi.application.home.service.URLBuilder
 import com.wutsi.application.home.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings")
 class SettingsScreen(
+    private val urlBuilder: URLBuilder,
     private val userProvider: UserProvider,
     private val phoneNumberUtil: PhoneNumberUtil
 ) : AbstractQuery() {
@@ -70,16 +72,13 @@ class SettingsScreen(
                             alignment = TopCenter,
                             padding = 10.0,
                             child = Button(
-                                caption = getText("page.settings.button.logout"),
+                                caption = "Account",
                                 action = Action(
                                     type = Route,
-                                    url = "route:/login",
-                                    parameters = mapOf(
-                                        "phone" to user.phone?.number!!
-                                    )
+                                    url = urlBuilder.build("settings/account"),
                                 )
                             )
-                        ),
+                        )
                     )
                 )
             ),

@@ -1,103 +1,85 @@
 {
-  "type": "Screen",
-  "attributes": {
-    "id": "page.settings",
-    "safe": false
+  "type" : "Screen",
+  "attributes" : {
+    "id" : "page.settings",
+    "safe" : false
   },
-  "children": [
-    {
-      "type": "Container",
-      "attributes": {
-        "alignment": "Center",
-        "padding": 20.0
-      },
-      "children": [
-        {
-          "type": "Column",
-          "attributes": {},
-          "children": [
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "Center",
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "Ray Sponsible",
-                    "bold": true,
-                    "size": 25.0,
-                    "alignment": "Center"
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopCenter",
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "+1237666666666",
-                    "size": 18.0,
-                    "alignment": "Center"
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "padding": 20.0
-              },
-              "children": []
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopCenter",
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Logout",
-                    "padding": 15.0,
-                    "type": "Elevated"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "route:/login",
-                    "parameters": {
-                      "phone": "+1237666666666"
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Settings",
-      "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
+  "children" : [ {
+    "type" : "Container",
+    "attributes" : {
+      "alignment" : "Center",
+      "padding" : 20.0
     },
-    "children": []
+    "children" : [ {
+      "type" : "Column",
+      "attributes" : { },
+      "children" : [ {
+        "type" : "Container",
+        "attributes" : {
+          "alignment" : "Center",
+          "padding" : 10.0
+        },
+        "children" : [ {
+          "type" : "Text",
+          "attributes" : {
+            "caption" : "Ray Sponsible",
+            "bold" : true,
+            "size" : 25.0,
+            "alignment" : "Center"
+          },
+          "children" : [ ]
+        } ]
+      }, {
+        "type" : "Container",
+        "attributes" : {
+          "alignment" : "TopCenter",
+          "padding" : 10.0
+        },
+        "children" : [ {
+          "type" : "Text",
+          "attributes" : {
+            "caption" : "+1237666666666",
+            "size" : 18.0,
+            "alignment" : "Center"
+          },
+          "children" : [ ]
+        } ]
+      }, {
+        "type" : "Container",
+        "attributes" : {
+          "padding" : 20.0
+        },
+        "children" : [ ]
+      }, {
+        "type" : "Container",
+        "attributes" : {
+          "alignment" : "TopCenter",
+          "padding" : 10.0
+        },
+        "children" : [ {
+          "type" : "Button",
+          "attributes" : {
+            "caption" : "Account",
+            "padding" : 15.0,
+            "type" : "Elevated"
+          },
+          "children" : [ ],
+          "action" : {
+            "type" : "Route",
+            "url" : "http://localhost:0/settings/account"
+          }
+        } ]
+      } ]
+    } ]
+  } ],
+  "appBar" : {
+    "type" : "AppBar",
+    "attributes" : {
+      "title" : "Settings",
+      "elevation" : 0.0,
+      "backgroundColor" : "#FFFFFF",
+      "foregroundColor" : "#000000"
+    },
+    "children" : [ ]
   }
 }
