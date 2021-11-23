@@ -76,7 +76,7 @@ class HomeScreen(
             child = Column(
                 children = listOf(
                     Flexible(
-                        flex = 6,
+                        flex = 4,
                         child = Container(
                             padding = 10.0,
                             alignment = TopCenter,
@@ -99,7 +99,7 @@ class HomeScreen(
                         ),
                     ),
                     Flexible(
-                        flex = 6,
+                        flex = 8,
                         child = Container(
                             margin = 30.0,
                             background = Theme.WHITE_COLOR,
