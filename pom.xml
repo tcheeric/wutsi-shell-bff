@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>wutsi-shell-bff</artifactId>
-  <groupId>com.wutsi.application.home</groupId>
-  <version>0.0.16-SNAPSHOT</version>
+  <groupId>com.wutsi.application.shell</groupId>
+  <version>0.0.19-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>wutsi-shell-bff</name>
 
@@ -29,12 +29,12 @@
     <klint.version>0.43.0</klint.version>
     <libphonenumber.version>8.12.37</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-    <sdui-kotlin.version>0.0.27</sdui-kotlin.version>
+    <sdui-kotlin.version>0.0.29</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.74</wutsi-platform-core.version>
-    <wutsi-account.version>1.0.11</wutsi-account.version>
-    <wutsi-payment.version>0.0.8</wutsi-payment.version>
+    <wutsi-account.version>1.0.12</wutsi-account.version>
+    <wutsi-payment.version>0.0.12</wutsi-payment.version>
     <wutsi-sms.version>1.0.7</wutsi-sms.version>
-    <wutsi-tenant.version>0.0.9</wutsi-tenant.version>
+    <wutsi-tenant.version>0.0.10</wutsi-tenant.version>
     <wutsi-platform-payment.version>0.0.50</wutsi-platform-payment.version>
   </properties>
 

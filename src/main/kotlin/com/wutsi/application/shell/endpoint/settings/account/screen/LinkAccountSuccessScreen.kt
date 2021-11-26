@@ -1,0 +1,73 @@
+package com.wutsi.application.shell.endpoint.settings.account.screen
+
+import com.wutsi.application.shell.endpoint.AbstractQuery
+import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.application.shell.endpoint.Theme
+import com.wutsi.flutter.sdui.Action
+import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.Column
+import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.Text
+import com.wutsi.flutter.sdui.Widget
+import com.wutsi.flutter.sdui.enums.ActionType.Route
+import com.wutsi.flutter.sdui.enums.Alignment.Center
+import com.wutsi.flutter.sdui.enums.ButtonType.Elevated
+import com.wutsi.flutter.sdui.enums.TextAlignment
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping("/settings/accounts/link/success")
+class LinkAccountSuccessScreen : AbstractQuery() {
+    @PostMapping
+    fun index(): Widget {
+        return Screen(
+            id = Page.SETTINGS_ACCOUNT_LINK_SUCCESS,
+            safe = true,
+            appBar = AppBar(
+                elevation = 0.0,
+                backgroundColor = Theme.WHITE_COLOR,
+                foregroundColor = Theme.BLACK_COLOR,
+                automaticallyImplyLeading = false
+            ),
+            child = Column(
+                children = listOf(
+                    Container(padding = 40.0),
+                    Container(
+                        alignment = Center,
+                        padding = 20.0,
+                        child = Icon(
+                            code = Theme.ICON_CHECK,
+                            size = 80.0,
+                            color = "#4CAF50"
+                        )
+                    ),
+                    Container(
+                        alignment = Center,
+                        padding = 10.0,
+                        child = Text(
+                            caption = getText("page.link-account-success.sub-title"),
+                            alignment = TextAlignment.Center,
+                            size = Theme.LARGE_TEXT_SIZE,
+                        )
+                    ),
+                    Container(
+                        padding = 10.0,
+                        child = Button(
+                            type = Elevated,
+                            caption = getText("page.link-account-success.button.submit"),
+                            action = Action(
+                                type = Route,
+                                url = "route:/"
+                            )
+                        )
+                    )
+                )
+            ),
+        ).toWidget()
+    }
+}
