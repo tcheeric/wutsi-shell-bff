@@ -42,32 +42,89 @@ class SettingsScreen(
                 title = getText("page.settings.app-bar.title")
             ),
             child = Container(
-                padding = 20.0,
-                alignment = Center,
                 child = Column(
                     children = listOf(
                         Container(
-                            alignment = Center,
-                            padding = 10.0,
-                            child = Text(
-                                caption = user.displayName ?: "",
-                                alignment = TextAlignment.Center,
-                                size = Theme.X_LARGE_TEXT_SIZE,
-                                bold = true
-                            )
-                        ),
-                        Container(
-                            alignment = TopCenter,
-                            padding = 10.0,
-                            child = Text(
-                                caption = formattedPhoneNumber(user) ?: "",
-                                alignment = TextAlignment.Center,
-                                size = Theme.LARGE_TEXT_SIZE,
+                            alignment = Alignment.topCenter,
+                            padding: const EdgeInsets.all(20),
+                            child = Column(
+                                children = listOf(
+                                    Container(
+                                        child = CircleAvatar(
+                                            radius = BorderRadius.circular(64),
+                                            child = Image(
+                                                imageUrl = user.pictureUrl,                                                
+                                                width = 128, 
+                                                height = 128
+                                            ) 
+                                        )
+                                    ),
+                                    Container(
+                                        alignment = Center,
+                                        padding = 10.0,
+                                        child = Text(
+                                            caption = user.displayName ?: "",
+                                            alignment = TextAlignment.Center,
+                                            size = Theme.X_LARGE_TEXT_SIZE,
+                                            bold = true
+                                        )
+                                    ),
+                                    Container(
+                                        alignment = TopCenter,
+                                        padding = 10.0,
+                                        child = Text(
+                                            caption = formattedPhoneNumber(user) ?: "",
+                                            alignment = TextAlignment.Center,
+                                            size = Theme.LARGE_TEXT_SIZE,
+                                        )
+                                    )
+                                )
                             )
                         ),
                         Container(
                             padding = 20.0
                         ),
+                        Flexible(
+                            flex = 4,
+                            child = ListView(
+                                children = listOf(
+                                    ListTile(
+                                        leading = Icon(Icons.verified_user, color: Colors.blue),
+                                        trailing = Icon(Icons.chevron_right),
+                                        title = Text('Personal'),
+                                        subtitle = Text('Edit your personal information'),
+                                        onTap: () =>
+                                            {Navigator.pushNamed(context, '/settings/personal')},
+                                    ),
+                                    Divider(),
+                                    ListTile(
+                                        leading = Icon(Icons.verified_user, color: Colors.blue),
+                                        trailing = Icon(Icons.chevron_right),
+                                        title = Text('Accounts'),
+                                        subtitle = Text('Manage your accounts for payments'),
+                                        onTap: () =>
+                                            {Navigator.pushNamed(context, '/settings/account')},
+                                    ),
+                                    Divider(),
+                                    ListTile(
+                                        leading = Icon(Icons.verified_user, color: Colors.blue),
+                                        trailing = Icon(Icons.chevron_right),
+                                        title = Text('Personal'),
+                                        subtitle = Text('Edit your personal information'),
+                                        onTap: () =>
+                                            {Navigator.pushNamed(context, '/settings/security')},
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            ),
+            child = Container(
+                padding = 20.0,
+                alignment = Center,
+                child = Column(
+                    children = listOf(
                         Container(
                             alignment = TopCenter,
                             padding = 10.0,
@@ -78,6 +135,7 @@ class SettingsScreen(
                                     url = urlBuilder.build("settings/account"),
                                 )
                             )
+                        ),  )
                         )
                     )
                 )
