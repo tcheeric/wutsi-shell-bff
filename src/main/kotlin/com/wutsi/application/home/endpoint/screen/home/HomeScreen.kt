@@ -185,6 +185,17 @@ class HomeScreen(
                 )
             )
         }
+        buttons.add(
+            Button(
+                caption = getText("page.home.button.history"),
+                padding = 5.0,
+                stretched = false,
+                action = Action(
+                    type = Route,
+                    url = urlBuilder.build(cashUrl, "history")
+                )
+            )
+        )
         return buttons
     }
 

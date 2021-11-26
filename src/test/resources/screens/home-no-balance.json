@@ -99,6 +99,20 @@
                                 "type": "Route",
                                 "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
                               }
+                            },
+                            {
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "History",
+                                "padding": 5.0,
+                                "type": "Elevated",
+                                "stretched": false
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Route",
+                                "url": "https://wutsi-cash-bff-test.herokuapp.com/history"
+                              }
                             }
                           ]
                         }
