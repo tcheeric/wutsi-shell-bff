@@ -6,7 +6,7 @@
 
   <artifactId>wutsi-shell-bff</artifactId>
   <groupId>com.wutsi.application.shell</groupId>
-  <version>0.0.21</version>
+  <version>0.0.22-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>wutsi-shell-bff</name>
 
@@ -156,7 +156,7 @@
 
   <scm>
     <developerConnection>scm:git:https://github.com/wutsi/wutsi-shell-bff.git</developerConnection>
-    <tag>wutsi-shell-bff-0.0.21</tag>
+    <tag>HEAD</tag>
   </scm>
   <distributionManagement>
     <repository>
