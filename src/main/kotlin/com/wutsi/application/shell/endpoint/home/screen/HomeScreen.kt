@@ -24,7 +24,6 @@ import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
-import com.wutsi.flutter.sdui.enums.Alignment.BottomCenter
 import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
@@ -95,7 +94,6 @@ class HomeScreen(
                                     balance(paymentMethods, tenant)
                                 )
                             ),
-                            borderColor = "#ff0000",
                         ),
                     ),
                     Flexible(
@@ -104,7 +102,7 @@ class HomeScreen(
                             margin = 30.0,
                             background = Theme.WHITE_COLOR,
                             borderColor = Theme.DIVIDER_COLOR,
-                            alignment = BottomCenter,
+                            alignment = TopCenter,
                             borderRadius = 20.0,
                             child = if (paymentMethods.isEmpty())
                                 emptyAccountWidget()
@@ -164,8 +162,9 @@ class HomeScreen(
         buttons.add(
             Button(
                 caption = getText("page.home.button.add-cash"),
-                padding = 5.0,
                 stretched = false,
+                icon = Theme.ICON_ADD_CASH,
+                iconSize = 32.0,
                 action = Action(
                     type = Route,
                     url = urlBuilder.build(cashUrl, "cashin")
@@ -176,8 +175,9 @@ class HomeScreen(
             buttons.add(
                 Button(
                     caption = getText("page.home.button.send"),
-                    padding = 5.0,
                     stretched = false,
+                    icon = Theme.ICON_SEND,
+                    iconSize = 32.0,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "send")
@@ -188,8 +188,9 @@ class HomeScreen(
         buttons.add(
             Button(
                 caption = getText("page.home.button.history"),
-                padding = 5.0,
                 stretched = false,
+                icon = Theme.ICON_HISTORY,
+                iconSize = 32.0,
                 action = Action(
                     type = Route,
                     url = urlBuilder.build(cashUrl, "history")

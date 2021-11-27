@@ -23,8 +23,7 @@
               "type": "Container",
               "attributes": {
                 "alignment": "TopCenter",
-                "padding": 10.0,
-                "borderColor": "#ff0000"
+                "padding": 10.0
               },
               "children": [
                 {
@@ -87,7 +86,7 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "BottomCenter",
+                "alignment": "TopCenter",
                 "margin": 30.0,
                 "background": "#FFFFFF",
                 "borderRadius": 20.0,

@@ -23,8 +23,7 @@
               "type": "Container",
               "attributes": {
                 "alignment": "TopCenter",
-                "padding": 10.0,
-                "borderColor": "#ff0000"
+                "padding": 10.0
               },
               "children": [
                 {
@@ -90,9 +89,11 @@
                               "type": "Button",
                               "attributes": {
                                 "caption": "Add Cash",
-                                "padding": 5.0,
+                                "padding": 15.0,
                                 "type": "Elevated",
-                                "stretched": false
+                                "stretched": false,
+                                "icon": "e3f7",
+                                "iconSize": 32.0
                               },
                               "children": [],
                               "action": {
@@ -104,9 +105,11 @@
                               "type": "Button",
                               "attributes": {
                                 "caption": "History",
-                                "padding": 5.0,
+                                "padding": 15.0,
                                 "type": "Elevated",
-                                "stretched": false
+                                "stretched": false,
+                                "icon": "e314",
+                                "iconSize": 32.0
                               },
                               "children": [],
                               "action": {
@@ -134,7 +137,7 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "BottomCenter",
+                "alignment": "TopCenter",
                 "margin": 30.0,
                 "background": "#FFFFFF",
                 "borderRadius": 20.0,

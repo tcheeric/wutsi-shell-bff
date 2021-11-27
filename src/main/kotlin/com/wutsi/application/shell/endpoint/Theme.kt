@@ -10,6 +10,9 @@ object Theme {
     const val ICON_SETTINGS = "e57f"
     const val ICON_CHECK = "e15a"
     const val ICON_MONEY = "e3f7"
+    const val ICON_ADD_CASH = "e3f7"
+    const val ICON_HISTORY = "e314"
+    const val ICON_SEND = "f356"
     const val ICON_CHEVRON_RIGHT = "e15f"
     const val ICON_ACCOUNT = "e3f7"
 }
