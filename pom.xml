@@ -7,7 +7,7 @@
 
   <artifactId>wutsi-shell-bff</artifactId>
   <groupId>com.wutsi.application.shell</groupId>
-  <version>0.0.24-SNAPSHOT</version>
+  <version>0.0.25-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>wutsi-shell-bff</name>
 
