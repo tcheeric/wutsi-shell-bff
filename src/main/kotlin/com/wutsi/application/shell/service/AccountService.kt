@@ -42,10 +42,6 @@ class AccountService(
 
     @Value("\${wutsi.platform.cache.name}") private val cacheName: String,
 ) {
-    companion object {
-        const val ERROR_ACCOUNT_OWNERSHIP = "urn:error:wutsi:account:payment-method-ownership"
-    }
-
     fun sendVerificationCode(request: SendSmsCodeRequest) {
         logger.add("phone_number", request.phoneNumber)
 
@@ -102,7 +98,7 @@ class AccountService(
             logger.add("payment_method_token", response.token)
         } catch (ex: FeignException) {
             val code = ex.toErrorResponse(objectMapper)?.error?.code ?: throw ex
-            if (code == ERROR_ACCOUNT_OWNERSHIP)
+            if (code == com.wutsi.platform.account.error.ErrorURN.PAYMENT_METHOD_OWNERSHIP.urn)
                 throw AccountAlreadyLinkedException(ex)
             else
                 throw ex

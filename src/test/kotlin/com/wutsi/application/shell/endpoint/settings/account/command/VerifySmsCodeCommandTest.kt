@@ -11,12 +11,12 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.entity.SmsCodeEntity
-import com.wutsi.application.shell.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.platform.account.dto.AddPaymentMethodRequest
 import com.wutsi.platform.account.dto.AddPaymentMethodResponse
+import com.wutsi.platform.account.error.ErrorURN
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.sms.WutsiSmsApi
@@ -113,7 +113,7 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
     @Test
     fun accountAlreadyLinked() {
         // GIVEN
-        val ex = toFeignException(AccountService.ERROR_ACCOUNT_OWNERSHIP)
+        val ex = toFeignException(ErrorURN.PAYMENT_METHOD_OWNERSHIP.urn)
         doThrow(ex).whenever(accountApi).addPaymentMethod(any(), any())
 
         // WHEN
