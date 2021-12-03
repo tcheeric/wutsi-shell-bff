@@ -30,7 +30,7 @@
     <klint.version>0.43.1</klint.version>
     <libphonenumber.version>8.12.38</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
-    <sdui-kotlin.version>0.0.30</sdui-kotlin.version>
+    <sdui-kotlin.version>0.0.33</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.78</wutsi-platform-core.version>
     <wutsi-account.version>1.0.15</wutsi-account.version>
     <wutsi-contact.version>0.0.3</wutsi-contact.version>

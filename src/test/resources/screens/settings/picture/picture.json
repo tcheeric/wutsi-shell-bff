@@ -1,0 +1,32 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.picture",
+    "safe": false,
+    "backgroundColor": "#FFFFFF"
+  },
+  "children": [
+    {
+      "type": "Camera",
+      "attributes": {
+        "name": "file",
+        "uploadUrl": "http://localhost:0/commands/upload-picture"
+      },
+      "children": [],
+      "action": {
+        "type": "Route",
+        "url": "route:/.."
+      }
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Upload your Picture",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}
