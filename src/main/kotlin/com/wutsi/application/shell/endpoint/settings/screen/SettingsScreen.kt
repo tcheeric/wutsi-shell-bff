@@ -72,10 +72,21 @@ class SettingsScreen(
                             alignment = TopCenter,
                             padding = 10.0,
                             child = Button(
-                                caption = "Account",
+                                caption = getText("page.settings.button.accounts"),
                                 action = Action(
                                     type = Route,
                                     url = urlBuilder.build("settings/account"),
+                                )
+                            )
+                        ),
+                        Container(
+                            alignment = TopCenter,
+                            padding = 10.0,
+                            child = Button(
+                                caption = getText("page.settings.button.change-picture"),
+                                action = Action(
+                                    type = Route,
+                                    url = urlBuilder.build("settings/picture"),
                                 )
                             )
                         )
