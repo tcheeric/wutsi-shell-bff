@@ -76,7 +76,6 @@ internal class UploadPictureCommandTest : AbstractEndpointTest() {
             .filename(filename)
             .build()
         fileMap.add(HttpHeaders.CONTENT_DISPOSITION, contentDisposition.toString())
-        fileMap.add(HttpHeaders.CONTENT_TYPE, "image/png")
         val fileEntity = HttpEntity<ByteArray>("test".toByteArray(), fileMap)
 
         val body = LinkedMultiValueMap<String, Any>()

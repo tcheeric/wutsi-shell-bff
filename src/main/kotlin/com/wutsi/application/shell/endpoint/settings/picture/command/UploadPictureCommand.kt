@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
+import java.nio.file.Files
+import java.nio.file.Path
 import java.util.UUID
 
 @RestController
@@ -23,13 +25,14 @@ class UploadPictureCommand(
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam file: MultipartFile) {
+        val contentType = Files.probeContentType(Path.of(file.originalFilename))
         logger.add("file_name", file.originalFilename)
-        logger.add("file_content_type", file.contentType)
+        logger.add("file_content_type", contentType)
 
         // Upload file
         val userId = userProvider.id()
         val path = "user/$userId/picture/${UUID.randomUUID()}-${file.originalFilename}"
-        val url = storageService.store(path, file.inputStream, file.contentType)
+        val url = storageService.store(path, file.inputStream, contentType)
         logger.add("picture_url", url)
 
         // Update user profile
