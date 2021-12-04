@@ -70,7 +70,7 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "Change Picture",
+                    "caption": "Accounts",
                     "padding": 15.0,
                     "type": "Elevated"
                   },
