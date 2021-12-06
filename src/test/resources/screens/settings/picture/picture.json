@@ -11,7 +11,7 @@
       "attributes": {
         "name": "file",
         "uploadUrl": "http://localhost:0/commands/upload-picture",
-        "lensDirection": "back"
+        "lensDirection": "front"
       },
       "children": [],
       "action": {
