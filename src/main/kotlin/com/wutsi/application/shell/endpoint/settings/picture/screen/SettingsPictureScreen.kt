@@ -10,6 +10,7 @@ import com.wutsi.flutter.sdui.Camera
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType.Route
+import com.wutsi.flutter.sdui.enums.CameraLensDirection
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -33,10 +34,11 @@ class SettingsPictureScreen(
             child = Camera(
                 uploadUrl = urlBuilder.build("commands/upload-picture"),
                 name = "file",
+                lensDirection = CameraLensDirection.back,
                 action = Action(
                     type = Route,
                     url = "route:/.."
-                )
+                ),
             ),
         ).toWidget()
     }
