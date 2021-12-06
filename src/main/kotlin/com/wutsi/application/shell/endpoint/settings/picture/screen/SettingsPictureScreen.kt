@@ -34,7 +34,7 @@ class SettingsPictureScreen(
             child = Camera(
                 uploadUrl = urlBuilder.build("commands/upload-picture"),
                 name = "file",
-                lensDirection = CameraLensDirection.back,
+                lensDirection = CameraLensDirection.front,
                 action = Action(
                     type = Route,
                     url = "route:/.."
