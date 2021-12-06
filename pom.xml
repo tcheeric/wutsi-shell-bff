@@ -7,14 +7,14 @@
 
   <artifactId>wutsi-shell-bff</artifactId>
   <groupId>com.wutsi.application.shell</groupId>
-  <version>0.0.33-SNAPSHOT</version>
+  <version>0.0.36-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>wutsi-shell-bff</name>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.0</version>
+    <version>2.6.1</version>
   </parent>
 
   <properties>
@@ -24,7 +24,7 @@
     <jdk.version>11</jdk.version>
 
     <javax-validation.version>2.0.1.Final</javax-validation.version>
-    <junit.version>5.8.1</junit.version>
+    <junit.version>5.8.2</junit.version>
     <kotlin.version>1.6.0</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.2</klint.version>
