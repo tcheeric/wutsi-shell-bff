@@ -6,17 +6,25 @@ import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.Theme
 import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.application.shell.service.UserProvider
+import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+// import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.Flexible
+import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.Image
+import com.wutsi.flutter.sdui.ListItem
+import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
+// import com.wutsi.flutter.sdui.Spacer
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
+import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment.Center
-import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.Account
 import org.springframework.web.bind.annotation.PostMapping
@@ -42,100 +50,68 @@ class SettingsScreen(
                 title = getText("page.settings.app-bar.title")
             ),
             child = Container(
-                child = Column(
-                    children = listOf(
-                        Container(
-                            alignment = Alignment.topCenter,
-                            padding: const EdgeInsets.all(20),
-                            child = Column(
-                                children = listOf(
-                                    Container(
-                                        child = CircleAvatar(
-                                            radius = BorderRadius.circular(64),
-                                            child = Image(
-                                                imageUrl = user.pictureUrl,                                                
-                                                width = 128, 
-                                                height = 128
-                                            ) 
-                                        )
-                                    ),
-                                    Container(
-                                        alignment = Center,
-                                        padding = 10.0,
-                                        child = Text(
-                                            caption = user.displayName ?: "",
-                                            alignment = TextAlignment.Center,
-                                            size = Theme.X_LARGE_TEXT_SIZE,
-                                            bold = true
-                                        )
-                                    ),
-                                    Container(
-                                        alignment = TopCenter,
-                                        padding = 10.0,
-                                        child = Text(
-                                            caption = formattedPhoneNumber(user) ?: "",
-                                            alignment = TextAlignment.Center,
-                                            size = Theme.LARGE_TEXT_SIZE,
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        Container(
-                            padding = 20.0
-                        ),
-                        Flexible(
-                            flex = 4,
-                            child = ListView(
-                                children = listOf(
-                                    ListTile(
-                                        leading = Icon(Icons.verified_user, color: Colors.blue),
-                                        trailing = Icon(Icons.chevron_right),
-                                        title = Text('Personal'),
-                                        subtitle = Text('Edit your personal information'),
-                                        onTap: () =>
-                                            {Navigator.pushNamed(context, '/settings/personal')},
-                                    ),
-                                    Divider(),
-                                    ListTile(
-                                        leading = Icon(Icons.verified_user, color: Colors.blue),
-                                        trailing = Icon(Icons.chevron_right),
-                                        title = Text('Accounts'),
-                                        subtitle = Text('Manage your accounts for payments'),
-                                        onTap: () =>
-                                            {Navigator.pushNamed(context, '/settings/account')},
-                                    ),
-                                    Divider(),
-                                    ListTile(
-                                        leading = Icon(Icons.verified_user, color: Colors.blue),
-                                        trailing = Icon(Icons.chevron_right),
-                                        title = Text('Personal'),
-                                        subtitle = Text('Edit your personal information'),
-                                        onTap: () =>
-                                            {Navigator.pushNamed(context, '/settings/security')},
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            ),
-            child = Container(
-                padding = 20.0,
+                padding = 5.0,
                 alignment = Center,
                 child = Column(
                     children = listOf(
                         Container(
-                            alignment = TopCenter,
-                            padding = 10.0,
-                            child = Button(
-                                caption = "Account",
-                                action = Action(
-                                    type = Route,
-                                    url = urlBuilder.build("settings/account"),
+                            child = icon(user?.pictureUrl, user),
+                        ),
+                        Container(
+                            alignment = Center,
+                            padding = 5.0,
+                            child = Text(
+                                caption = user.displayName ?: "",
+                                alignment = TextAlignment.Center,
+                                size = Theme.X_LARGE_TEXT_SIZE,
+                                bold = true
+                            )
+                        ),
+                        Container(
+                            alignment = Center,
+                            child = Text(
+                                caption = formattedPhoneNumber(user) ?: "",
+                                alignment = TextAlignment.Center,
+                                size = Theme.LARGE_TEXT_SIZE,
+                            )
+                        ),
+                        Flexible(
+                            flex = 2,
+                            child = ListView(
+                                separator = true,
+                                children = listOf(
+                                    ListItem(
+                                        caption = "Personal",
+                                        subCaption = "Edit your personal information",
+                                        leading = Icon(code = Theme.ICON_VERIFIED_USER, size = 24.0, color = Theme.PRIMARY_COLOR),
+                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.BLACK_COLOR),
+                                        action = Action(
+                                            type = Route,
+                                            url = urlBuilder.build("/settings/account")
+                                        )
+                                    ),
+                                    ListItem(
+                                        caption = "Accounts",
+                                        subCaption = "Manage your accounts for payments",
+                                        leading = Icon(code = Theme.ICON_ADD_CASH, size = 24.0, color = Theme.GREEN_COLOR),
+                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.BLACK_COLOR),
+                                        action = Action(
+                                            type = Route,
+                                            url = urlBuilder.build("/settings/account")
+                                        )
+                                    ),
+                                    ListItem(
+                                        caption = "Security",
+                                        subCaption = "Protect your account",
+                                        leading = Icon(code = Theme.ICON_LOCK, size = 24.0, color = Theme.RED_COLOR),
+                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.BLACK_COLOR),
+                                        action = Action(
+                                            type = Route,
+                                            url = urlBuilder.build("/settings/security")
+                                        )
+                                    )
                                 )
                             )
-                        ),  )
                         )
                     )
                 )
@@ -147,5 +123,26 @@ class SettingsScreen(
         val phone = user.phone ?: return null
         val phoneNumber = phoneNumberUtil.parse(phone.number, phone.country)
         return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164)
+    }
+
+    private fun icon(pic: String?, user: Account): WidgetAware {
+        if (pic != null) {
+            return CircleAvatar(
+                radius = 64.0,
+                child = Image(
+                    width = 128.0,
+                    height = 128.0,
+                    url = pic
+                )
+            )
+        }
+        return CircleAvatar(
+            radius = 64.0,
+            child = Text(
+                caption = StringUtil.initials(user.displayName),
+                size = 2.0 * Theme.LARGE_TEXT_SIZE,
+                bold = true
+            )
+        )
     }
 }

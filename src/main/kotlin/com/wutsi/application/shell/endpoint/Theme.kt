@@ -3,13 +3,28 @@ package com.wutsi.application.shell.endpoint
 object Theme {
     const val X_LARGE_TEXT_SIZE = 25.0
     const val LARGE_TEXT_SIZE = 18.0
+    const val SMALL_TEXT_SIZE = 10.0
     const val BLACK_COLOR = "#000000"
-    const val PRIMARY_COLOR = "#1D7EDF"
     const val WHITE_COLOR = "#FFFFFF"
+    const val GREEN_COLOR = "#008000"
+    const val RED_COLOR = "#FF0000"
+    const val GRAY_COLOR = "#95A5A6"
+    const val PRIMARY_COLOR = "#1D7EDF"
+    const val WARNING_COLOR = "#FFC107"
+    const val SUCCESS_COLOR = "#4CAF50"
+    const val DANGER_COLOR = "#8B0000"
     const val DIVIDER_COLOR = "#8c8c8c"
     const val ICON_SETTINGS = "e57f"
+    const val ICON_CANCEL = "ef28"
     const val ICON_CHECK = "e15a"
+    const val ICON_ERROR = "e237"
+    const val ICON_PENDING = "0xe484"
     const val ICON_MONEY = "e3f7"
+    const val ICON_ADD_CASH = "e3f7"
+    const val ICON_HISTORY = "e314"
+    const val ICON_LOCK = "e3ae"
+    const val ICON_SEND = "f356"
     const val ICON_CHEVRON_RIGHT = "e15f"
     const val ICON_ACCOUNT = "e3f7"
+    const val ICON_VERIFIED_USER = "e69a"
 }
