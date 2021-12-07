@@ -75,6 +75,7 @@ class SettingsScreen(
                                 size = Theme.LARGE_TEXT_SIZE,
                             )
                         ),
+<<<<<<< HEAD
                         Flexible(
                             flex = 2,
                             child = ListView(
@@ -110,6 +111,30 @@ class SettingsScreen(
                                             url = urlBuilder.build("/settings/security")
                                         )
                                     )
+=======
+                        Container(
+                            padding = 20.0
+                        ),
+                        Container(
+                            alignment = TopCenter,
+                            padding = 10.0,
+                            child = Button(
+                                caption = getText("page.settings.button.accounts"),
+                                action = Action(
+                                    type = Route,
+                                    url = urlBuilder.build("settings/account"),
+>>>>>>> b7a1a4b799f0b532cc4738d4948cdc542db5cefd
+                                )
+                            )
+                        ),
+                        Container(
+                            alignment = TopCenter,
+                            padding = 10.0,
+                            child = Button(
+                                caption = getText("page.settings.button.change-picture"),
+                                action = Action(
+                                    type = Route,
+                                    url = urlBuilder.build("settings/picture"),
                                 )
                             )
                         )

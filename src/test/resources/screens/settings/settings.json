@@ -1,9 +1,10 @@
 {
-  "type" : "Screen",
-  "attributes" : {
-    "id" : "page.settings",
-    "safe" : false
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings",
+    "safe": false
   },
+<<<<<<< HEAD
   "children" : [ {
     "type" : "Container",
     "attributes" : {
@@ -173,5 +174,121 @@
       "foregroundColor" : "#000000"
     },
     "children" : [ ]
+=======
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 20.0
+      },
+      "children": [
+        {
+          "type": "Column",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Ray Sponsible",
+                    "bold": true,
+                    "size": 25.0,
+                    "alignment": "Center"
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "+1237666666666",
+                    "size": 18.0,
+                    "alignment": "Center"
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 20.0
+              },
+              "children": []
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Accounts",
+                    "padding": 15.0,
+                    "type": "Elevated"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/account"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Change Picture",
+                    "padding": 15.0,
+                    "type": "Elevated"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/picture"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Settings",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+>>>>>>> b7a1a4b799f0b532cc4738d4948cdc542db5cefd
   }
 }

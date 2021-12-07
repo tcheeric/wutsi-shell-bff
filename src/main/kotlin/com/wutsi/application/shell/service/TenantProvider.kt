@@ -20,6 +20,6 @@ class TenantProvider(
     fun logo(carrier: MobileCarrier): String? =
         carrier.logos.find { it.type == "PICTORIAL" }?.url
 
-    private fun tenantId(): Long =
+    fun tenantId(): Long =
         tracingContext.tenantId()!!.toLong()
 }

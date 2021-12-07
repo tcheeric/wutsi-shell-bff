@@ -53,6 +53,8 @@ wutsi:
       client-id: ${wutsi.application.name}
       device-id-provider:
         type: header
+    storage:
+      type: local
   toggles:
     send-sms-code: false
     verify-sms-code: false

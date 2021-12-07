@@ -6,14 +6,14 @@
 
   <artifactId>wutsi-shell-bff</artifactId>
   <groupId>com.wutsi.application.shell</groupId>
-  <version>0.0.22-SNAPSHOT</version>
+  <version>0.0.38-SNAPSHOT</version>
   <packaging>jar</packaging>
   <name>wutsi-shell-bff</name>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.0</version>
+    <version>2.6.1</version>
   </parent>
 
   <properties>
@@ -23,19 +23,27 @@
     <jdk.version>11</jdk.version>
 
     <javax-validation.version>2.0.1.Final</javax-validation.version>
-    <junit.version>5.8.1</junit.version>
-    <kotlin.version>1.5.31</kotlin.version>
+    <junit.version>5.8.2</junit.version>
+    <kotlin.version>1.6.0</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
-    <klint.version>0.43.0</klint.version>
+    <klint.version>0.43.2</klint.version>
     <libphonenumber.version>8.12.38</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
+<<<<<<< HEAD
     <sdui-kotlin.version>0.0.33</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.74</wutsi-platform-core.version>
     <wutsi-account.version>1.0.12</wutsi-account.version>
     <wutsi-payment.version>0.0.12</wutsi-payment.version>
+=======
+    <sdui-kotlin.version>0.0.36</sdui-kotlin.version>
+    <wutsi-platform-core.version>0.0.78</wutsi-platform-core.version>
+    <wutsi-account.version>1.0.15</wutsi-account.version>
+    <wutsi-contact.version>0.0.3</wutsi-contact.version>
+    <wutsi-payment.version>0.0.17</wutsi-payment.version>
+>>>>>>> b7a1a4b799f0b532cc4738d4948cdc542db5cefd
     <wutsi-sms.version>1.0.7</wutsi-sms.version>
     <wutsi-tenant.version>0.0.10</wutsi-tenant.version>
-    <wutsi-platform-payment.version>0.0.50</wutsi-platform-payment.version>
+    <wutsi-platform-payment.version>0.0.61</wutsi-platform-payment.version>
   </properties>
 
   <dependencies>
@@ -43,6 +51,11 @@
       <groupId>com.wutsi</groupId>
       <artifactId>wutsi-platform-core</artifactId>
       <version>${wutsi-platform-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.wutsi.platform.contact</groupId>
+      <artifactId>wutsi-contact-sdk-kotlin</artifactId>
+      <version>${wutsi-contact.version}</version>
     </dependency>
     <dependency>
       <groupId>com.wutsi.platform.account</groupId>

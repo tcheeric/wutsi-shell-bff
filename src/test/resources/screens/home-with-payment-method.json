@@ -88,7 +88,7 @@
                             {
                               "type": "Button",
                               "attributes": {
-                                "caption": "Add Cash",
+                                "caption": "Add",
                                 "padding": 15.0,
                                 "type": "Elevated",
                                 "stretched": false,

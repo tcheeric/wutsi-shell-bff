@@ -80,7 +80,7 @@ class VerifyAccountMobileScreen(
                                 name = "code",
                                 hideText = true,
                                 pinSize = 20.0,
-                                keyboardButtonSize = 90.0,
+                                keyboardButtonSize = 70.0,
                                 action = Action(
                                     type = ActionType.Command,
                                     url = urlBuilder.build("commands/verify-sms-code")
