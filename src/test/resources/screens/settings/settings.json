@@ -100,7 +100,7 @@
             "children" : [ ],
             "action" : {
               "type" : "Route",
-              "url" : "http://localhost:0//settings/account"
+              "url" : "http://localhost:0/settings/account"
             }
           }, {
             "type" : "ListItem",
@@ -130,7 +130,7 @@
             "children" : [ ],
             "action" : {
               "type" : "Route",
-              "url" : "http://localhost:0//settings/account"
+              "url" : "http://localhost:0/settings/account"
             }
           }, {
             "type" : "ListItem",
@@ -160,7 +160,7 @@
             "children" : [ ],
             "action" : {
               "type" : "Route",
-              "url" : "http://localhost:0//settings/security"
+              "url" : "http://localhost:0/settings/security"
             }
           } ]
         } ]

@@ -80,8 +80,8 @@ class SettingsScreen(
                                 children = listOf(
                                     ListItem(
                                         padding = 5.0,
-                                        caption = "Personal",
-                                        subCaption = "Edit your personal information",
+                                        caption = getText("page.settings.listitem.personal.caption"),
+                                        subCaption = getText("page.settings.listitem.personal.subcaption"),
                                         leading = Icon(
                                             code = Theme.ICON_VERIFIED_USER,
                                             size = 24.0,
@@ -94,13 +94,13 @@ class SettingsScreen(
                                         ),
                                         action = Action(
                                             type = Route,
-                                            url = urlBuilder.build("/settings/account")
+                                            url = urlBuilder.build("settings/account")
                                         )
                                     ),
                                     ListItem(
                                         padding = 5.0,
-                                        caption = "Accounts",
-                                        subCaption = "Manage your accounts for payments",
+                                        caption = getText("page.settings.listitem.account.caption"),
+                                        subCaption = getText("page.settings.listitem.account.subcaption"),
                                         leading = Icon(
                                             code = Theme.ICON_ADD_CASH,
                                             size = 24.0,
@@ -113,13 +113,13 @@ class SettingsScreen(
                                         ),
                                         action = Action(
                                             type = Route,
-                                            url = urlBuilder.build("/settings/account")
+                                            url = urlBuilder.build("settings/account")
                                         )
                                     ),
                                     ListItem(
                                         padding = 5.0,
-                                        caption = "Security",
-                                        subCaption = "Protect your account",
+                                        caption = getText("page.settings.listitem.security.caption"),
+                                        subCaption = getText("page.settings.listitem.security.subcaption"),
                                         leading = Icon(code = Theme.ICON_LOCK, size = 24.0, color = Theme.RED_COLOR),
                                         trailing = Icon(
                                             code = Theme.ICON_CHEVRON_RIGHT,
@@ -128,7 +128,7 @@ class SettingsScreen(
                                         ),
                                         action = Action(
                                             type = Route,
-                                            url = urlBuilder.build("/settings/security")
+                                            url = urlBuilder.build("settings/security")
                                         )
                                     ),
                                 )
