@@ -12,14 +12,12 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-// import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
-// import com.wutsi.flutter.sdui.Spacer
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
@@ -55,7 +53,7 @@ class SettingsScreen(
                 child = Column(
                     children = listOf(
                         Container(
-                            child = icon(user?.pictureUrl, user),
+                            child = icon(user.pictureUrl, user),
                         ),
                         Container(
                             alignment = Center,
@@ -84,8 +82,16 @@ class SettingsScreen(
                                         padding = 5.0,
                                         caption = "Personal",
                                         subCaption = "Edit your personal information",
-                                        leading = Icon(code = Theme.ICON_VERIFIED_USER, size = 24.0, color = Theme.PRIMARY_COLOR),
-                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.GRAY_COLOR),
+                                        leading = Icon(
+                                            code = Theme.ICON_VERIFIED_USER,
+                                            size = 24.0,
+                                            color = Theme.PRIMARY_COLOR
+                                        ),
+                                        trailing = Icon(
+                                            code = Theme.ICON_CHEVRON_RIGHT,
+                                            size = 24.0,
+                                            color = Theme.BLACK_COLOR
+                                        ),
                                         action = Action(
                                             type = Route,
                                             url = urlBuilder.build("/settings/account")
@@ -95,8 +101,16 @@ class SettingsScreen(
                                         padding = 5.0,
                                         caption = "Accounts",
                                         subCaption = "Manage your accounts for payments",
-                                        leading = Icon(code = Theme.ICON_ADD_CASH, size = 24.0, color = Theme.GREEN_COLOR),
-                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.GRAY_COLOR),
+                                        leading = Icon(
+                                            code = Theme.ICON_ADD_CASH,
+                                            size = 24.0,
+                                            color = Theme.GREEN_COLOR
+                                        ),
+                                        trailing = Icon(
+                                            code = Theme.ICON_CHEVRON_RIGHT,
+                                            size = 24.0,
+                                            color = Theme.BLACK_COLOR
+                                        ),
                                         action = Action(
                                             type = Route,
                                             url = urlBuilder.build("/settings/account")
@@ -107,18 +121,22 @@ class SettingsScreen(
                                         caption = "Security",
                                         subCaption = "Protect your account",
                                         leading = Icon(code = Theme.ICON_LOCK, size = 24.0, color = Theme.RED_COLOR),
-                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.GRAY_COLOR),
+                                        trailing = Icon(
+                                            code = Theme.ICON_CHEVRON_RIGHT,
+                                            size = 24.0,
+                                            color = Theme.BLACK_COLOR
+                                        ),
                                         action = Action(
                                             type = Route,
                                             url = urlBuilder.build("/settings/security")
                                         )
-                                    )
+                                    ),
                                 )
-                            )
+                            ),
                         )
                     )
                 )
-            ),
+            )
         ).toWidget()
     }
 

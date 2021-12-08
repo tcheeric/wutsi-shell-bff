@@ -35,7 +35,7 @@ jobs:
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_TEST }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY_TEST }}
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY_TEST}}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY_TEST }}
           HEROKU_APP: wutsi-shell-bff-test
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
@@ -55,7 +55,7 @@ jobs:
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_PROD }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY_PROD }}
-          HEROKU_API_KEY: ${{secrets.HEROKU_API_KEY_PROD}}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY_PROD }}
           HEROKU_APP: wutsi-shell-bff-prod
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
