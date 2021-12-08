@@ -75,66 +75,44 @@ class SettingsScreen(
                                 size = Theme.LARGE_TEXT_SIZE,
                             )
                         ),
-<<<<<<< HEAD
                         Flexible(
                             flex = 2,
                             child = ListView(
                                 separator = true,
                                 children = listOf(
                                     ListItem(
+                                        padding = 5.0,
                                         caption = "Personal",
                                         subCaption = "Edit your personal information",
                                         leading = Icon(code = Theme.ICON_VERIFIED_USER, size = 24.0, color = Theme.PRIMARY_COLOR),
-                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.BLACK_COLOR),
+                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.GRAY_COLOR),
                                         action = Action(
                                             type = Route,
                                             url = urlBuilder.build("/settings/account")
                                         )
                                     ),
                                     ListItem(
+                                        padding = 5.0,
                                         caption = "Accounts",
                                         subCaption = "Manage your accounts for payments",
                                         leading = Icon(code = Theme.ICON_ADD_CASH, size = 24.0, color = Theme.GREEN_COLOR),
-                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.BLACK_COLOR),
+                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.GRAY_COLOR),
                                         action = Action(
                                             type = Route,
                                             url = urlBuilder.build("/settings/account")
                                         )
                                     ),
                                     ListItem(
+                                        padding = 5.0,
                                         caption = "Security",
                                         subCaption = "Protect your account",
                                         leading = Icon(code = Theme.ICON_LOCK, size = 24.0, color = Theme.RED_COLOR),
-                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.BLACK_COLOR),
+                                        trailing = Icon(code = Theme.ICON_CHEVRON_RIGHT, size = 24.0, color = Theme.GRAY_COLOR),
                                         action = Action(
                                             type = Route,
                                             url = urlBuilder.build("/settings/security")
                                         )
                                     )
-=======
-                        Container(
-                            padding = 20.0
-                        ),
-                        Container(
-                            alignment = TopCenter,
-                            padding = 10.0,
-                            child = Button(
-                                caption = getText("page.settings.button.accounts"),
-                                action = Action(
-                                    type = Route,
-                                    url = urlBuilder.build("settings/account"),
->>>>>>> b7a1a4b799f0b532cc4738d4948cdc542db5cefd
-                                )
-                            )
-                        ),
-                        Container(
-                            alignment = TopCenter,
-                            padding = 10.0,
-                            child = Button(
-                                caption = getText("page.settings.button.change-picture"),
-                                action = Action(
-                                    type = Route,
-                                    url = urlBuilder.build("settings/picture"),
                                 )
                             )
                         )
