@@ -31,7 +31,7 @@
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
     <sdui-kotlin.version>0.0.36</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.78</wutsi-platform-core.version>
-    <wutsi-account.version>1.0.15</wutsi-account.version>
+    <wutsi-account.version>1.0.17</wutsi-account.version>
     <wutsi-contact.version>0.0.3</wutsi-contact.version>
     <wutsi-payment.version>0.0.19</wutsi-payment.version>
     <wutsi-sms.version>1.0.7</wutsi-sms.version>
