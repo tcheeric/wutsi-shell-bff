@@ -19,25 +19,6 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "Center",
-                "padding": 10.0
-              },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "Enter the verification code",
-                    "bold": true,
-                    "size": 25.0,
-                    "alignment": "Center"
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
                 "alignment": "TopCenter",
                 "padding": 10.0
               },
@@ -45,7 +26,7 @@
                 {
                   "type": "Text",
                   "attributes": {
-                    "caption": "Enter the verification sent to +23799509999 via SMS",
+                    "caption": "Enter the code sent to +237 995099990",
                     "size": 18.0,
                     "alignment": "Center"
                   },

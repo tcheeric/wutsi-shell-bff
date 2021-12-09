@@ -150,8 +150,7 @@ class SettingsScreen(
 
     private fun formattedPhoneNumber(user: Account): String? {
         val phone = user.phone ?: return null
-        val phoneNumber = phoneNumberUtil.parse(phone.number, phone.country)
-        return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164)
+        return formattedPhoneNumber(phone.number, phone.country)
     }
 
     private fun icon(pictureUrl: String?, user: Account): WidgetAware {
