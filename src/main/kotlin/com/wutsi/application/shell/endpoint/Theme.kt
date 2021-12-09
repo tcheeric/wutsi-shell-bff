@@ -6,8 +6,6 @@ object Theme {
     const val SMALL_TEXT_SIZE = 10.0
     const val BLACK_COLOR = "#000000"
     const val WHITE_COLOR = "#FFFFFF"
-    const val GREEN_COLOR = "#008000"
-    const val RED_COLOR = "#FF0000"
     const val GRAY_COLOR = "#95A5A6"
     const val PRIMARY_COLOR = "#1D7EDF"
     const val WARNING_COLOR = "#FFC107"

@@ -9,6 +9,7 @@ import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -21,8 +22,11 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment.Center
+import com.wutsi.flutter.sdui.enums.ButtonType
+import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.Account
 import org.springframework.web.bind.annotation.PostMapping
@@ -84,7 +88,7 @@ class SettingsScreen(
                                         subCaption = getText("page.settings.listitem.personal.subcaption"),
                                         leading = Icon(
                                             code = Theme.ICON_VERIFIED_USER,
-                                            size = 24.0,
+                                            size = 32.0,
                                             color = Theme.PRIMARY_COLOR
                                         ),
                                         trailing = Icon(
@@ -103,8 +107,8 @@ class SettingsScreen(
                                         subCaption = getText("page.settings.listitem.account.subcaption"),
                                         leading = Icon(
                                             code = Theme.ICON_ADD_CASH,
-                                            size = 24.0,
-                                            color = Theme.GREEN_COLOR
+                                            size = 32.0,
+                                            color = Theme.SUCCESS_COLOR
                                         ),
                                         trailing = Icon(
                                             code = Theme.ICON_CHEVRON_RIGHT,
@@ -120,7 +124,11 @@ class SettingsScreen(
                                         padding = 5.0,
                                         caption = getText("page.settings.listitem.security.caption"),
                                         subCaption = getText("page.settings.listitem.security.subcaption"),
-                                        leading = Icon(code = Theme.ICON_LOCK, size = 24.0, color = Theme.RED_COLOR),
+                                        leading = Icon(
+                                            code = Theme.ICON_LOCK,
+                                            size = 32.0,
+                                            color = Theme.DANGER_COLOR
+                                        ),
                                         trailing = Icon(
                                             code = Theme.ICON_CHEVRON_RIGHT,
                                             size = 24.0,
@@ -146,23 +154,38 @@ class SettingsScreen(
         return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164)
     }
 
-    private fun icon(pic: String?, user: Account): WidgetAware {
-        if (pic != null) {
-            return CircleAvatar(
+    private fun icon(pictureUrl: String?, user: Account): WidgetAware {
+        val picture = if (pictureUrl != null)
+            CircleAvatar(
                 radius = 64.0,
                 child = Image(
                     width = 128.0,
                     height = 128.0,
-                    url = pic
+                    url = pictureUrl
                 )
             )
-        }
-        return CircleAvatar(
-            radius = 64.0,
-            child = Text(
-                caption = StringUtil.initials(user.displayName),
-                size = 2.0 * Theme.LARGE_TEXT_SIZE,
-                bold = true
+        else
+            CircleAvatar(
+                radius = 64.0,
+                child = Text(
+                    caption = StringUtil.initials(user.displayName),
+                    size = 2.0 * Theme.LARGE_TEXT_SIZE,
+                    bold = true
+                )
+            )
+
+        return Column(
+            mainAxisSize = MainAxisSize.min,
+            children = listOf(
+                picture,
+                Button(
+                    type = ButtonType.Text,
+                    caption = getText("page.settings.button.change-picture"),
+                    action = Action(
+                        type = ActionType.Route,
+                        url = urlBuilder.build("/settings/picture")
+                    )
+                )
             )
         )
     }
