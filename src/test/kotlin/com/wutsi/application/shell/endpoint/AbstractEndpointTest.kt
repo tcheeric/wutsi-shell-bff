@@ -128,7 +128,8 @@ abstract class AbstractEndpointTest {
             status = "ACTIVE",
             phone = Phone(
                 id = 1,
-                number = "+1237666666666"
+                number = "+1237666666666",
+                country = "CM"
             )
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())

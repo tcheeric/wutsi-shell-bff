@@ -1,5 +1,6 @@
 package com.wutsi.application.shell.endpoint
 
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
@@ -17,6 +18,9 @@ abstract class AbstractEndpoint {
 
     @Autowired
     private lateinit var logger: KVLogger
+
+    @Autowired
+    private lateinit var phoneNumberUtil: PhoneNumberUtil
 
     @ExceptionHandler(Throwable::class)
     fun onThrowable(ex: Throwable): Action =
@@ -48,4 +52,9 @@ abstract class AbstractEndpoint {
 
     protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
+
+    protected fun formattedPhoneNumber(number: String, country: String? = null): String {
+        val phoneNumber = phoneNumberUtil.parse(number, country ?: "")
+        return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
+    }
 }

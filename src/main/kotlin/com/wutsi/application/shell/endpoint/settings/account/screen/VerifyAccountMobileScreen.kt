@@ -46,20 +46,13 @@ class VerifyAccountMobileScreen(
                 child = Column(
                     children = listOf(
                         Container(
-                            alignment = Center,
-                            padding = 10.0,
-                            child = Text(
-                                caption = getText("page.verify-account-mobile.title"),
-                                alignment = TextAlignment.Center,
-                                size = Theme.X_LARGE_TEXT_SIZE,
-                                bold = true
-                            )
-                        ),
-                        Container(
                             alignment = TopCenter,
                             padding = 10.0,
                             child = Text(
-                                caption = getText("page.verify-account-mobile.sub-title", arrayOf(state.phoneNumber)),
+                                caption = getText(
+                                    "page.verify-account-mobile.sub-title",
+                                    arrayOf(formattedPhoneNumber(state.phoneNumber))
+                                ),
                                 alignment = TextAlignment.Center,
                                 size = Theme.LARGE_TEXT_SIZE,
                             )

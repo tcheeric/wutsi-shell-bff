@@ -24,7 +24,7 @@ internal class VerifyAccountMobileScreenTest : AbstractEndpointTest() {
 
         url = "http://localhost:$port/settings/accounts/verify/mobile"
 
-        val state = SmsCodeEntity(phoneNumber = "+23799509999", verificationId = 777L)
+        val state = SmsCodeEntity(phoneNumber = "+237995099990", verificationId = 777L)
         doReturn(state).whenever(cache).get(any(), eq(SmsCodeEntity::class.java))
     }
 
