@@ -182,7 +182,7 @@ class SettingsScreen(
                     caption = getText("page.settings.button.change-picture"),
                     action = Action(
                         type = ActionType.Route,
-                        url = urlBuilder.build("/settings/picture")
+                        url = urlBuilder.build("settings/picture")
                     )
                 )
             )
