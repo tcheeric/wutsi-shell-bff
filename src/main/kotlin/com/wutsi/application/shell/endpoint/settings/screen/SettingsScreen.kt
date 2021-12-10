@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.screen
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.Theme
@@ -37,8 +36,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings")
 class SettingsScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider,
-    private val phoneNumberUtil: PhoneNumberUtil
+    private val userProvider: UserProvider
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
