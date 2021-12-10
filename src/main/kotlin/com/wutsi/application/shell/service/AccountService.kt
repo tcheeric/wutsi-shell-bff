@@ -3,6 +3,7 @@ package com.wutsi.application.shell.service
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
+import com.wutsi.application.shell.endpoint.settings.security.dto.UpdateAccountAttributeRequest
 import com.wutsi.application.shell.entity.SmsCodeEntity
 import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
 import com.wutsi.application.shell.exception.InvalidPhoneNumberException
@@ -117,6 +118,16 @@ class AccountService(
             return tenantProvider.logo(carrier)
         }
         return null
+    }
+
+    fun setTransferSecured(request: UpdateAccountAttributeRequest) {
+        accountApi.updateAccountAttribute(
+            id = userProvider.id(),
+            name = "transfer-secured",
+            request = com.wutsi.platform.account.dto.UpdateAccountAttributeRequest(
+                value = request.value
+            )
+        )
     }
 
     private fun log(state: SmsCodeEntity) {
