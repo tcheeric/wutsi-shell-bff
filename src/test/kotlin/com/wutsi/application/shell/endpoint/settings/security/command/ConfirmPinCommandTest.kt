@@ -68,4 +68,3 @@ internal class ConfirmPinCommandTest : AbstractEndpointTest() {
         assertEquals("route:/..", action.url)
     }
 }
-
