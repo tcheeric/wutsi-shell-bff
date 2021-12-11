@@ -1,0 +1,69 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.settings.security.pin.confirm",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Container",
+      "attributes": {
+        "alignment": "Center",
+        "padding": 20.0
+      },
+      "children": [
+        {
+          "type": "Column",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "TopCenter",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Re-enter your 6 digits code",
+                    "size": 18.0,
+                    "alignment": "Center"
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "PinWithKeyboard",
+              "attributes": {
+                "name": "pin",
+                "deleteText": "Delete",
+                "maxLength": 6,
+                "hideText": true
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/commands/confirm-pin",
+                "parameters": {
+                  "pin": "1234"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Confirm your PIN",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}
