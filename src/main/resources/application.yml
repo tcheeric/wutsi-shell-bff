@@ -56,7 +56,6 @@ wutsi:
     storage:
       type: local
   toggles:
-    image-kit: true
     send-sms-code: false
     verify-sms-code: false
 
