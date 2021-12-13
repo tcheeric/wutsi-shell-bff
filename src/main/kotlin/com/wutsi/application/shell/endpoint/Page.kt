@@ -8,6 +8,7 @@ object Page {
     const val SETTINGS_ACCOUNT_LINK_SUCCESS = "page.settings.account.link.success"
     const val SETTINGS_ACCOUNT_LINK_VERIFY = "page.settings.account.link.verify"
     const val SETTINGS_PICTURE = "page.settings.picture"
+    const val SETTINGS_PROFILE = "page.settings.profile"
     const val SETTINGS_SECURITY = "page.settings.security"
     const val SETTINGS_SECURITY_PIN = "page.settings.security.pin"
     const val SETTINGS_SECURITY_PIN_CONFIRM = "page.settings.security.pin.confirm"

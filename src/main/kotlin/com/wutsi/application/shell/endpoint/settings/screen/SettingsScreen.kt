@@ -96,7 +96,7 @@ class SettingsScreen(
                                         ),
                                         action = Action(
                                             type = Route,
-                                            url = urlBuilder.build("settings/account")
+                                            url = urlBuilder.build("settings/profile")
                                         )
                                     ),
                                     ListItem(
