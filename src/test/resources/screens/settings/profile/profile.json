@@ -108,11 +108,16 @@
           },
           "children": [
             {
-              "type": "Button",
+              "type": "Input",
               "attributes": {
+                "name": "submit",
+                "hideText": false,
+                "required": false,
                 "caption": "Submit",
-                "padding": 15.0,
-                "type": "Elevated"
+                "enabled": true,
+                "readOnly": false,
+                "type": "Submit",
+                "minLength": 0
               },
               "children": [],
               "action": {
