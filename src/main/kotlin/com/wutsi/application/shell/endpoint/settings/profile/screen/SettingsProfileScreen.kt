@@ -94,7 +94,7 @@ class SettingsProfileScreen(
                             type = InputType.Submit,
                             caption = getText("page.settings.profile.button.submit"),
                             action = Action(
-                                type = ActionType.Route,
+                                type = ActionType.Command,
                                 url = urlBuilder.build("commands/update-profile")
                             ),
                         ),
