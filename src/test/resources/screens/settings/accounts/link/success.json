@@ -44,7 +44,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "The account has been linked to your wallet.",
+                "caption": "The account has been linked to your Wallet.",
                 "size": 18.0,
                 "alignment": "Center"
               },

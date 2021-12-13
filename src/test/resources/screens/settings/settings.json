@@ -175,7 +175,7 @@
                       "type": "ListItem",
                       "attributes": {
                         "caption": "Security",
-                        "subCaption": "Protect your account",
+                        "subCaption": "Protect your Wallet",
                         "padding": 5.0,
                         "trailing": {
                           "type": "Icon",
