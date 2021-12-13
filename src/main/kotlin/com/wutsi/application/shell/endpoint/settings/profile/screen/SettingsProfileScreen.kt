@@ -8,7 +8,6 @@ import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DropdownButton
 import com.wutsi.flutter.sdui.DropdownMenuItem
@@ -17,6 +16,7 @@ import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.InputType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -89,13 +89,15 @@ class SettingsProfileScreen(
                     ),
                     Container(
                         padding = 10.0,
-                        child = Button(
+                        child = Input(
+                            name = "submit",
+                            type = InputType.Submit,
                             caption = getText("page.settings.profile.button.submit"),
                             action = Action(
                                 type = ActionType.Route,
                                 url = urlBuilder.build("commands/update-profile")
-                            )
-                        )
+                            ),
+                        ),
                     ),
                 )
             ),
