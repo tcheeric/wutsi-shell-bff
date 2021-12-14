@@ -36,7 +36,7 @@ import java.util.Locale
 @ActiveProfiles("qa")
 internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
     @LocalServerPort
-    public val port: Int = 0
+    val port: Int = 0
 
     private lateinit var url: String
 
@@ -99,14 +99,14 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
         val action = response.body
         assertEquals(ActionType.Prompt, action.type)
-        assertEquals(DialogType.Error, action.prompt?.type)
+        assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(
             messageSource.getMessage(
                 "page.verify-account-mobile.error.invalid-code",
                 emptyArray(),
                 Locale.ENGLISH
             ),
-            action.prompt?.message
+            action.prompt?.attributes?.get("message")
         )
     }
 
@@ -125,14 +125,14 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
         val action = response.body
         assertEquals(ActionType.Prompt, action.type)
-        assertEquals(DialogType.Error, action.prompt?.type)
+        assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(
             messageSource.getMessage(
                 "page.verify-account-mobile.error.already-linked",
                 emptyArray(),
                 Locale.ENGLISH
             ),
-            action.prompt?.message
+            action.prompt?.attributes?.get("message")
         )
     }
 

@@ -24,7 +24,7 @@ class ResendSmsCodeCommand(
             prompt = Dialog(
                 type = DialogType.Information,
                 message = getText("page.verify-account-mobile.message.code-resent", arrayOf(phoneNumber))
-            )
+            ).toWidget()
         )
     }
 }

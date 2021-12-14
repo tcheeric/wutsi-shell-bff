@@ -25,7 +25,7 @@ import org.springframework.test.context.ActiveProfiles
 @ActiveProfiles("qa")
 internal class ResendSmsCodeCommandTest : AbstractEndpointTest() {
     @LocalServerPort
-    public val port: Int = 0
+    val port: Int = 0
 
     private lateinit var url: String
 
@@ -57,7 +57,7 @@ internal class ResendSmsCodeCommandTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
         val action = response.body
         assertEquals(ActionType.Prompt, action.type)
-        assertEquals(DialogType.Information, action.prompt?.type)
+        assertEquals(DialogType.Information.name, action.prompt?.attributes?.get("type"))
 
         val entity = argumentCaptor<SmsCodeEntity>()
         verify(cache).put(any(), entity.capture())
