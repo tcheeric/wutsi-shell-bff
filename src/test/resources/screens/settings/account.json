@@ -130,20 +130,21 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "TopCenter",
-                "margin": 10.0
+                "alignment": "TopCenter"
               },
               "children": [
                 {
                   "type": "ListView",
-                  "attributes": {},
+                  "attributes": {
+                    "separator": true,
+                    "separatorColor": "#8c8c8c"
+                  },
                   "children": [
                     {
                       "type": "ListItem",
                       "attributes": {
-                        "caption": "xxxxx",
+                        "caption": "+1 237665111111",
                         "iconLeft": "http://www.goole.com/images/mtn.png",
-                        "iconRight": "e15f",
                         "padding": 10.0
                       },
                       "children": []
@@ -151,9 +152,8 @@
                     {
                       "type": "ListItem",
                       "attributes": {
-                        "caption": "yyy",
+                        "caption": "+1 237665111122",
                         "iconLeft": "http://www.goole.com/images/orange.png",
-                        "iconRight": "e15f",
                         "padding": 10.0
                       },
                       "children": []

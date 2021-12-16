@@ -19,7 +19,7 @@
             {
               "type": "Container",
               "attributes": {
-                "padding": 10.0
+                "padding": 5.0
               },
               "children": [
                 {
@@ -57,7 +57,7 @@
                           "type": "Button",
                           "attributes": {
                             "caption": "Change Picture",
-                            "padding": 15.0,
+                            "padding": 10.0,
                             "type": "Text"
                           },
                           "children": [],
@@ -94,7 +94,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Profile",
-                "subCaption": "Edit your personal information",
+                "subCaption": "Personal information",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",

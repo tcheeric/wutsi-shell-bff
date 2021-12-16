@@ -46,7 +46,7 @@
               "attributes": {
                 "name": "language",
                 "value": "en",
-                "hint": "Choose your Country",
+                "hint": "Choose your Language",
                 "required": true
               },
               "children": [
@@ -83,7 +83,7 @@
               "attributes": {
                 "name": "country",
                 "value": "CM",
-                "hint": "Choose your Language",
+                "hint": "Choose your Country",
                 "required": true
               },
               "children": [

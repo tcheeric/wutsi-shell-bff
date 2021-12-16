@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
+import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.payment.PaymentMethodProvider
 import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.payment.WutsiPaymentApi
@@ -20,7 +21,7 @@ import org.springframework.boot.web.server.LocalServerPort
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class SettingsAccountScreenTest : AbstractEndpointTest() {
     @LocalServerPort
-    public val port: Int = 0
+    val port: Int = 0
 
     private lateinit var url: String
 
@@ -43,13 +44,21 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
             token = "123",
             type = PaymentMethodType.MOBILE.name,
             provider = PaymentMethodProvider.MTN.name,
-            maskedNumber = "xxxxx"
+            maskedNumber = "xxxxx",
+            phone = Phone(
+                id = 123,
+                number = "+1237665111111"
+            )
         )
         val m2 = PaymentMethodSummary(
             token = "456",
             type = PaymentMethodType.MOBILE.name,
             provider = PaymentMethodProvider.ORANGE.name,
-            maskedNumber = "yyy"
+            maskedNumber = "yyy",
+            phone = Phone(
+                id = 123,
+                number = "+1237665111122"
+            )
         )
         doReturn(ListPaymentMethodResponse(listOf(m1, m2))).whenever(accountApi).listPaymentMethods(any())
     }

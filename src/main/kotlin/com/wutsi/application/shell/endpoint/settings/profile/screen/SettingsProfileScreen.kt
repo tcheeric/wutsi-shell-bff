@@ -60,12 +60,12 @@ class SettingsProfileScreen(
                         padding = 10.0,
                         child = DropdownButton(
                             name = "language",
-                            hint = getText("page.settings.profile.country.hint"),
+                            hint = getText("page.settings.profile.language.hint"),
                             value = user.language,
                             required = true,
                             children = tenant.languages.map {
                                 DropdownMenuItem(
-                                    caption = Locale(it).getDisplayLanguage(locale),
+                                    caption = capitalizeFirstLetter(Locale(it).getDisplayLanguage(locale)),
                                     value = it
                                 )
                             }
@@ -76,7 +76,7 @@ class SettingsProfileScreen(
                         child = DropdownButton(
                             name = "country",
                             value = user.country,
-                            hint = getText("page.settings.profile.language.hint"),
+                            hint = getText("page.settings.profile.country.hint"),
                             required = true,
                             children = tenant.countries.map {
                                 DropdownMenuItem(
@@ -103,4 +103,7 @@ class SettingsProfileScreen(
             ),
         ).toWidget()
     }
+
+    private fun capitalizeFirstLetter(str: String): String =
+        str.uppercase().substring(0, 1) + str.substring(1)
 }

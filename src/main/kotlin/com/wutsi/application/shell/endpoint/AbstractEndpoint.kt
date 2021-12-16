@@ -53,7 +53,10 @@ abstract class AbstractEndpoint {
     protected fun getText(key: String, args: Array<Any?> = emptyArray()) =
         messages.getMessage(key, args, LocaleContextHolder.getLocale()) ?: key
 
-    protected fun formattedPhoneNumber(number: String, country: String? = null): String {
+    protected fun formattedPhoneNumber(number: String?, country: String? = null): String? {
+        if (number == null)
+            return null
+
         val phoneNumber = phoneNumberUtil.parse(number, country ?: "")
         return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
     }

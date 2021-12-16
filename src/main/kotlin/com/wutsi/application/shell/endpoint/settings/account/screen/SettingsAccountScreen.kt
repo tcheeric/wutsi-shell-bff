@@ -87,7 +87,6 @@ class SettingsAccountScreen(
                     Divider(color = Theme.DIVIDER_COLOR),
                     Flexible(
                         child = Container(
-                            margin = 10.0,
                             alignment = Alignment.TopCenter,
                             child = accountListWidget(paymentMethods, tenant),
                         )
@@ -103,9 +102,8 @@ class SettingsAccountScreen(
         children.addAll(
             paymentMethods.map {
                 ListItem(
-                    caption = it.maskedNumber,
+                    caption = formattedPhoneNumber(it.phone?.number, it.phone?.country) ?: it.maskedNumber,
                     iconLeft = accountService.getLogoUrl(tenant, it),
-                    iconRight = Theme.ICON_CHEVRON_RIGHT,
                     padding = 10.0
                 )
             }
@@ -123,7 +121,11 @@ class SettingsAccountScreen(
                 )
             )
         )
-        return ListView(children = children)
+        return ListView(
+            children = children,
+            separatorColor = Theme.DIVIDER_COLOR,
+            separator = true,
+        )
     }
 
     private fun balance(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {

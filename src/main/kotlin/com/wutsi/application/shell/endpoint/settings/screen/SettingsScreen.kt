@@ -55,7 +55,7 @@ class SettingsScreen(
                     separatorColor = Theme.DIVIDER_COLOR,
                     children = listOf(
                         Container(
-                            padding = 10.0,
+                            padding = 5.0,
                             child = Column(
                                 mainAxisSize = MainAxisSize.min,
                                 crossAxisAlignment = CrossAxisAlignment.center,
@@ -173,7 +173,8 @@ class SettingsScreen(
                     action = Action(
                         type = ActionType.Route,
                         url = urlBuilder.build("settings/picture")
-                    )
+                    ),
+                    padding = 10.0,
                 )
             )
         )
