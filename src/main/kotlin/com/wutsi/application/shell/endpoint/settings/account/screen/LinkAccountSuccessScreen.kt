@@ -52,7 +52,7 @@ class LinkAccountSuccessScreen : AbstractQuery() {
                         child = Text(
                             caption = getText("page.link-account-success.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.LARGER_TEXT_SIZE,
+                            size = Theme.X_LARGE_TEXT_SIZE,
                         )
                     ),
                     Container(

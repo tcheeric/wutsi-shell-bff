@@ -65,7 +65,7 @@ class SettingsScreen(
                                     Text(
                                         caption = user.displayName ?: "",
                                         alignment = TextAlignment.Center,
-                                        size = Theme.LARGER_TEXT_SIZE,
+                                        size = Theme.LARGE_TEXT_SIZE,
                                         bold = true
                                     ),
                                     Text(

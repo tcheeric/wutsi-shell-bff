@@ -53,7 +53,7 @@ class LinkAccountMobileScreen(
                             child = Text(
                                 caption = getText("page.link-account-mobile.title"),
                                 alignment = TextAlignment.Center,
-                                size = Theme.LARGER_TEXT_SIZE,
+                                size = Theme.LARGE_TEXT_SIZE,
                                 bold = true
                             )
                         ),

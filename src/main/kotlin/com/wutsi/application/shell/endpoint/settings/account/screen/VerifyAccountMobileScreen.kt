@@ -47,13 +47,13 @@ class VerifyAccountMobileScreen(
                         child = Text(
                             caption = getText("page.verify-account-mobile.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.LARGER_TEXT_SIZE,
+                            size = Theme.LARGE_TEXT_SIZE,
                         )
                     ),
                     Text(
                         caption = formattedPhoneNumber(state.phoneNumber)!!,
                         alignment = TextAlignment.Center,
-                        size = Theme.LARGER_TEXT_SIZE,
+                        size = Theme.LARGE_TEXT_SIZE,
                     ),
                     Button(
                         caption = getText("page.verify-account-mobile.button.resend"),
