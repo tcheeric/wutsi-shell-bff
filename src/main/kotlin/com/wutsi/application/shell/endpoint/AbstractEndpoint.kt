@@ -57,7 +57,12 @@ abstract class AbstractEndpoint {
         if (number == null)
             return null
 
-        val phoneNumber = phoneNumberUtil.parse(number, country ?: "")
+        val phoneNumber = phoneNumberUtil.parse(number, country ?: detectCountry(number))
         return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
+    }
+
+    private fun detectCountry(number: String): String {
+        val phone = phoneNumberUtil.parse(number, "")
+        return phoneNumberUtil.getRegionCodeForCountryCode(phone.countryCode)
     }
 }

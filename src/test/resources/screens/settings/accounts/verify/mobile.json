@@ -6,74 +6,66 @@
   },
   "children": [
     {
-      "type": "Container",
-      "attributes": {
-        "alignment": "Center",
-        "padding": 20.0
-      },
+      "type": "Column",
+      "attributes": {},
       "children": [
         {
-          "type": "Column",
+          "type": "Container",
+          "attributes": {
+            "alignment": "TopCenter",
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "Enter the code sent to",
+                "size": 16.0,
+                "alignment": "Center"
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Text",
+          "attributes": {
+            "caption": "+237 995099990",
+            "size": 16.0,
+            "alignment": "Center"
+          },
+          "children": []
+        },
+        {
+          "type": "Button",
+          "attributes": {
+            "caption": "Resend code",
+            "padding": 15.0,
+            "type": "Text"
+          },
+          "children": [],
+          "action": {
+            "type": "Command",
+            "url": "http://localhost:0/commands/resend-sms-code"
+          }
+        },
+        {
+          "type": "Container",
           "attributes": {},
           "children": [
             {
-              "type": "Container",
+              "type": "PinWithKeyboard",
               "attributes": {
-                "alignment": "TopCenter",
-                "padding": 10.0
+                "name": "code",
+                "hideText": true,
+                "pinSize": 20.0,
+                "keyboardButtonSize": 70.0
               },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "Enter the code sent to +237 995099990",
-                    "size": 18.0,
-                    "alignment": "Center"
-                  },
-                  "children": []
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopCenter"
-              },
-              "children": [
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Resend code",
-                    "padding": 15.0,
-                    "type": "Text"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Command",
-                    "url": "http://localhost:0/commands/resend-sms-code"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "PinWithKeyboard",
-                  "attributes": {
-                    "name": "code",
-                    "hideText": true,
-                    "pinSize": 20.0,
-                    "keyboardButtonSize": 70.0
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Command",
-                    "url": "http://localhost:0/commands/verify-sms-code"
-                  }
-                }
-              ]
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/commands/verify-sms-code"
+              }
             }
           ]
         }

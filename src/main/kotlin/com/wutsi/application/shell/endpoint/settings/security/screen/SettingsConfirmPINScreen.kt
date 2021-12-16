@@ -35,7 +35,6 @@ class SettingsConfirmPINScreen(
         ),
         child = Container(
             alignment = Alignment.Center,
-            padding = 20.0,
             child = Column(
                 children = listOf(
                     Container(
@@ -44,7 +43,7 @@ class SettingsConfirmPINScreen(
                         child = Text(
                             caption = getText("page.settings.pin-confirm.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.LARGE_TEXT_SIZE,
+                            size = Theme.LARGER_TEXT_SIZE,
                         )
                     ),
                     PinWithKeyboard(

@@ -8,8 +8,7 @@
     {
       "type": "Container",
       "attributes": {
-        "alignment": "Center",
-        "padding": 20.0
+        "alignment": "Center"
       },
       "children": [
         {
@@ -28,7 +27,7 @@
                   "attributes": {
                     "caption": "Link a Mobile Money account",
                     "bold": true,
-                    "size": 25.0,
+                    "size": 16.0,
                     "alignment": "Center"
                   },
                   "children": []
@@ -38,27 +37,18 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "TopCenter",
-                "padding": 10.0
+                "alignment": "TopCenter"
               },
               "children": [
                 {
                   "type": "Text",
                   "attributes": {
                     "caption": "You will receive a SMS to confirm you are the owner of the account",
-                    "size": 18.0,
                     "alignment": "Center"
                   },
                   "children": []
                 }
               ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "padding": 20.0
-              },
-              "children": []
             },
             {
               "type": "Form",

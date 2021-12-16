@@ -8,8 +8,7 @@
     {
       "type": "Container",
       "attributes": {
-        "alignment": "Center",
-        "padding": 20.0
+        "alignment": "Center"
       },
       "children": [
         {
@@ -27,7 +26,7 @@
                   "type": "Text",
                   "attributes": {
                     "caption": "Re-enter your 6 digits code",
-                    "size": 18.0,
+                    "size": 16.0,
                     "alignment": "Center"
                   },
                   "children": []

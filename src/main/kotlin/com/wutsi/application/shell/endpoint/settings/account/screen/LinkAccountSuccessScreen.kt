@@ -43,7 +43,7 @@ class LinkAccountSuccessScreen : AbstractQuery() {
                         child = Icon(
                             code = Theme.ICON_CHECK,
                             size = 80.0,
-                            color = "#4CAF50"
+                            color = Theme.SUCCESS_COLOR
                         )
                     ),
                     Container(
@@ -52,7 +52,7 @@ class LinkAccountSuccessScreen : AbstractQuery() {
                         child = Text(
                             caption = getText("page.link-account-success.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.LARGE_TEXT_SIZE,
+                            size = Theme.LARGER_TEXT_SIZE,
                         )
                     ),
                     Container(

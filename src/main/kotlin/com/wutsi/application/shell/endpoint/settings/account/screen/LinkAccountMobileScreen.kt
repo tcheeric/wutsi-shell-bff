@@ -44,7 +44,6 @@ class LinkAccountMobileScreen(
                 title = getText("page.link-account-mobile.app-bar.title")
             ),
             child = Container(
-                padding = 20.0,
                 alignment = Center,
                 child = Column(
                     children = listOf(
@@ -54,21 +53,16 @@ class LinkAccountMobileScreen(
                             child = Text(
                                 caption = getText("page.link-account-mobile.title"),
                                 alignment = TextAlignment.Center,
-                                size = Theme.X_LARGE_TEXT_SIZE,
+                                size = Theme.LARGER_TEXT_SIZE,
                                 bold = true
                             )
                         ),
                         Container(
                             alignment = TopCenter,
-                            padding = 10.0,
                             child = Text(
                                 caption = getText("page.link-account-mobile.sub-title"),
                                 alignment = TextAlignment.Center,
-                                size = Theme.LARGE_TEXT_SIZE,
                             )
-                        ),
-                        Container(
-                            padding = 20.0
                         ),
                         Form(
                             children = listOf(
