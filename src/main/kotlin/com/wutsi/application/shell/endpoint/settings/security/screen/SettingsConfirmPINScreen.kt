@@ -49,7 +49,6 @@ class SettingsConfirmPINScreen(
                     PinWithKeyboard(
                         name = "pin",
                         hideText = true,
-                        deleteText = getText("keyboard.delete"),
                         maxLength = 6,
                         action = Action(
                             type = ActionType.Command,

@@ -37,7 +37,6 @@
               "type": "PinWithKeyboard",
               "attributes": {
                 "name": "pin",
-                "deleteText": "Delete",
                 "maxLength": 6,
                 "hideText": true
               },
