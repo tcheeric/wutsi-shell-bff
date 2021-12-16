@@ -7,204 +7,181 @@
   "children": [
     {
       "type": "Container",
-      "attributes": {
-        "alignment": "Center",
-        "padding": 5.0
-      },
+      "attributes": {},
       "children": [
         {
-          "type": "Column",
-          "attributes": {},
+          "type": "ListView",
+          "attributes": {
+            "separator": true,
+            "separatorColor": "#8c8c8c"
+          },
           "children": [
             {
               "type": "Container",
-              "attributes": {},
+              "attributes": {
+                "padding": 10.0
+              },
               "children": [
                 {
                   "type": "Column",
                   "attributes": {
-                    "mainAxisSize": "min"
+                    "mainAxisAlignment": "spaceAround",
+                    "mainAxisSize": "min",
+                    "crossAxisAlignment": "center"
                   },
                   "children": [
                     {
-                      "type": "CircleAvatar",
+                      "type": "Column",
                       "attributes": {
-                        "radius": 64.0
+                        "mainAxisSize": "min"
                       },
                       "children": [
                         {
-                          "type": "Text",
+                          "type": "CircleAvatar",
                           "attributes": {
-                            "caption": "RS",
-                            "bold": true,
-                            "size": 36.0
+                            "radius": 32.0
                           },
-                          "children": []
+                          "children": [
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "RS",
+                                "bold": true,
+                                "size": 30.0
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Change Picture",
+                            "padding": 15.0,
+                            "type": "Text"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/picture"
+                          }
                         }
                       ]
                     },
                     {
-                      "type": "Button",
+                      "type": "Text",
                       "attributes": {
-                        "caption": "Change Picture",
-                        "padding": 15.0,
-                        "type": "Text"
+                        "caption": "Ray Sponsible",
+                        "bold": true,
+                        "size": 16.0,
+                        "alignment": "Center"
                       },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/settings/picture"
-                      }
+                      "children": []
+                    },
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "+1 237666666666",
+                        "alignment": "Center"
+                      },
+                      "children": []
                     }
                   ]
                 }
               ]
             },
             {
-              "type": "Container",
+              "type": "ListItem",
               "attributes": {
-                "alignment": "Center",
-                "padding": 5.0
-              },
-              "children": [
-                {
-                  "type": "Text",
+                "caption": "Profile",
+                "subCaption": "Edit your personal information",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
                   "attributes": {
-                    "caption": "Ray Sponsible",
-                    "bold": true,
-                    "size": 25.0,
-                    "alignment": "Center"
+                    "code": "e15f",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e69a",
+                    "size": 32.0,
+                    "color": "#1D7EDF"
                   },
                   "children": []
                 }
-              ]
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile"
+              }
             },
             {
-              "type": "Container",
+              "type": "ListItem",
               "attributes": {
-                "alignment": "Center"
-              },
-              "children": [
-                {
-                  "type": "Text",
+                "caption": "Accounts",
+                "subCaption": "Cash in, Cash out, Manage Accounts",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
                   "attributes": {
-                    "caption": "+1 237666666666",
-                    "size": 18.0,
-                    "alignment": "Center"
+                    "code": "e15f",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e3f7",
+                    "size": 32.0,
+                    "color": "#4CAF50"
                   },
                   "children": []
                 }
-              ]
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/account"
+              }
             },
             {
-              "type": "Flexible",
+              "type": "ListItem",
               "attributes": {
-                "flex": 2,
-                "fit": "Tight"
-              },
-              "children": [
-                {
-                  "type": "ListView",
+                "caption": "Security",
+                "subCaption": "Protect your Wallet",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
                   "attributes": {
-                    "separator": true
+                    "code": "e15f",
+                    "size": 24.0,
+                    "color": "#000000"
                   },
-                  "children": [
-                    {
-                      "type": "ListItem",
-                      "attributes": {
-                        "caption": "Personal",
-                        "subCaption": "Edit your personal information",
-                        "padding": 5.0,
-                        "trailing": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e15f",
-                            "size": 24.0,
-                            "color": "#000000"
-                          },
-                          "children": []
-                        },
-                        "leading": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e69a",
-                            "size": 32.0,
-                            "color": "#1D7EDF"
-                          },
-                          "children": []
-                        }
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/settings/profile"
-                      }
-                    },
-                    {
-                      "type": "ListItem",
-                      "attributes": {
-                        "caption": "Accounts",
-                        "subCaption": "Manage your accounts for payments",
-                        "padding": 5.0,
-                        "trailing": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e15f",
-                            "size": 24.0,
-                            "color": "#000000"
-                          },
-                          "children": []
-                        },
-                        "leading": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e3f7",
-                            "size": 32.0,
-                            "color": "#4CAF50"
-                          },
-                          "children": []
-                        }
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/settings/account"
-                      }
-                    },
-                    {
-                      "type": "ListItem",
-                      "attributes": {
-                        "caption": "Security",
-                        "subCaption": "Protect your Wallet",
-                        "padding": 5.0,
-                        "trailing": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e15f",
-                            "size": 24.0,
-                            "color": "#000000"
-                          },
-                          "children": []
-                        },
-                        "leading": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e3ae",
-                            "size": 32.0,
-                            "color": "#8B0000"
-                          },
-                          "children": []
-                        }
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/settings/security"
-                      }
-                    }
-                  ]
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e3ae",
+                    "size": 32.0,
+                    "color": "#8B0000"
+                  },
+                  "children": []
                 }
-              ]
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/security"
+              }
             }
           ]
         }

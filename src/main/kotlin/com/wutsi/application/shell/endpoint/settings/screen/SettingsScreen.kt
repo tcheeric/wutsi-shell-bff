@@ -12,7 +12,6 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListItem
@@ -23,8 +22,9 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ActionType.Route
-import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.ButtonType
+import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.Account
@@ -50,98 +50,90 @@ class SettingsScreen(
                 title = getText("page.settings.app-bar.title")
             ),
             child = Container(
-                padding = 5.0,
-                alignment = Center,
-                child = Column(
+                child = ListView(
+                    separator = true,
+                    separatorColor = Theme.DIVIDER_COLOR,
                     children = listOf(
                         Container(
-                            child = icon(user.pictureUrl, user),
-                        ),
-                        Container(
-                            alignment = Center,
-                            padding = 5.0,
-                            child = Text(
-                                caption = user.displayName ?: "",
-                                alignment = TextAlignment.Center,
-                                size = Theme.X_LARGE_TEXT_SIZE,
-                                bold = true
-                            )
-                        ),
-                        Container(
-                            alignment = Center,
-                            child = Text(
-                                caption = formattedPhoneNumber(user) ?: "",
-                                alignment = TextAlignment.Center,
-                                size = Theme.LARGE_TEXT_SIZE,
-                            )
-                        ),
-                        Flexible(
-                            flex = 2,
-                            child = ListView(
-                                separator = true,
+                            padding = 10.0,
+                            child = Column(
+                                mainAxisSize = MainAxisSize.min,
+                                crossAxisAlignment = CrossAxisAlignment.center,
+                                mainAxisAlignment = MainAxisAlignment.spaceAround,
                                 children = listOf(
-                                    ListItem(
-                                        padding = 5.0,
-                                        caption = getText("page.settings.listitem.personal.caption"),
-                                        subCaption = getText("page.settings.listitem.personal.subcaption"),
-                                        leading = Icon(
-                                            code = Theme.ICON_VERIFIED_USER,
-                                            size = 32.0,
-                                            color = Theme.PRIMARY_COLOR
-                                        ),
-                                        trailing = Icon(
-                                            code = Theme.ICON_CHEVRON_RIGHT,
-                                            size = 24.0,
-                                            color = Theme.BLACK_COLOR
-                                        ),
-                                        action = Action(
-                                            type = Route,
-                                            url = urlBuilder.build("settings/profile")
-                                        )
+                                    icon(user.pictureUrl, user),
+                                    Text(
+                                        caption = user.displayName ?: "",
+                                        alignment = TextAlignment.Center,
+                                        size = Theme.LARGER_TEXT_SIZE,
+                                        bold = true
                                     ),
-                                    ListItem(
-                                        padding = 5.0,
-                                        caption = getText("page.settings.listitem.account.caption"),
-                                        subCaption = getText("page.settings.listitem.account.subcaption"),
-                                        leading = Icon(
-                                            code = Theme.ICON_ADD_CASH,
-                                            size = 32.0,
-                                            color = Theme.SUCCESS_COLOR
-                                        ),
-                                        trailing = Icon(
-                                            code = Theme.ICON_CHEVRON_RIGHT,
-                                            size = 24.0,
-                                            color = Theme.BLACK_COLOR
-                                        ),
-                                        action = Action(
-                                            type = Route,
-                                            url = urlBuilder.build("settings/account")
-                                        )
+                                    Text(
+                                        caption = formattedPhoneNumber(user) ?: "",
+                                        alignment = TextAlignment.Center,
                                     ),
-                                    ListItem(
-                                        padding = 5.0,
-                                        caption = getText("page.settings.listitem.security.caption"),
-                                        subCaption = getText("page.settings.listitem.security.subcaption"),
-                                        leading = Icon(
-                                            code = Theme.ICON_LOCK,
-                                            size = 32.0,
-                                            color = Theme.DANGER_COLOR
-                                        ),
-                                        trailing = Icon(
-                                            code = Theme.ICON_CHEVRON_RIGHT,
-                                            size = 24.0,
-                                            color = Theme.BLACK_COLOR
-                                        ),
-                                        action = Action(
-                                            type = Route,
-                                            url = urlBuilder.build("settings/security")
-                                        )
-                                    ),
-                                )
+                                ),
                             ),
-                        )
+                        ),
+                        ListItem(
+                            padding = 5.0,
+                            caption = getText("page.settings.listitem.personal.caption"),
+                            subCaption = getText("page.settings.listitem.personal.subcaption"),
+                            leading = Icon(
+                                code = Theme.ICON_VERIFIED_USER,
+                                size = 32.0,
+                                color = Theme.PRIMARY_COLOR
+                            ),
+                            trailing = Icon(
+                                code = Theme.ICON_CHEVRON_RIGHT,
+                                size = 24.0,
+                                color = Theme.BLACK_COLOR
+                            ),
+                            action = Action(
+                                type = Route,
+                                url = urlBuilder.build("settings/profile")
+                            )
+                        ),
+                        ListItem(
+                            padding = 5.0,
+                            caption = getText("page.settings.listitem.account.caption"),
+                            subCaption = getText("page.settings.listitem.account.subcaption"),
+                            leading = Icon(
+                                code = Theme.ICON_ADD_CASH,
+                                size = 32.0,
+                                color = Theme.SUCCESS_COLOR
+                            ),
+                            trailing = Icon(
+                                code = Theme.ICON_CHEVRON_RIGHT,
+                                size = 24.0,
+                                color = Theme.BLACK_COLOR
+                            ),
+                            action = Action(
+                                type = Route,
+                                url = urlBuilder.build("settings/account")
+                            )
+                        ),
+                        ListItem(
+                            padding = 5.0,
+                            caption = getText("page.settings.listitem.security.caption"),
+                            subCaption = getText("page.settings.listitem.security.subcaption"),
+                            leading = Icon(
+                                code = Theme.ICON_LOCK,
+                                size = 32.0,
+                                color = Theme.DANGER_COLOR
+                            ),
+                            trailing = Icon(
+                                code = Theme.ICON_CHEVRON_RIGHT,
+                                size = 24.0,
+                                color = Theme.BLACK_COLOR
+                            ),
+                            action = Action(
+                                type = Route,
+                                url = urlBuilder.build("settings/security")
+                            )
+                        ),
                     )
-                )
+                ),
             )
         ).toWidget()
     }
@@ -154,19 +146,19 @@ class SettingsScreen(
     private fun icon(pictureUrl: String?, user: Account): WidgetAware {
         val picture = if (pictureUrl != null)
             CircleAvatar(
-                radius = 64.0,
+                radius = 32.0,
                 child = Image(
-                    width = 128.0,
-                    height = 128.0,
+                    width = 64.0,
+                    height = 64.0,
                     url = pictureUrl
                 )
             )
         else
             CircleAvatar(
-                radius = 64.0,
+                radius = 32.0,
                 child = Text(
                     caption = StringUtil.initials(user.displayName),
-                    size = 2.0 * Theme.LARGE_TEXT_SIZE,
+                    size = 30.0,
                     bold = true
                 )
             )

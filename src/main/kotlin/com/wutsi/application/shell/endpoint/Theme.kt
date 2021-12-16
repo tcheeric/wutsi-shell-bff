@@ -1,8 +1,10 @@
 package com.wutsi.application.shell.endpoint
 
 object Theme {
+    @Deprecated("")
     const val X_LARGE_TEXT_SIZE = 25.0
     const val LARGE_TEXT_SIZE = 18.0
+    const val LARGER_TEXT_SIZE = 16.0
     const val SMALL_TEXT_SIZE = 10.0
     const val BLACK_COLOR = "#000000"
     const val WHITE_COLOR = "#FFFFFF"
