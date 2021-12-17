@@ -62,6 +62,19 @@ wutsi:
 logging:
   level:
     root: INFO
+    com:
+      wutsi:
+        platform:
+          account:
+            WutsiAccountApi: DEBUG
+          contact:
+            WutsiContactApi: DEBUG
+          payment:
+            WutsiPaymentApi: DEBUG
+          sms:
+            WutsiSmsApi: DEBUG
+          tenant:
+            WutsiTenantApi: DEBUG
   pattern:
     console: "%d type=%level logger=%class{20} thread=%thread %m%n"
     file: "%d type=%level logger=%class{20} thread=%thread %m%n"
