@@ -133,7 +133,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Update your Profile",
+      "title": "My Profile",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"
