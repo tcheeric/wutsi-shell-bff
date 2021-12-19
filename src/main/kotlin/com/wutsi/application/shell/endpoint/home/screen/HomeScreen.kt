@@ -163,7 +163,7 @@ class HomeScreen(
             Button(
                 caption = getText("page.home.button.add-cash"),
                 stretched = false,
-                icon = Theme.ICON_ADD_CASH,
+                icon = Theme.ICON_CASHIN,
                 iconSize = 32.0,
                 action = Action(
                     type = Route,

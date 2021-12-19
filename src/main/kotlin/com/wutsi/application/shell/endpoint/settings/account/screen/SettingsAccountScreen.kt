@@ -16,7 +16,6 @@ import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
-import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
@@ -25,12 +24,8 @@ import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.Alignment.Center
-import com.wutsi.flutter.sdui.enums.Alignment.TopCenter
-import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
-import com.wutsi.flutter.sdui.enums.MainAxisSize
-import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
@@ -38,6 +33,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/settings/account")
@@ -53,6 +49,8 @@ class SettingsAccountScreen(
     fun index(): Widget {
         val tenant = tenantProvider.get()
         val paymentMethods = accountService.getPaymentMethods(tenant)
+        val balance = paymentService.getBalance(tenant)
+        val balanceText = DecimalFormat(tenant.monetaryFormat).format(balance.value)
 
         return Screen(
             id = Page.SETTINGS_ACCOUNT,
@@ -67,22 +65,16 @@ class SettingsAccountScreen(
                 children = listOf(
                     Container(
                         padding = 10.0,
-                        alignment = TopCenter,
-                        child = Column(
-                            mainAxisSize = MainAxisSize.min,
-                            children = listOf(
-                                Container(
-                                    alignment = Center,
-                                    child = Text(
-                                        caption = getText("page.settings.account.your-balance"),
-                                        color = Theme.BLACK_COLOR,
-                                        alignment = TextAlignment.Center
-                                    )
-                                ),
-                                balance(paymentMethods, tenant)
-                            )
-                        ),
-                        borderColor = "#ff0000",
+                        alignment = Center,
+                        child = Text(
+                            getText("page.settings.account.your-balance", arrayOf(balanceText)),
+                            size = Theme.LARGE_TEXT_SIZE
+                        )
+                    ),
+                    Container(
+                        padding = 10.0,
+                        alignment = Center,
+                        child = toolbar(balance, paymentMethods)
                     ),
                     Divider(color = Theme.DIVIDER_COLOR),
                     Flexible(
@@ -128,57 +120,21 @@ class SettingsAccountScreen(
         )
     }
 
-    private fun balance(paymentMethods: List<PaymentMethodSummary>, tenant: Tenant): WidgetAware {
-        val balance = paymentService.getBalance(tenant)
-        return if (paymentMethods.isEmpty()) {
-            Container(
-                alignment = Center,
-                padding = 10.0,
-                child = MoneyText(
-                    value = balance.value,
-                    currency = balance.currency,
-                    color = Theme.BLACK_COLOR,
-                    numberFormat = tenant.numberFormat,
-                )
-            )
-        } else {
-            Column(
-                children = listOf(
-                    Container(
-                        alignment = Center,
-                        padding = 10.0,
-                        child = MoneyText(
-                            value = balance.value,
-                            currency = balance.currency,
-                            color = Theme.BLACK_COLOR,
-                            numberFormat = tenant.numberFormat
-                        )
-                    ),
-                    Row(
-                        mainAxisAlignment = MainAxisAlignment.spaceAround,
-                        crossAxisAlignment = CrossAxisAlignment.center,
-                        children = balanceButtons(balance)
-                    ),
-                ),
-                mainAxisAlignment = MainAxisAlignment.center,
-                crossAxisAlignment = CrossAxisAlignment.center,
-                mainAxisSize = MainAxisSize.min
-            )
-        }
-    }
+    private fun toolbar(balance: Money, paymentMethods: List<PaymentMethodSummary>): WidgetAware {
+        if (paymentMethods.isEmpty())
+            return Container()
 
-    private fun balanceButtons(balance: Money): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
         buttons.add(
             Button(
                 caption = getText("page.settings.account.button.add-cash"),
                 padding = 5.0,
                 stretched = false,
+                icon = Theme.ICON_CASHIN,
                 action = Action(
                     type = Route,
                     url = urlBuilder.build(cashUrl, "cashin")
                 ),
-                type = ButtonType.Text
             )
         )
         if (balance.value > 0) {
@@ -187,14 +143,30 @@ class SettingsAccountScreen(
                     caption = getText("page.settings.account.button.cash-out"),
                     padding = 5.0,
                     stretched = false,
+                    icon = Theme.ICON_CASHOUT,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashout")
                     ),
-                    type = ButtonType.Text
                 )
             )
         }
-        return buttons
+        buttons.add(
+            Button(
+                caption = getText("page.settings.account.button.history"),
+                padding = 5.0,
+                stretched = false,
+                icon = Theme.ICON_HISTORY,
+                action = Action(
+                    type = Route,
+                    url = urlBuilder.build(cashUrl, "history")
+                ),
+            )
+        )
+        return Row(
+            mainAxisAlignment = MainAxisAlignment.spaceAround,
+            crossAxisAlignment = CrossAxisAlignment.center,
+            children = buttons
+        )
     }
 }

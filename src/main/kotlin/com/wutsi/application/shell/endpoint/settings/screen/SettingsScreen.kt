@@ -99,7 +99,7 @@ class SettingsScreen(
                             caption = getText("page.settings.listitem.account.caption"),
                             subCaption = getText("page.settings.listitem.account.subcaption"),
                             leading = Icon(
-                                code = Theme.ICON_ADD_CASH,
+                                code = Theme.ICON_CASHIN,
                                 size = 32.0,
                                 color = Theme.SUCCESS_COLOR
                             ),

@@ -15,99 +15,78 @@
         {
           "type": "Container",
           "attributes": {
-            "alignment": "TopCenter",
-            "padding": 10.0,
-            "borderColor": "#ff0000"
+            "alignment": "Center",
+            "padding": 10.0
           },
           "children": [
             {
-              "type": "Column",
+              "type": "Text",
               "attributes": {
-                "mainAxisSize": "min"
+                "caption": "Your Balance: 150,000 XAF",
+                "size": 16.0
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround",
+                "crossAxisAlignment": "center"
               },
               "children": [
                 {
-                  "type": "Container",
+                  "type": "Button",
                   "attributes": {
-                    "alignment": "Center"
+                    "caption": "Add Cash",
+                    "padding": 5.0,
+                    "type": "Elevated",
+                    "stretched": false,
+                    "icon": "e3f7"
                   },
-                  "children": [
-                    {
-                      "type": "Text",
-                      "attributes": {
-                        "caption": "Your Balance",
-                        "color": "#000000",
-                        "alignment": "Center"
-                      },
-                      "children": []
-                    }
-                  ]
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
+                  }
                 },
                 {
-                  "type": "Column",
+                  "type": "Button",
                   "attributes": {
-                    "mainAxisAlignment": "center",
-                    "mainAxisSize": "min",
-                    "crossAxisAlignment": "center"
+                    "caption": "Cash Out",
+                    "padding": 5.0,
+                    "type": "Elevated",
+                    "stretched": false,
+                    "icon": "e3f8"
                   },
-                  "children": [
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 10.0
-                      },
-                      "children": [
-                        {
-                          "type": "MoneyText",
-                          "attributes": {
-                            "value": 150000.0,
-                            "color": "#000000",
-                            "currency": "XAF",
-                            "numberFormat": "#,###,##0"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Row",
-                      "attributes": {
-                        "mainAxisAlignment": "spaceAround",
-                        "crossAxisAlignment": "center"
-                      },
-                      "children": [
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "Add Cash",
-                            "padding": 5.0,
-                            "type": "Text",
-                            "stretched": false
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Route",
-                            "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
-                          }
-                        },
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "Cash Out",
-                            "padding": 5.0,
-                            "type": "Text",
-                            "stretched": false
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Route",
-                            "url": "https://wutsi-cash-bff-test.herokuapp.com/cashout"
-                          }
-                        }
-                      ]
-                    }
-                  ]
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/cashout"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "History",
+                    "padding": 5.0,
+                    "type": "Elevated",
+                    "stretched": false,
+                    "icon": "e314"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-cash-bff-test.herokuapp.com/history"
+                  }
                 }
               ]
             }
@@ -192,7 +171,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Accounts",
+      "title": "My Accounts",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"
