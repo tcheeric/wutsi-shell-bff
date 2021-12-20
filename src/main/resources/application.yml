@@ -38,7 +38,8 @@ wutsi:
   application:
     name: wutsi-shell-bff
     server-url: http://localhost:${server.port}
-    cash-url: https://wutsi-cash-bff-test.herokuapp.com
+    gateway-url: https://wutsi-gateway-test.herokuapp.com
+    cash-url: ${wutsi.application.gateway-url}/cash
   platform:
     cache:
       name: ${wutsi.application.name}

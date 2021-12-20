@@ -55,7 +55,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-cash-bff-test.herokuapp.com/cashin"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
                   }
                 },
                 {
@@ -70,7 +70,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-cash-bff-test.herokuapp.com/cashout"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashout"
                   }
                 },
                 {
@@ -85,7 +85,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-cash-bff-test.herokuapp.com/history"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
                   }
                 }
               ]
