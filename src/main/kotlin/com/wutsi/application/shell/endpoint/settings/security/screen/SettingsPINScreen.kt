@@ -26,10 +26,11 @@ class SettingsPINScreen(
     @PostMapping
     fun index() = Screen(
         id = Page.SETTINGS_SECURITY_PIN,
+        backgroundColor = Theme.PRIMARY_COLOR,
         appBar = AppBar(
             elevation = 0.0,
-            backgroundColor = Theme.WHITE_COLOR,
-            foregroundColor = Theme.BLACK_COLOR,
+            backgroundColor = Theme.PRIMARY_COLOR,
+            foregroundColor = Theme.WHITE_COLOR,
             title = getText("page.settings.pin.app-bar.title")
         ),
         child = Container(
@@ -43,12 +44,14 @@ class SettingsPINScreen(
                             caption = getText("page.settings.pin.sub-title"),
                             alignment = TextAlignment.Center,
                             size = Theme.LARGE_TEXT_SIZE,
+                            color = Theme.WHITE_COLOR,
                         )
                     ),
                     PinWithKeyboard(
                         name = "pin",
                         hideText = true,
                         maxLength = 6,
+                        color = Theme.WHITE_COLOR,
                         action = Action(
                             type = ActionType.Command,
                             url = urlBuilder.build("commands/change-pin")

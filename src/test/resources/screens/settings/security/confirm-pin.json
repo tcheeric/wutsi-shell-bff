@@ -2,7 +2,8 @@
   "type": "Screen",
   "attributes": {
     "id": "page.settings.security.pin.confirm",
-    "safe": false
+    "safe": false,
+    "backgroundColor": "#1D7EDF"
   },
   "children": [
     {
@@ -26,6 +27,7 @@
                   "type": "Text",
                   "attributes": {
                     "caption": "Re-enter your 6 digits code",
+                    "color": "#FFFFFF",
                     "size": 16.0,
                     "alignment": "Center"
                   },
@@ -37,6 +39,7 @@
               "type": "PinWithKeyboard",
               "attributes": {
                 "name": "pin",
+                "color": "#FFFFFF",
                 "maxLength": 6,
                 "hideText": true
               },
@@ -59,8 +62,8 @@
     "attributes": {
       "title": "Confirm your PIN",
       "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF"
     },
     "children": []
   }
