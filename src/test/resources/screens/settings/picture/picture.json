@@ -7,17 +7,131 @@
   },
   "children": [
     {
-      "type": "Camera",
+      "type": "Column",
       "attributes": {
-        "name": "file",
-        "uploadUrl": "http://localhost:0/commands/upload-picture",
-        "lensDirection": "front"
+        "crossAxisAlignment": "center"
       },
-      "children": [],
-      "action": {
-        "type": "Route",
-        "url": "route:/.."
-      }
+      "children": [
+        {
+          "type": "Row",
+          "attributes": {
+            "mainAxisAlignment": "center"
+          },
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Image",
+                  "attributes": {
+                    "url": "",
+                    "width": 256.0,
+                    "height": 256.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "color": "#8c8c8c"
+          },
+          "children": []
+        },
+        {
+          "type": "Row",
+          "attributes": {
+            "mainAxisAlignment": "center"
+          },
+          "children": [
+            {
+              "type": "Icon",
+              "attributes": {
+                "code": "f60b",
+                "size": 24.0
+              },
+              "children": []
+            },
+            {
+              "type": "Input",
+              "attributes": {
+                "name": "file",
+                "hideText": false,
+                "required": false,
+                "caption": "Camera",
+                "enabled": true,
+                "readOnly": false,
+                "type": "Image",
+                "minLength": 0,
+                "uploadUrl": "http://localhost:0//command/upload-picture",
+                "imageSource": "Camera"
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "route:/.."
+              }
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "color": "#8c8c8c"
+          },
+          "children": []
+        },
+        {
+          "type": "Row",
+          "attributes": {
+            "mainAxisAlignment": "center"
+          },
+          "children": [
+            {
+              "type": "Icon",
+              "attributes": {
+                "code": "f77e",
+                "size": 24.0
+              },
+              "children": []
+            },
+            {
+              "type": "Input",
+              "attributes": {
+                "name": "file",
+                "hideText": false,
+                "required": false,
+                "caption": "Gallery",
+                "enabled": true,
+                "readOnly": false,
+                "type": "Image",
+                "minLength": 0,
+                "uploadUrl": "http://localhost:0//command/upload-picture",
+                "imageSource": "Gallery"
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "route:/.."
+              }
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "color": "#8c8c8c"
+          },
+          "children": []
+        }
+      ]
     }
   ],
   "appBar": {
