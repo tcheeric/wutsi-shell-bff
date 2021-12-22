@@ -48,79 +48,80 @@
         {
           "type": "Row",
           "attributes": {
-            "mainAxisAlignment": "center"
+            "mainAxisAlignment": "spaceAround"
           },
           "children": [
             {
-              "type": "Icon",
+              "type": "Row",
               "attributes": {
-                "code": "f60b",
-                "size": 24.0
+                "mainAxisAlignment": "center"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "f60b",
+                    "size": 16.0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "file",
+                    "hideText": false,
+                    "required": false,
+                    "caption": "Camera",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Image",
+                    "minLength": 0,
+                    "uploadUrl": "http://localhost:0/command/upload-picture",
+                    "imageSource": "Camera"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "route:/.."
+                  }
+                }
+              ]
             },
             {
-              "type": "Input",
+              "type": "Row",
               "attributes": {
-                "name": "file",
-                "hideText": false,
-                "required": false,
-                "caption": "Camera",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Image",
-                "minLength": 0,
-                "uploadUrl": "http://localhost:0/command/upload-picture",
-                "imageSource": "Camera"
+                "mainAxisAlignment": "center"
               },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "route:/.."
-              }
-            }
-          ]
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "color": "#8c8c8c"
-          },
-          "children": []
-        },
-        {
-          "type": "Row",
-          "attributes": {
-            "mainAxisAlignment": "center"
-          },
-          "children": [
-            {
-              "type": "Icon",
-              "attributes": {
-                "code": "f77e",
-                "size": 24.0
-              },
-              "children": []
-            },
-            {
-              "type": "Input",
-              "attributes": {
-                "name": "file",
-                "hideText": false,
-                "required": false,
-                "caption": "Image Gallery",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Image",
-                "minLength": 0,
-                "uploadUrl": "http://localhost:0//command/upload-picture",
-                "imageSource": "Gallery"
-              },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "route:/.."
-              }
+              "children": [
+                {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "f77e",
+                    "size": 16.0
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Input",
+                  "attributes": {
+                    "name": "file",
+                    "hideText": false,
+                    "required": false,
+                    "caption": "Image Gallery",
+                    "enabled": true,
+                    "readOnly": false,
+                    "type": "Image",
+                    "minLength": 0,
+                    "uploadUrl": "http://localhost:0//command/upload-picture",
+                    "imageSource": "Gallery"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "route:/.."
+                  }
+                }
+              ]
             }
           ]
         },

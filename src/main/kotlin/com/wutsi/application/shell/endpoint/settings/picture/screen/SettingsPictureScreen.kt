@@ -64,45 +64,49 @@ class SettingsPictureScreen(
                     ),
                     Divider(color = Theme.DIVIDER_COLOR),
                     Row(
-                        mainAxisAlignment = MainAxisAlignment.center,
+                        mainAxisAlignment = MainAxisAlignment.spaceAround,
                         children = listOf(
-                            Icon(
-                                code = Theme.ICON_CAMERA,
-                                size = 24.0
-                            ),
-                            Input(
-                                name = "file",
-                                uploadUrl = urlBuilder.build("command/upload-picture"),
-                                type = InputType.Image,
-                                imageSource = ImageSource.Camera,
-                                caption = getText("page.settings.picture.camera"),
-                                action = Action(
-                                    type = ActionType.Route,
-                                    url = "route:/.."
+                            Row(
+                                mainAxisAlignment = MainAxisAlignment.center,
+                                children = listOf(
+                                    Icon(
+                                        code = Theme.ICON_CAMERA,
+                                        size = 16.0
+                                    ),
+                                    Input(
+                                        name = "file",
+                                        uploadUrl = urlBuilder.build("command/upload-picture"),
+                                        type = InputType.Image,
+                                        imageSource = ImageSource.Camera,
+                                        caption = getText("page.settings.picture.camera"),
+                                        action = Action(
+                                            type = ActionType.Route,
+                                            url = "route:/.."
+                                        ),
+                                    )
                                 ),
-                            )
-                        ),
-                    ),
-                    Divider(color = Theme.DIVIDER_COLOR),
-                    Row(
-                        mainAxisAlignment = MainAxisAlignment.center,
-                        children = listOf(
-                            Icon(
-                                code = Theme.ICON_FOLDER,
-                                size = 24.0
                             ),
-                            Input(
-                                name = "file",
-                                uploadUrl = urlBuilder.build("/command/upload-picture"),
-                                type = InputType.Image,
-                                imageSource = ImageSource.Gallery,
-                                caption = getText("page.settings.picture.gallery"),
-                                action = Action(
-                                    type = ActionType.Route,
-                                    url = "route:/.."
-                                )
-                            )
-                        ),
+                            Row(
+                                mainAxisAlignment = MainAxisAlignment.center,
+                                children = listOf(
+                                    Icon(
+                                        code = Theme.ICON_FOLDER,
+                                        size = 16.0
+                                    ),
+                                    Input(
+                                        name = "file",
+                                        uploadUrl = urlBuilder.build("/command/upload-picture"),
+                                        type = InputType.Image,
+                                        imageSource = ImageSource.Gallery,
+                                        caption = getText("page.settings.picture.gallery"),
+                                        action = Action(
+                                            type = ActionType.Route,
+                                            url = "route:/.."
+                                        )
+                                    )
+                                ),
+                            ),
+                        )
                     ),
                     Divider(color = Theme.DIVIDER_COLOR),
                 )
