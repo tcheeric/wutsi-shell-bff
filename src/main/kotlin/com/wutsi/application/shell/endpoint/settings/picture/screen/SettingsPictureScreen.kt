@@ -75,7 +75,7 @@ class SettingsPictureScreen(
                                 uploadUrl = urlBuilder.build("/command/upload-picture"),
                                 type = InputType.Image,
                                 imageSource = ImageSource.Camera,
-                                caption = "Camera",
+                                caption = getText("page.settings.picture.camera"),
                                 action = Action(
                                     type = ActionType.Route,
                                     url = "route:/.."
@@ -96,7 +96,7 @@ class SettingsPictureScreen(
                                 uploadUrl = urlBuilder.build("/command/upload-picture"),
                                 type = InputType.Image,
                                 imageSource = ImageSource.Gallery,
-                                caption = "Gallery",
+                                caption = getText("page.settings.picture.gallery"),
                                 action = Action(
                                     type = ActionType.Route,
                                     url = "route:/.."

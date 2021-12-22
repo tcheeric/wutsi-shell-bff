@@ -108,7 +108,7 @@
                 "name": "file",
                 "hideText": false,
                 "required": false,
-                "caption": "Gallery",
+                "caption": "Image Gallery",
                 "enabled": true,
                 "readOnly": false,
                 "type": "Image",
