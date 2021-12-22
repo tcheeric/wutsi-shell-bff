@@ -2,8 +2,7 @@
   "type": "Screen",
   "attributes": {
     "id": "page.settings.picture",
-    "safe": false,
-    "backgroundColor": "#FFFFFF"
+    "safe": false
   },
   "children": [
     {
@@ -13,28 +12,20 @@
       },
       "children": [
         {
-          "type": "Row",
+          "type": "Container",
           "attributes": {
-            "mainAxisAlignment": "center"
+            "alignment": "Center",
+            "padding": 10.0
           },
           "children": [
             {
-              "type": "Container",
+              "type": "Image",
               "attributes": {
-                "alignment": "Center",
-                "padding": 10.0
+                "url": "",
+                "width": 256.0,
+                "height": 256.0
               },
-              "children": [
-                {
-                  "type": "Image",
-                  "attributes": {
-                    "url": "",
-                    "width": 256.0,
-                    "height": 256.0
-                  },
-                  "children": []
-                }
-              ]
+              "children": []
             }
           ]
         },
@@ -46,84 +37,61 @@
           "children": []
         },
         {
-          "type": "Row",
+          "type": "Input",
           "attributes": {
-            "mainAxisAlignment": "spaceAround"
+            "name": "file",
+            "hideText": false,
+            "required": false,
+            "caption": "Take a Picture",
+            "enabled": true,
+            "readOnly": false,
+            "type": "Image",
+            "minLength": 0,
+            "uploadUrl": "http://localhost:0/commands/upload-picture",
+            "imageSource": "Camera",
+            "imageMaxHeight": 512,
+            "imageMaxWidth": 512
           },
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "center"
-              },
-              "children": [
-                {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "f60b",
-                    "size": 16.0
-                  },
-                  "children": []
-                },
-                {
-                  "type": "Input",
-                  "attributes": {
-                    "name": "file",
-                    "hideText": false,
-                    "required": false,
-                    "caption": "Camera",
-                    "enabled": true,
-                    "readOnly": false,
-                    "type": "Image",
-                    "minLength": 0,
-                    "uploadUrl": "http://localhost:0/commands/upload-picture",
-                    "imageSource": "Camera"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "route:/.."
-                  }
-                }
-              ]
-            },
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "center"
-              },
-              "children": [
-                {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "f77e",
-                    "size": 16.0
-                  },
-                  "children": []
-                },
-                {
-                  "type": "Input",
-                  "attributes": {
-                    "name": "file",
-                    "hideText": false,
-                    "required": false,
-                    "caption": "Image Gallery",
-                    "enabled": true,
-                    "readOnly": false,
-                    "type": "Image",
-                    "minLength": 0,
-                    "uploadUrl": "http://localhost:0/commands/upload-picture",
-                    "imageSource": "Gallery"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "route:/.."
-                  }
-                }
-              ]
-            }
-          ]
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        },
+        {
+          "type": "Input",
+          "attributes": {
+            "name": "file",
+            "hideText": false,
+            "required": false,
+            "caption": "Choose a Picture",
+            "enabled": true,
+            "readOnly": false,
+            "type": "Image",
+            "minLength": 0,
+            "uploadUrl": "http://localhost:0/commands/upload-picture",
+            "imageSource": "Gallery",
+            "imageMaxHeight": 512,
+            "imageMaxWidth": 512
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
+        },
+        {
+          "type": "Button",
+          "attributes": {
+            "caption": "Cancel",
+            "padding": 15.0,
+            "type": "Text"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "route:/.."
+          }
         },
         {
           "type": "Divider",
