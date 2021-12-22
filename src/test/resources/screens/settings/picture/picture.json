@@ -70,7 +70,7 @@
                 "readOnly": false,
                 "type": "Image",
                 "minLength": 0,
-                "uploadUrl": "http://localhost:0//command/upload-picture",
+                "uploadUrl": "http://localhost:0/command/upload-picture",
                 "imageSource": "Camera"
               },
               "children": [],
@@ -113,7 +113,7 @@
                 "readOnly": false,
                 "type": "Image",
                 "minLength": 0,
-                "uploadUrl": "http://localhost:0/command/upload-picture",
+                "uploadUrl": "http://localhost:0//command/upload-picture",
                 "imageSource": "Gallery"
               },
               "children": [],
@@ -137,7 +137,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Upload your Picture",
+      "title": "My Picture",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"
