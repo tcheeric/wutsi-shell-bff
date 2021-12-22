@@ -72,7 +72,7 @@ class SettingsPictureScreen(
                             ),
                             Input(
                                 name = "file",
-                                uploadUrl = urlBuilder.build("/command/upload-picture"),
+                                uploadUrl = urlBuilder.build("command/upload-picture"),
                                 type = InputType.Image,
                                 imageSource = ImageSource.Camera,
                                 caption = getText("page.settings.picture.camera"),
