@@ -112,7 +112,7 @@
                     "readOnly": false,
                     "type": "Image",
                     "minLength": 0,
-                    "uploadUrl": "http://localhost:0//command/upload-picture",
+                    "uploadUrl": "http://localhost:0/command/upload-picture",
                     "imageSource": "Gallery"
                   },
                   "children": [],
