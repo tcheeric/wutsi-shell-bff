@@ -3,7 +3,6 @@ package com.wutsi.application.shell.endpoint
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
@@ -30,7 +29,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.cache.Cache
-import org.springframework.cache.CacheManager
 import org.springframework.web.client.RestTemplate
 import java.util.UUID
 import kotlin.test.assertEquals
@@ -57,7 +55,6 @@ abstract class AbstractEndpointTest {
     protected lateinit var accountApi: WutsiAccountApi
 
     @MockBean
-    private lateinit var cacheManager: CacheManager
     protected lateinit var cache: Cache
 
     private lateinit var apiKeyProvider: ApiKeyProvider
@@ -135,9 +132,6 @@ abstract class AbstractEndpointTest {
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         rest = createResTemplate()
-
-        cache = mock()
-        doReturn(cache).whenever(cacheManager).getCache(any())
     }
 
     private fun createResTemplate(

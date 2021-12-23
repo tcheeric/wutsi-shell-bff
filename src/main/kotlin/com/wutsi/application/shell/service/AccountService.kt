@@ -26,8 +26,7 @@ import com.wutsi.platform.sms.dto.SendVerificationRequest
 import com.wutsi.platform.tenant.dto.MobileCarrier
 import com.wutsi.platform.tenant.dto.Tenant
 import feign.FeignException
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.cache.CacheManager
+import org.springframework.cache.Cache
 import org.springframework.stereotype.Service
 import org.springframework.web.servlet.LocaleResolver
 import javax.servlet.http.HttpServletRequest
@@ -37,7 +36,6 @@ class AccountService(
     private val tenantProvider: TenantProvider,
     private val smsApi: WutsiSmsApi,
     private val accountApi: WutsiAccountApi,
-    private val cacheManager: CacheManager,
     private val deviceIdProvider: DeviceIdProvider,
     private val httpServletRequest: HttpServletRequest,
     private val localeResolver: LocaleResolver,
@@ -45,8 +43,7 @@ class AccountService(
     private val userProvider: UserProvider,
     private val logger: KVLogger,
     private val objectMapper: ObjectMapper,
-
-    @Value("\${wutsi.platform.cache.name}") private val cacheName: String,
+    private val cache: Cache
 ) {
     fun sendVerificationCode(request: SendSmsCodeRequest) {
         logger.add("phone_number", request.phoneNumber)
@@ -168,10 +165,10 @@ class AccountService(
         tenant.mobileCarriers.find { it.code.equals(paymentMethod.provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =
-        cacheManager.getCache(cacheName).get(cacheKey(), SmsCodeEntity::class.java)
+        cache.get(cacheKey(), SmsCodeEntity::class.java)
 
     private fun storeVerificationNumber(phoneNumber: String, verificationId: Long, carrier: String) {
-        cacheManager.getCache(cacheName).put(
+        cache.put(
             cacheKey(),
             SmsCodeEntity(
                 phoneNumber = phoneNumber,
