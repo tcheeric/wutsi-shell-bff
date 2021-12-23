@@ -8,13 +8,10 @@ import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.Phone
-import com.wutsi.platform.core.security.ApiKeyProvider
 import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.SubjectType.USER
-import com.wutsi.platform.core.security.spring.SpringApiKeyRequestInterceptor
 import com.wutsi.platform.core.security.spring.SpringAuthorizationRequestInterceptor
 import com.wutsi.platform.core.security.spring.jwt.JWTBuilder
-import com.wutsi.platform.core.test.TestApiKeyProvider
 import com.wutsi.platform.core.test.TestRSAKeyProvider
 import com.wutsi.platform.core.test.TestTokenProvider
 import com.wutsi.platform.core.tracing.TracingContext
@@ -57,16 +54,12 @@ abstract class AbstractEndpointTest {
     @MockBean
     protected lateinit var cache: Cache
 
-    private lateinit var apiKeyProvider: ApiKeyProvider
-
     protected lateinit var rest: RestTemplate
 
     lateinit var traceId: String
 
     @BeforeEach
     open fun setUp() {
-        apiKeyProvider = TestApiKeyProvider("00000000-00000000-00000000-00000000")
-
         traceId = UUID.randomUUID().toString()
         doReturn(DEVICE_ID).whenever(tracingContext).deviceId()
         doReturn(traceId).whenever(tracingContext).traceId()
@@ -161,7 +154,6 @@ abstract class AbstractEndpointTest {
 
         rest.interceptors.add(SpringTracingRequestInterceptor(tracingContext))
         rest.interceptors.add(SpringAuthorizationRequestInterceptor(tokenProvider))
-        rest.interceptors.add(SpringApiKeyRequestInterceptor(apiKeyProvider))
         return rest
     }
 

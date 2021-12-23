@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.wutsi.platform.core.security.feign.FeignApiKeyRequestInterceptor
 import com.wutsi.platform.core.security.feign.FeignAuthorizationRequestInterceptor
 import com.wutsi.platform.core.tracing.feign.FeignTracingRequestInterceptor
 import com.wutsi.platform.payment.Environment.PRODUCTION
@@ -14,10 +13,9 @@ import org.springframework.core.env.Environment
 import org.springframework.core.env.Profiles
 
 @Configuration
-public class PaymentApiConfiguration(
+class PaymentApiConfiguration(
     private val authorizationRequestInterceptor: FeignAuthorizationRequestInterceptor,
     private val tracingRequestInterceptor: FeignTracingRequestInterceptor,
-    private val apiKeyRequestInterceptor: FeignApiKeyRequestInterceptor,
     private val mapper: ObjectMapper,
     private val env: Environment
 ) {
@@ -27,7 +25,6 @@ public class PaymentApiConfiguration(
             env = environment(),
             mapper = mapper,
             interceptors = listOf(
-                apiKeyRequestInterceptor,
                 tracingRequestInterceptor,
                 authorizationRequestInterceptor
             )
