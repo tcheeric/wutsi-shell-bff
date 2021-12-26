@@ -24,6 +24,7 @@ import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.Alignment.Center
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.platform.account.dto.PaymentMethodSummary
@@ -127,10 +128,9 @@ class SettingsAccountScreen(
         val buttons = mutableListOf<WidgetAware>()
         buttons.add(
             Button(
+                type = ButtonType.Text,
                 caption = getText("page.settings.account.button.add-cash"),
-                padding = 5.0,
                 stretched = false,
-                icon = Theme.ICON_CASHIN,
                 action = Action(
                     type = Route,
                     url = urlBuilder.build(cashUrl, "cashin")
@@ -140,10 +140,9 @@ class SettingsAccountScreen(
         if (balance.value > 0) {
             buttons.add(
                 Button(
+                    type = ButtonType.Text,
                     caption = getText("page.settings.account.button.cash-out"),
-                    padding = 5.0,
                     stretched = false,
-                    icon = Theme.ICON_CASHOUT,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "cashout")
@@ -153,10 +152,9 @@ class SettingsAccountScreen(
         }
         buttons.add(
             Button(
+                type = ButtonType.Text,
                 caption = getText("page.settings.account.button.history"),
-                padding = 5.0,
                 stretched = false,
-                icon = Theme.ICON_HISTORY,
                 action = Action(
                     type = Route,
                     url = urlBuilder.build(cashUrl, "history")

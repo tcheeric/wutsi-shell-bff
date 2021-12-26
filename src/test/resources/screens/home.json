@@ -1,0 +1,133 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.home",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "background": "#1D7EDF"
+          },
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround"
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Scan",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "e4f7",
+                    "iconColor": "#FFFFFF",
+                    "color": "#FFFFFF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": ""
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Cashin",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "e3f8",
+                    "iconColor": "#FFFFFF",
+                    "color": "#FFFFFF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Send",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "eaf0",
+                    "iconColor": "#FFFFFF",
+                    "color": "#FFFFFF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "QR Code",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "e4f5",
+                    "iconColor": "#FFFFFF",
+                    "color": "#FFFFFF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": false,
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "e57f"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/settings"
+          }
+        }
+      ],
+      "leading": {
+        "type": "IconButton",
+        "attributes": {
+          "icon": "e314"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+        }
+      }
+    },
+    "children": []
+  }
+}
