@@ -4,6 +4,7 @@ import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.Theme
 import com.wutsi.application.shell.service.URLBuilder
+import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -25,11 +26,14 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/")
 class HomeScreen(
     private val urlBuilder: URLBuilder,
+    private val userProvider: UserProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
+        val me = userProvider.get()
+
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
@@ -45,14 +49,7 @@ class HomeScreen(
                             url = urlBuilder.build("settings")
                         )
                     )
-                ),
-                leading = IconButton(
-                    icon = Theme.ICON_HISTORY,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build(cashUrl, "history")
-                    )
-                ),
+                )
             ),
             child = Column(
                 children = listOf(
@@ -61,49 +58,33 @@ class HomeScreen(
                         child = Row(
                             mainAxisAlignment = spaceAround,
                             children = listOf(
-                                Button(
-                                    type = ButtonType.Text,
+                                primaryButton(
                                     caption = getText("page.home.button.scan"),
                                     icon = Theme.ICON_SCAN,
-                                    stretched = false,
-                                    color = Theme.WHITE_COLOR,
-                                    iconColor = Theme.WHITE_COLOR,
                                     action = Action(
                                         type = Route,
                                         url = ""
                                     ),
                                 ),
-                                Button(
-                                    type = ButtonType.Text,
+                                primaryButton(
                                     caption = getText("page.home.button.cashin"),
                                     icon = Theme.ICON_CASHIN,
-                                    stretched = false,
-                                    color = Theme.WHITE_COLOR,
-                                    iconColor = Theme.WHITE_COLOR,
                                     action = Action(
                                         type = Route,
                                         url = urlBuilder.build(cashUrl, "cashin")
                                     )
                                 ),
-                                Button(
-                                    type = ButtonType.Text,
+                                primaryButton(
                                     caption = getText("page.home.button.send"),
                                     icon = Theme.ICON_SEND,
-                                    stretched = false,
-                                    color = Theme.WHITE_COLOR,
-                                    iconColor = Theme.WHITE_COLOR,
                                     action = Action(
                                         type = Route,
                                         url = urlBuilder.build(cashUrl, "send")
                                     )
                                 ),
-                                Button(
-                                    type = ButtonType.Text,
+                                primaryButton(
                                     caption = getText("page.home.button.qr-code"),
                                     icon = Theme.ICON_QR_CODE,
-                                    stretched = false,
-                                    color = Theme.WHITE_COLOR,
-                                    iconColor = Theme.WHITE_COLOR,
                                     action = Action(
                                         type = Route,
                                         url = urlBuilder.build(cashUrl, "send")
@@ -112,8 +93,51 @@ class HomeScreen(
                             )
                         )
                     ),
+                    Container(
+                        child = Row(
+                            mainAxisAlignment = spaceAround,
+                            children = listOf(
+                                secondaryButton(
+                                    caption = getText("page.home.button.history"),
+                                    icon = Theme.ICON_HISTORY,
+                                    action = Action(
+                                        type = Route,
+                                        url = urlBuilder.build(cashUrl, "history")
+                                    )
+                                ),
+                                secondaryButton(
+                                    caption = getText("page.home.button.settings"),
+                                    icon = Theme.ICON_SETTINGS,
+                                    action = Action(
+                                        type = Route,
+                                        url = urlBuilder.build("settings")
+                                    )
+                                ),
+                            )
+                        )
+                    )
                 )
             ),
         ).toWidget()
     }
+
+    private fun primaryButton(caption: String, icon: String, action: Action) = Button(
+        type = ButtonType.Text,
+        caption = caption,
+        icon = icon,
+        stretched = false,
+        color = Theme.WHITE_COLOR,
+        iconColor = Theme.WHITE_COLOR,
+        action = action
+    )
+
+    private fun secondaryButton(caption: String, icon: String, action: Action) = Button(
+        type = ButtonType.Text,
+        caption = caption,
+        icon = icon,
+        stretched = false,
+        color = Theme.BLACK_COLOR,
+        iconColor = Theme.PRIMARY_COLOR,
+        action = action
+    )
 }

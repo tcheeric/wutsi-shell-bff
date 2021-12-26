@@ -92,6 +92,54 @@
               ]
             }
           ]
+        },
+        {
+          "type": "Container",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround"
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Transactions",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "e314",
+                    "iconColor": "#1D7EDF",
+                    "color": "#000000"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Settings",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "e57f",
+                    "iconColor": "#1D7EDF",
+                    "color": "#000000"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -115,18 +163,7 @@
             "url": "http://localhost:0/settings"
           }
         }
-      ],
-      "leading": {
-        "type": "IconButton",
-        "attributes": {
-          "icon": "e314"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
-        }
-      }
+      ]
     },
     "children": []
   }
