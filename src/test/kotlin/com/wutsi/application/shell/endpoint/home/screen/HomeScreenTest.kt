@@ -18,7 +18,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         super.setUp()
 
         url = "http://localhost:$port"
-
     }
 
     @Test
