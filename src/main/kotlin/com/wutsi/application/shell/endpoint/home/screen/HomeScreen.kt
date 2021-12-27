@@ -14,6 +14,7 @@ import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
+import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
@@ -29,6 +30,8 @@ class HomeScreen(
     private val userProvider: UserProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
+    @Value("\${wutsi.toggles.button-scan}") private val toggleButtonScan: Boolean,
+    @Value("\${wutsi.toggles.button-qr-code}") private val toggleButtonQRCode: Boolean,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -57,40 +60,7 @@ class HomeScreen(
                         background = Theme.PRIMARY_COLOR,
                         child = Row(
                             mainAxisAlignment = spaceAround,
-                            children = listOf(
-                                primaryButton(
-                                    caption = getText("page.home.button.scan"),
-                                    icon = Theme.ICON_SCAN,
-                                    action = Action(
-                                        type = Route,
-                                        url = ""
-                                    ),
-                                ),
-                                primaryButton(
-                                    caption = getText("page.home.button.cashin"),
-                                    icon = Theme.ICON_CASHIN,
-                                    action = Action(
-                                        type = Route,
-                                        url = urlBuilder.build(cashUrl, "cashin")
-                                    )
-                                ),
-                                primaryButton(
-                                    caption = getText("page.home.button.send"),
-                                    icon = Theme.ICON_SEND,
-                                    action = Action(
-                                        type = Route,
-                                        url = urlBuilder.build(cashUrl, "send")
-                                    )
-                                ),
-                                primaryButton(
-                                    caption = getText("page.home.button.qr-code"),
-                                    icon = Theme.ICON_QR_CODE,
-                                    action = Action(
-                                        type = Route,
-                                        url = urlBuilder.build(cashUrl, "send")
-                                    )
-                                ),
-                            )
+                            children = primaryButtons()
                         )
                     ),
                     Container(
@@ -119,6 +89,58 @@ class HomeScreen(
                 )
             ),
         ).toWidget()
+    }
+
+    private fun primaryButtons(): List<WidgetAware> {
+        val result = mutableListOf<WidgetAware>()
+        if (toggleButtonScan) {
+            result.add(
+                primaryButton(
+                    caption = getText("page.home.button.scan"),
+                    icon = Theme.ICON_SCAN,
+                    action = Action(
+                        type = Route,
+                        url = ""
+                    ),
+                ),
+            )
+        }
+
+        result.addAll(
+            listOf(
+                primaryButton(
+                    caption = getText("page.home.button.cashin"),
+                    icon = Theme.ICON_CASHIN,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "cashin")
+                    )
+                ),
+                primaryButton(
+                    caption = getText("page.home.button.send"),
+                    icon = Theme.ICON_SEND,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "send")
+                    )
+                ),
+            )
+        )
+
+        if (toggleButtonQRCode) {
+            result.add(
+                primaryButton(
+                    caption = getText("page.home.button.qr-code"),
+                    icon = Theme.ICON_QR_CODE,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "send")
+                    )
+                )
+            )
+        }
+
+        return result
     }
 
     private fun primaryButton(caption: String, icon: String, action: Action) = Button(
