@@ -79,7 +79,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/commands/scan"
+                    "url": "http://localhost:0/pay/scan"
                   }
                 },
                 {

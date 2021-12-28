@@ -137,7 +137,7 @@ class HomeScreen(
                     icon = Theme.ICON_SCAN,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build("commands/scan")
+                        url = urlBuilder.build("pay/scan")
                     ),
                 ),
                 primaryButton(
