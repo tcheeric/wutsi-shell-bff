@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.home.screen
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.Theme
+import com.wutsi.application.shell.service.TenantProvider
 import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
@@ -11,13 +12,21 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.IconButton
+import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
+import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
+import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
+import com.wutsi.platform.payment.WutsiPaymentApi
+import com.wutsi.platform.payment.core.Money
+import com.wutsi.platform.tenant.dto.Tenant
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -27,13 +36,18 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/")
 class HomeScreen(
     private val urlBuilder: URLBuilder,
+    private val paymentApi: WutsiPaymentApi,
     private val userProvider: UserProvider,
+    private val tenantProvider: TenantProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
     @Value("\${wutsi.toggles.button-scan}") private val toggleButtonScan: Boolean,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
+        val tenant = tenantProvider.get()
+        val balance = getBalance(tenant)
+
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
@@ -53,6 +67,31 @@ class HomeScreen(
             ),
             child = Column(
                 children = listOf(
+                    Container(
+                        alignment = Alignment.Center,
+                        background = Theme.PRIMARY_COLOR,
+                        child = Row(
+                            mainAxisAlignment = spaceAround,
+                            children = listOf(
+                                Column(
+                                    mainAxisAlignment = MainAxisAlignment.center,
+                                    crossAxisAlignment = CrossAxisAlignment.center,
+                                    children = listOf(
+                                        Text(
+                                            getText("page.home.balance"),
+                                            color = Theme.WHITE_COLOR,
+                                        ),
+                                        MoneyText(
+                                            color = Theme.WHITE_COLOR,
+                                            value = balance.value,
+                                            currency = balance.currency,
+                                            numberFormat = tenant.numberFormat,
+                                        )
+                                    ),
+                                )
+                            )
+                        ),
+                    ),
                     Container(
                         background = Theme.PRIMARY_COLOR,
                         child = Row(
@@ -154,4 +193,18 @@ class HomeScreen(
         iconColor = Theme.PRIMARY_COLOR,
         action = action
     )
+
+    private fun getBalance(tenant: Tenant): Money {
+        try {
+            val userId = userProvider.id()
+            val balance = paymentApi.getBalance(userId).balance
+            return Money(
+                value = balance.amount,
+                currency = balance.currency
+            )
+        } catch (ex: Throwable) {
+            return Money(currency = tenant.currency)
+        }
+    }
+
 }
