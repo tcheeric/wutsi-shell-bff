@@ -60,7 +60,6 @@ wutsi:
   toggles:
     send-sms-code: false
     verify-sms-code: false
-    button-qr-code: true
     button-scan: true
 
 logging:

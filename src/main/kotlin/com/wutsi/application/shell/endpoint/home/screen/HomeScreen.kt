@@ -31,12 +31,9 @@ class HomeScreen(
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
     @Value("\${wutsi.toggles.button-scan}") private val toggleButtonScan: Boolean,
-    @Value("\${wutsi.toggles.button-qr-code}") private val toggleButtonQRCode: Boolean,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val me = userProvider.get()
-
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
@@ -124,21 +121,16 @@ class HomeScreen(
                         url = urlBuilder.build(cashUrl, "send")
                     )
                 ),
-            )
-        )
-
-        if (toggleButtonQRCode) {
-            result.add(
                 primaryButton(
                     caption = getText("page.home.button.qr-code"),
                     icon = Theme.ICON_QR_CODE,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build(cashUrl, "send")
+                        url = urlBuilder.build(cashUrl, "qr-code")
                     )
                 )
             )
-        }
+        )
 
         return result
     }

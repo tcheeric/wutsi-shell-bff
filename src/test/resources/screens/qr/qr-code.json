@@ -1,0 +1,83 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.qr-code",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Center",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "CircleAvatar",
+                  "attributes": {
+                    "radius": 32.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "RS",
+                        "bold": true,
+                        "size": 30.0
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Center",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "QrImage",
+                  "attributes": {
+                    "data": "xxxxx",
+                    "size": 300.0,
+                    "padding": 10.0,
+                    "embeddedImageUrl": "http://www.goole.com/images/1.png",
+                    "embeddedImageSize": 80.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "My QR Code",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

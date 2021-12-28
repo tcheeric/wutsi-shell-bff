@@ -61,7 +61,7 @@ class SettingsScreen(
                                 crossAxisAlignment = CrossAxisAlignment.center,
                                 mainAxisAlignment = MainAxisAlignment.spaceAround,
                                 children = listOf(
-                                    icon(user.pictureUrl, user),
+                                    picture(user),
                                     Text(
                                         caption = user.displayName ?: "",
                                         alignment = TextAlignment.Center,
@@ -143,14 +143,14 @@ class SettingsScreen(
         return formattedPhoneNumber(phone.number, phone.country)
     }
 
-    private fun icon(pictureUrl: String?, user: Account): WidgetAware {
-        val picture = if (pictureUrl != null)
+    protected fun picture(user: Account): WidgetAware {
+        val picture = if (!user.pictureUrl.isNullOrBlank())
             CircleAvatar(
                 radius = 32.0,
                 child = Image(
                     width = 64.0,
                     height = 64.0,
-                    url = pictureUrl
+                    url = user.pictureUrl!!
                 )
             )
         else

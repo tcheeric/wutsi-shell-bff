@@ -2,6 +2,7 @@ package com.wutsi.application.shell.endpoint
 
 object Page {
     const val HOME = "page.home"
+    const val QR_CODE = "page.qr-code"
     const val SETTINGS = "page.settings"
     const val SETTINGS_ACCOUNT = "page.settings.account"
     const val SETTINGS_ACCOUNT_LINK_MOBILE = "page.settings.account.link.mobile"
