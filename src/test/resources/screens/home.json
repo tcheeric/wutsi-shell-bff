@@ -86,7 +86,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/qr-code"
+                    "url": "http://localhost:0/qr-code"
                   }
                 }
               ]
@@ -117,7 +117,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/history"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
                   }
                 },
                 {

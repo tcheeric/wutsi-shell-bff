@@ -69,7 +69,7 @@ class HomeScreen(
                                     icon = Theme.ICON_HISTORY,
                                     action = Action(
                                         type = Route,
-                                        url = urlBuilder.build("history")
+                                        url = urlBuilder.build(cashUrl, "history")
                                     )
                                 ),
                                 secondaryButton(
@@ -126,7 +126,7 @@ class HomeScreen(
                     icon = Theme.ICON_QR_CODE,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build(cashUrl, "qr-code")
+                        url = urlBuilder.build("qr-code")
                     )
                 )
             )
