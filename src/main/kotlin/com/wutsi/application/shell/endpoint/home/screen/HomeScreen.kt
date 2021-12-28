@@ -4,6 +4,7 @@ import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.Theme
 import com.wutsi.application.shell.service.TenantProvider
+import com.wutsi.application.shell.service.TogglesProvider
 import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
@@ -39,9 +40,9 @@ class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
     private val userProvider: UserProvider,
     private val tenantProvider: TenantProvider,
+    private val togglesProvider: TogglesProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
-    @Value("\${wutsi.toggles.button-scan}") private val toggleButtonScan: Boolean,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -129,21 +130,16 @@ class HomeScreen(
 
     private fun primaryButtons(): List<WidgetAware> {
         val result = mutableListOf<WidgetAware>()
-        if (toggleButtonScan) {
-            result.add(
+        result.addAll(
+            listOf(
                 primaryButton(
                     caption = getText("page.home.button.scan"),
                     icon = Theme.ICON_SCAN,
                     action = Action(
                         type = Route,
-                        url = ""
+                        url = urlBuilder.build("commands/scan")
                     ),
                 ),
-            )
-        }
-
-        result.addAll(
-            listOf(
                 primaryButton(
                     caption = getText("page.home.button.cashin"),
                     icon = Theme.ICON_CASHIN,
