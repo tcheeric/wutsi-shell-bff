@@ -69,7 +69,7 @@ class HomeScreen(
                                     icon = Theme.ICON_HISTORY,
                                     action = Action(
                                         type = Route,
-                                        url = urlBuilder.build(cashUrl, "history")
+                                        url = urlBuilder.build("history")
                                     )
                                 ),
                                 secondaryButton(
