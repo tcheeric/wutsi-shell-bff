@@ -206,5 +206,4 @@ class HomeScreen(
             return Money(currency = tenant.currency)
         }
     }
-
 }

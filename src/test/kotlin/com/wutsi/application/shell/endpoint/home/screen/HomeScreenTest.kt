@@ -36,7 +36,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             .getBalance(
                 any()
             )
-        
         assertEndpointEquals("/screens/home.json", url)
     }
 }
