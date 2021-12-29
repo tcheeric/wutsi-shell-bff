@@ -55,11 +55,11 @@ class SettingsAccountScreen(
 
         return Screen(
             id = Page.SETTINGS_ACCOUNT,
-            backgroundColor = Theme.WHITE_COLOR,
+            backgroundColor = Theme.COLOR_WHITE,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.settings.account.app-bar.title"),
             ),
             child = Column(
@@ -69,7 +69,7 @@ class SettingsAccountScreen(
                         alignment = Center,
                         child = Text(
                             getText("page.settings.account.your-balance", arrayOf(balanceText)),
-                            size = Theme.LARGE_TEXT_SIZE
+                            size = Theme.TEXT_SIZE_LARGE
                         )
                     ),
                     Container(
@@ -77,7 +77,7 @@ class SettingsAccountScreen(
                         alignment = Center,
                         child = toolbar(balance, paymentMethods)
                     ),
-                    Divider(color = Theme.DIVIDER_COLOR),
+                    Divider(color = Theme.COLOR_DIVIDER),
                     Flexible(
                         child = Container(
                             alignment = Alignment.TopCenter,
@@ -116,7 +116,7 @@ class SettingsAccountScreen(
         )
         return ListView(
             children = children,
-            separatorColor = Theme.DIVIDER_COLOR,
+            separatorColor = Theme.COLOR_DIVIDER,
             separator = true,
         )
     }

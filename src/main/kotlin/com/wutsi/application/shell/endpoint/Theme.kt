@@ -1,16 +1,16 @@
 package com.wutsi.application.shell.endpoint
 
 object Theme {
-    const val LARGE_TEXT_SIZE = 16.0
-    const val X_LARGE_TEXT_SIZE = 18.0
-    const val BLACK_COLOR = "#000000"
-    const val WHITE_COLOR = "#FFFFFF"
-    const val GRAY_COLOR = "#95A5A6"
-    const val PRIMARY_COLOR = "#1D7EDF"
-    const val WARNING_COLOR = "#FFC107"
-    const val SUCCESS_COLOR = "#4CAF50"
-    const val DANGER_COLOR = "#8B0000"
-    const val DIVIDER_COLOR = "#8c8c8c"
+    const val TEXT_SIZE_LARGE = 16.0
+    const val TEXT_SIZE_X_LARGE = 18.0
+    const val COLOR_BLACK = "#000000"
+    const val COLOR_WHITE = "#FFFFFF"
+    const val COLOR_PRIMARY = "#1D7EDF"
+    const val COLOR_PRIMARY_LIGHT = "#e4edf7"
+    const val COLOR_WARNING = "#FFC107"
+    const val COLOR_SUCCESS = "#4CAF50"
+    const val COLOR_DANGER = "#8B0000"
+    const val COLOR_DIVIDER = "#8c8c8c"
     const val ICON_CAMERA = "f60b"
     const val ICON_CANCEL = "ef28"
     const val ICON_CASHIN = "e3f8"

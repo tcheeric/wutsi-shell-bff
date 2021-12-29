@@ -52,8 +52,8 @@ class HomeScreen(
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
-                foregroundColor = Theme.WHITE_COLOR,
-                backgroundColor = Theme.PRIMARY_COLOR,
+                foregroundColor = Theme.COLOR_WHITE,
+                backgroundColor = Theme.COLOR_PRIMARY,
                 elevation = 0.0,
                 automaticallyImplyLeading = false,
                 actions = listOf(
@@ -70,7 +70,7 @@ class HomeScreen(
                 children = listOf(
                     Container(
                         alignment = Alignment.Center,
-                        background = Theme.PRIMARY_COLOR,
+                        background = Theme.COLOR_PRIMARY,
                         child = Row(
                             mainAxisAlignment = spaceAround,
                             children = listOf(
@@ -80,10 +80,10 @@ class HomeScreen(
                                     children = listOf(
                                         Text(
                                             getText("page.home.balance"),
-                                            color = Theme.WHITE_COLOR,
+                                            color = Theme.COLOR_WHITE,
                                         ),
                                         MoneyText(
-                                            color = Theme.WHITE_COLOR,
+                                            color = Theme.COLOR_WHITE,
                                             value = balance.value,
                                             currency = balance.currency,
                                             numberFormat = tenant.numberFormat,
@@ -94,7 +94,7 @@ class HomeScreen(
                         ),
                     ),
                     Container(
-                        background = Theme.PRIMARY_COLOR,
+                        background = Theme.COLOR_PRIMARY,
                         child = Row(
                             mainAxisAlignment = spaceAround,
                             children = primaryButtons()
@@ -183,8 +183,8 @@ class HomeScreen(
         caption = caption,
         icon = icon,
         stretched = false,
-        color = Theme.WHITE_COLOR,
-        iconColor = Theme.WHITE_COLOR,
+        color = Theme.COLOR_WHITE,
+        iconColor = Theme.COLOR_WHITE,
         action = action
     )
 
@@ -193,8 +193,8 @@ class HomeScreen(
         caption = caption,
         icon = icon,
         stretched = false,
-        color = Theme.BLACK_COLOR,
-        iconColor = Theme.PRIMARY_COLOR,
+        color = Theme.COLOR_BLACK,
+        iconColor = Theme.COLOR_PRIMARY,
         action = action
     )
 

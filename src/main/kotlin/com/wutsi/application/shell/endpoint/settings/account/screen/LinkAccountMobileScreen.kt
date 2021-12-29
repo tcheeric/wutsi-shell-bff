@@ -39,8 +39,8 @@ class LinkAccountMobileScreen(
             id = Page.SETTINGS_ACCOUNT_LINK_MOBILE,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.link-account-mobile.app-bar.title")
             ),
             child = Container(
@@ -53,7 +53,7 @@ class LinkAccountMobileScreen(
                             child = Text(
                                 caption = getText("page.link-account-mobile.title"),
                                 alignment = TextAlignment.Center,
-                                size = Theme.LARGE_TEXT_SIZE,
+                                size = Theme.TEXT_SIZE_LARGE,
                                 bold = true
                             )
                         ),

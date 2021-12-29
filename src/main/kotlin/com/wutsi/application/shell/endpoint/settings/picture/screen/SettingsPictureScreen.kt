@@ -39,8 +39,8 @@ class SettingsPictureScreen(
             id = Page.SETTINGS_PICTURE,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.settings.picture.app-bar.title"),
             ),
             child = Column(
@@ -55,7 +55,7 @@ class SettingsPictureScreen(
                             height = 256.0
                         ),
                     ),
-                    Divider(color = Theme.DIVIDER_COLOR),
+                    Divider(color = Theme.COLOR_DIVIDER),
                     Input(
                         name = "file",
                         uploadUrl = urlBuilder.build("commands/upload-picture"),
@@ -90,7 +90,7 @@ class SettingsPictureScreen(
                             url = "route:/.."
                         )
                     ),
-                    Divider(color = Theme.DIVIDER_COLOR),
+                    Divider(color = Theme.COLOR_DIVIDER),
                 )
             )
         ).toWidget()

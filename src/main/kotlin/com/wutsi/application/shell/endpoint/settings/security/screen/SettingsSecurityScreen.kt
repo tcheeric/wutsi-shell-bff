@@ -38,13 +38,13 @@ class SettingsSecurityScreen(
             id = Page.SETTINGS_SECURITY,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.settings.security.app-bar.title")
             ),
             child = ListView(
                 children = listOf(
-                    Divider(color = Theme.DIVIDER_COLOR),
+                    Divider(color = Theme.COLOR_DIVIDER),
                     ListItemSwitch(
                         caption = getText("page.settings.security.list-item.transfer-secured.caption"),
                         subCaption = getText("page.settings.security.list-item.transfer-secured.sub-caption"),
@@ -55,7 +55,7 @@ class SettingsSecurityScreen(
                         ),
                         name = "value"
                     ),
-                    Divider(color = Theme.DIVIDER_COLOR),
+                    Divider(color = Theme.COLOR_DIVIDER),
                     Container(
                         padding = 10.0,
                         child = Button(
@@ -66,7 +66,7 @@ class SettingsSecurityScreen(
                             )
                         )
                     ),
-                    Divider(color = Theme.DIVIDER_COLOR),
+                    Divider(color = Theme.COLOR_DIVIDER),
                 )
             )
         ).toWidget()

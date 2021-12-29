@@ -30,8 +30,8 @@ class LinkAccountSuccessScreen : AbstractQuery() {
             safe = true,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 automaticallyImplyLeading = false
             ),
             child = Column(
@@ -43,7 +43,7 @@ class LinkAccountSuccessScreen : AbstractQuery() {
                         child = Icon(
                             code = Theme.ICON_CHECK,
                             size = 80.0,
-                            color = Theme.SUCCESS_COLOR
+                            color = Theme.COLOR_SUCCESS
                         )
                     ),
                     Container(
@@ -52,7 +52,7 @@ class LinkAccountSuccessScreen : AbstractQuery() {
                         child = Text(
                             caption = getText("page.link-account-success.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.X_LARGE_TEXT_SIZE,
+                            size = Theme.TEXT_SIZE_X_LARGE,
                         )
                     ),
                     Container(

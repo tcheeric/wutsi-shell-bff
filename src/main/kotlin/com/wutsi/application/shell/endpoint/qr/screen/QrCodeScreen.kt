@@ -17,6 +17,7 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
+import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.qr.WutsiQrApi
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -39,8 +40,8 @@ class QrCodeScreen(
             id = Page.QR_CODE,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.qr-code.app-bar.title")
             ),
             child = Column(
@@ -81,6 +82,18 @@ class QrCodeScreen(
                                 embeddedImageUrl = tenant.logos.find { it.type == "PICTORIAL" }?.url
                             ),
                         ),
+                    ),
+                    Container(
+                        padding = 20.0,
+                        margin = 20.0,
+                        alignment = Alignment.Center,
+                        background = Theme.COLOR_PRIMARY_LIGHT,
+                        border = 1.0,
+                        borderRadius = 5.0,
+                        child = Text(
+                            getText("page.qr-code.warning"),
+                            alignment = TextAlignment.Center
+                        )
                     )
                 ),
             )

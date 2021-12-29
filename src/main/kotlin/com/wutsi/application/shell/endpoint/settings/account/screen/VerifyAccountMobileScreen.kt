@@ -35,8 +35,8 @@ class VerifyAccountMobileScreen(
             id = Page.SETTINGS_ACCOUNT_LINK_VERIFY,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.verify-account-mobile.app-bar.title")
             ),
             child = Column(
@@ -47,13 +47,13 @@ class VerifyAccountMobileScreen(
                         child = Text(
                             caption = getText("page.verify-account-mobile.sub-title"),
                             alignment = TextAlignment.Center,
-                            size = Theme.LARGE_TEXT_SIZE,
+                            size = Theme.TEXT_SIZE_LARGE,
                         )
                     ),
                     Text(
                         caption = formattedPhoneNumber(state.phoneNumber)!!,
                         alignment = TextAlignment.Center,
-                        size = Theme.LARGE_TEXT_SIZE,
+                        size = Theme.TEXT_SIZE_LARGE,
                     ),
                     Button(
                         caption = getText("page.verify-account-mobile.button.resend"),

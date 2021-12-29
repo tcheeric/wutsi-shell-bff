@@ -36,11 +36,11 @@ class SettingsProfileScreen(
         val locale = Locale(user.language)
         return Screen(
             id = Page.SETTINGS_PROFILE,
-            backgroundColor = Theme.WHITE_COLOR,
+            backgroundColor = Theme.COLOR_WHITE,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.settings.profile.app-bar.title"),
             ),
             child = Form(

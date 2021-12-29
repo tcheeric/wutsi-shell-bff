@@ -45,14 +45,14 @@ class SettingsScreen(
             id = Page.SETTINGS,
             appBar = AppBar(
                 elevation = 0.0,
-                backgroundColor = Theme.WHITE_COLOR,
-                foregroundColor = Theme.BLACK_COLOR,
+                backgroundColor = Theme.COLOR_WHITE,
+                foregroundColor = Theme.COLOR_BLACK,
                 title = getText("page.settings.app-bar.title")
             ),
             child = Container(
                 child = ListView(
                     separator = true,
-                    separatorColor = Theme.DIVIDER_COLOR,
+                    separatorColor = Theme.COLOR_DIVIDER,
                     children = listOf(
                         Container(
                             padding = 5.0,
@@ -65,7 +65,7 @@ class SettingsScreen(
                                     Text(
                                         caption = user.displayName ?: "",
                                         alignment = TextAlignment.Center,
-                                        size = Theme.LARGE_TEXT_SIZE,
+                                        size = Theme.TEXT_SIZE_LARGE,
                                         bold = true
                                     ),
                                     Text(
@@ -82,12 +82,12 @@ class SettingsScreen(
                             leading = Icon(
                                 code = Theme.ICON_VERIFIED_USER,
                                 size = 32.0,
-                                color = Theme.PRIMARY_COLOR
+                                color = Theme.COLOR_PRIMARY
                             ),
                             trailing = Icon(
                                 code = Theme.ICON_CHEVRON_RIGHT,
                                 size = 24.0,
-                                color = Theme.BLACK_COLOR
+                                color = Theme.COLOR_BLACK
                             ),
                             action = Action(
                                 type = Route,
@@ -101,12 +101,12 @@ class SettingsScreen(
                             leading = Icon(
                                 code = Theme.ICON_MONEY,
                                 size = 32.0,
-                                color = Theme.SUCCESS_COLOR
+                                color = Theme.COLOR_SUCCESS
                             ),
                             trailing = Icon(
                                 code = Theme.ICON_CHEVRON_RIGHT,
                                 size = 24.0,
-                                color = Theme.BLACK_COLOR
+                                color = Theme.COLOR_BLACK
                             ),
                             action = Action(
                                 type = Route,
@@ -120,12 +120,12 @@ class SettingsScreen(
                             leading = Icon(
                                 code = Theme.ICON_LOCK,
                                 size = 32.0,
-                                color = Theme.DANGER_COLOR
+                                color = Theme.COLOR_DANGER
                             ),
                             trailing = Icon(
                                 code = Theme.ICON_CHEVRON_RIGHT,
                                 size = 24.0,
-                                color = Theme.BLACK_COLOR
+                                color = Theme.COLOR_BLACK
                             ),
                             action = Action(
                                 type = Route,
