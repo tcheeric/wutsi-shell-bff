@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.github.difflib.DiffUtils
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
@@ -29,7 +28,7 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.cache.Cache
 import org.springframework.web.client.RestTemplate
 import java.util.UUID
-import kotlin.test.assertTrue
+import kotlin.test.assertEquals
 
 abstract class AbstractEndpointTest {
     companion object {
@@ -172,8 +171,6 @@ abstract class AbstractEndpointTest {
 
         val writer = mapper.writerWithDefaultPrettyPrinter()
 
-        val patch = DiffUtils.diffInline(writer.writeValueAsString(expected), writer.writeValueAsString(value))
-//        assertEquals(writer.writeValueAsString(expected), writer.writeValueAsString(value))
-        assertTrue(patch.deltas.isEmpty(), patch.deltas.toString())
+        assertEquals(writer.writeValueAsString(expected).trimIndent(), writer.writeValueAsString(value).trimIndent())
     }
 }
