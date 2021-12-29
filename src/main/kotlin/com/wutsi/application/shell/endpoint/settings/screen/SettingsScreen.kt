@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Icon
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
@@ -47,7 +48,16 @@ class SettingsScreen(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.app-bar.title")
+                title = getText("page.settings.app-bar.title"),
+                actions = listOf(
+                    IconButton(
+                        icon = Theme.ICON_QR_CODE,
+                        action = Action(
+                            type = Route,
+                            url = urlBuilder.build("qr-code")
+                        )
+                    )
+                )
             ),
             child = Container(
                 child = ListView(

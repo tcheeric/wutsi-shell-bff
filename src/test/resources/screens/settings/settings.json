@@ -194,7 +194,20 @@
       "title": "Settings",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
+      "foregroundColor": "#000000",
+      "actions": [
+        {
+          "type": "IconButton",
+          "attributes": {
+            "icon": "e4f5"
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/qr-code"
+          }
+        }
+      ]
     },
     "children": []
   }
