@@ -76,7 +76,7 @@ class QrCodeScreen(
                             alignment = Alignment.Center,
                             child = QrImage(
                                 data = code,
-                                size = 300.0,
+                                size = 260.0,
                                 padding = 10.0,
                                 embeddedImageSize = 80.0,
                                 embeddedImageUrl = tenant.logos.find { it.type == "PICTORIAL" }?.url
