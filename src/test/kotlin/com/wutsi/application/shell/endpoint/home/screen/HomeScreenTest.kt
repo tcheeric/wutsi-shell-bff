@@ -20,7 +20,6 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
-import kotlin.test.Ignore
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class HomeScreenTest : AbstractEndpointTest() {
@@ -44,7 +43,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    @Ignore
     fun home() {
         doReturn(GetBalanceResponse(balance = Balance(amount = 10000.0, currency = "XAF"))).whenever(paymentApi)
             .getBalance(
