@@ -1,9 +1,11 @@
 package com.wutsi.application.shell.endpoint
 
 object Theme {
-    const val TEXT_SIZE_LARGE = 16.0
     const val TEXT_SIZE_X_LARGE = 18.0
+    const val TEXT_SIZE_LARGE = 16.0
+    const val TEXT_SIZE_SMALL = 10.0
     const val COLOR_BLACK = "#000000"
+    const val COLOR_GRAY = "#95A5A6"
     const val COLOR_WHITE = "#FFFFFF"
     const val COLOR_PRIMARY = "#1D7EDF"
     const val COLOR_PRIMARY_LIGHT = "#e4edf7"

@@ -32,6 +32,7 @@ import kotlin.test.assertEquals
 
 abstract class AbstractEndpointTest {
     companion object {
+        const val USER_ID = 1L
         const val DEVICE_ID = "0000-1111"
         const val PHONE_NUMBER = "+2379505677"
         const val ACCOUNT_ID = 77777L

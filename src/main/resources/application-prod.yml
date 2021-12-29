@@ -17,5 +17,3 @@ wutsi:
   toggles:
     send-sms-code: true
     verify-sms-code: true
-    button-qr-code: false
-    button-scan: false

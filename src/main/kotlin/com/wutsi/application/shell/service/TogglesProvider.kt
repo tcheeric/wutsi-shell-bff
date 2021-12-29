@@ -8,14 +8,13 @@ import org.springframework.stereotype.Service
 class Toggles {
     var sendSmsCode: Boolean = true
     var verifySmsCode: Boolean = true
-    var buttonScan: Boolean = false
+    var payment: Boolean = true
 }
 
 @Service
 @EnableConfigurationProperties(Toggles::class)
 class TogglesProvider(
     private val toggles: Toggles,
-    private val userProvider: UserProvider
 ) {
     fun get() = toggles
 }
