@@ -105,12 +105,12 @@ class HomeScreen(
                     children = primaryButtons(),
                 )
             ),
-            Container(
-                child = Row(
-                    mainAxisAlignment = spaceAround,
-                    children = applicationButton()
-                )
-            ),
+//            Container(
+//                child = Row(
+//                    mainAxisAlignment = spaceAround,
+//                    children = applicationButton()
+//                )
+//            ),
         )
 
         // Transactions
@@ -121,7 +121,6 @@ class HomeScreen(
                 val recipients = findReecipients(recipientIds.toList())
                 children.addAll(
                     listOf(
-                        Divider(color = Theme.COLOR_DIVIDER),
                         Container(
                             padding = 5.0,
                             child = Text(getText("page.home.send_to"), bold = true),
