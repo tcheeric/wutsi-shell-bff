@@ -41,7 +41,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun noTest() {
-
     }
 
     @Test
@@ -97,17 +96,16 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         cashin: Boolean,
         paymentMethodToken: String,
         status: String = "SUCCESSFUL"
-    ) =
-        TransactionSummary(
-            accountId = USER_ID,
-            type = if (cashin) "CASHIN" else "CASHOUT",
-            status = status,
-            net = 10000.0,
-            amount = 10000.0,
-            paymentMethodToken = paymentMethodToken,
-            description = "Sample description",
-            created = OffsetDateTime.of(2021, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC)
-        )
+    ) = TransactionSummary(
+        accountId = USER_ID,
+        type = if (cashin) "CASHIN" else "CASHOUT",
+        status = status,
+        net = 10000.0,
+        amount = 10000.0,
+        paymentMethodToken = paymentMethodToken,
+        description = "Sample description",
+        created = OffsetDateTime.of(2021, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC)
+    )
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
         token = token,
