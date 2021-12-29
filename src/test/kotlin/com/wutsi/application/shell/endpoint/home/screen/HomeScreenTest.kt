@@ -65,7 +65,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         val accounts = listOf(
             createAccount(USER_ID),
             createAccount(100),
-            createAccount(101)
+            createAccount(101),
+            createAccount(102),
+            createAccount(103),
         )
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
 

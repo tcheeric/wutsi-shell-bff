@@ -116,7 +116,7 @@ class HomeScreen(
         // Transactions
         val txs = findRecentTransactions(20)
         if (txs.isNotEmpty()) {
-            val recipientIds = txs.map { it.recipientId }.filterNotNull().toSet().take(3)
+            val recipientIds = txs.map { it.recipientId }.filterNotNull()
             if (recipientIds.isNotEmpty()) {
                 val recipients = findReecipients(recipientIds.toList())
                 children.addAll(
@@ -126,7 +126,7 @@ class HomeScreen(
                             padding = 5.0,
                             child = Text(getText("page.home.send_to"), bold = true),
                         ),
-                        recipientsWidget(recipients)
+                        recipientsWidget(recipients.take(3))
                     )
                 )
             }
