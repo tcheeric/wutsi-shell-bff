@@ -68,23 +68,6 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "Scan",
-                    "padding": 15.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "e4f7",
-                    "iconColor": "#FFFFFF",
-                    "color": "#FFFFFF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/pay/scan"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
                     "caption": "Cashin",
                     "padding": 15.0,
                     "type": "Text",

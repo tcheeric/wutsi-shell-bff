@@ -140,14 +140,14 @@ class HomeScreen(
         val result = mutableListOf<WidgetAware>()
         result.addAll(
             listOf(
-                primaryButton(
-                    caption = getText("page.home.button.scan"),
-                    icon = Theme.ICON_SCAN,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("pay/scan")
-                    ),
-                ),
+//                primaryButton(
+//                    caption = getText("page.home.button.scan"),
+//                    icon = Theme.ICON_SCAN,
+//                    action = Action(
+//                        type = Route,
+//                        url = urlBuilder.build("pay/scan")
+//                    ),
+//                ),
                 primaryButton(
                     caption = getText("page.home.button.cashin"),
                     icon = Theme.ICON_CASHIN,
