@@ -150,6 +150,23 @@
                 {
                   "type": "Button",
                   "attributes": {
+                    "caption": "Payment",
+                    "padding": 15.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "e481",
+                    "iconColor": "#1D7EDF",
+                    "color": "#000000"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/pay"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
                     "caption": "Transactions",
                     "padding": 15.0,
                     "type": "Text",

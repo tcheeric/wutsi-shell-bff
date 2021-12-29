@@ -105,6 +105,14 @@ class HomeScreen(
                             mainAxisAlignment = spaceAround,
                             children = listOf(
                                 secondaryButton(
+                                    caption = getText("page.home.button.payment"),
+                                    icon = Theme.ICON_PAYMENT,
+                                    action = Action(
+                                        type = Route,
+                                        url = urlBuilder.build(cashUrl, "pay")
+                                    )
+                                ),
+                                secondaryButton(
                                     caption = getText("page.home.button.history"),
                                     icon = Theme.ICON_HISTORY,
                                     action = Action(
