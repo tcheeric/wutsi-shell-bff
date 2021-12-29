@@ -40,7 +40,15 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun noTest() {
+    fun empty() {
+        doReturn(GetBalanceResponse(balance = Balance(amount = 0.0, currency = "XAF"))).whenever(paymentApi)
+            .getBalance(
+                any()
+            )
+
+        doReturn(SearchTransactionResponse()).whenever(paymentApi).searchTransaction(any())
+
+        assertEndpointEquals("/screens/home-empty.json", url)
     }
 
     @Test

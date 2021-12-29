@@ -280,7 +280,14 @@ class HomeScreen(
                             caption = StringUtil.initials(recipient.displayName),
                             size = Theme.TEXT_SIZE_X_LARGE,
                             bold = true
+                        ),
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "/send"),
+                        parameters = mapOf(
+                            "recipient-id" to recipient.id.toString()
                         )
+                    )
                 ),
                 Container(
                     padding = 5.0,
