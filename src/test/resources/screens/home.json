@@ -17,10 +17,8 @@
           },
           "children": [
             {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
+              "type": "Center",
+              "attributes": {},
               "children": [
                 {
                   "type": "Column",
@@ -123,7 +121,7 @@
         {
           "type": "Container",
           "attributes": {
-            "padding": 5.0
+            "padding": 10.0
           },
           "children": [
             {
@@ -171,28 +169,21 @@
                   }
                 },
                 {
-                  "type": "Container",
+                  "type": "Button",
                   "attributes": {
-                    "padding": 5.0
+                    "caption": "Name",
+                    "padding": 5.0,
+                    "type": "Text",
+                    "stretched": false
                   },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Name",
-                        "padding": 15.0,
-                        "type": "Text"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
-                        "parameters": {
-                          "account-id": "1"
-                        }
-                      }
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "1"
                     }
-                  ]
+                  }
                 }
               ]
             },
@@ -225,28 +216,21 @@
                   }
                 },
                 {
-                  "type": "Container",
+                  "type": "Button",
                   "attributes": {
-                    "padding": 5.0
+                    "caption": "Name",
+                    "padding": 5.0,
+                    "type": "Text",
+                    "stretched": false
                   },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Name",
-                        "padding": 15.0,
-                        "type": "Text"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
-                        "parameters": {
-                          "account-id": "100"
-                        }
-                      }
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "100"
                     }
-                  ]
+                  }
                 }
               ]
             },
@@ -279,28 +263,21 @@
                   }
                 },
                 {
-                  "type": "Container",
+                  "type": "Button",
                   "attributes": {
-                    "padding": 5.0
+                    "caption": "Name",
+                    "padding": 5.0,
+                    "type": "Text",
+                    "stretched": false
                   },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Name",
-                        "padding": 15.0,
-                        "type": "Text"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
-                        "parameters": {
-                          "account-id": "101"
-                        }
-                      }
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "101"
                     }
-                  ]
+                  }
                 }
               ]
             }

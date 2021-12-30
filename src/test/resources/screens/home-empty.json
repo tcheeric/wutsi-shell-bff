@@ -17,10 +17,8 @@
           },
           "children": [
             {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
+              "type": "Center",
+              "attributes": {},
               "children": [
                 {
                   "type": "Column",

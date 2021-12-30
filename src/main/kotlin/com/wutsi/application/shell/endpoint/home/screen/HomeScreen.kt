@@ -11,6 +11,7 @@ import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -76,25 +77,22 @@ class HomeScreen(
             Container(
                 alignment = Alignment.Center,
                 background = Theme.COLOR_PRIMARY,
-                child = Row(
-                    mainAxisAlignment = spaceAround,
-                    children = listOf(
-                        Column(
-                            mainAxisAlignment = MainAxisAlignment.center,
-                            crossAxisAlignment = CrossAxisAlignment.center,
-                            children = listOf(
-                                Text(
-                                    getText("page.home.balance"),
-                                    color = Theme.COLOR_WHITE,
-                                ),
-                                MoneyText(
-                                    color = Theme.COLOR_WHITE,
-                                    value = balance.value,
-                                    currency = balance.currency,
-                                    numberFormat = tenant.numberFormat,
-                                )
+                child = Center(
+                    child = Column(
+                        mainAxisAlignment = MainAxisAlignment.center,
+                        crossAxisAlignment = CrossAxisAlignment.center,
+                        children = listOf(
+                            Text(
+                                getText("page.home.balance"),
+                                color = Theme.COLOR_WHITE,
                             ),
-                        )
+                            MoneyText(
+                                color = Theme.COLOR_WHITE,
+                                value = balance.value,
+                                currency = balance.currency,
+                                numberFormat = tenant.numberFormat,
+                            )
+                        ),
                     )
                 ),
             ),
@@ -122,7 +120,7 @@ class HomeScreen(
                 children.addAll(
                     listOf(
                         Container(
-                            padding = 5.0,
+                            padding = 10.0,
                             child = Text(getText("page.home.send_to"), bold = true),
                         ),
                         recipientsWidget(recipients.take(3))
