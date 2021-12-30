@@ -155,6 +155,7 @@ abstract class AbstractEndpointTest {
 
         rest.interceptors.add(SpringTracingRequestInterceptor(tracingContext))
         rest.interceptors.add(SpringAuthorizationRequestInterceptor(tokenProvider))
+        rest.interceptors.add(LanguageClientHttpRequestInterceptor())
         return rest
     }
 

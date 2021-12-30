@@ -59,18 +59,28 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             )
 
         val txs = listOf(
+            createCashInOutTransactionSummary(true, "A", "FAILED"),
             createCashInOutTransactionSummary(true, "A"),
+            createTransferTransactionSummary(USER_ID, 100),
+            createTransferTransactionSummary(101, USER_ID, "PENDING"),
+            createTransferTransactionSummary(101, USER_ID),
+            createCashInOutTransactionSummary(false, "B")
         )
         doReturn(SearchTransactionResponse(txs)).whenever(paymentApi).searchTransaction(any())
 
         val paymentMethods = listOf(
             createPaymentMethodSummary("A", "11111"),
+            createPaymentMethodSummary("B", "22222"),
+            createPaymentMethodSummary("C", "33333"),
         )
         doReturn(ListPaymentMethodResponse(paymentMethods)).whenever(accountApi).listPaymentMethods(any())
 
         val accounts = listOf(
             createAccount(USER_ID),
             createAccount(100),
+            createAccount(101),
+            createAccount(102),
+            createAccount(103),
         )
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
 
