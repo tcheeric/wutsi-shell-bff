@@ -47,14 +47,8 @@ wutsi:
       type: local
     security:
       type: jwt
-      token-provider:
-        type: header
-      api-key-provider:
-        type: header
     tracing:
       client-id: ${wutsi.application.name}
-      device-id-provider:
-        type: header
     storage:
       type: local
   toggles:
