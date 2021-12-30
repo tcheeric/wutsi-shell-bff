@@ -270,8 +270,16 @@ class HomeScreen(
         )
     }
 
-    private fun recipientWidget(recipient: AccountSummary): WidgetAware =
-        Column(
+    private fun recipientWidget(recipient: AccountSummary): WidgetAware {
+        val action = Action(
+            type = Route,
+            url = urlBuilder.build(cashUrl, "/send"),
+            parameters = mapOf(
+                "account-id" to recipient.id.toString()
+            )
+        )
+
+        return Column(
             children = listOf(
                 CircleAvatar(
                     radius = 24.0,
@@ -281,20 +289,19 @@ class HomeScreen(
                             size = Theme.TEXT_SIZE_X_LARGE,
                             bold = true
                         ),
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build(cashUrl, "/send"),
-                        parameters = mapOf(
-                            "recipient-id" to recipient.id.toString()
-                        )
-                    )
+                    action = action
                 ),
                 Container(
                     padding = 5.0,
-                    child = Text(firstName(recipient.displayName), size = Theme.TEXT_SIZE_SMALL)
+                    child = Button(
+                        type = ButtonType.Text,
+                        caption = firstName(recipient.displayName),
+                        action = action
+                    )
                 )
             )
         )
+    }
 
     private fun firstName(displayName: String?): String {
         if (displayName == null)
