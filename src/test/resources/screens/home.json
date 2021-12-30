@@ -280,6 +280,100 @@
                   }
                 }
               ]
+            },
+            {
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "CircleAvatar",
+                  "attributes": {
+                    "radius": 24.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "N1",
+                        "bold": true,
+                        "size": 18.0
+                      },
+                      "children": []
+                    }
+                  ],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "102"
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Name",
+                    "padding": 5.0,
+                    "type": "Text",
+                    "stretched": false
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "102"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "CircleAvatar",
+                  "attributes": {
+                    "radius": 24.0
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "N1",
+                        "bold": true,
+                        "size": 18.0
+                      },
+                      "children": []
+                    }
+                  ],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "103"
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Name",
+                    "padding": 5.0,
+                    "type": "Text",
+                    "stretched": false
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
+                    "parameters": {
+                      "account-id": "103"
+                    }
+                  }
+                }
+              ]
             }
           ]
         },

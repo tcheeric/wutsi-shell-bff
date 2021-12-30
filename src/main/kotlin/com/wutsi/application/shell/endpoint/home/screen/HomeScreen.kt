@@ -119,6 +119,8 @@ class HomeScreen(
                 .map { it.recipientId }
                 .filterNotNull()
                 .filter { it != userId }
+                .toSet()
+                .take(3)
             if (recipientIds.isNotEmpty()) {
                 val recipients = findRecipients(recipientIds.toList())
                 children.addAll(
@@ -127,7 +129,7 @@ class HomeScreen(
                             padding = 10.0,
                             child = Text(getText("page.home.send_to"), bold = true),
                         ),
-                        recipientsWidget(recipients.take(3))
+                        recipientsWidget(recipients)
                     )
                 )
             }
