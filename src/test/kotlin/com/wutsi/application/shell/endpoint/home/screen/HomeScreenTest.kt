@@ -13,6 +13,7 @@ import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
 import com.wutsi.platform.payment.dto.SearchTransactionResponse
 import com.wutsi.platform.payment.dto.TransactionSummary
+import jdk.nashorn.internal.ir.annotations.Ignore
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -51,7 +52,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-//    @Ignore
+    @Ignore
     fun home() {
         doReturn(GetBalanceResponse(balance = Balance(amount = 10000.0, currency = "XAF"))).whenever(paymentApi)
             .getBalance(
