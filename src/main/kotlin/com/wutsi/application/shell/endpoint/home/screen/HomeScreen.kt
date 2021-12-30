@@ -113,8 +113,12 @@ class HomeScreen(
 
         // Transactions
         val txs = findRecentTransactions(20)
+        val userId = userProvider.id()
         if (txs.isNotEmpty()) {
-            val recipientIds = txs.map { it.recipientId }.filterNotNull()
+            val recipientIds = txs
+                .map { it.recipientId }
+                .filterNotNull()
+                .filter { it != userId }
             if (recipientIds.isNotEmpty()) {
                 val recipients = findRecipients(recipientIds.toList())
                 children.addAll(
@@ -127,7 +131,6 @@ class HomeScreen(
                     )
                 )
             }
-
             children.addAll(
                 listOf(
                     Divider(color = Theme.COLOR_DIVIDER),
@@ -135,6 +138,11 @@ class HomeScreen(
                     transactionsWidget(txs.take(3), tenant)
                 )
             )
+        } else {
+            val paymentMethods = findPaymentMethods()
+            if (paymentMethods.isEmpty()) {
+                children.add(linkFirstAccountWidget())
+            }
         }
 
         return Screen(
@@ -259,6 +267,32 @@ class HomeScreen(
             return Money(currency = tenant.currency)
         }
     }
+
+    // Payment method
+    private fun linkFirstAccountWidget() = Container(
+        margin = 10.0,
+        padding = 20.0,
+        border = 1.0,
+        borderRadius = 5.0,
+        borderColor = Theme.COLOR_PRIMARY,
+        background = Theme.COLOR_PRIMARY_LIGHT,
+        alignment = Alignment.Center,
+        child = Column(
+            mainAxisAlignment = spaceAround,
+            crossAxisAlignment = CrossAxisAlignment.center,
+            children = listOf(
+                Text(getText("page.home.no-account-1"), bold = true),
+                Text(getText("page.home.no-account-2")),
+                Button(
+                    caption = getText("page.home.button.link-account"),
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build("/settings/accounts/link/mobile")
+                    )
+                ),
+            )
+        )
+    )
 
     // Recipients
     private fun recipientsWidget(recipients: List<AccountSummary>): WidgetAware {

@@ -117,6 +117,57 @@
               ]
             }
           ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "padding": 20.0,
+            "margin": 10.0,
+            "background": "#e4edf7",
+            "border": 1.0,
+            "borderRadius": 5.0,
+            "borderColor": "#1D7EDF"
+          },
+          "children": [
+            {
+              "type": "Column",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround",
+                "crossAxisAlignment": "center"
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "There is no account linked with your Wallet.",
+                    "bold": true
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "You'll be able to add cash from your linked account into your Wallet, or transfer cash from your Wallet to your linked account."
+                  },
+                  "children": []
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Link an Account",
+                    "padding": 15.0,
+                    "type": "Elevated"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/settings/accounts/link/mobile"
+                  }
+                }
+              ]
+            }
+          ]
         }
       ]
     }
