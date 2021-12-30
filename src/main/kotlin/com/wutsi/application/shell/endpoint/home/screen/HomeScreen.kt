@@ -118,7 +118,7 @@ class HomeScreen(
         if (txs.isNotEmpty()) {
             val recipientIds = txs.map { it.recipientId }.filterNotNull()
             if (recipientIds.isNotEmpty()) {
-                val recipients = findReecipients(recipientIds.toList())
+                val recipients = findRecipients(recipientIds.toList())
                 children.addAll(
                     listOf(
                         Container(
@@ -296,7 +296,8 @@ class HomeScreen(
                     child = Button(
                         type = ButtonType.Text,
                         caption = firstName(recipient.displayName),
-                        action = action
+                        action = action,
+                        stretched = false
                     )
                 )
             )
@@ -340,7 +341,7 @@ class HomeScreen(
             emptyList()
         }
 
-    private fun findReecipients(recipientIds: List<Long>): List<AccountSummary> =
+    private fun findRecipients(recipientIds: List<Long>): List<AccountSummary> =
         try {
             accountApi.searchAccount(
                 SearchAccountRequest(
