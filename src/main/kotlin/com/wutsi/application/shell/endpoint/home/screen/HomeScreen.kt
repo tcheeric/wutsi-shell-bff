@@ -291,14 +291,12 @@ class HomeScreen(
                         ),
                     action = action
                 ),
-                Container(
+                Button(
+                    type = ButtonType.Text,
+                    caption = firstName(recipient.displayName),
+                    action = action,
+                    stretched = false,
                     padding = 5.0,
-                    child = Button(
-                        type = ButtonType.Text,
-                        caption = firstName(recipient.displayName),
-                        action = action,
-                        stretched = false
-                    )
                 )
             )
         )
