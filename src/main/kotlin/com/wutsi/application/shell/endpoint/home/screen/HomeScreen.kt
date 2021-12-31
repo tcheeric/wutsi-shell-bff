@@ -106,17 +106,20 @@ class HomeScreen(
         )
         val applications = applicationButtons()
         if (applications.isNotEmpty()) {
-            children.add(
-                Container(
-                    child = Row(
-                        mainAxisAlignment = spaceAround,
-                        children = applications,
-                    )
-                ),
+            children.addAll(
+                listOf(
+                    Container(
+                        child = Row(
+                            mainAxisAlignment = spaceAround,
+                            children = applications,
+                        )
+                    ),
+                    Divider(color = Theme.COLOR_DIVIDER),
+                )
             )
         }
 
-        // Transactions
+        // Recipients and Transactions
         val txs = findRecentTransactions(20)
         val userId = userProvider.id()
         if (txs.isNotEmpty()) {
@@ -134,13 +137,13 @@ class HomeScreen(
                             padding = 10.0,
                             child = Text(getText("page.home.send_to"), bold = true),
                         ),
-                        recipientsWidget(recipients)
+                        recipientsWidget(recipients),
+                        Divider(color = Theme.COLOR_DIVIDER),
                     )
                 )
             }
             children.addAll(
                 listOf(
-                    Divider(color = Theme.COLOR_DIVIDER),
                     Text(getText("page.home.transactions"), bold = true),
                     transactionsWidget(txs.take(3), tenant)
                 )
@@ -340,7 +343,7 @@ class HomeScreen(
                     caption = firstName(recipient.displayName),
                     action = action,
                     stretched = false,
-                    padding = 5.0,
+                    padding = 2.0,
                 )
             )
         )

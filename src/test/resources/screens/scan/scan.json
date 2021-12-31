@@ -1,0 +1,35 @@
+{
+  "type": "Screen",
+  "attributes": {
+    "id": "page.scan",
+    "safe": false
+  },
+  "children": [
+    {
+      "type": "Flexible",
+      "attributes": {
+        "flex": 1,
+        "fit": "Tight"
+      },
+      "children": [
+        {
+          "type": "QrView",
+          "attributes": {
+            "submitUrl": "http://localhost:0/commands/scan/process"
+          },
+          "children": []
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "Scan QR Code",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  }
+}

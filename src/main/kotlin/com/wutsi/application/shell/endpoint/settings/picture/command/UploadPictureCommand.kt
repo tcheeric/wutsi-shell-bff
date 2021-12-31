@@ -4,7 +4,6 @@ import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
-import com.wutsi.platform.core.logging.KVLogger
 import com.wutsi.platform.core.storage.StorageService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -21,7 +20,6 @@ class UploadPictureCommand(
     private val accountApi: WutsiAccountApi,
     private val storageService: StorageService,
     private val userProvider: UserProvider,
-    private val logger: KVLogger
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam file: MultipartFile) {

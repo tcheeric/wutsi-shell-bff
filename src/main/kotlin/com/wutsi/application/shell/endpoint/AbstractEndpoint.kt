@@ -17,7 +17,7 @@ abstract class AbstractEndpoint {
     private lateinit var messages: MessageSource
 
     @Autowired
-    private lateinit var logger: KVLogger
+    protected lateinit var logger: KVLogger
 
     @Autowired
     private lateinit var phoneNumberUtil: PhoneNumberUtil
@@ -26,7 +26,7 @@ abstract class AbstractEndpoint {
     fun onThrowable(ex: Throwable): Action =
         createErrorAction(ex, "prompt.error.unexpected-error")
 
-    protected fun createErrorAction(e: Throwable, messageKey: String): Action {
+    protected fun createErrorAction(e: Throwable?, messageKey: String): Action {
         val action = Action(
             type = Prompt,
             prompt = Dialog(
@@ -39,14 +39,15 @@ abstract class AbstractEndpoint {
         return action
     }
 
-    private fun log(action: Action, e: Throwable) {
+    private fun log(action: Action, e: Throwable?) {
         logger.add("action_type", action.type)
         logger.add("action_url", action.url)
         logger.add("action_prompt_type", action.prompt?.type)
         logger.add("action_prompt_message", action.prompt?.attributes?.get("message"))
-        logger.add("exception", e::class.java)
-        logger.add("exception_message", e.message)
-
+        if (e != null) {
+            logger.add("exception", e::class.java)
+            logger.add("exception_message", e.message)
+        }
         LoggerFactory.getLogger(this::class.java).error("Unexpected error", e)
     }
 

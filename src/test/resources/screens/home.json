@@ -172,7 +172,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 5.0,
+                    "padding": 2.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -219,7 +219,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 5.0,
+                    "padding": 2.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -266,7 +266,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 5.0,
+                    "padding": 2.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -313,7 +313,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 5.0,
+                    "padding": 2.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -360,7 +360,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 5.0,
+                    "padding": 2.0,
                     "type": "Text",
                     "stretched": false
                   },
