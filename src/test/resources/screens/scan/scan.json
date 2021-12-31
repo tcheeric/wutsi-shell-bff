@@ -6,18 +6,24 @@
   },
   "children": [
     {
-      "type": "Flexible",
-      "attributes": {
-        "flex": 1,
-        "fit": "Tight"
-      },
+      "type": "Container",
+      "attributes": {},
       "children": [
         {
-          "type": "QrView",
+          "type": "Flexible",
           "attributes": {
-            "submitUrl": "http://localhost:0/commands/scan/process"
+            "flex": 1,
+            "fit": "Tight"
           },
-          "children": []
+          "children": [
+            {
+              "type": "QrView",
+              "attributes": {
+                "submitUrl": "http://localhost:0/commands/scan/process"
+              },
+              "children": []
+            }
+          ]
         }
       ]
     }
