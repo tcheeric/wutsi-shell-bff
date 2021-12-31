@@ -19,6 +19,7 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.qr.WutsiQrApi
+import com.wutsi.platform.qr.dto.EncodeQRCodeRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -32,7 +33,13 @@ class QrCodeScreen(
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val code = qrApi.account().token
+        val code = qrApi.encode(
+            EncodeQRCodeRequest(
+                type = "account",
+                id = userProvider.id().toString(),
+                timeToLive = 300
+            )
+        ).token
         val tenant = tenantProvider.get()
         val user = userProvider.get()
 

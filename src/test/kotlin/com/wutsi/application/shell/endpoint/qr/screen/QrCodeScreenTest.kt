@@ -6,7 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.qr.WutsiQrApi
-import com.wutsi.platform.qr.dto.CreateAccountQRCodeResponse
+import com.wutsi.platform.qr.dto.EncodeQRCodeResponse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -32,7 +32,7 @@ internal class QrCodeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun profile() {
-        doReturn(CreateAccountQRCodeResponse("xxxxx")).whenever(qrApi).account()
+        doReturn(EncodeQRCodeResponse("xxxxx")).whenever(qrApi).encode(any())
 
         // GIVEN
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
