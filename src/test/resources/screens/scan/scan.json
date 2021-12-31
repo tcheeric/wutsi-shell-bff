@@ -10,20 +10,11 @@
       "attributes": {},
       "children": [
         {
-          "type": "Flexible",
+          "type": "QrView",
           "attributes": {
-            "flex": 1,
-            "fit": "Tight"
+            "submitUrl": "http://localhost:0/commands/scan"
           },
-          "children": [
-            {
-              "type": "QrView",
-              "attributes": {
-                "submitUrl": "http://localhost:0/commands/scan/process"
-              },
-              "children": []
-            }
-          ]
+          "children": []
         }
       ]
     }

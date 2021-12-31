@@ -6,7 +6,6 @@ import com.wutsi.application.shell.endpoint.Theme
 import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.QrView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
@@ -30,10 +29,8 @@ class ScanScreen(
                 title = getText("page.scan.app-bar.title"),
             ),
             child = Container(
-                child = Flexible(
-                    child = QrView(
-                        submitUrl = urlBuilder.build("commands/scan/process")
-                    )
+                child = QrView(
+                    submitUrl = urlBuilder.build("commands/scan")
                 )
             ),
         ).toWidget()
