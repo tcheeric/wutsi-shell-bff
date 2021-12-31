@@ -52,9 +52,11 @@ wutsi:
     storage:
       type: local
   toggles:
-    send-sms-code: false         # Send verification codes via SMS
-    verify-sms-code: false       # Verify SMS code
-    payment: false               # Payment is enabled
+    send-sms-code: false         # Send verification codes via SMS?
+    verify-sms-code: false       # Verify SMS code?
+    payment: false               # Payment enabled?
+    scan: false                  # Scanning enabled?
+    tester-user-ids: [ 16 ]
 
 logging:
   level:

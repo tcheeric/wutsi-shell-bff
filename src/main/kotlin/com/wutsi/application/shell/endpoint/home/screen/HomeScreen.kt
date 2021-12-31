@@ -103,13 +103,18 @@ class HomeScreen(
                     children = primaryButtons(),
                 )
             ),
-//            Container(
-//                child = Row(
-//                    mainAxisAlignment = spaceAround,
-//                    children = applicationButton()
-//                )
-//            ),
         )
+        val applications = applicationButtons()
+        if (applications.isNotEmpty()) {
+            children.add(
+                Container(
+                    child = Row(
+                        mainAxisAlignment = spaceAround,
+                        children = applications,
+                    )
+                ),
+            )
+        }
 
         // Transactions
         val txs = findRecentTransactions(20)
@@ -178,16 +183,20 @@ class HomeScreen(
     // Buttons
     private fun primaryButtons(): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
+        if (togglesProvider.isScanEnabled()) {
+            buttons.add(
+                primaryButton(
+                    caption = getText("page.home.button.scan"),
+                    icon = Theme.ICON_SCAN,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build("scan")
+                    ),
+                ),
+            )
+        }
         buttons.addAll(
             listOf(
-//                primaryButton(
-//                    caption = getText("page.home.button.scan"),
-//                    icon = Theme.ICON_SCAN,
-//                    action = Action(
-//                        type = Route,
-//                        url = urlBuilder.build("pay/scan")
-//                    ),
-//                ),
                 primaryButton(
                     caption = getText("page.home.button.cashin"),
                     icon = Theme.ICON_CASHIN,
@@ -227,11 +236,10 @@ class HomeScreen(
         action = action
     )
 
-    private fun applicationButton(): List<WidgetAware> {
-        val toggles = togglesProvider.get()
+    private fun applicationButtons(): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (toggles.payment) {
+        if (togglesProvider.isPaymentEnabled()) {
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.payment"),
