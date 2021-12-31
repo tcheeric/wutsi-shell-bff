@@ -233,6 +233,7 @@ class HomeScreen(
         stretched = false,
         color = Theme.COLOR_WHITE,
         iconColor = Theme.COLOR_WHITE,
+        padding = 1.0,
         action = action
     )
 
@@ -262,6 +263,7 @@ class HomeScreen(
         stretched = false,
         color = Theme.COLOR_BLACK,
         iconColor = Theme.COLOR_PRIMARY,
+        padding = 1.0,
         action = action
     )
 
