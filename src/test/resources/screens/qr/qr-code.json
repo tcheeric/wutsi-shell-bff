@@ -56,10 +56,10 @@
                   "type": "QrImage",
                   "attributes": {
                     "data": "xxxxx",
-                    "size": 260.0,
+                    "size": 230.0,
                     "padding": 10.0,
                     "embeddedImageUrl": "http://www.goole.com/images/1.png",
-                    "embeddedImageSize": 80.0
+                    "embeddedImageSize": 32.0
                   },
                   "children": []
                 }
