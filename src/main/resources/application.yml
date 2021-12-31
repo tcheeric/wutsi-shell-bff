@@ -56,7 +56,7 @@ wutsi:
     verify-sms-code: false       # Verify SMS code?
     payment: false               # Payment enabled?
     scan: false                  # Scanning enabled?
-    tester-user-ids: [ 16 ]
+    tester-user-ids: [ 16, 23 ]
 
 logging:
   level:
