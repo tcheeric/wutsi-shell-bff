@@ -121,7 +121,7 @@
         {
           "type": "Container",
           "attributes": {
-            "padding": 10.0
+            "padding": 5.0
           },
           "children": [
             {
@@ -172,7 +172,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 2.0,
+                    "padding": 1.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -219,7 +219,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 2.0,
+                    "padding": 1.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -266,7 +266,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 2.0,
+                    "padding": 1.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -313,7 +313,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 2.0,
+                    "padding": 1.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -360,7 +360,7 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "Name",
-                    "padding": 2.0,
+                    "padding": 1.0,
                     "type": "Text",
                     "stretched": false
                   },
@@ -380,17 +380,26 @@
         {
           "type": "Divider",
           "attributes": {
+            "height": 1.0,
             "color": "#8c8c8c"
           },
           "children": []
         },
         {
-          "type": "Text",
+          "type": "Container",
           "attributes": {
-            "caption": "Recent transactions",
-            "bold": true
+            "padding": 5.0
           },
-          "children": []
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "Recent transactions",
+                "bold": true
+              },
+              "children": []
+            }
+          ]
         },
         {
           "type": "Flexible",

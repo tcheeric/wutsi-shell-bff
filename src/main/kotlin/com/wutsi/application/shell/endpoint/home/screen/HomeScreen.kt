@@ -114,7 +114,7 @@ class HomeScreen(
                             children = applications,
                         )
                     ),
-                    Divider(color = Theme.COLOR_DIVIDER),
+                    Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                 )
             )
         }
@@ -134,17 +134,20 @@ class HomeScreen(
                 children.addAll(
                     listOf(
                         Container(
-                            padding = 10.0,
+                            padding = 5.0,
                             child = Text(getText("page.home.send_to"), bold = true),
                         ),
                         recipientsWidget(recipients),
-                        Divider(color = Theme.COLOR_DIVIDER),
+                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                     )
                 )
             }
             children.addAll(
                 listOf(
-                    Text(getText("page.home.transactions"), bold = true),
+                    Container(
+                        padding = 5.0,
+                        child = Text(getText("page.home.transactions"), bold = true),
+                    ),
                     transactionsWidget(txs.take(3), tenant)
                 )
             )
@@ -343,7 +346,7 @@ class HomeScreen(
                     caption = firstName(recipient.displayName),
                     action = action,
                     stretched = false,
-                    padding = 2.0,
+                    padding = 1.0,
                 )
             )
         )
@@ -489,7 +492,7 @@ class HomeScreen(
     private fun amount(tx: TransactionSummary, tenant: Tenant): WidgetAware {
         val moneyFormat = DecimalFormat(tenant.monetaryFormat)
         val locale = LocaleContextHolder.getLocale()
-        val dateFormat = DateTimeFormatter.ofPattern("dd MMM yyyy", locale)
+        val dateFormat = DateTimeFormatter.ofPattern(tenant.dateFormat, locale)
         return Column(
             mainAxisAlignment = MainAxisAlignment.spaceBetween,
             crossAxisAlignment = CrossAxisAlignment.end,
