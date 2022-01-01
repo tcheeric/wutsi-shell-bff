@@ -182,6 +182,36 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/security"
               }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "About",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "f816",
+                    "size": 32.0,
+                    "color": "#1D7EDF"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/about"
+              }
             }
           ]
         }

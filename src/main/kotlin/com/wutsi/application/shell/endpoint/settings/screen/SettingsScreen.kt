@@ -142,6 +142,24 @@ class SettingsScreen(
                                 url = urlBuilder.build("settings/security")
                             )
                         ),
+                        ListItem(
+                            padding = 5.0,
+                            caption = getText("page.settings.listitem.about.caption"),
+                            leading = Icon(
+                                code = Theme.ICON_INFO,
+                                size = 32.0,
+                                color = Theme.COLOR_PRIMARY
+                            ),
+                            trailing = Icon(
+                                code = Theme.ICON_CHEVRON_RIGHT,
+                                size = 24.0,
+                                color = Theme.COLOR_BLACK
+                            ),
+                            action = Action(
+                                type = Route,
+                                url = urlBuilder.build("settings/about")
+                            )
+                        ),
                     )
                 ),
             )
