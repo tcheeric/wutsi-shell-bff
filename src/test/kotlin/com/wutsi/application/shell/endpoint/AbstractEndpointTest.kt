@@ -85,8 +85,12 @@ abstract class AbstractEndpointTest {
             countries = listOf("CM"),
             languages = listOf("en", "fr"),
             numberFormat = "#,###,##0",
-            monetaryFormat = "#,###,##0 XAF",
+            monetaryFormat = "#,###,##0 CFA",
             currency = "XAF",
+            currencySymbol = "CFA",
+            dateFormat = "dd MMM yyyy",
+            timeFormat = "HH:mm",
+            dateTimeFormat = "dd MMM yyyy, HH:mm",
             domainName = "www.wutsi.com",
             mobileCarriers = listOf(
                 MobileCarrier(

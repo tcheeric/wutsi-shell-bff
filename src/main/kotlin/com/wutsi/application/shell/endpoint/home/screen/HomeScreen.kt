@@ -89,7 +89,7 @@ class HomeScreen(
                             MoneyText(
                                 color = Theme.COLOR_WHITE,
                                 value = balance.value,
-                                currency = balance.currency,
+                                currency = tenant.currencySymbol,
                                 numberFormat = tenant.numberFormat,
                             )
                         ),
@@ -540,6 +540,8 @@ class HomeScreen(
             return getText("page.home.cashin.caption")
         } else if (tx.type == "CASHOUT") {
             return getText("page.home.cashout.caption")
+        } else if (tx.type == "PAYMENT") {
+            return getText("page.home.payment.caption")
         } else {
             return if (tx.accountId == userProvider.id())
                 getText("page.home.transfer.to.caption")

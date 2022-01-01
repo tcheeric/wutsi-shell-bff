@@ -40,7 +40,7 @@
                       "attributes": {
                         "value": 10000.0,
                         "color": "#FFFFFF",
-                        "currency": "XAF",
+                        "currency": "CFA",
                         "numberFormat": "#,###,##0"
                       },
                       "children": []
@@ -494,7 +494,7 @@
                                     {
                                       "type": "Text",
                                       "attributes": {
-                                        "caption": "10,000 XAF",
+                                        "caption": "10,000 CFA",
                                         "color": "#8B0000",
                                         "bold": true,
                                         "alignment": "Right"
@@ -599,7 +599,7 @@
                                     {
                                       "type": "Text",
                                       "attributes": {
-                                        "caption": "10,000 XAF",
+                                        "caption": "10,000 CFA",
                                         "color": "#4CAF50",
                                         "bold": true,
                                         "alignment": "Right"
@@ -704,7 +704,7 @@
                                     {
                                       "type": "Text",
                                       "attributes": {
-                                        "caption": "-10,000 XAF",
+                                        "caption": "-10,000 CFA",
                                         "color": "#8B0000",
                                         "bold": true,
                                         "alignment": "Right"

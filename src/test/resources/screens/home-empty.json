@@ -40,7 +40,7 @@
                       "attributes": {
                         "value": 0.0,
                         "color": "#FFFFFF",
-                        "currency": "XAF",
+                        "currency": "CFA",
                         "numberFormat": "#,###,##0"
                       },
                       "children": []
