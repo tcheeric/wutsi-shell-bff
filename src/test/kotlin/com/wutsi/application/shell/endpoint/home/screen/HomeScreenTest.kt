@@ -59,6 +59,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             )
 
         val txs = listOf(
+            createTransferTransactionSummary(102, USER_ID, type = "PAYMENT"),
             createCashInOutTransactionSummary(true, "A", "FAILED"),
             createCashInOutTransactionSummary(true, "A"),
             createTransferTransactionSummary(USER_ID, 100),
@@ -87,11 +88,16 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         assertEndpointEquals("/screens/home.json", url)
     }
 
-    private fun createTransferTransactionSummary(accountId: Long, recipientId: Long, status: String = "SUCCESSFUL") =
+    private fun createTransferTransactionSummary(
+        accountId: Long,
+        recipientId: Long,
+        status: String = "SUCCESSFUL",
+        type: String = "TRANSFER"
+    ) =
         TransactionSummary(
             accountId = accountId,
             recipientId = recipientId,
-            type = "TRANSFER",
+            type = type,
             status = status,
             net = 10000.0,
             amount = 10000.0,

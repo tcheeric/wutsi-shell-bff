@@ -442,6 +442,111 @@
                                     {
                                       "type": "Text",
                                       "attributes": {
+                                        "caption": "Payment"
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
+                                        "caption": "Name 102",
+                                        "color": "#95A5A6"
+                                      },
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 4,
+                            "fit": "Tight"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "alignment": "TopRight",
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Column",
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "end"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
+                                        "caption": "-10,000 CFA",
+                                        "color": "#8B0000",
+                                        "bold": true,
+                                        "alignment": "Right"
+                                      },
+                                      "children": []
+                                    },
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
+                                        "caption": "01 Jan 2021",
+                                        "size": 10.0,
+                                        "alignment": "Right"
+                                      },
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "start"
+                      },
+                      "children": [
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 8,
+                            "fit": "Tight"
+                          },
+                          "children": [
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "alignment": "TopLeft",
+                                "padding": 5.0
+                              },
+                              "children": [
+                                {
+                                  "type": "Column",
+                                  "attributes": {
+                                    "mainAxisAlignment": "spaceBetween",
+                                    "crossAxisAlignment": "start"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "attributes": {
                                         "caption": "Cashin"
                                       },
                                       "children": []
@@ -601,111 +706,6 @@
                                       "attributes": {
                                         "caption": "10,000 CFA",
                                         "color": "#4CAF50",
-                                        "bold": true,
-                                        "alignment": "Right"
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "01 Jan 2021",
-                                        "size": 10.0,
-                                        "alignment": "Right"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "Row",
-                      "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
-                      },
-                      "children": [
-                        {
-                          "type": "Flexible",
-                          "attributes": {
-                            "flex": 8,
-                            "fit": "Tight"
-                          },
-                          "children": [
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "alignment": "TopLeft",
-                                "padding": 5.0
-                              },
-                              "children": [
-                                {
-                                  "type": "Column",
-                                  "attributes": {
-                                    "mainAxisAlignment": "spaceBetween",
-                                    "crossAxisAlignment": "start"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "Reception"
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "Name 1",
-                                        "color": "#95A5A6"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Flexible",
-                          "attributes": {
-                            "flex": 4,
-                            "fit": "Tight"
-                          },
-                          "children": [
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "alignment": "TopRight",
-                                "padding": 5.0
-                              },
-                              "children": [
-                                {
-                                  "type": "Column",
-                                  "attributes": {
-                                    "mainAxisAlignment": "spaceBetween",
-                                    "crossAxisAlignment": "end"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "-10,000 CFA",
-                                        "color": "#8B0000",
                                         "bold": true,
                                         "alignment": "Right"
                                       },
