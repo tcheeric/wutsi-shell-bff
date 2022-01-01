@@ -30,7 +30,7 @@ class ScanScreen(
             ),
             child = Container(
                 child = QrView(
-                    submitUrl = urlBuilder.build("commands/scan")
+                    submitUrl = urlBuilder.build("scan/viewer")
                 )
             ),
         ).toWidget()

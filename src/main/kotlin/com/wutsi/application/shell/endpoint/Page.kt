@@ -15,4 +15,5 @@ object Page {
     const val SETTINGS_SECURITY_PIN_LOGIN = "page.settings.security.pin.login"
     const val SETTINGS_SECURITY_PIN_CONFIRM = "page.settings.security.pin.confirm"
     const val SCAN = "page.scan"
+    const val SCAN_VIEWER = "page.scan.viewer"
 }
