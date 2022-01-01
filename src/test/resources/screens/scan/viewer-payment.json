@@ -36,9 +36,9 @@
             {
               "type": "Icon",
               "attributes": {
-                "code": "e237",
+                "code": "e856",
                 "size": 64.0,
-                "color": "#8B0000"
+                "color": "#4CAF50"
               },
               "children": []
             }

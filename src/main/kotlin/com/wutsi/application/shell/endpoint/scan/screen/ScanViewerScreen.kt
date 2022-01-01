@@ -97,14 +97,17 @@ class ScanViewerScreen(
                         padding = 10.0,
                         alignment = Alignment.Center,
                         child = if (error == null)
-                            Icon(Theme.ICON_ERROR, color = Theme.COLOR_DANGER, size = 64.0)
-                        else
                             Icon(Theme.ICON_CHECK, color = Theme.COLOR_SUCCESS, size = 64.0)
+                        else
+                            Icon(Theme.ICON_ERROR, color = Theme.COLOR_DANGER, size = 64.0)
                     ),
                     Container(
                         padding = 10.0,
                         alignment = Alignment.Center,
-                        child = Text(error ?: getText("page.scan-viewer.valid"), size = Theme.TEXT_SIZE_LARGE)
+                        child = Text(
+                            error?.let { it } ?: getText("page.scan-viewer.valid"),
+                            size = Theme.TEXT_SIZE_LARGE
+                        )
                     ),
                     Container(
                         padding = 10.0,

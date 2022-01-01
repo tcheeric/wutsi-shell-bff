@@ -35,9 +35,9 @@
             {
               "type": "Icon",
               "attributes": {
-                "code": "e856",
+                "code": "e237",
                 "size": 64.0,
-                "color": "#4CAF50"
+                "color": "#8B0000"
               },
               "children": []
             }
@@ -53,7 +53,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Sorry! This QR code has expired. You should issue a new one.",
+                "caption": "Sorry! This QR code has expired.",
                 "size": 16.0
               },
               "children": []
