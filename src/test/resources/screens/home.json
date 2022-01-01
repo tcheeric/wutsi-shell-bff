@@ -164,7 +164,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "1"
+                      "recipient-id": "1"
                     }
                   }
                 },
@@ -181,7 +181,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "1"
+                      "recipient-id": "1"
                     }
                   }
                 }
@@ -211,7 +211,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "100"
+                      "recipient-id": "100"
                     }
                   }
                 },
@@ -228,7 +228,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "100"
+                      "recipient-id": "100"
                     }
                   }
                 }
@@ -258,7 +258,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "101"
+                      "recipient-id": "101"
                     }
                   }
                 },
@@ -275,7 +275,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "101"
+                      "recipient-id": "101"
                     }
                   }
                 }
@@ -305,7 +305,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "102"
+                      "recipient-id": "102"
                     }
                   }
                 },
@@ -322,7 +322,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "102"
+                      "recipient-id": "102"
                     }
                   }
                 }
@@ -352,7 +352,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "103"
+                      "recipient-id": "103"
                     }
                   }
                 },
@@ -369,7 +369,7 @@
                     "type": "Route",
                     "url": "https://wutsi-gateway-test.herokuapp.com/cash/send",
                     "parameters": {
-                      "account-id": "103"
+                      "recipient-id": "103"
                     }
                   }
                 }

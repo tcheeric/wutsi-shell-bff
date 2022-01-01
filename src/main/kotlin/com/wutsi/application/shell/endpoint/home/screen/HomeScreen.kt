@@ -322,7 +322,7 @@ class HomeScreen(
             type = Route,
             url = urlBuilder.build(cashUrl, "/send"),
             parameters = mapOf(
-                "account-id" to recipient.id.toString()
+                "recipient-id" to recipient.id.toString()
             )
         )
 
