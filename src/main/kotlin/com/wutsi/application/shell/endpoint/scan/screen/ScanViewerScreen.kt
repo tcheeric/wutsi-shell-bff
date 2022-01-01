@@ -124,7 +124,7 @@ class ScanViewerScreen(
 
     private fun nextUrl(entity: Entity?): String? =
         if (entity?.type == "payment-request")
-            urlBuilder.build(cashUrl, "pay/confim?payment-request-id=${entity.id}")
+            urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
         else
             null
 
