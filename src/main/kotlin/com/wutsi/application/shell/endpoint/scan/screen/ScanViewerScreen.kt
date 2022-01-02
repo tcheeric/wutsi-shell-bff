@@ -29,7 +29,6 @@ import com.wutsi.platform.qr.dto.Entity
 import com.wutsi.platform.qr.error.ErrorURN
 import feign.FeignException
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -46,7 +45,7 @@ class ScanViewerScreen(
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
     @PostMapping
-    fun index(@RequestBody request: ScanRequest): ResponseEntity<Widget> {
+    fun index(@RequestBody request: ScanRequest): Widget {
         logger.add("code", request.code)
         logger.add("format", request.format)
 
@@ -61,11 +60,6 @@ class ScanViewerScreen(
                 )
             ).entity
             nextUrl = nextUrl(entity)
-            if (nextUrl != null) {
-                return ResponseEntity.status(302)
-                    .header("Location", nextUrl)
-                    .build()
-            }
         } catch (ex: FeignException) {
             val response = ex.toErrorResponse(mapper)
             error = if (response?.error?.code == ErrorURN.EXPIRED.urn)
@@ -77,7 +71,7 @@ class ScanViewerScreen(
         }
 
         // Viewer
-        val screen = Screen(
+        return Screen(
             id = Page.SCAN_VIEWER,
             appBar = AppBar(
                 elevation = 0.0,
@@ -123,7 +117,6 @@ class ScanViewerScreen(
                 )
             ),
         ).toWidget()
-        return ResponseEntity.ok(screen)
     }
 
     private fun includeEmbeddedImage(entity: Entity?): Boolean =

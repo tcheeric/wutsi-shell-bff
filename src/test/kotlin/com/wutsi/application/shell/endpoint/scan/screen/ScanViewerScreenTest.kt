@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
-import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class ScanViewerScreenTest : AbstractEndpointTest() {
@@ -48,12 +47,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Widget::class.java)
 
         // THEN
-        assertEquals(302, response.statusCodeValue)
-        assertEquals(
-            "https://wutsi-gateway-test.herokuapp.com/cash/pay/confirm?payment-request-id=1111",
-            response.headers["Location"]?.get(0)
-        )
-//        assertJsonEquals("/screens/scan/viewer-payment.json", response.body)
+        assertJsonEquals("/screens/scan/viewer-payment.json", response.body)
     }
 
     @Test
