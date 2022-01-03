@@ -36,7 +36,7 @@ class SettingsAboutScreen(
         val items = mutableListOf<WidgetAware>()
         val tenant = tenantProvider.get()
 
-        val logo = tenant.logos.find { it.type == "PICTORIAL" }
+        tenant.logos.find { it.type == "PICTORIAL" }
             ?.let {
                 items.add(
                     Container(
@@ -51,14 +51,14 @@ class SettingsAboutScreen(
                 )
             }
 
+        val os = request.getHeader("X-OS") ?: ""
+        val osVersion = request.getHeader("X-OS-Version") ?: ""
+        val osInfo = "$os $osVersion"
         items.addAll(
             listOf(
                 listItem("page.settings.about.app-name", tenant.name),
                 listItem("page.settings.about.app-version", request.getHeader("X-Client-Version")),
-                listItem(
-                    "page.settings.about.app-os",
-                    request.getHeader("X-OS") + " " + request.getHeader("X-OS-Version")
-                ),
+                listItem("page.settings.about.app-os", osInfo),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
                 listItem("page.settings.about.user-id", userProvider.id().toString()),
             )
