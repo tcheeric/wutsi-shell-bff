@@ -11,9 +11,9 @@ internal class AppInfoRestInterceptor : ClientHttpRequestInterceptor {
         body: ByteArray,
         execution: ClientHttpRequestExecution
     ): ClientHttpResponse {
-        request.headers["X-App-Name"] = "Foo"
-        request.headers["X-App-Version"] = "1.1.100"
-        request.headers["X-App-Build-Number"] = "43094039"
+        request.headers["X-Client-Version"] = "1.1.100.20"
+        request.headers["X-OS"] = "Android"
+        request.headers["X-OS-Version"] = "10.02302930"
 
         return execution.execute(request, body)
     }

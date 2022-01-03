@@ -53,9 +53,12 @@ class SettingsAboutScreen(
 
         items.addAll(
             listOf(
-                listItem("page.settings.about.app-name", request.getHeader("X-App-Name")),
-                listItem("page.settings.about.app-version", request.getHeader("X-App-Version")),
-                listItem("page.settings.about.app-build-number", request.getHeader("X-App-Build-Number")),
+                listItem("page.settings.about.app-name", tenant.name),
+                listItem("page.settings.about.app-version", request.getHeader("X-Client-Version")),
+                listItem(
+                    "page.settings.about.app-os",
+                    request.getHeader("X-OS") + " " + request.getHeader("X-OS-Version")
+                ),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
                 listItem("page.settings.about.user-id", userProvider.id().toString()),
             )
