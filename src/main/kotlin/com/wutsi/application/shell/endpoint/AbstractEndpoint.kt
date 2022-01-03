@@ -44,10 +44,9 @@ abstract class AbstractEndpoint {
         logger.add("action_url", action.url)
         logger.add("action_prompt_type", action.prompt?.type)
         logger.add("action_prompt_message", action.prompt?.attributes?.get("message"))
-        if (e != null) {
-            logger.add("exception", e::class.java)
-            logger.add("exception_message", e.message)
-        }
+        if (e != null)
+            logger.setException(e)
+
         LoggerFactory.getLogger(this::class.java).error("Unexpected error", e)
     }
 
