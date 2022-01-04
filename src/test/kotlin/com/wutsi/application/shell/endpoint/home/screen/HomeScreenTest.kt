@@ -44,23 +44,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isPaymentEnabled()
 
         url = "http://localhost:$port"
-    }
 
-    @Test
-    fun empty() {
-        doReturn(GetBalanceResponse(balance = Balance(amount = 0.0, currency = "XAF"))).whenever(paymentApi)
-            .getBalance(
-                any()
-            )
-
-        doReturn(SearchTransactionResponse()).whenever(paymentApi).searchTransaction(any())
-        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
-
-        assertEndpointEquals("/screens/home-empty.json", url)
-    }
-
-    @Test
-    fun home() {
         doReturn(GetBalanceResponse(balance = Balance(amount = 10000.0, currency = "XAF"))).whenever(paymentApi)
             .getBalance(
                 any()
@@ -92,8 +76,31 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             createAccount(103),
         )
         doReturn(SearchAccountResponse(accounts)).whenever(accountApi).searchAccount(any())
+    }
 
+    @Test
+    fun empty() {
+        doReturn(GetBalanceResponse(balance = Balance(amount = 0.0, currency = "XAF"))).whenever(paymentApi)
+            .getBalance(
+                any()
+            )
+
+        doReturn(SearchTransactionResponse()).whenever(paymentApi).searchTransaction(any())
+        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+
+        assertEndpointEquals("/screens/home-empty.json", url)
+    }
+
+    @Test
+    fun home() {
         assertEndpointEquals("/screens/home.json", url)
+    }
+
+    @Test
+    fun homeAccountDisabled() {
+        doReturn(false).whenever(togglesProvider).isAccountEnabled()
+
+        assertEndpointEquals("/screens/home-account-disabled.json", url)
     }
 
     private fun createTransferTransactionSummary(

@@ -201,8 +201,8 @@ class HomeScreen(
                 ),
             )
         }
-        buttons.addAll(
-            listOf(
+        if (togglesProvider.isAccountEnabled()) {
+            buttons.add(
                 primaryButton(
                     caption = getText("page.home.button.cashin"),
                     icon = Theme.ICON_CASHIN,
@@ -211,6 +211,10 @@ class HomeScreen(
                         url = urlBuilder.build(cashUrl, "cashin")
                     )
                 ),
+            )
+        }
+        buttons.addAll(
+            listOf(
                 primaryButton(
                     caption = getText("page.home.button.send"),
                     icon = Theme.ICON_SEND,
