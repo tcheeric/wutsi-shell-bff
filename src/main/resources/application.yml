@@ -58,7 +58,13 @@ wutsi:
     scan: false                  # Scanning enabled?
     account: false               # Manage account?
 
-    tester-user-ids: [ 16, 23 ]
+    tester-user-ids:
+      - 16   # Herve
+      - 18   # Eric - phone #2
+      - 29   # Eric - phone #1
+      - 19   # Louis
+      - 23   # Mathis
+
 
 logging:
   level:
