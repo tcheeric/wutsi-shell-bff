@@ -4,6 +4,7 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.service.TogglesProvider
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
@@ -31,9 +32,16 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     @MockBean
     private lateinit var paymentApi: WutsiPaymentApi
 
+    @MockBean
+    private lateinit var togglesProvider: TogglesProvider
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
+
+        doReturn(true).whenever(togglesProvider).isAccountEnabled()
+        doReturn(true).whenever(togglesProvider).isScanEnabled()
+        doReturn(true).whenever(togglesProvider).isPaymentEnabled()
 
         url = "http://localhost:$port"
     }

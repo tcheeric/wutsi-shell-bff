@@ -151,7 +151,7 @@ class HomeScreen(
                     transactionsWidget(txs.take(3), tenant)
                 )
             )
-        } else {
+        } else if (togglesProvider.isPaymentEnabled()) {
             val paymentMethods = findPaymentMethods()
             if (paymentMethods.isEmpty()) {
                 children.add(linkFirstAccountWidget())

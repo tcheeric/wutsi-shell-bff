@@ -10,6 +10,7 @@ class Toggles {
     var verifySmsCode: Boolean = true
     var payment: Boolean = true
     var scan: Boolean = true
+    var account: Boolean = true
     var testerUserIds: List<Long> = emptyList()
 }
 
@@ -23,9 +24,11 @@ class TogglesProvider(
 
     fun isScanEnabled(): Boolean = toggles.scan || isCurrentUserIsTester()
 
-    fun isSendSmsEnabled(): Boolean = toggles.sendSmsCode || isCurrentUserIsTester()
+    fun isSendSmsEnabled(): Boolean = toggles.sendSmsCode
 
-    fun isVerifySmsCodeEnabled(): Boolean = toggles.verifySmsCode || isCurrentUserIsTester()
+    fun isVerifySmsCodeEnabled(): Boolean = toggles.verifySmsCode
+
+    fun isAccountEnabled(): Boolean = toggles.account
 
     private fun isCurrentUserIsTester(): Boolean =
         toggles.testerUserIds.contains(userProvider.id())

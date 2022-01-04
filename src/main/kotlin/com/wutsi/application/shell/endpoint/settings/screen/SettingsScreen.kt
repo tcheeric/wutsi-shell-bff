@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.settings.screen
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.Theme
+import com.wutsi.application.shell.service.TogglesProvider
 import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.application.shell.util.StringUtil
@@ -37,134 +38,122 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings")
 class SettingsScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider
+    private val userProvider: UserProvider,
+    private val togglesProvider: TogglesProvider,
 ) : AbstractQuery() {
     @PostMapping
-    fun index(): Widget {
-        val user = userProvider.get()
-        return Screen(
-            id = Page.SETTINGS,
-            appBar = AppBar(
-                elevation = 0.0,
-                backgroundColor = Theme.COLOR_WHITE,
-                foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.app-bar.title"),
-                actions = listOf(
-                    IconButton(
-                        icon = Theme.ICON_QR_CODE,
-                        action = Action(
-                            type = Route,
-                            url = urlBuilder.build("qr-code")
-                        )
+    fun index(): Widget = Screen(
+        id = Page.SETTINGS,
+        appBar = AppBar(
+            elevation = 0.0,
+            backgroundColor = Theme.COLOR_WHITE,
+            foregroundColor = Theme.COLOR_BLACK,
+            title = getText("page.settings.app-bar.title"),
+            actions = listOf(
+                IconButton(
+                    icon = Theme.ICON_QR_CODE,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build("qr-code")
                     )
                 )
+            )
+        ),
+        child = Container(
+            child = ListView(
+                separator = true,
+                separatorColor = Theme.COLOR_DIVIDER,
+                children = listItems()
             ),
-            child = Container(
-                child = ListView(
-                    separator = true,
-                    separatorColor = Theme.COLOR_DIVIDER,
+        )
+    ).toWidget()
+
+    private fun listItems(): List<WidgetAware> {
+        val user = userProvider.get()
+        val children = mutableListOf<WidgetAware>(
+            Container(
+                padding = 5.0,
+                child = Column(
+                    mainAxisSize = MainAxisSize.min,
+                    crossAxisAlignment = CrossAxisAlignment.center,
+                    mainAxisAlignment = MainAxisAlignment.spaceAround,
                     children = listOf(
-                        Container(
-                            padding = 5.0,
-                            child = Column(
-                                mainAxisSize = MainAxisSize.min,
-                                crossAxisAlignment = CrossAxisAlignment.center,
-                                mainAxisAlignment = MainAxisAlignment.spaceAround,
-                                children = listOf(
-                                    picture(user),
-                                    Text(
-                                        caption = user.displayName ?: "",
-                                        alignment = TextAlignment.Center,
-                                        size = Theme.TEXT_SIZE_LARGE,
-                                        bold = true
-                                    ),
-                                    Text(
-                                        caption = formattedPhoneNumber(user) ?: "",
-                                        alignment = TextAlignment.Center,
-                                    ),
-                                ),
-                            ),
+                        picture(user),
+                        Text(
+                            caption = user.displayName ?: "",
+                            alignment = TextAlignment.Center,
+                            size = Theme.TEXT_SIZE_LARGE,
+                            bold = true
                         ),
-                        ListItem(
-                            padding = 5.0,
-                            caption = getText("page.settings.listitem.personal.caption"),
-                            subCaption = getText("page.settings.listitem.personal.subcaption"),
-                            leading = Icon(
-                                code = Theme.ICON_VERIFIED_USER,
-                                size = 32.0,
-                                color = Theme.COLOR_PRIMARY
-                            ),
-                            trailing = Icon(
-                                code = Theme.ICON_CHEVRON_RIGHT,
-                                size = 24.0,
-                                color = Theme.COLOR_BLACK
-                            ),
-                            action = Action(
-                                type = Route,
-                                url = urlBuilder.build("settings/profile")
-                            )
+                        Text(
+                            caption = formattedPhoneNumber(user) ?: "",
+                            alignment = TextAlignment.Center,
                         ),
-                        ListItem(
-                            padding = 5.0,
-                            caption = getText("page.settings.listitem.account.caption"),
-                            subCaption = getText("page.settings.listitem.account.subcaption"),
-                            leading = Icon(
-                                code = Theme.ICON_MONEY,
-                                size = 32.0,
-                                color = Theme.COLOR_SUCCESS
-                            ),
-                            trailing = Icon(
-                                code = Theme.ICON_CHEVRON_RIGHT,
-                                size = 24.0,
-                                color = Theme.COLOR_BLACK
-                            ),
-                            action = Action(
-                                type = Route,
-                                url = urlBuilder.build("settings/account")
-                            )
-                        ),
-                        ListItem(
-                            padding = 5.0,
-                            caption = getText("page.settings.listitem.security.caption"),
-                            subCaption = getText("page.settings.listitem.security.subcaption"),
-                            leading = Icon(
-                                code = Theme.ICON_LOCK,
-                                size = 32.0,
-                                color = Theme.COLOR_DANGER
-                            ),
-                            trailing = Icon(
-                                code = Theme.ICON_CHEVRON_RIGHT,
-                                size = 24.0,
-                                color = Theme.COLOR_BLACK
-                            ),
-                            action = Action(
-                                type = Route,
-                                url = urlBuilder.build("settings/security")
-                            )
-                        ),
-                        ListItem(
-                            padding = 5.0,
-                            caption = getText("page.settings.listitem.about.caption"),
-                            leading = Icon(
-                                code = Theme.ICON_INFO,
-                                size = 32.0,
-                                color = Theme.COLOR_PRIMARY
-                            ),
-                            trailing = Icon(
-                                code = Theme.ICON_CHEVRON_RIGHT,
-                                size = 24.0,
-                                color = Theme.COLOR_BLACK
-                            ),
-                            action = Action(
-                                type = Route,
-                                url = urlBuilder.build("settings/about")
-                            )
-                        ),
-                    )
+                    ),
+                ),
+            ),
+            listItem(
+                "page.settings.listitem.personal.caption",
+                "page.settings.listitem.personal.subcaption",
+                Theme.ICON_VERIFIED_USER,
+                Theme.COLOR_PRIMARY,
+                "settings/profile"
+            ),
+        )
+
+        if (togglesProvider.isAccountEnabled()) {
+            children.add(
+                listItem(
+                    "page.settings.listitem.account.caption",
+                    "page.settings.listitem.account.subcaption",
+                    Theme.ICON_MONEY,
+                    Theme.COLOR_SUCCESS,
+                    "settings/account"
                 ),
             )
-        ).toWidget()
+        }
+
+        children.addAll(
+            listOf(
+                listItem(
+                    "page.settings.listitem.security.caption",
+                    "page.settings.listitem.security.subcaption",
+                    Theme.ICON_LOCK,
+                    Theme.COLOR_DANGER,
+                    "settings/security"
+                ),
+                listItem(
+                    "page.settings.listitem.about.caption",
+                    null,
+                    Theme.ICON_INFO,
+                    Theme.COLOR_PRIMARY,
+                    "settings/about"
+                ),
+            )
+        )
+
+        return children
     }
+
+    private fun listItem(caption: String, subCaption: String?, icon: String, color: String, url: String) = ListItem(
+        padding = 5.0,
+        caption = getText(caption),
+        subCaption = subCaption?.let { getText(it) },
+        leading = Icon(
+            code = icon,
+            size = 32.0,
+            color = color
+        ),
+        trailing = Icon(
+            code = Theme.ICON_CHEVRON_RIGHT,
+            size = 24.0,
+            color = Theme.COLOR_BLACK
+        ),
+        action = Action(
+            type = Route,
+            url = urlBuilder.build(url)
+        )
+    )
 
     private fun formattedPhoneNumber(user: Account): String? {
         val phone = user.phone ?: return null
