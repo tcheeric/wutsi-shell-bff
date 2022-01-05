@@ -30,7 +30,6 @@ internal class SwitchToBusinessCommandTest : AbstractEndpointTest() {
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "business", UpdateAccountAttributeRequest("true"))
     }
 
-
     @Test
     fun disable() {
         // GIVEN

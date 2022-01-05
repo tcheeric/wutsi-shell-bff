@@ -1,5 +1,6 @@
 package com.wutsi.application.shell.service
 
+import com.wutsi.platform.account.dto.Account
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.stereotype.Service
@@ -18,21 +19,26 @@ class Toggles {
 @Service
 @EnableConfigurationProperties(Toggles::class)
 class TogglesProvider(
-    private val toggles: Toggles,
-    private val userProvider: UserProvider
+    private val toggles: Toggles
 ) {
-    fun isPaymentEnabled(): Boolean = toggles.payment || isCurrentUserIsTester()
+    fun isBusinessAccountEnabled(): Boolean =
+        toggles.business
 
-    fun isScanEnabled(): Boolean = toggles.scan || isCurrentUserIsTester()
+    fun isPaymentEnabled(account: Account): Boolean =
+        account.business && (toggles.payment || isCurrentUserIsTester(account))
 
-    fun isSendSmsEnabled(): Boolean = toggles.sendSmsCode
+    fun isScanEnabled(account: Account): Boolean =
+        toggles.scan || isCurrentUserIsTester(account)
 
-    fun isVerifySmsCodeEnabled(): Boolean = toggles.verifySmsCode
+    fun isSendSmsEnabled(): Boolean =
+        toggles.sendSmsCode
 
-    fun isAccountEnabled(): Boolean = toggles.account
+    fun isVerifySmsCodeEnabled(): Boolean =
+        toggles.verifySmsCode
 
-    fun isBusinessAccountEnabled(): Boolean = toggles.business
+    fun isAccountEnabled(): Boolean =
+        toggles.account
 
-    private fun isCurrentUserIsTester(): Boolean =
-        toggles.testerUserIds.contains(userProvider.id())
+    private fun isCurrentUserIsTester(account: Account): Boolean =
+        toggles.testerUserIds.contains(account.id)
 }

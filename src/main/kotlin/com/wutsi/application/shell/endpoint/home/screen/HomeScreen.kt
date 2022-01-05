@@ -34,6 +34,7 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.WutsiAccountApi
+import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SearchAccountRequest
@@ -71,6 +72,7 @@ class HomeScreen(
     fun index(): Widget {
         val tenant = tenantProvider.get()
         val balance = getBalance(tenant)
+        val me = userProvider.get()
 
         // Primary Buttons
         val children = mutableListOf<WidgetAware>(
@@ -100,11 +102,11 @@ class HomeScreen(
                 background = Theme.COLOR_PRIMARY,
                 child = Row(
                     mainAxisAlignment = spaceAround,
-                    children = primaryButtons(),
+                    children = primaryButtons(me),
                 )
             ),
         )
-        val applications = applicationButtons()
+        val applications = applicationButtons(me)
         if (applications.isNotEmpty()) {
             children.addAll(
                 listOf(
@@ -151,7 +153,7 @@ class HomeScreen(
                     transactionsWidget(txs.take(3), tenant)
                 )
             )
-        } else if (togglesProvider.isPaymentEnabled()) {
+        } else if (togglesProvider.isPaymentEnabled(me)) {
             val paymentMethods = findPaymentMethods()
             if (paymentMethods.isEmpty()) {
                 children.add(linkFirstAccountWidget())
@@ -187,9 +189,9 @@ class HomeScreen(
     }
 
     // Buttons
-    private fun primaryButtons(): List<WidgetAware> {
+    private fun primaryButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
-        if (togglesProvider.isScanEnabled()) {
+        if (togglesProvider.isScanEnabled(me)) {
             buttons.add(
                 primaryButton(
                     caption = getText("page.home.button.scan"),
@@ -247,10 +249,10 @@ class HomeScreen(
         action = action
     )
 
-    private fun applicationButtons(): List<WidgetAware> {
+    private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (togglesProvider.isPaymentEnabled()) {
+        if (togglesProvider.isPaymentEnabled(me)) {
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.payment"),
