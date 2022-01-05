@@ -204,7 +204,7 @@
                       "attributes": {
                         "type": "Alert",
                         "title": "Switch to Business Account",
-                        "message": "Are you sure you want to switch to business account? Business accounts are best for brands, businesses, organization or service providers.",
+                        "message": "Are you sure you want to switch to business account?",
                         "actions": [
                           {
                             "type": "Button",

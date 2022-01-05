@@ -102,7 +102,7 @@
                       "attributes": {
                         "type": "Confirm",
                         "title": "",
-                        "message": "Are you sure you want to switch to Personal Account? By switching to Personal Account, you'll loose access to all Business Account features",
+                        "message": "Are you sure you want to switch to Personal Account?",
                         "actions": [
                           {
                             "type": "Button",
