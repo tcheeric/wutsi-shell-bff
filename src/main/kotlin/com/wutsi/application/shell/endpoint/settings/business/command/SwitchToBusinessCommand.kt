@@ -9,6 +9,7 @@ import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -19,17 +20,20 @@ class SwitchToBusinessCommand(
     private val urlBuilder: URLBuilder
 ) : AbstractCommand() {
     @PostMapping
-    fun index(): Action {
+    fun index(@RequestParam(required = false) value: Boolean? = null): Action {
         accountApi.updateAccountAttribute(
             id = userProvider.id(),
             name = "business",
             request = UpdateAccountAttributeRequest(
-                value = "true"
+                value = value?.toString() ?: "true"
             )
         )
         return Action(
             type = ActionType.Route,
-            url = urlBuilder.build("settings/business")
+            url = if (value == false)
+                urlBuilder.build("settings")
+            else
+                urlBuilder.build("settings/business")
         )
     }
 }

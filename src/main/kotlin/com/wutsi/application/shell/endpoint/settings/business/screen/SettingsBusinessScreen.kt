@@ -8,13 +8,17 @@ import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.ButtonType
+import com.wutsi.flutter.sdui.enums.DialogType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -81,6 +85,33 @@ class SettingsBusinessScreen(
                             action = Action(
                                 type = ActionType.Route,
                                 url = urlBuilder.build("settings/business/category")
+                            )
+                        ),
+                        Container(
+                            padding = 20.0,
+                            child = Button(
+                                caption = getText("page.settings.business.button.switch-to-personal"),
+                                type = ButtonType.Text,
+                                action = Action(
+                                    type = ActionType.Prompt,
+                                    prompt = Dialog(
+                                        type = DialogType.Confirm,
+                                        message = getText("page.settings.business.switch-to-personal.message"),
+                                        actions = listOf(
+                                            Button(
+                                                caption = getText("page.settings.business.switch-to-personal.yes"),
+                                                action = Action(
+                                                    type = ActionType.Command,
+                                                    url = urlBuilder.build("commands/switch-to-business?value=false")
+                                                )
+                                            ),
+                                            Button(
+                                                caption = getText("page.settings.business.switch-to-personal.no"),
+                                                type = ButtonType.Text
+                                            )
+                                        )
+                                    ).toWidget()
+                                )
                             )
                         )
                     )

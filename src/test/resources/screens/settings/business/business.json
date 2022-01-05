@@ -79,6 +79,60 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/business/category"
               }
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 20.0
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Switch to Personal Account",
+                    "padding": 15.0,
+                    "type": "Text"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Prompt",
+                    "url": "",
+                    "prompt": {
+                      "type": "Dialog",
+                      "attributes": {
+                        "type": "Confirm",
+                        "title": "",
+                        "message": "Are you sure you want to switch to Personal Account? By switching to Personal Account, you'll loose access to all Business Account features",
+                        "actions": [
+                          {
+                            "type": "Button",
+                            "attributes": {
+                              "caption": "Yes",
+                              "padding": 15.0,
+                              "type": "Elevated"
+                            },
+                            "children": [],
+                            "action": {
+                              "type": "Command",
+                              "url": "http://localhost:0/commands/switch-to-business?value=false"
+                            }
+                          },
+                          {
+                            "type": "Button",
+                            "attributes": {
+                              "caption": "No",
+                              "padding": 15.0,
+                              "type": "Text"
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      "children": []
+                    }
+                  }
+                }
+              ]
             }
           ]
         }
