@@ -57,7 +57,7 @@ wutsi:
     payment: false               # Payment enabled?
     scan: false                  # Scanning enabled?
     account: false               # Manage account?
-
+    business: true               # Business account enabled?
     tester-user-ids:
       - 16   # Herve
       - 18   # Eric - phone #2

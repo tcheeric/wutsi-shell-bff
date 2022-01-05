@@ -66,18 +66,18 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "Scan",
+                    "caption": "Cashin",
                     "padding": 1.0,
                     "type": "Text",
                     "stretched": false,
-                    "icon": "e4f7",
+                    "icon": "e3f8",
                     "iconColor": "#FFFFFF",
                     "color": "#FFFFFF"
                   },
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "http://localhost:0/scan"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
                   }
                 },
                 {
@@ -117,45 +117,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "Container",
-          "attributes": {},
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
-              "children": [
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Payment",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "e481",
-                    "iconColor": "#1D7EDF",
-                    "color": "#000000"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/pay"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "height": 1.0,
-            "color": "#8c8c8c"
-          },
-          "children": []
         },
         {
           "type": "Container",

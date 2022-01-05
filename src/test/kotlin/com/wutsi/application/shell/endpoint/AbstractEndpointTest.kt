@@ -135,7 +135,11 @@ abstract class AbstractEndpointTest {
                 id = 1,
                 number = "+1237666666666",
                 country = "CM"
-            )
+            ),
+            business = false,
+            website = "https://www.google.ca",
+            biography = "Thsi is my bio",
+            categoryId = 1000
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 

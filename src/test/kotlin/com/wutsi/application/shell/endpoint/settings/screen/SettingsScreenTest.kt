@@ -25,8 +25,6 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
         super.setUp()
 
         url = "http://localhost:$port/settings"
-
-        doReturn(true).whenever(togglesProvider).isAccountEnabled()
     }
 
     @Test
@@ -36,8 +34,14 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun accountDisabled() {
-        doReturn(false).whenever(togglesProvider).isAccountEnabled()
-        assertEndpointEquals("/screens/settings/settings-no-account.json", url)
+    fun accountEnabled() {
+        doReturn(true).whenever(togglesProvider).isAccountEnabled()
+        assertEndpointEquals("/screens/settings/settings-account-enabled.json", url)
+    }
+
+    @Test
+    fun businessEnabled() {
+        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
+        assertEndpointEquals("/screens/settings/settings-business-enabled.json", url)
     }
 }

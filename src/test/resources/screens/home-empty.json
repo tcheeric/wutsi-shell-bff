@@ -66,40 +66,6 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "Scan",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "e4f7",
-                    "iconColor": "#FFFFFF",
-                    "color": "#FFFFFF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/scan"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Cashin",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "e3f8",
-                    "iconColor": "#FFFFFF",
-                    "color": "#FFFFFF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
                     "caption": "Send",
                     "padding": 1.0,
                     "type": "Text",
@@ -129,96 +95,6 @@
                   "action": {
                     "type": "Route",
                     "url": "http://localhost:0/qr-code"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {},
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
-              "children": [
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Payment",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "e481",
-                    "iconColor": "#1D7EDF",
-                    "color": "#000000"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/pay"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "height": 1.0,
-            "color": "#8c8c8c"
-          },
-          "children": []
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "alignment": "Center",
-            "padding": 20.0,
-            "margin": 10.0,
-            "background": "#e4edf7",
-            "border": 1.0,
-            "borderRadius": 5.0,
-            "borderColor": "#1D7EDF"
-          },
-          "children": [
-            {
-              "type": "Column",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround",
-                "crossAxisAlignment": "center"
-              },
-              "children": [
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "There is no account linked with your Wallet.",
-                    "bold": true
-                  },
-                  "children": []
-                },
-                {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "You'll be able to add cash from your linked account into your Wallet, or transfer cash from your Wallet to your linked account."
-                  },
-                  "children": []
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Link an Account",
-                    "padding": 15.0,
-                    "type": "Elevated"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/settings/accounts/link/mobile"
                   }
                 }
               ]

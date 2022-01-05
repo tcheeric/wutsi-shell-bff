@@ -23,6 +23,7 @@
     <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     <jdk.version>11</jdk.version>
 
+    <commons-csv.version>1.8</commons-csv.version>
     <javax-validation.version>2.0.1.Final</javax-validation.version>
     <junit.version>5.8.2</junit.version>
     <kotlin.version>1.6.0</kotlin.version>
@@ -32,7 +33,7 @@
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
     <sdui-kotlin.version>0.0.54</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.91</wutsi-platform-core.version>
-    <wutsi-account.version>1.0.25</wutsi-account.version>
+    <wutsi-account.version>1.0.26</wutsi-account.version>
     <wutsi-contact.version>0.0.6</wutsi-contact.version>
     <wutsi-payment.version>0.0.27</wutsi-payment.version>
     <wutsi-qr.version>0.0.4</wutsi-qr.version>
@@ -88,6 +89,11 @@
       <version>${sdui-kotlin.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-csv</artifactId>
+      <version>${commons-csv.version}</version>
+    </dependency>
     <dependency>
       <groupId>com.googlecode.libphonenumber</groupId>
       <artifactId>libphonenumber</artifactId>

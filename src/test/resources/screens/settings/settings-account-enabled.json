@@ -124,6 +124,37 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Accounts",
+                "subCaption": "Cash in, Cash out, Manage Accounts",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e3f7",
+                    "size": 32.0,
+                    "color": "#4CAF50"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/account"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "Security",
                 "subCaption": "Protect your Wallet",
                 "padding": 5.0,

@@ -39,10 +39,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        doReturn(true).whenever(togglesProvider).isAccountEnabled()
-        doReturn(true).whenever(togglesProvider).isScanEnabled()
-        doReturn(true).whenever(togglesProvider).isPaymentEnabled()
-
         url = "http://localhost:$port"
 
         doReturn(GetBalanceResponse(balance = Balance(amount = 10000.0, currency = "XAF"))).whenever(paymentApi)
@@ -97,10 +93,10 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun homeAccountDisabled() {
-        doReturn(false).whenever(togglesProvider).isAccountEnabled()
+    fun homeAccountEnabled() {
+        doReturn(true).whenever(togglesProvider).isAccountEnabled()
 
-        assertEndpointEquals("/screens/home-account-disabled.json", url)
+        assertEndpointEquals("/screens/home-account-enabled.json", url)
     }
 
     private fun createTransferTransactionSummary(

@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Image
@@ -92,6 +93,21 @@ class SettingsScreen(
                     ),
                 ),
             ),
+        )
+
+        if (user.business && togglesProvider.isBusinessAccountEnabled()) {
+            children.add(
+                listItem(
+                    "page.settings.listitem.business.caption",
+                    "page.settings.listitem.business.subcaption",
+                    Theme.ICON_BUSINESS,
+                    Theme.COLOR_PRIMARY,
+                    "settings/business"
+                ),
+            )
+        }
+
+        children.add(
             listItem(
                 "page.settings.listitem.personal.caption",
                 "page.settings.listitem.personal.subcaption",
@@ -132,6 +148,40 @@ class SettingsScreen(
             )
         )
 
+        if (!user.business && togglesProvider.isBusinessAccountEnabled()) {
+            children.add(
+                Container(
+                    padding = 10.0,
+                    child = Button(
+                        caption = getText("page.settings.button.switch-to-business"),
+                        action = Action(
+                            type = ActionType.Prompt,
+                            prompt = Dialog(
+                                title = getText("page.settings.button.switch-to-business"),
+                                message = getText("page.settings.switch-to-business.action.messages"),
+                                actions = listOf(
+                                    Button(
+                                        caption = getText("page.settings.switch-to-business.action.button.submit"),
+                                        action = Action(
+                                            type = ActionType.Command,
+                                            url = urlBuilder.build("commands/switch-to-business")
+                                        )
+                                    ),
+                                    Button(
+                                        caption = getText("page.settings.switch-to-business.action.button.cancel"),
+                                        type = ButtonType.Text,
+                                        action = Action(
+                                            type = ActionType.Command
+                                        )
+                                    )
+
+                                )
+                            ).toWidget()
+                        )
+                    )
+                )
+            )
+        }
         return children
     }
 
