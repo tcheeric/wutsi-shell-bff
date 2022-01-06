@@ -78,6 +78,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/personal.json", response.body)
+        assertJsonEquals("/screens/profile/business.json", response.body)
     }
 }
