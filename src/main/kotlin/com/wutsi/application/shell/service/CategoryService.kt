@@ -6,13 +6,14 @@ import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import org.springframework.web.servlet.LocaleResolver
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.servlet.http.HttpServletRequest
 
 @Service
 class CategoryService(
-    private val requestLocaleResolver: RequestLocaleResolver,
+    private val requestLocaleResolver: LocaleResolver,
     private val request: HttpServletRequest,
 ) {
     companion object {

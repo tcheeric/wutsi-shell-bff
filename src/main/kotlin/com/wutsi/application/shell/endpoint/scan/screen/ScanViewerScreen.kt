@@ -86,7 +86,7 @@ class ScanViewerScreen(
                             data = request.code,
                             size = 230.0,
                             padding = 10.0,
-                            embeddedImageSize = 32.0,
+                            embeddedImageSize = 64.0,
                             embeddedImageUrl = if (includeEmbeddedImage(entity))
                                 tenantProvider.get().logos.find { it.type == "PICTORIAL" }?.url
                             else
@@ -112,23 +112,27 @@ class ScanViewerScreen(
                     Container(
                         padding = 10.0,
                         alignment = Alignment.Center,
-                        child = nextButton(nextUrl)
+                        child = nextButton(nextUrl, entity)
                     )
                 )
-            ),
+            )
         ).toWidget()
     }
 
     private fun includeEmbeddedImage(entity: Entity?): Boolean =
-        entity?.type == "payment-request" || entity?.type == "account"
+        entity?.type == "payment-request" || entity?.type == "account" || entity?.type == "web"
 
     private fun nextUrl(entity: Entity?): String? =
         if (entity?.type == "payment-request")
             urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
+        else if (entity?.type == "account")
+            urlBuilder.build("profile?id=${entity.id}")
+        else if (entity?.type == "url")
+            entity.id
         else
             null
 
-    private fun nextButton(nextUrl: String?): WidgetAware =
+    private fun nextButton(nextUrl: String?, entity: Entity?): WidgetAware =
         if (nextUrl == null)
             Button(
                 caption = getText("page.scan-viewer.button.close"),
@@ -140,9 +144,14 @@ class ScanViewerScreen(
             )
         else
             Button(
-                caption = getText("page.scan-viewer.button.continue"),
+                caption = when (entity?.type?.lowercase()) {
+                    "account" -> getText("page.scan-viewer.button.continue-account")
+                    "payment-request" -> getText("page.scan-viewer.button.continue-payment")
+                    "url" -> getText("page.scan-viewer.button.continue-url")
+                    else -> getText("page.scan-viewer.button.continue")
+                },
                 action = Action(
-                    type = ActionType.Route,
+                    type = if (entity?.type?.lowercase() == "url") ActionType.Navigate else ActionType.Route,
                     url = nextUrl
                 )
             )

@@ -51,6 +51,38 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun contact() {
+        // GIVEN
+        val entity = Entity("contact", "1111")
+        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
+
+        // WHEN
+        val request = ScanRequest(
+            code = "xxxxxx"
+        )
+        val response = rest.postForEntity(url, request, Widget::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/scan/viewer-contact.json", response.body)
+    }
+
+    @Test
+    fun url() {
+        // GIVEN
+        val entity = Entity("url", "https://www.google.ca")
+        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
+
+        // WHEN
+        val request = ScanRequest(
+            code = "xxxxxx"
+        )
+        val response = rest.postForEntity(url, request, Widget::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/scan/viewer-url.json", response.body)
+    }
+
+    @Test
     fun invalid() {
         // GIVEN
         val ex = createFeignException(ErrorURN.EXPIRED.urn)

@@ -25,10 +25,10 @@ class TogglesProvider(
         toggles.business
 
     fun isPaymentEnabled(account: Account): Boolean =
-        account.business && (toggles.payment || isCurrentUserIsTester(account))
+        account.business && (toggles.payment || isTester(account))
 
     fun isScanEnabled(account: Account): Boolean =
-        toggles.scan || isCurrentUserIsTester(account)
+        toggles.scan || isTester(account)
 
     fun isSendSmsEnabled(): Boolean =
         toggles.sendSmsCode
@@ -39,6 +39,6 @@ class TogglesProvider(
     fun isAccountEnabled(): Boolean =
         toggles.account
 
-    private fun isCurrentUserIsTester(account: Account): Boolean =
+    private fun isTester(account: Account): Boolean =
         toggles.testerUserIds.contains(account.id)
 }
