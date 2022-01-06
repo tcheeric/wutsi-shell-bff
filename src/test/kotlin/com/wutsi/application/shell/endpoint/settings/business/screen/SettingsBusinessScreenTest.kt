@@ -4,7 +4,9 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.platform.account.dto.ListPaymentMethodResponse
+import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.GetAccountResponse
+import com.wutsi.platform.account.dto.Phone
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -25,11 +27,33 @@ internal class SettingsBusinessScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun index() {
+    fun personal() {
+        // THEN
+        assertEndpointEquals("/screens/settings/business/business-off.json", url)
+    }
+
+    @Test
+    fun business() {
         // GIVEN
-        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+        val account = Account(
+            id = ACCOUNT_ID,
+            displayName = "Ray Sponsible",
+            country = "CM",
+            language = "en",
+            status = "ACTIVE",
+            phone = Phone(
+                id = 1,
+                number = "+1237666666666",
+                country = "CM"
+            ),
+            business = true,
+            website = "https://www.google.ca",
+            biography = "This is my bio",
+            categoryId = 1000
+        )
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/business/business.json", url)
+        assertEndpointEquals("/screens/settings/business/business-on.json", url)
     }
 }

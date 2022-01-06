@@ -16,6 +16,7 @@ object Page {
     const val SETTINGS_SECURITY_PIN_LOGIN = "page.settings.security.pin.login"
     const val SETTINGS_SECURITY_PIN_CONFIRM = "page.settings.security.pin.confirm"
     const val SETTINGS_BUSINESS = "page.settings.business"
+    const val SETTINGS_BUSINESS_ENABLE = "page.settings.business.enable"
     const val SETTINGS_BUSINESS_BIOGRAPHY = "page.settings.business.biography"
     const val SETTINGS_BUSINESS_WEBSITE = "page.settings.business.website"
     const val SETTINGS_BUSINESS_CATEGORY = "page.settings.business.category"

@@ -31,7 +31,8 @@ class UpdateBusinessAttributeCommand(
         )
         return Action(
             type = ActionType.Route,
-            url = urlBuilder.build("settings/business")
+            url = if (name == "business") urlBuilder.build("settings/business") else "route:/..",
+            replacement = name == "business"
         )
     }
 }
