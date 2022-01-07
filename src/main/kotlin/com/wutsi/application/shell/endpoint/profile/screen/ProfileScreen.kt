@@ -10,11 +10,10 @@ import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
-import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Flexible
+import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
@@ -26,6 +25,7 @@ import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
@@ -52,15 +52,6 @@ class ProfileScreen(
     @PostMapping
     fun index(@RequestParam id: Long): Widget {
         val user = accountApi.getAccount(id).account
-        val isContact = if (id == userProvider.id())
-            false
-        else
-            contactApi.searchContact(
-                request = SearchContactRequest(
-                    contactIds = listOf(id)
-                )
-            ).contacts.isNotEmpty()
-
         return Screen(
             id = Page.PROFILE,
             backgroundColor = Theme.COLOR_WHITE,
@@ -70,203 +61,169 @@ class ProfileScreen(
                 foregroundColor = Theme.COLOR_WHITE,
                 title = getText("page.profile.app-bar.title"),
             ),
-            child = if (user.business) business(user, isContact) else personal(user, isContact)
+            child = Column(
+                mainAxisAlignment = MainAxisAlignment.start,
+                crossAxisAlignment = CrossAxisAlignment.start,
+                children = listOf(
+                    profile(user),
+                    details(user)
+                )
+            )
         ).toWidget()
     }
 
-    private fun personal(user: Account, isContact: Boolean): WidgetAware {
-        val children = mutableListOf<WidgetAware>(
-            Container(
-                padding = 10.0,
-                alignment = Alignment.Center,
-                background = Theme.COLOR_PRIMARY,
-                child = Center(child = picture(user, 64.0)),
-            ),
-            Container(
-                padding = 10.0,
-                alignment = Alignment.Center,
-                background = Theme.COLOR_PRIMARY,
-                child = Center(
-                    child = Text(
-                        user.displayName ?: "",
-                        bold = true,
-                        color = Theme.COLOR_WHITE,
-                        size = Theme.TEXT_SIZE_LARGE
-                    )
-                )
-            ),
-        )
-
-        val buttons = personalButtons(user, isContact)
-        if (buttons.isNotEmpty()) {
-            children.add(Container(padding = 20.0))
-            children.addAll(buttons)
-        }
-
-        return Column(
-            children = children,
-            crossAxisAlignment = CrossAxisAlignment.center
-        )
-    }
-
-    private fun personalButtons(user: Account, isContact: Boolean): List<WidgetAware> {
+    private fun profile(user: Account): WidgetAware {
         val buttons = mutableListOf<WidgetAware>()
-        if (!isContact)
+        if (!isContact(user))
             buttons.add(
-                button(
-                    getText("page.profile.button.add-contact"),
-                    Action(
+                Button(
+                    caption = getText("page.profile.button.add-contact"),
+                    padding = 5.0,
+                    stretched = false,
+                    action = Action(
                         type = ActionType.Command,
                         url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
-                    )
-                )
-            )
-
-        buttons.add(
-            button(
-                getText("page.profile.button.send"),
-                Action(
-                    type = ActionType.Route,
-                    url = urlBuilder.build(cashUrl, "send")
-                )
-            )
-        )
-        return buttons
-    }
-
-    private fun business(user: Account, isContact: Boolean): WidgetAware {
-        val children = mutableListOf<WidgetAware>(
-            Container(
-                background = Theme.COLOR_PRIMARY,
-                child = Row(
-                    mainAxisAlignment = MainAxisAlignment.start,
-                    crossAxisAlignment = CrossAxisAlignment.start,
-                    children = listOf(
-                        Flexible(
-                            flex = 2,
-                            child = Container(
-                                padding = 10.0,
-                                alignment = Alignment.TopCenter,
-                                background = Theme.COLOR_PRIMARY,
-                                child = picture(
-                                    user, 48.0
-                                ),
-                            )
-                        ),
-                        Flexible(
-                            flex = 10,
-                            child = Container(
-                                padding = 10.0,
-                                background = Theme.COLOR_PRIMARY,
-                                child = Column(
-                                    children = businessProfile(user),
-                                    mainAxisAlignment = MainAxisAlignment.start,
-                                    crossAxisAlignment = CrossAxisAlignment.start
-                                ),
-                            )
-                        )
                     ),
                 )
             )
+
+        val children = mutableListOf<WidgetAware>()
+        children.addAll(
+            listOf(
+                Container(
+                    padding = 5.0,
+                    child = picture(user, 48.0)
+                ),
+                Container(
+                    padding = 5.0,
+                    child = Column(
+                        mainAxisAlignment = MainAxisAlignment.start,
+                        crossAxisAlignment = CrossAxisAlignment.start,
+                        children = buttons,
+                    )
+                )
+            )
         )
 
-        val buttons = businessButtons(user, isContact)
-        if (buttons.isNotEmpty()) {
-            children.add(Container(padding = 20.0))
-            children.addAll(buttons)
-        }
-
-        return Column(
-            children = children
+        return Container(
+            padding = 10.0,
+            background = Theme.COLOR_PRIMARY,
+            child = Row(
+                mainAxisAlignment = MainAxisAlignment.start,
+                children = children,
+            )
         )
     }
 
-    private fun businessProfile(user: Account): List<WidgetAware> {
-        val category = user.categoryId?.let { categoryService.get(it) }
-        val profile = mutableListOf<WidgetAware>(
+    private fun details(user: Account): WidgetAware {
+        val children = mutableListOf<WidgetAware>(
             Container(
-                padding = 5.0,
+                padding = 10.0,
+                alignment = Alignment.CenterLeft,
                 child = Text(
                     user.displayName ?: "",
                     bold = true,
-                    color = Theme.COLOR_WHITE,
                     size = Theme.TEXT_SIZE_LARGE
                 ),
             )
         )
 
-        if (category != null)
-            profile.add(
-                Container(
-                    padding = 5.0,
-                    child = Text(
-                        if (user.language == "fr") category.titleFrench else category.title,
-                        color = Theme.COLOR_WHITE,
-                        alignment = TextAlignment.Left,
-                        italic = true
+        if (user.business) {
+            val business = mutableListOf<WidgetAware>()
+            val category = user.categoryId?.let { categoryService.get(it) }
+            if (category != null)
+                business.add(
+                    Container(
+                        child = Text(
+                            if (user.language == "fr") category.titleFrench else category.title,
+                            alignment = TextAlignment.Left,
+                            color = Theme.COLOR_GRAY,
+                        )
                     )
                 )
-            )
 
-        if (!user.biography.isNullOrEmpty())
-            profile.add(
-                Container(
-                    padding = 5.0,
-                    alignment = Alignment.TopLeft,
-                    child = Flexible(
+            if (!user.biography.isNullOrEmpty())
+                business.add(
+                    Container(
+                        alignment = Alignment.TopLeft,
                         child = Text(
                             user.biography ?: "",
                             alignment = TextAlignment.Left,
-                            color = Theme.COLOR_WHITE,
-                        )
-                    ),
-                )
-            )
-
-        return profile
-    }
-
-    private fun businessButtons(user: Account, isContact: Boolean): List<WidgetAware> {
-        val buttons = mutableListOf<WidgetAware>()
-        if (!user.website.isNullOrEmpty()) {
-            val i = user.website?.indexOf("//")
-            val website = i?.let { user.website?.substring(it + 2) } ?: user.website
-            website?.let {
-                buttons.add(
-                    button(
-                        it,
-                        Action(
-                            type = ActionType.Navigate,
-                            url = user.website ?: ""
                         )
                     )
                 )
-            }
+
+            if (!user.website.isNullOrEmpty())
+                business.add(
+                    Row(
+                        mainAxisAlignment = MainAxisAlignment.spaceBetween,
+                        mainAxisSize = MainAxisSize.min,
+                        children = listOf(
+                            Icon(code = Theme.ICON_LINK),
+                            Button(
+                                type = ButtonType.Text,
+                                caption = sanitizeWebsite(user.website!!),
+                                stretched = false,
+                                action = Action(
+                                    type = ActionType.Navigate,
+                                    url = user.website!!
+                                )
+                            )
+                        ),
+                    )
+                )
+
+            if (business.isNotEmpty())
+                children.add(
+                    Container(
+                        padding = 10.0,
+                        child = Column(
+                            mainAxisAlignment = MainAxisAlignment.start,
+                            crossAxisAlignment = CrossAxisAlignment.start,
+                            children = business
+                        )
+                    )
+                )
+        } else {
+            children.add(
+                Container(
+                    padding = 10.0,
+                    child = Button(
+                        caption = getText("page.profile.button.send"),
+                        type = ButtonType.Outlined,
+                        action = Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
+                        ),
+                    )
+                )
+            )
         }
 
-        if (!isContact)
-            buttons.add(
-                button(
-                    getText("page.profile.button.add-contact"),
-                    Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
-                    )
-                )
-            )
-
-        return buttons
+        return Column(
+            mainAxisAlignment = MainAxisAlignment.start,
+            crossAxisAlignment = CrossAxisAlignment.start,
+            children = children,
+        )
     }
 
-    private fun button(caption: String, action: Action, type: ButtonType = ButtonType.Outlined) = Container(
-        padding = 10.0,
-        child = Button(
-            caption = caption,
-            action = action,
-            type = type,
-            padding = 10.0
-        )
-    )
+    private fun sanitizeWebsite(website: String): String {
+        val i = website.indexOf("//")
+        return if (i > 0)
+            website.substring(i + 2)
+        else
+            website
+    }
+
+    private fun isContact(user: Account): Boolean =
+        if (user.id == userProvider.id())
+            false
+        else
+            contactApi.searchContact(
+                request = SearchContactRequest(
+                    contactIds = listOf(user.id)
+                )
+            ).contacts.isNotEmpty()
 
     private fun picture(user: Account, size: Double): WidgetAware =
         if (!user.pictureUrl.isNullOrBlank())

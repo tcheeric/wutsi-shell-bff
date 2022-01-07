@@ -8,142 +8,75 @@
   "children": [
     {
       "type": "Column",
-      "attributes": {},
+      "attributes": {
+        "mainAxisAlignment": "start",
+        "crossAxisAlignment": "start"
+      },
       "children": [
         {
           "type": "Container",
           "attributes": {
+            "padding": 10.0,
             "background": "#1D7EDF"
           },
           "children": [
             {
               "type": "Row",
               "attributes": {
-                "mainAxisAlignment": "start",
-                "crossAxisAlignment": "start"
+                "mainAxisAlignment": "start"
               },
               "children": [
                 {
-                  "type": "Flexible",
+                  "type": "Container",
                   "attributes": {
-                    "flex": 2,
-                    "fit": "Tight"
+                    "padding": 5.0
                   },
                   "children": [
                     {
-                      "type": "Container",
+                      "type": "CircleAvatar",
                       "attributes": {
-                        "alignment": "TopCenter",
-                        "padding": 10.0,
-                        "background": "#1D7EDF"
+                        "radius": 24.0
                       },
                       "children": [
                         {
-                          "type": "CircleAvatar",
+                          "type": "Image",
                           "attributes": {
-                            "radius": 24.0
+                            "url": "https://img.com/1.png",
+                            "width": 48.0,
+                            "height": 48.0
                           },
-                          "children": [
-                            {
-                              "type": "Image",
-                              "attributes": {
-                                "url": "https://img.com/1.png",
-                                "width": 48.0,
-                                "height": 48.0
-                              },
-                              "children": []
-                            }
-                          ]
+                          "children": []
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "type": "Flexible",
+                  "type": "Container",
                   "attributes": {
-                    "flex": 10,
-                    "fit": "Tight"
+                    "padding": 5.0
                   },
                   "children": [
                     {
-                      "type": "Container",
+                      "type": "Column",
                       "attributes": {
-                        "padding": 10.0,
-                        "background": "#1D7EDF"
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "start"
                       },
                       "children": [
                         {
-                          "type": "Column",
+                          "type": "Button",
                           "attributes": {
-                            "mainAxisAlignment": "start",
-                            "crossAxisAlignment": "start"
+                            "caption": "Add to Contacts",
+                            "padding": 5.0,
+                            "type": "Elevated",
+                            "stretched": false
                           },
-                          "children": [
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "padding": 5.0
-                              },
-                              "children": [
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Ray Sponsible",
-                                    "color": "#FFFFFF",
-                                    "bold": true,
-                                    "size": 16.0
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "padding": 5.0
-                              },
-                              "children": [
-                                {
-                                  "type": "Text",
-                                  "attributes": {
-                                    "caption": "Advertising/Marketing",
-                                    "color": "#FFFFFF",
-                                    "italic": true,
-                                    "alignment": "Left"
-                                  },
-                                  "children": []
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "alignment": "TopLeft",
-                                "padding": 5.0
-                              },
-                              "children": [
-                                {
-                                  "type": "Flexible",
-                                  "attributes": {
-                                    "flex": 1,
-                                    "fit": "Tight"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "This is my bio",
-                                        "color": "#FFFFFF",
-                                        "alignment": "Left"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
+                          "children": [],
+                          "action": {
+                            "type": "Command",
+                            "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+                          }
                         }
                       ]
                     }
@@ -154,30 +87,77 @@
           ]
         },
         {
-          "type": "Container",
+          "type": "Column",
           "attributes": {
-            "padding": 20.0
-          },
-          "children": []
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0
+            "mainAxisAlignment": "start",
+            "crossAxisAlignment": "start"
           },
           "children": [
             {
-              "type": "Button",
+              "type": "Container",
               "attributes": {
-                "caption": "Add to my Contacts",
-                "padding": 10.0,
-                "type": "Outlined"
+                "alignment": "CenterLeft",
+                "padding": 10.0
               },
-              "children": [],
-              "action": {
-                "type": "Command",
-                "url": "http://localhost:0/commands/add-contact?contact-id=5555"
-              }
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "Ray Sponsible",
+                    "bold": true,
+                    "size": 16.0
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
+                  },
+                  "children": [
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Advertising/Marketing",
+                            "color": "#95A5A6",
+                            "alignment": "Left"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "alignment": "TopLeft"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "This is my bio",
+                            "alignment": "Left"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

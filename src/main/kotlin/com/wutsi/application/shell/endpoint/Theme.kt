@@ -25,6 +25,7 @@ object Theme {
     const val ICON_FOLDER = "f77e"
     const val ICON_HISTORY = "e314"
     const val ICON_INFO = "f816"
+    const val ICON_LINK = "e380"
     const val ICON_MONEY = "e3f7"
     const val ICON_PENDING = "e484"
     const val ICON_PERSON = "491"
