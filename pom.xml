@@ -14,7 +14,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.1</version>
+    <version>2.6.2</version>
   </parent>
 
   <properties>
@@ -26,10 +26,10 @@
     <commons-csv.version>1.8</commons-csv.version>
     <javax-validation.version>2.0.1.Final</javax-validation.version>
     <junit.version>5.8.2</junit.version>
-    <kotlin.version>1.6.0</kotlin.version>
+    <kotlin.version>1.6.10</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.2</klint.version>
-    <libphonenumber.version>8.12.38</libphonenumber.version>
+    <libphonenumber.version>8.12.40</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
     <sdui-kotlin.version>0.0.56</sdui-kotlin.version>
     <wutsi-platform-core.version>0.0.91</wutsi-platform-core.version>
