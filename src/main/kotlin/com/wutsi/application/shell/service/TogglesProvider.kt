@@ -42,7 +42,7 @@ class TogglesProvider(
         toggles.account
 
     fun isLogoutEnabled(): Boolean =
-        toggles.logout && isTester()
+        toggles.logout || isTester()
 
     private fun isTester(): Boolean =
         isTester(userProvider.id())

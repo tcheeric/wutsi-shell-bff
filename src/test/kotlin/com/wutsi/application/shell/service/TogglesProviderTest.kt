@@ -126,6 +126,49 @@ internal class TogglesProviderTest {
         assertTrue(service.isScanEnabled(account))
     }
 
+    @Test
+    fun `logout=ON - logout enabled`() {
+        // GIVEN
+        val toggles = createToggleForLogout(true)
+
+        // WHEN
+        val service = createToggleProvider(toggles)
+
+        // THEN
+        assertTrue(service.isLogoutEnabled())
+    }
+
+    @Test
+    fun `logout=OFF - logout disabled`() {
+        // GIVEN
+        val toggles = createToggleForLogout(false)
+
+        // WHEN
+        val service = createToggleProvider(toggles)
+
+        // THEN
+        assertFalse(service.isLogoutEnabled())
+    }
+
+    @Test
+    fun `logout=OFF and user is tester - logout enabled`() {
+        // GIVEN
+        val toggles = createToggleForLogout(false, listOf(USER_ID))
+
+        // WHEN
+        val service = createToggleProvider(toggles)
+
+        // THEN
+        assertTrue(service.isLogoutEnabled())
+    }
+
+    private fun createToggleForLogout(value: Boolean, testerUserIds: List<Long> = emptyList()): Toggles {
+        val toggles = Toggles()
+        toggles.logout = value
+        toggles.testerUserIds = testerUserIds
+        return toggles
+    }
+
     private fun createToggleForPayment(value: Boolean, testerUserIds: List<Long> = emptyList()): Toggles {
         val toggles = Toggles()
         toggles.payment = value
