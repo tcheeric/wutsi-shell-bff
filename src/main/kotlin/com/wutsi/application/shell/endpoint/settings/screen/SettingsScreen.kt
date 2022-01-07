@@ -155,7 +155,7 @@ class SettingsScreen(
                         caption = getText("page.settings.button.logout"),
                         type = ButtonType.Outlined,
                         action = Action(
-                            type = ActionType.Route,
+                            type = ActionType.Command,
                             url = urlBuilder.build(loginUrl, "/commands/logout")
                         )
                     )

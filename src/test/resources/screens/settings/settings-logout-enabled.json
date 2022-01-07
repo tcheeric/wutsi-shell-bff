@@ -197,7 +197,7 @@
                   },
                   "children": [],
                   "action": {
-                    "type": "Route",
+                    "type": "Command",
                     "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout"
                   }
                 }
