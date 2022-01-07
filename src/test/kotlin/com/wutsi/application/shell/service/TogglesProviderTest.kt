@@ -1,13 +1,25 @@
 package com.wutsi.application.shell.service
 
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.platform.account.dto.Account
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 
 internal class TogglesProviderTest {
     companion object {
         const val USER_ID = 1L
+    }
+
+    private lateinit var userProvider: UserProvider
+
+    @BeforeEach
+    fun setUp() {
+        userProvider = mock()
+        doReturn(USER_ID).whenever(userProvider).id()
     }
 
     @Test
@@ -129,6 +141,6 @@ internal class TogglesProviderTest {
     }
 
     private fun createToggleProvider(toggles: Toggles) = TogglesProvider(
-        toggles
+        toggles, userProvider
     )
 }

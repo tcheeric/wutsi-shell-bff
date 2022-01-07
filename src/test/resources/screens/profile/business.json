@@ -154,6 +154,36 @@
                           "children": []
                         }
                       ]
+                    },
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "spaceBetween",
+                        "mainAxisSize": "min"
+                      },
+                      "children": [
+                        {
+                          "type": "Icon",
+                          "attributes": {
+                            "code": "e380"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "my.business.com/12432",
+                            "padding": 15.0,
+                            "type": "Text",
+                            "stretched": false
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Navigate",
+                            "url": "http://my.business.com/12432"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }

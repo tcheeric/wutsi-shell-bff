@@ -85,37 +85,6 @@
                         "alignment": "Center"
                       },
                       "children": []
-                    },
-                    {
-                      "type": "ListItem",
-                      "attributes": {
-                        "caption": "Profile",
-                        "subCaption": "Personal information",
-                        "padding": 5.0,
-                        "trailing": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e15f",
-                            "size": 24.0,
-                            "color": "#000000"
-                          },
-                          "children": []
-                        },
-                        "leading": {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e69a",
-                            "size": 32.0,
-                            "color": "#1D7EDF"
-                          },
-                          "children": []
-                        }
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "http://localhost:0/settings/profile"
-                      }
                     }
                   ]
                 }
@@ -124,8 +93,39 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Profile",
+                "subCaption": "Update your personal information",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e69a",
+                    "size": 32.0,
+                    "color": "#1D7EDF"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "Business Settings",
-                "subCaption": "Configure your Business",
+                "subCaption": "Update your business information",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",

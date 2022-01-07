@@ -30,6 +30,7 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.dto.Account
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -40,6 +41,8 @@ class SettingsScreen(
     private val urlBuilder: URLBuilder,
     private val userProvider: UserProvider,
     private val togglesProvider: TogglesProvider,
+
+    @Value("\${wutsi.application.login-url}") private val loginUrl: String
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(
@@ -89,15 +92,15 @@ class SettingsScreen(
                             caption = formattedPhoneNumber(user) ?: "",
                             alignment = TextAlignment.Center,
                         ),
-                        listItem(
-                            "page.settings.listitem.personal.caption",
-                            "page.settings.listitem.personal.subcaption",
-                            Theme.ICON_VERIFIED_USER,
-                            Theme.COLOR_PRIMARY,
-                            "settings/profile"
-                        ),
                     ),
                 ),
+            ),
+            listItem(
+                "page.settings.listitem.personal.caption",
+                "page.settings.listitem.personal.subcaption",
+                Theme.ICON_VERIFIED_USER,
+                Theme.COLOR_PRIMARY,
+                "settings/profile"
             ),
         )
 
@@ -143,6 +146,22 @@ class SettingsScreen(
                 ),
             )
         )
+
+        if (togglesProvider.isLogoutEnabled()) {
+            children.add(
+                Container(
+                    padding = 20.0,
+                    child = Button(
+                        caption = getText("page.settings.button.logout"),
+                        type = ButtonType.Outlined,
+                        action = Action(
+                            type = ActionType.Route,
+                            url = urlBuilder.build(loginUrl, "/commands/logout")
+                        )
+                    )
+                )
+            )
+        }
         return children
     }
 

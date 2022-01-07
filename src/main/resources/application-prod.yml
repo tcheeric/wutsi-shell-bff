@@ -18,3 +18,4 @@ wutsi:
     send-sms-code: true
     verify-sms-code: true
     account: false
+    logout: false

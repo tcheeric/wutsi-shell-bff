@@ -13,22 +13,24 @@ class Toggles {
     var scan: Boolean = true
     var account: Boolean = true
     var business: Boolean = true
+    var logout: Boolean = true
     var testerUserIds: List<Long> = emptyList()
 }
 
 @Service
 @EnableConfigurationProperties(Toggles::class)
 class TogglesProvider(
-    private val toggles: Toggles
+    private val toggles: Toggles,
+    private val userProvider: UserProvider,
 ) {
     fun isBusinessAccountEnabled(): Boolean =
         toggles.business
 
     fun isPaymentEnabled(account: Account): Boolean =
-        account.business && (toggles.payment || isTester(account))
+        account.business && (toggles.payment || isTester(account.id))
 
     fun isScanEnabled(account: Account): Boolean =
-        toggles.scan || isTester(account)
+        toggles.scan || isTester(account.id)
 
     fun isSendSmsEnabled(): Boolean =
         toggles.sendSmsCode
@@ -39,6 +41,12 @@ class TogglesProvider(
     fun isAccountEnabled(): Boolean =
         toggles.account
 
-    private fun isTester(account: Account): Boolean =
-        toggles.testerUserIds.contains(account.id)
+    fun isLogoutEnabled(): Boolean =
+        toggles.logout && isTester()
+
+    private fun isTester(): Boolean =
+        isTester(userProvider.id())
+
+    private fun isTester(userId: Long): Boolean =
+        toggles.testerUserIds.contains(userId)
 }

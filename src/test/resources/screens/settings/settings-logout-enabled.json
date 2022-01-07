@@ -181,6 +181,27 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/about"
               }
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 20.0
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Logout",
+                    "padding": 15.0,
+                    "type": "Outlined"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout"
+                  }
+                }
+              ]
             }
           ]
         }

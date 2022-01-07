@@ -70,6 +70,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
             business = true,
             biography = "This is my bio",
             categoryId = 1000L,
+            website = "http://my.business.com/12432"
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
