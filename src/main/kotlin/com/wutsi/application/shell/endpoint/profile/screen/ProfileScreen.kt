@@ -74,7 +74,7 @@ class ProfileScreen(
 
     private fun profile(user: Account): WidgetAware {
         val buttons = mutableListOf<WidgetAware>()
-        if (!isContact(user))
+        if (canAddContact(user))
             buttons.add(
                 Button(
                     caption = getText("page.profile.button.add-contact"),
@@ -215,7 +215,7 @@ class ProfileScreen(
             website
     }
 
-    private fun isContact(user: Account): Boolean =
+    private fun canAddContact(user: Account): Boolean =
         if (user.id == userProvider.id())
             false
         else
@@ -223,7 +223,7 @@ class ProfileScreen(
                 request = SearchContactRequest(
                     contactIds = listOf(user.id)
                 )
-            ).contacts.isNotEmpty()
+            ).contacts.isEmpty()
 
     private fun picture(user: Account, size: Double): WidgetAware =
         if (!user.pictureUrl.isNullOrBlank())
