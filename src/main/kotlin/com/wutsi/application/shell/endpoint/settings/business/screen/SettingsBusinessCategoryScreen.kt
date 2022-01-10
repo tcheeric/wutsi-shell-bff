@@ -56,12 +56,14 @@ class SettingsBusinessCategoryScreen(
                         child = DropdownButton(
                             name = "value",
                             value = category?.id?.toString(),
-                            children = categoryService.all().map {
-                                DropdownMenuItem(
-                                    caption = categoryService.getTitle(it) ?: "",
-                                    value = it.id.toString()
-                                )
-                            }
+                            children = categoryService.all()
+                                .sortedBy { categoryService.getTitle(it) }
+                                .map {
+                                    DropdownMenuItem(
+                                        caption = categoryService.getTitle(it) ?: "",
+                                        value = it.id.toString()
+                                    )
+                                }
                         ),
                     ),
                     Container(
