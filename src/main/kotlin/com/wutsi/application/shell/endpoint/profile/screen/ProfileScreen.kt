@@ -91,8 +91,8 @@ class ProfileScreen(
 
         if (user.business && user.whatsapp) {
             var phone = user.phone?.number
-            if (phone.isNullOrEmpty()) {
-                if (phone!!.startsWith("+"))
+            if (!phone.isNullOrEmpty()) {
+                if (phone.startsWith("+"))
                     phone = phone.substring(1)
 
                 buttons.add(

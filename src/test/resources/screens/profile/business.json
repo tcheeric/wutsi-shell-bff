@@ -77,6 +77,20 @@
                             "type": "Command",
                             "url": "http://localhost:0/commands/add-contact?contact-id=5555"
                           }
+                        },
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "WhatsApp",
+                            "padding": 5.0,
+                            "type": "Elevated",
+                            "stretched": false
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Navigate",
+                            "url": "https://wa.me/1237666666666"
+                          }
                         }
                       ]
                     }
