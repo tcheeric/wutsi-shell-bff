@@ -206,7 +206,6 @@ class ProfileScreen(
                     ),
                 )
             )
-
         } else {
             details.add(
                 Row(
