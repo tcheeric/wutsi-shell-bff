@@ -90,6 +90,19 @@
             {
               "type": "ListItemSwitch",
               "attributes": {
+                "caption": "Connect with WhatsApp",
+                "name": "value",
+                "selected": false
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/commands/update-business-attribute?name=whatsapp"
+              }
+            },
+            {
+              "type": "ListItemSwitch",
+              "attributes": {
                 "caption": "Business Account",
                 "name": "value",
                 "selected": true

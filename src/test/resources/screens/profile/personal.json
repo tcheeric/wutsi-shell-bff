@@ -67,7 +67,7 @@
                         {
                           "type": "Button",
                           "attributes": {
-                            "caption": "Add to Contacts",
+                            "caption": "+ Contacts",
                             "padding": 5.0,
                             "type": "Elevated",
                             "stretched": false
@@ -118,17 +118,57 @@
               },
               "children": [
                 {
-                  "type": "Button",
+                  "type": "Column",
                   "attributes": {
-                    "caption": "Send Money",
-                    "padding": 15.0,
-                    "type": "Outlined"
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send?recipient-id=5555"
-                  }
+                  "children": [
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "spaceBetween",
+                        "mainAxisSize": "min"
+                      },
+                      "children": [
+                        {
+                          "type": "Icon",
+                          "attributes": {
+                            "code": "e4c9"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Cameroon"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Send Money",
+                            "padding": 15.0,
+                            "type": "Outlined"
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "https://wutsi-gateway-test.herokuapp.com/cash/send?recipient-id=5555"
+                          }
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }

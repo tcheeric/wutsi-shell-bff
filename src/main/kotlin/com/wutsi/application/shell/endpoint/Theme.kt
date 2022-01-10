@@ -32,6 +32,7 @@ object Theme {
     const val ICON_QR_CODE = "e4f5"
     const val ICON_SCAN = "e4f7"
     const val ICON_SETTINGS = "e57f"
+    const val ICON_LOCATION = "e4c9"
     const val ICON_LOCK = "e3ae"
     const val ICON_PAYMENT = "e481"
     const val ICON_SEND = "eaf0"

@@ -67,7 +67,7 @@
                         {
                           "type": "Button",
                           "attributes": {
-                            "caption": "Add to Contacts",
+                            "caption": "+ Contacts",
                             "padding": 5.0,
                             "type": "Elevated",
                             "stretched": false
@@ -173,15 +173,38 @@
                           "type": "Button",
                           "attributes": {
                             "caption": "my.business.com/12432",
-                            "padding": 15.0,
+                            "padding": 1.0,
                             "type": "Text",
                             "stretched": false
                           },
                           "children": [],
                           "action": {
                             "type": "Navigate",
-                            "url": "http://my.business.com/12432"
+                            "url": "https://my.business.com/12432"
                           }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Row",
+                      "attributes": {
+                        "mainAxisAlignment": "spaceBetween",
+                        "mainAxisSize": "min"
+                      },
+                      "children": [
+                        {
+                          "type": "Icon",
+                          "attributes": {
+                            "code": "e4c9"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Cameroon"
+                          },
+                          "children": []
                         }
                       ]
                     }

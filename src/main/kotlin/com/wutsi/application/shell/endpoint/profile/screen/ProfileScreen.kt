@@ -32,10 +32,12 @@ import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.i18n.LocaleContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.util.Locale
 
 @RestController
 @RequestMapping("/profile")
@@ -87,6 +89,26 @@ class ProfileScreen(
                 )
             )
 
+        if (user.business && user.whatsapp) {
+            var phone = user.phone?.number
+            if (phone.isNullOrEmpty()) {
+                if (phone!!.startsWith("+"))
+                    phone = phone.substring(1)
+
+                buttons.add(
+                    Button(
+                        caption = "WhatsApp",
+                        padding = 5.0,
+                        stretched = false,
+                        action = Action(
+                            type = ActionType.Navigate,
+                            url = "https://wa.me/$phone"
+                        ),
+                    )
+                )
+            }
+        }
+
         val children = mutableListOf<WidgetAware>()
         children.addAll(
             listOf(
@@ -128,11 +150,11 @@ class ProfileScreen(
             )
         )
 
+        val details = mutableListOf<WidgetAware>()
         if (user.business) {
-            val business = mutableListOf<WidgetAware>()
             val category = user.categoryId?.let { categoryService.get(it) }
             if (category != null)
-                business.add(
+                details.add(
                     Container(
                         child = Text(
                             if (user.language == "fr") category.titleFrench else category.title,
@@ -143,7 +165,7 @@ class ProfileScreen(
                 )
 
             if (!user.biography.isNullOrEmpty())
-                business.add(
+                details.add(
                     Container(
                         alignment = Alignment.TopLeft,
                         child = Text(
@@ -154,7 +176,7 @@ class ProfileScreen(
                 )
 
             if (!user.website.isNullOrEmpty())
-                business.add(
+                details.add(
                     Row(
                         mainAxisAlignment = MainAxisAlignment.spaceBetween,
                         mainAxisSize = MainAxisSize.min,
@@ -164,6 +186,7 @@ class ProfileScreen(
                                 type = ButtonType.Text,
                                 caption = sanitizeWebsite(user.website!!),
                                 stretched = false,
+                                padding = 1.0,
                                 action = Action(
                                     type = ActionType.Navigate,
                                     url = user.website!!
@@ -173,32 +196,61 @@ class ProfileScreen(
                     )
                 )
 
-            if (business.isNotEmpty())
-                children.add(
+            details.add(
+                Row(
+                    mainAxisAlignment = MainAxisAlignment.spaceBetween,
+                    mainAxisSize = MainAxisSize.min,
+                    children = listOf(
+                        Icon(code = Theme.ICON_LOCATION),
+                        Text(Locale(user.language, user.country).getDisplayCountry(LocaleContextHolder.getLocale()))
+                    ),
+                )
+            )
+
+        } else {
+            details.add(
+                Row(
+                    mainAxisAlignment = MainAxisAlignment.spaceBetween,
+                    mainAxisSize = MainAxisSize.min,
+                    children = listOf(
+                        Icon(code = Theme.ICON_LOCATION),
+                        Text(
+                            Locale(
+                                user.language,
+                                user.country
+                            ).getDisplayCountry(LocaleContextHolder.getLocale())
+                        )
+                    ),
+                ),
+            )
+
+            if (user.id != userProvider.id())
+                details.add(
                     Container(
                         padding = 10.0,
-                        child = Column(
-                            mainAxisAlignment = MainAxisAlignment.start,
-                            crossAxisAlignment = CrossAxisAlignment.start,
-                            children = business
+                        child = Button(
+                            caption = getText("page.profile.button.send"),
+                            type = ButtonType.Outlined,
+                            action = Action(
+                                type = ActionType.Route,
+                                url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
+                            ),
                         )
-                    )
+                    ),
                 )
-        } else {
+        }
+
+        if (details.isNotEmpty())
             children.add(
                 Container(
                     padding = 10.0,
-                    child = Button(
-                        caption = getText("page.profile.button.send"),
-                        type = ButtonType.Outlined,
-                        action = Action(
-                            type = ActionType.Route,
-                            url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
-                        ),
+                    child = Column(
+                        mainAxisAlignment = MainAxisAlignment.start,
+                        crossAxisAlignment = CrossAxisAlignment.start,
+                        children = details
                     )
                 )
             )
-        }
 
         return Column(
             mainAxisAlignment = MainAxisAlignment.start,
