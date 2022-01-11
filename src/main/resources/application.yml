@@ -60,7 +60,6 @@ wutsi:
     business: true               # Business account enabled?
     logout: true                 # Logout button
     tester-user-ids:
-      - 16   # Herve
       - 18   # Eric - phone #2
       - 29   # Eric - phone #1
       - 19   # Louis
