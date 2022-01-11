@@ -1,12 +1,12 @@
 package com.wutsi.application.shell.endpoint.profile.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
 import com.wutsi.application.shell.service.CategoryService
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
-import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -46,7 +46,7 @@ class ProfileScreen(
     private val accountApi: WutsiAccountApi,
     private val contactApi: WutsiContactApi,
     private val categoryService: CategoryService,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
@@ -223,7 +223,7 @@ class ProfileScreen(
                 ),
             )
 
-            if (user.id != userProvider.id())
+            if (user.id != securityContext.currentUserId())
                 details.add(
                     Container(
                         padding = 10.0,
@@ -267,7 +267,7 @@ class ProfileScreen(
     }
 
     private fun canAddContact(user: Account): Boolean =
-        if (user.id == userProvider.id())
+        if (user.id == securityContext.currentUserId())
             false
         else
             contactApi.searchContact(

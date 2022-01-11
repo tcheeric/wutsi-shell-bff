@@ -1,10 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.about.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.TenantProvider
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Flexible
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest
 @RequestMapping("/settings/about")
 class SettingsAboutScreen(
     private val tenantProvider: TenantProvider,
-    private val userProvider: UserProvider,
+    private val userProvider: SecurityContext,
     private val tracingContext: TracingContext,
     private val request: HttpServletRequest,
 ) : AbstractQuery() {
@@ -60,7 +60,7 @@ class SettingsAboutScreen(
                 listItem("page.settings.about.app-version", request.getHeader("X-Client-Version")),
                 listItem("page.settings.about.app-os", osInfo),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
-                listItem("page.settings.about.user-id", userProvider.id().toString()),
+                listItem("page.settings.about.user-id", userProvider.currentUserId().toString()),
             )
         )
 

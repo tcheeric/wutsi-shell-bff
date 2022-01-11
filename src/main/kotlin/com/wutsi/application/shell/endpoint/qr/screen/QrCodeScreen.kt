@@ -1,11 +1,11 @@
 package com.wutsi.application.shell.endpoint.qr.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.TenantProvider
-import com.wutsi.application.shell.service.UserProvider
-import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.CircleAvatar
@@ -29,19 +29,19 @@ import org.springframework.web.bind.annotation.RestController
 class QrCodeScreen(
     private val qrApi: WutsiQrApi,
     private val tenantProvider: TenantProvider,
-    private val userProvider: UserProvider
+    private val securityContext: SecurityContext
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         val code = qrApi.encode(
             EncodeQRCodeRequest(
                 type = "account",
-                id = userProvider.id().toString(),
+                id = securityContext.currentUserId().toString(),
                 timeToLive = 300
             )
         ).token
         val tenant = tenantProvider.get()
-        val user = userProvider.get()
+        val user = securityContext.currentAccount()
 
         return Screen(
             id = Page.QR_CODE,

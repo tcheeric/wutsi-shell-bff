@@ -1,13 +1,13 @@
 package com.wutsi.application.shell.endpoint.scan.screen
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
 import com.wutsi.application.shell.exception.toErrorResponse
-import com.wutsi.application.shell.service.TenantProvider
-import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button

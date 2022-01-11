@@ -1,9 +1,9 @@
 package com.wutsi.application.shell.endpoint.scan.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.QrView

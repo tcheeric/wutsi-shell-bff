@@ -1,10 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.security.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -27,13 +27,13 @@ import java.net.URLEncoder
 @RequestMapping("/settings/security")
 class SettingsSecurityScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
 
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val me = userProvider.get()
+        val me = securityContext.currentAccount()
         return Screen(
             id = Page.SETTINGS_SECURITY,
             appBar = AppBar(

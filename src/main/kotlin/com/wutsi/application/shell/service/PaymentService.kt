@@ -1,5 +1,6 @@
 package com.wutsi.application.shell.service
 
+import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service
 @Service
 class PaymentService(
     private val paymentApi: WutsiPaymentApi,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
 ) {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(PaymentService::class.java)
@@ -17,7 +18,7 @@ class PaymentService(
 
     fun getBalance(tenant: Tenant): Money {
         try {
-            val userId = userProvider.id()
+            val userId = securityContext.currentUserId()!!
             val balance = paymentApi.getBalance(userId).balance
             return Money(
                 value = balance.amount,

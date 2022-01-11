@@ -1,8 +1,8 @@
 package com.wutsi.application.shell.endpoint.settings.business.command
 
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/update-business-attribute")
 class UpdateBusinessAttributeCommand(
     private val accountApi: WutsiAccountApi,
-    private val userProvider: UserProvider,
+    private val userProvider: SecurityContext,
     private val urlBuilder: URLBuilder
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): Action {
         accountApi.updateAccountAttribute(
-            id = userProvider.id(),
+            id = userProvider.currentUserId(),
             name = name,
             request = UpdateAccountAttributeRequest(
                 value = request.value

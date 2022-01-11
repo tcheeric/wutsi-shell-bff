@@ -3,8 +3,8 @@ package com.wutsi.application.shell.endpoint.home.screen
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.application.shell.service.TogglesProvider
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary

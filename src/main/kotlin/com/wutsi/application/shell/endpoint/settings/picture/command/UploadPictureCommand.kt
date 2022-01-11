@@ -1,7 +1,7 @@
 package com.wutsi.application.shell.endpoint.settings.picture.command
 
+import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shell.endpoint.AbstractCommand
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
 import com.wutsi.platform.core.storage.StorageService
@@ -19,7 +19,7 @@ import java.util.UUID
 class UploadPictureCommand(
     private val accountApi: WutsiAccountApi,
     private val storageService: StorageService,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam file: MultipartFile) {
@@ -28,7 +28,7 @@ class UploadPictureCommand(
         logger.add("file_content_type", contentType)
 
         // Upload file
-        val userId = userProvider.id()
+        val userId = securityContext.currentUserId()
         val path = "user/$userId/picture/${UUID.randomUUID()}-${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
         logger.add("picture_url", url)

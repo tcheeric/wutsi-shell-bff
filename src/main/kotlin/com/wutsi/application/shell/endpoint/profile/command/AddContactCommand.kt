@@ -1,7 +1,7 @@
 package com.wutsi.application.shell.endpoint.profile.command
 
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
-import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.contact.WutsiContactApi

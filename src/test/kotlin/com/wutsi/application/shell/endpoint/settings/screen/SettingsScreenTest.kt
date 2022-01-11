@@ -2,8 +2,8 @@ package com.wutsi.application.shell.endpoint.settings.screen
 
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.application.shell.service.TogglesProvider
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

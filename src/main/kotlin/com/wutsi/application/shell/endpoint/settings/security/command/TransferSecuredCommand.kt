@@ -1,9 +1,9 @@
 package com.wutsi.application.shell.endpoint.settings.security.command
 
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.settings.security.dto.UpdateAccountAttributeRequest
 import com.wutsi.application.shell.service.AccountService
-import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import org.springframework.web.bind.annotation.PostMapping

@@ -1,11 +1,11 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.TenantProvider
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
@@ -26,12 +26,12 @@ import java.util.Locale
 @RequestMapping("/settings/profile")
 class SettingsProfileScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider,
+    private val userProvider: SecurityContext,
     private val tenantProvider: TenantProvider,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val user = userProvider.get()
+        val user = userProvider.currentAccount()
         val tenant = tenantProvider.get()
         val locale = Locale(user.language)
         return Screen(

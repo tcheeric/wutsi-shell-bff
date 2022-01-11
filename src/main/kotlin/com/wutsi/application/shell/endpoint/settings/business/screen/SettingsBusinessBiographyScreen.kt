@@ -1,10 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.business.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/business/biography")
 class SettingsBusinessBiographyScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider
+    private val securityContext: SecurityContext
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val user = userProvider.get()
+        val user = securityContext.currentAccount()
         return Screen(
             id = Page.SETTINGS_BUSINESS_BIOGRAPHY,
             backgroundColor = Theme.COLOR_WHITE,

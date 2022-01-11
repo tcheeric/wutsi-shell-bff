@@ -1,6 +1,9 @@
 package com.wutsi.application.shell.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.profile.dto.UpdateProfileRequest
@@ -40,7 +43,7 @@ class AccountService(
     private val httpServletRequest: HttpServletRequest,
     private val localeResolver: LocaleResolver,
     private val togglesProvider: TogglesProvider,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
     private val logger: KVLogger,
     private val objectMapper: ObjectMapper,
     private val cache: Cache
@@ -88,7 +91,7 @@ class AccountService(
             val state = getSmsCodeEntity()
             log(state)
 
-            val principal = userProvider.principal()
+            val principal = securityContext.principal()
             val response = accountApi.addPaymentMethod(
                 principal.id.toLong(),
                 request = AddPaymentMethodRequest(
@@ -109,7 +112,7 @@ class AccountService(
     }
 
     fun getPaymentMethods(tenant: Tenant): List<PaymentMethodSummary> {
-        val userId = userProvider.id()
+        val userId = currentUserId()
         return accountApi.listPaymentMethods(userId).paymentMethods
             .filter { findMobileCarrier(tenant, it) != null }
     }
@@ -127,7 +130,7 @@ class AccountService(
             throw PinMismatchException()
 
         accountApi.savePassword(
-            id = userProvider.id(),
+            id = currentUserId(),
             request = SavePasswordRequest(
                 password = request.pin
             )
@@ -136,7 +139,7 @@ class AccountService(
 
     fun setTransferSecured(request: UpdateAccountAttributeRequest) {
         accountApi.updateAccountAttribute(
-            id = userProvider.id(),
+            id = currentUserId(),
             name = "transfer-secured",
             request = com.wutsi.platform.account.dto.UpdateAccountAttributeRequest(
                 value = request.value
@@ -146,7 +149,7 @@ class AccountService(
 
     fun updateProfile(request: UpdateProfileRequest) {
         accountApi.updateAccount(
-            id = userProvider.id(),
+            id = currentUserId(),
             request = UpdateAccountRequest(
                 displayName = request.displayName,
                 language = request.language,
@@ -204,4 +207,7 @@ class AccountService(
 
     private fun cacheKey(): String =
         "verification-code-" + deviceIdProvider.get(httpServletRequest)
+
+    private fun currentUserId(): Long =
+        securityContext.currentUserId()
 }

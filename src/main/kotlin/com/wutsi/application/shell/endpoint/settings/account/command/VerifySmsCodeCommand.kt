@@ -1,11 +1,11 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
 import com.wutsi.application.shell.exception.SmsCodeMismatchException
 import com.wutsi.application.shell.service.AccountService
-import com.wutsi.application.shell.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.payment.PaymentMethodType.MOBILE

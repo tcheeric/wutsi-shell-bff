@@ -1,12 +1,12 @@
 package com.wutsi.application.shell.endpoint.settings.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.shared.service.TogglesProvider
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.TogglesProvider
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
-import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -39,7 +39,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings")
 class SettingsScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
     private val togglesProvider: TogglesProvider,
 
     @Value("\${wutsi.application.login-url}") private val loginUrl: String
@@ -72,7 +72,7 @@ class SettingsScreen(
     ).toWidget()
 
     private fun listItems(): List<WidgetAware> {
-        val user = userProvider.get()
+        val user = securityContext.currentAccount()
         val children = mutableListOf<WidgetAware>(
             Container(
                 padding = 5.0,

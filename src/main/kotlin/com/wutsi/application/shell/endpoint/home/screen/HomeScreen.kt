@@ -1,13 +1,13 @@
 package com.wutsi.application.shell.endpoint.home.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.service.TogglesProvider
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.TenantProvider
-import com.wutsi.application.shell.service.TogglesProvider
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
-import com.wutsi.application.shell.util.StringUtil
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -57,7 +57,7 @@ import java.time.format.DateTimeFormatter
 class HomeScreen(
     private val urlBuilder: URLBuilder,
     private val paymentApi: WutsiPaymentApi,
-    private val userProvider: UserProvider,
+    private val securityContext: SecurityContext,
     private val tenantProvider: TenantProvider,
     private val togglesProvider: TogglesProvider,
     private val accountApi: WutsiAccountApi,
@@ -72,7 +72,7 @@ class HomeScreen(
     fun index(): Widget {
         val tenant = tenantProvider.get()
         val balance = getBalance(tenant)
-        val me = userProvider.get()
+        val me = securityContext.currentAccount()
 
         // Primary Buttons
         val children = mutableListOf<WidgetAware>(
@@ -102,7 +102,7 @@ class HomeScreen(
                 background = Theme.COLOR_PRIMARY,
                 child = Row(
                     mainAxisAlignment = spaceAround,
-                    children = primaryButtons(me),
+                    children = primaryButtons(),
                 )
             ),
         )
@@ -123,7 +123,7 @@ class HomeScreen(
 
         // Recipients and Transactions
         val txs = findRecentTransactions(20)
-        val userId = userProvider.id()
+        val userId = securityContext.currentUserId()
         if (txs.isNotEmpty()) {
             val recipientIds = txs
                 .map { it.recipientId }
@@ -189,9 +189,9 @@ class HomeScreen(
     }
 
     // Buttons
-    private fun primaryButtons(me: Account): List<WidgetAware> {
+    private fun primaryButtons(): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
-        if (togglesProvider.isScanEnabled(me)) {
+        if (togglesProvider.isScanEnabled()) {
             buttons.add(
                 primaryButton(
                     caption = getText("page.home.button.scan"),
@@ -281,7 +281,7 @@ class HomeScreen(
 
     private fun getBalance(tenant: Tenant): Money {
         try {
-            val userId = userProvider.id()
+            val userId = securityContext.currentUserId()
             val balance = paymentApi.getBalance(userId).balance
             return Money(
                 value = balance.amount,
@@ -385,7 +385,7 @@ class HomeScreen(
         try {
             paymentApi.searchTransaction(
                 SearchTransactionRequest(
-                    accountId = userProvider.id(),
+                    accountId = securityContext.currentUserId(),
                     limit = limit,
                     offset = 0
                 )
@@ -409,7 +409,7 @@ class HomeScreen(
         }
 
     private fun findPaymentMethods(): Map<String, PaymentMethodSummary> =
-        accountApi.listPaymentMethods(userProvider.id())
+        accountApi.listPaymentMethods(securityContext.currentUserId())
             .paymentMethods
             .map { it.token to it }.toMap()
 
@@ -519,7 +519,7 @@ class HomeScreen(
     }
 
     private fun toDisplayAmount(tx: TransactionSummary): Double {
-        val amount = if (tx.recipientId == userProvider.id())
+        val amount = if (tx.recipientId == securityContext.currentUserId())
             tx.net
         else
             tx.amount
@@ -527,7 +527,7 @@ class HomeScreen(
         return when (tx.type.uppercase()) {
             "CASHOUT" -> -amount
             "CASHIN" -> amount
-            else -> if (tx.recipientId == userProvider.id())
+            else -> if (tx.recipientId == securityContext.currentUserId())
                 amount
             else
                 -amount
@@ -541,7 +541,7 @@ class HomeScreen(
             else -> when (tx.type.uppercase()) {
                 "CASHIN" -> Theme.COLOR_SUCCESS
                 "CASHOUT" -> Theme.COLOR_DANGER
-                else -> if (tx.recipientId == userProvider.id())
+                else -> if (tx.recipientId == securityContext.currentUserId())
                     Theme.COLOR_SUCCESS
                 else
                     Theme.COLOR_DANGER
@@ -558,7 +558,7 @@ class HomeScreen(
         } else if (tx.type == "PAYMENT") {
             return getText("page.home.payment.caption")
         } else {
-            return if (tx.accountId == userProvider.id())
+            return if (tx.accountId == securityContext.currentUserId())
                 getText("page.home.transfer.to.caption")
             else
                 getText("page.home.transfer.from.caption")
@@ -585,7 +585,7 @@ class HomeScreen(
             ?: ""
 
     private fun getAccount(tx: TransactionSummary, accounts: Map<Long, AccountSummary>): AccountSummary? =
-        if (tx.accountId == userProvider.id())
+        if (tx.accountId == securityContext.currentUserId())
             accounts[tx.recipientId]
         else
             accounts[tx.accountId]

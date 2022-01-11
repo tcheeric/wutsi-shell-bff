@@ -1,10 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.picture.screen
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.endpoint.Theme
-import com.wutsi.application.shell.service.URLBuilder
-import com.wutsi.application.shell.service.UserProvider
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -29,11 +29,11 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/picture")
 class SettingsPictureScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: UserProvider
+    private val userProvider: SecurityContext
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val me = userProvider.get()
+        val me = userProvider.currentAccount()
         val pictureUrl = me.pictureUrl ?: ""
         return Screen(
             id = Page.SETTINGS_PICTURE,
