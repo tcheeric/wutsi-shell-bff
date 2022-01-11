@@ -71,7 +71,7 @@ class AccountService(
         log(state)
         logger.add("verification_code", request.code)
 
-        if (togglesProvider.isVerifySmsCodeEnabled()) {
+        if (togglesProvider.isVerifySmsCodeEnabled(state.phoneNumber)) {
             try {
                 smsApi.validateVerification(
                     id = state.verificationId,
@@ -182,7 +182,7 @@ class AccountService(
         PaymentMethodProvider.values().find { it.name.equals(carrier, ignoreCase = true) }
 
     private fun sendVerificationCode(phoneNumber: String): Long {
-        if (!togglesProvider.isSendSmsEnabled())
+        if (!togglesProvider.isSendSmsEnabled(phoneNumber))
             return -1
 
         return smsApi.sendVerification(

@@ -19,3 +19,5 @@ wutsi:
     verify-sms-code: true
     account: false
     logout: false
+    test-user-ids: [ ]
+    test-phone-numbers: [ ]

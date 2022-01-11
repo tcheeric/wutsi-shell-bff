@@ -15,6 +15,7 @@ class Toggles {
     var business: Boolean = true
     var logout: Boolean = true
     var testerUserIds: List<Long> = emptyList()
+    var testPhoneNumbers: List<String> = emptyList()
 }
 
 @Service
@@ -32,11 +33,11 @@ class TogglesProvider(
     fun isScanEnabled(account: Account): Boolean =
         toggles.scan || isTester(account.id)
 
-    fun isSendSmsEnabled(): Boolean =
-        toggles.sendSmsCode
+    fun isSendSmsEnabled(phoneNumber: String): Boolean =
+        toggles.sendSmsCode || isTestTestPhoneNumber(phoneNumber)
 
-    fun isVerifySmsCodeEnabled(): Boolean =
-        toggles.verifySmsCode
+    fun isVerifySmsCodeEnabled(phoneNumber: String): Boolean =
+        toggles.verifySmsCode || isTestTestPhoneNumber(phoneNumber)
 
     fun isAccountEnabled(): Boolean =
         toggles.account
@@ -49,4 +50,7 @@ class TogglesProvider(
 
     private fun isTester(userId: Long): Boolean =
         toggles.testerUserIds.contains(userId)
+
+    private fun isTestTestPhoneNumber(phoneNumber: String): Boolean =
+        toggles.testPhoneNumbers.contains(phoneNumber)
 }
