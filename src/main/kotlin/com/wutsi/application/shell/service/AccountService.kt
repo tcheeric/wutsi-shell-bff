@@ -185,7 +185,7 @@ class AccountService(
         PaymentMethodProvider.values().find { it.name.equals(carrier, ignoreCase = true) }
 
     private fun sendVerificationCode(phoneNumber: String): Long {
-        if (!togglesProvider.isSendSmsEnabled(phoneNumber))
+        if (!togglesProvider.isSendSmsCodeEnabled(phoneNumber))
             return -1
 
         return smsApi.sendVerification(
