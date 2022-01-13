@@ -123,7 +123,7 @@ class HomeScreen(
 
         // Recipients and Transactions
         val txs = findRecentTransactions(20)
-        val userId = securityContext.currentUserId()
+        val userId = securityContext.currentAccountId()
         if (txs.isNotEmpty()) {
             val recipientIds = txs
                 .map { it.recipientId }
@@ -281,7 +281,7 @@ class HomeScreen(
 
     private fun getBalance(tenant: Tenant): Money {
         try {
-            val userId = securityContext.currentUserId()
+            val userId = securityContext.currentAccountId()
             val balance = paymentApi.getBalance(userId).balance
             return Money(
                 value = balance.amount,
@@ -385,7 +385,7 @@ class HomeScreen(
         try {
             paymentApi.searchTransaction(
                 SearchTransactionRequest(
-                    accountId = securityContext.currentUserId(),
+                    accountId = securityContext.currentAccountId(),
                     limit = limit,
                     offset = 0
                 )
@@ -409,7 +409,7 @@ class HomeScreen(
         }
 
     private fun findPaymentMethods(): Map<String, PaymentMethodSummary> =
-        accountApi.listPaymentMethods(securityContext.currentUserId())
+        accountApi.listPaymentMethods(securityContext.currentAccountId())
             .paymentMethods
             .map { it.token to it }.toMap()
 
@@ -519,7 +519,7 @@ class HomeScreen(
     }
 
     private fun toDisplayAmount(tx: TransactionSummary): Double {
-        val amount = if (tx.recipientId == securityContext.currentUserId())
+        val amount = if (tx.recipientId == securityContext.currentAccountId())
             tx.net
         else
             tx.amount
@@ -527,7 +527,7 @@ class HomeScreen(
         return when (tx.type.uppercase()) {
             "CASHOUT" -> -amount
             "CASHIN" -> amount
-            else -> if (tx.recipientId == securityContext.currentUserId())
+            else -> if (tx.recipientId == securityContext.currentAccountId())
                 amount
             else
                 -amount
@@ -541,7 +541,7 @@ class HomeScreen(
             else -> when (tx.type.uppercase()) {
                 "CASHIN" -> Theme.COLOR_SUCCESS
                 "CASHOUT" -> Theme.COLOR_DANGER
-                else -> if (tx.recipientId == securityContext.currentUserId())
+                else -> if (tx.recipientId == securityContext.currentAccountId())
                     Theme.COLOR_SUCCESS
                 else
                     Theme.COLOR_DANGER
@@ -558,7 +558,7 @@ class HomeScreen(
         } else if (tx.type == "PAYMENT") {
             return getText("page.home.payment.caption")
         } else {
-            return if (tx.accountId == securityContext.currentUserId())
+            return if (tx.accountId == securityContext.currentAccountId())
                 getText("page.home.transfer.to.caption")
             else
                 getText("page.home.transfer.from.caption")
@@ -585,7 +585,7 @@ class HomeScreen(
             ?: ""
 
     private fun getAccount(tx: TransactionSummary, accounts: Map<Long, AccountSummary>): AccountSummary? =
-        if (tx.accountId == securityContext.currentUserId())
+        if (tx.accountId == securityContext.currentAccountId())
             accounts[tx.recipientId]
         else
             accounts[tx.accountId]

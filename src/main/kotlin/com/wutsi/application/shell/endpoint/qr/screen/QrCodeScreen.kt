@@ -36,7 +36,7 @@ class QrCodeScreen(
         val code = qrApi.encode(
             EncodeQRCodeRequest(
                 type = "account",
-                id = securityContext.currentUserId().toString(),
+                id = securityContext.currentAccountId().toString(),
                 timeToLive = 300
             )
         ).token

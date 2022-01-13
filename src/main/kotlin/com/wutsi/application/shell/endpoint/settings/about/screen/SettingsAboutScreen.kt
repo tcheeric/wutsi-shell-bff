@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest
 @RequestMapping("/settings/about")
 class SettingsAboutScreen(
     private val tenantProvider: TenantProvider,
-    private val userProvider: SecurityContext,
+    private val securityContext: SecurityContext,
     private val tracingContext: TracingContext,
     private val request: HttpServletRequest,
 ) : AbstractQuery() {
@@ -60,7 +60,7 @@ class SettingsAboutScreen(
                 listItem("page.settings.about.app-version", request.getHeader("X-Client-Version")),
                 listItem("page.settings.about.app-os", osInfo),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
-                listItem("page.settings.about.user-id", userProvider.currentUserId().toString()),
+                listItem("page.settings.about.user-id", securityContext.currentAccountId().toString()),
             )
         )
 

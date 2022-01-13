@@ -209,5 +209,5 @@ class AccountService(
         "verification-code-" + deviceIdProvider.get(httpServletRequest)
 
     private fun currentUserId(): Long =
-        securityContext.currentUserId()
+        securityContext.currentAccountId()
 }

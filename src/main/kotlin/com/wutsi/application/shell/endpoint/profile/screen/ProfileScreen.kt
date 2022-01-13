@@ -223,7 +223,7 @@ class ProfileScreen(
                 ),
             )
 
-            if (user.id != securityContext.currentUserId())
+            if (user.id != securityContext.currentAccountId())
                 details.add(
                     Container(
                         padding = 10.0,
@@ -267,7 +267,7 @@ class ProfileScreen(
     }
 
     private fun canAddContact(user: Account): Boolean =
-        if (user.id == securityContext.currentUserId())
+        if (user.id == securityContext.currentAccountId())
             false
         else
             contactApi.searchContact(

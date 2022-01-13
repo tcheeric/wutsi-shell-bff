@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/update-business-attribute")
 class UpdateBusinessAttributeCommand(
     private val accountApi: WutsiAccountApi,
-    private val userProvider: SecurityContext,
+    private val securityContext: SecurityContext,
     private val urlBuilder: URLBuilder
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): Action {
         accountApi.updateAccountAttribute(
-            id = userProvider.currentUserId(),
+            id = securityContext.currentAccountId(),
             name = name,
             request = UpdateAccountAttributeRequest(
                 value = request.value

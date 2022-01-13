@@ -29,11 +29,11 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings/picture")
 class SettingsPictureScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: SecurityContext
+    private val securityContext: SecurityContext
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val me = userProvider.currentAccount()
+        val me = securityContext.currentAccount()
         val pictureUrl = me.pictureUrl ?: ""
         return Screen(
             id = Page.SETTINGS_PICTURE,

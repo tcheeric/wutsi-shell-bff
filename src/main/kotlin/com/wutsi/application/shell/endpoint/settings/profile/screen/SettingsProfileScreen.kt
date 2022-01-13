@@ -26,12 +26,12 @@ import java.util.Locale
 @RequestMapping("/settings/profile")
 class SettingsProfileScreen(
     private val urlBuilder: URLBuilder,
-    private val userProvider: SecurityContext,
+    private val securityContext: SecurityContext,
     private val tenantProvider: TenantProvider,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val user = userProvider.currentAccount()
+        val user = securityContext.currentAccount()
         val tenant = tenantProvider.get()
         val locale = Locale(user.language)
         return Screen(

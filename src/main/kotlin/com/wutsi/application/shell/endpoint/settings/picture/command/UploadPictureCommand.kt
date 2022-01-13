@@ -28,7 +28,7 @@ class UploadPictureCommand(
         logger.add("file_content_type", contentType)
 
         // Upload file
-        val userId = securityContext.currentUserId()
+        val userId = securityContext.currentAccountId()
         val path = "user/$userId/picture/${UUID.randomUUID()}-${file.originalFilename}"
         val url = storageService.store(path, file.inputStream, contentType)
         logger.add("picture_url", url)
