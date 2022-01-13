@@ -2,23 +2,21 @@ package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
+import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
-import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
-import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
@@ -337,14 +335,11 @@ class HomeScreen(
 
         return Column(
             children = listOf(
-                CircleAvatar(
+                Avatar(
                     radius = 24.0,
-                    child = recipient.pictureUrl?.let { Image(width = 48.0, height = 48.0, url = it) }
-                        ?: Text(
-                            caption = StringUtil.initials(recipient.displayName),
-                            size = Theme.TEXT_SIZE_X_LARGE,
-                            bold = true
-                        ),
+                    text = recipient.displayName,
+                    pictureUrl = recipient.pictureUrl,
+                    textSize = 20.0,
                     action = action
                 ),
                 Button(
