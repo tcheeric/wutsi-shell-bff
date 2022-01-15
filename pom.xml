@@ -36,8 +36,8 @@
     <wutsi-payment.version>0.0.32</wutsi-payment.version>
     <wutsi-qr.version>0.0.4</wutsi-qr.version>
     <wutsi-sms.version>1.0.8</wutsi-sms.version>
-    <wutsi-platform-payment.version>0.0.66</wutsi-platform-payment.version>
-    <wutsi-shared-ui.version>0.0.15</wutsi-shared-ui.version>
+    <wutsi-platform-payment.version>0.0.67</wutsi-platform-payment.version>
+    <wutsi-shared-ui.version>0.0.17</wutsi-shared-ui.version>
   </properties>
 
   <dependencies>
@@ -65,11 +65,6 @@
       <groupId>com.wutsi.platform.sms</groupId>
       <artifactId>wutsi-sms-sdk-kotlin</artifactId>
       <version>${wutsi-sms.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.wutsi</groupId>
-      <artifactId>wutsi-platform-payment</artifactId>
-      <version>${wutsi-platform-payment.version}</version>
     </dependency>
 
     <dependency>
