@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.net.URLEncoder
 
 @RestController
 @RequestMapping("/settings/security")
@@ -82,7 +81,4 @@ class SettingsSecurityScreen(
             "&return-to-route=true" +
             "&return-url=" + encodeURLParam(urlBuilder.build("settings/security/pin"))
     }
-
-    protected fun encodeURLParam(text: String?): String =
-        text?.let { URLEncoder.encode(it, "utf-8") } ?: ""
 }

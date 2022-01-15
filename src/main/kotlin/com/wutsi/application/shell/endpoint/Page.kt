@@ -9,6 +9,7 @@ object Page {
     const val SETTINGS_ACCOUNT_LINK_MOBILE = "page.settings.account.link.mobile"
     const val SETTINGS_ACCOUNT_LINK_SUCCESS = "page.settings.account.link.success"
     const val SETTINGS_ACCOUNT_LINK_VERIFY = "page.settings.account.link.verify"
+    const val SETTINGS_ACCOUNT_LINK_PIN = "page.settings.account.link.pin"
     const val SETTINGS_PICTURE = "page.settings.picture"
     const val SETTINGS_PROFILE = "page.settings.profile"
     const val SETTINGS_SECURITY = "page.settings.security"

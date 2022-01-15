@@ -1,14 +1,16 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
+import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
-import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
 import com.wutsi.application.shell.exception.SmsCodeMismatchException
 import com.wutsi.application.shell.service.AccountService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
-import com.wutsi.platform.payment.PaymentMethodType.MOBILE
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -20,15 +22,17 @@ import javax.validation.Valid
 @RequestMapping("/commands/verify-sms-code")
 class VerifySmsCodeCommand(
     private val service: AccountService,
-    private val urlBuilder: URLBuilder
+    private val securityContext: SecurityContext,
+    private val urlBuilder: URLBuilder,
+
+    @Value("\${wutsi.application.login-url}") private val loginUrl: String,
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestBody @Valid request: VerifySmsCodeRequest): Action {
         service.verifyCode(request)
-        service.linkAccount(MOBILE)
         return Action(
             type = ActionType.Route,
-            url = urlBuilder.build("settings/accounts/link/success")
+            url = urlBuilder.build(loginUrl, getSubmitUrl())
         )
     }
 
@@ -36,7 +40,19 @@ class VerifySmsCodeCommand(
     fun onSmsCodeMismatchException(ex: SmsCodeMismatchException): Action =
         createErrorAction(ex, "page.verify-account-mobile.error.invalid-code")
 
-    @ExceptionHandler(AccountAlreadyLinkedException::class)
-    fun onAccountAlreadyLinkedException(ex: AccountAlreadyLinkedException): Action =
-        createErrorAction(ex, "page.verify-account-mobile.error.already-linked")
+    private fun getSubmitUrl(): String {
+        val me = securityContext.currentAccount()
+        return "?phone=" + encodeURLParam(me.phone!!.number) +
+            "&icon=" + Theme.ICON_LOCK +
+            "&screen-id=" + Page.SETTINGS_ACCOUNT_LINK_PIN +
+            "&title=" + encodeURLParam(getText("page.settings.account-pin.title")) +
+            "&sub-title=" + encodeURLParam(getText("page.settings.account-pin.sub-title")) +
+            "&auth=false" +
+            "&return-to-route=false" +
+            "&return-url=" + encodeURLParam(
+            urlBuilder.build(
+                "commands/link-account"
+            )
+        )
+    }
 }
