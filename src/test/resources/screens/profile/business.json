@@ -115,13 +115,24 @@
               },
               "children": [
                 {
-                  "type": "Text",
-                  "attributes": {
-                    "caption": "Ray Sponsible",
-                    "bold": true,
-                    "size": 16.0
-                  },
-                  "children": []
+                  "type": "Row",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Ray Sponsible",
+                        "bold": true,
+                        "size": 16.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {},
+                      "children": []
+                    }
+                  ]
                 }
               ]
             },

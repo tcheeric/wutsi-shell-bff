@@ -1,12 +1,13 @@
 package com.wutsi.application.shell.endpoint.profile.screen
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.CategoryService
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.StringUtil
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.service.CategoryService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -47,6 +48,7 @@ class ProfileScreen(
     private val contactApi: WutsiContactApi,
     private val categoryService: CategoryService,
     private val securityContext: SecurityContext,
+    private val togglesProvider: TogglesProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
@@ -140,12 +142,24 @@ class ProfileScreen(
     private fun details(user: Account): WidgetAware {
         val children = mutableListOf<WidgetAware>(
             Container(
-                padding = 10.0,
                 alignment = Alignment.CenterLeft,
-                child = Text(
-                    user.displayName ?: "",
-                    bold = true,
-                    size = Theme.TEXT_SIZE_LARGE
+                padding = 10.0,
+                child = Row(
+                    children = listOf(
+                        Text(
+                            user.displayName ?: "",
+                            bold = true,
+                            size = Theme.TEXT_SIZE_LARGE
+                        ),
+                        if (user.retail && togglesProvider.isBusinessAccountEnabled())
+                            Icon(
+                                code = Theme.ICON_VERIFIED,
+                                size = Theme.TEXT_SIZE_LARGE,
+                                color = Theme.COLOR_PRIMARY
+                            )
+                        else
+                            Container()
+                    )
                 ),
             )
         )

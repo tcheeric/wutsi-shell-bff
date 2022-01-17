@@ -228,6 +228,15 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
+                    "caption": "Financial Services",
+                    "enabled": true,
+                    "value": "1055"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
                     "caption": "Food and Beverage",
                     "enabled": true,
                     "value": "1008"

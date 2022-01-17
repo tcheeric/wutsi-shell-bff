@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.profile.screen
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.GetAccountResponse
@@ -10,6 +11,7 @@ import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactResponse
 import org.junit.jupiter.api.Test
+import org.mockito.Mock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
@@ -21,6 +23,9 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var contactApi: WutsiContactApi
+
+    @Mock
+    private lateinit var togglesProvider: TogglesProvider
 
     @Test
     fun personal() {
@@ -53,6 +58,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun business() {
         // GIVEN
+        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
         val account = Account(
@@ -68,6 +74,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
             ),
             pictureUrl = "https://img.com/1.png",
             business = true,
+            retail = true,
             biography = "This is my bio",
             categoryId = 1000L,
             website = "https://my.business.com/12432",

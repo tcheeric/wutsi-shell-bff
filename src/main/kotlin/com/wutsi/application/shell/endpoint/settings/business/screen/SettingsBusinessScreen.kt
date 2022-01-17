@@ -1,11 +1,11 @@
 package com.wutsi.application.shell.endpoint.settings.business.screen
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.CategoryService
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
-import com.wutsi.application.shell.service.CategoryService
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Container
