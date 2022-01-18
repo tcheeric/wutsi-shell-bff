@@ -85,6 +85,19 @@ class ProfileScreen(
                 )
             )
 
+        if (!user.business)
+            buttons.add(
+                Button(
+                    caption = getText("page.profile.button.send"),
+                    padding = 5.0,
+                    stretched = false,
+                    action = Action(
+                        type = ActionType.Route,
+                        url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
+                    ),
+                )
+            )
+
 //        if (user.business && user.whatsapp && togglesProvider.isBusinessAccountEnabled()) {
 //            var phone = user.phone?.number
 //            if (!phone.isNullOrEmpty()) {

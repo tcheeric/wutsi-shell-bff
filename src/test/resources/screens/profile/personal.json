@@ -92,11 +92,9 @@
               },
               "children": [
                 {
-                  "type": "Wrap",
+                  "type": "Row",
                   "attributes": {
-                    "spacing": 20.0,
-                    "runSpacing": 10.0,
-                    "direction": "Horizontal"
+                    "mainAxisAlignment": "spaceAround"
                   },
                   "children": [
                     {
@@ -164,6 +162,20 @@
                   "action": {
                     "type": "Command",
                     "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Send Money",
+                    "padding": 5.0,
+                    "type": "Elevated",
+                    "stretched": false
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send?recipient-id=5555"
                   }
                 }
               ]
