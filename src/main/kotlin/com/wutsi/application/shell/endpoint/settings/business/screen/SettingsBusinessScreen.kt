@@ -78,15 +78,15 @@ class SettingsBusinessScreen(
                             url = urlBuilder.build("settings/business/category")
                         )
                     ),
-                    ListItemSwitch(
-                        caption = getText("page.settings.business.whatsapp"),
-                        name = "value",
-                        selected = account.whatsapp,
-                        action = Action(
-                            type = ActionType.Command,
-                            url = urlBuilder.build("commands/update-business-attribute?name=whatsapp")
-                        )
-                    )
+//                    ListItemSwitch(
+//                        caption = getText("page.settings.business.whatsapp"),
+//                        name = "value",
+//                        selected = account.whatsapp,
+//                        action = Action(
+//                            type = ActionType.Command,
+//                            url = urlBuilder.build("commands/update-business-attribute?name=whatsapp")
+//                        )
+//                    )
                 )
             )
         }

@@ -14,116 +14,54 @@
       },
       "children": [
         {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0,
-            "background": "#1D7EDF"
-          },
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "start"
-              },
-              "children": [
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 5.0
-                  },
-                  "children": [
-                    {
-                      "type": "CircleAvatar",
-                      "attributes": {
-                        "radius": 24.0
-                      },
-                      "children": [
-                        {
-                          "type": "Image",
-                          "attributes": {
-                            "url": "https://img.com/1.png",
-                            "width": 48.0,
-                            "height": 48.0
-                          },
-                          "children": []
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 5.0
-                  },
-                  "children": [
-                    {
-                      "type": "Column",
-                      "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
-                      },
-                      "children": [
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "+ Contacts",
-                            "padding": 5.0,
-                            "type": "Elevated",
-                            "stretched": false
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Command",
-                            "url": "http://localhost:0/commands/add-contact?contact-id=5555"
-                          }
-                        },
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "WhatsApp",
-                            "padding": 5.0,
-                            "type": "Elevated",
-                            "stretched": false
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Navigate",
-                            "url": "https://wa.me/1237666666666"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
           "type": "Column",
-          "attributes": {
-            "mainAxisAlignment": "start",
-            "crossAxisAlignment": "start"
-          },
+          "attributes": {},
           "children": [
             {
               "type": "Container",
               "attributes": {
-                "alignment": "CenterLeft",
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "CircleAvatar",
+                  "attributes": {
+                    "radius": 48.0
+                  },
+                  "children": [
+                    {
+                      "type": "Image",
+                      "attributes": {
+                        "url": "https://img.com/1.png"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
                 "padding": 10.0
               },
               "children": [
                 {
                   "type": "Row",
-                  "attributes": {},
+                  "attributes": {
+                    "mainAxisAlignment": "center"
+                  },
                   "children": [
                     {
                       "type": "Text",
                       "attributes": {
                         "caption": "Ray Sponsible",
+                        "color": "#1D7EDF",
                         "bold": true,
-                        "size": 16.0
+                        "size": 18.0,
+                        "alignment": "Center"
                       },
                       "children": []
                     },
@@ -137,16 +75,56 @@
               ]
             },
             {
+              "type": "Text",
+              "attributes": {
+                "caption": "+1 237666666666",
+                "color": "#95A5A6",
+                "alignment": "Center"
+              },
+              "children": []
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "This is my bio",
+                    "alignment": "Center"
+                  },
+                  "children": []
+                }
+              ]
+            },
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "my.business.com/12432",
+                "padding": 15.0,
+                "type": "Text"
+              },
+              "children": [],
+              "action": {
+                "type": "Navigate",
+                "url": "https://my.business.com/12432"
+              }
+            },
+            {
               "type": "Container",
               "attributes": {
                 "padding": 10.0
               },
               "children": [
                 {
-                  "type": "Column",
+                  "type": "Wrap",
                   "attributes": {
-                    "mainAxisAlignment": "start",
-                    "crossAxisAlignment": "start"
+                    "spacing": 20.0,
+                    "runSpacing": 10.0,
+                    "direction": "Horizontal"
                   },
                   "children": [
                     {
@@ -154,86 +132,67 @@
                       "attributes": {},
                       "children": [
                         {
-                          "type": "Text",
+                          "type": "Row",
                           "attributes": {
-                            "caption": "Advertising/Marketing",
-                            "color": "#95A5A6",
-                            "alignment": "Left"
+                            "mainAxisSize": "min"
                           },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "TopLeft"
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "This is my bio",
-                            "alignment": "Left"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Row",
-                      "attributes": {
-                        "mainAxisAlignment": "spaceBetween",
-                        "mainAxisSize": "min"
-                      },
-                      "children": [
-                        {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e380"
-                          },
-                          "children": []
-                        },
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "my.business.com/12432",
-                            "padding": 1.0,
-                            "type": "Text",
-                            "stretched": false
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Navigate",
-                            "url": "https://my.business.com/12432"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Row",
-                      "attributes": {
-                        "mainAxisAlignment": "spaceBetween",
-                        "mainAxisSize": "min"
-                      },
-                      "children": [
-                        {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "e4c9"
-                          },
-                          "children": []
-                        },
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "Cameroon"
-                          },
-                          "children": []
+                          "children": [
+                            {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "e4c9",
+                                "size": 16.0
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Container",
+                              "attributes": {
+                                "padding": 2.0
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Cameroon",
+                                "color": "#95A5A6"
+                              },
+                              "children": []
+                            }
+                          ]
                         }
                       ]
                     }
                   ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0
+          },
+          "children": [
+            {
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "+ Contacts",
+                    "padding": 5.0,
+                    "type": "Elevated",
+                    "stretched": false
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+                  }
                 }
               ]
             }
