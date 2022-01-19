@@ -13,10 +13,12 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.platform.account.WutsiAccountApi
@@ -64,6 +66,7 @@ class ProfileScreen(
                         categoryService = categoryService,
                         togglesProvider = togglesProvider
                     ),
+                    Divider(color = Theme.COLOR_DIVIDER),
                     buttons(user)
                 )
             )
@@ -75,9 +78,8 @@ class ProfileScreen(
         if (canAddContact(user))
             buttons.add(
                 Button(
+                    type = ButtonType.Outlined,
                     caption = getText("page.profile.button.add-contact"),
-                    padding = 5.0,
-                    stretched = false,
                     action = Action(
                         type = ActionType.Command,
                         url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
@@ -88,9 +90,8 @@ class ProfileScreen(
         if (!user.business)
             buttons.add(
                 Button(
+                    type = ButtonType.Outlined,
                     caption = getText("page.profile.button.send"),
-                    padding = 5.0,
-                    stretched = false,
                     action = Action(
                         type = ActionType.Route,
                         url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
@@ -119,7 +120,6 @@ class ProfileScreen(
 //        }
 
         return Container(
-            padding = 10.0,
             child = Column(
                 children = buttons
             )

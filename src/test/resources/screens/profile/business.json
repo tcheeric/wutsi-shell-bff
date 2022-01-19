@@ -169,10 +169,15 @@
           ]
         },
         {
-          "type": "Container",
+          "type": "Divider",
           "attributes": {
-            "padding": 10.0
+            "color": "#8c8c8c"
           },
+          "children": []
+        },
+        {
+          "type": "Container",
+          "attributes": {},
           "children": [
             {
               "type": "Column",
@@ -182,9 +187,8 @@
                   "type": "Button",
                   "attributes": {
                     "caption": "+ Contacts",
-                    "padding": 5.0,
-                    "type": "Elevated",
-                    "stretched": false
+                    "padding": 15.0,
+                    "type": "Outlined"
                   },
                   "children": [],
                   "action": {
