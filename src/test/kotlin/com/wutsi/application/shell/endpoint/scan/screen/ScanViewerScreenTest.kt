@@ -83,6 +83,22 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun transactionApproval() {
+        // GIVEN
+        val entity = Entity("transaction-approval", "xxxx")
+        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
+
+        // WHEN
+        val request = ScanRequest(
+            code = "xxxxxx"
+        )
+        val response = rest.postForEntity(url, request, Widget::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/scan/viewer-transaction-approval.json", response.body)
+    }
+
+    @Test
     fun invalid() {
         // GIVEN
         val ex = createFeignException(ErrorURN.EXPIRED.urn)

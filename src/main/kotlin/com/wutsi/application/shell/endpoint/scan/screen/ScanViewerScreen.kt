@@ -120,11 +120,15 @@ class ScanViewerScreen(
     }
 
     private fun includeEmbeddedImage(entity: Entity?): Boolean =
-        entity?.type == "payment-request" || entity?.type == "account" || entity?.type == "web"
+        entity?.type == "payment-request" ||
+            entity?.type == "account" ||
+            entity?.type == "transaction-approval"
 
     private fun nextUrl(entity: Entity?): String? =
         if (entity?.type == "payment-request")
             urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
+        else if (entity?.type == "transaction-approval")
+            urlBuilder.build(cashUrl, "send/approval?transaction-id=${entity.id}")
         else if (entity?.type == "account")
             urlBuilder.build("profile?id=${entity.id}")
         else if (entity?.type == "url")
@@ -147,6 +151,7 @@ class ScanViewerScreen(
                 caption = when (entity?.type?.lowercase()) {
                     "account" -> getText("page.scan-viewer.button.continue-account")
                     "payment-request" -> getText("page.scan-viewer.button.continue-payment")
+                    "transaction-approval" -> getText("page.scan-viewer.button.continue-transaction-approval")
                     "url" -> getText("page.scan-viewer.button.continue-url")
                     else -> getText("page.scan-viewer.button.continue")
                 },

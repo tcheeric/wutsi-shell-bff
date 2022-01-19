@@ -2,16 +2,14 @@ package com.wutsi.application.shell.endpoint.qr.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Center
-import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.QrImage
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
@@ -57,24 +55,12 @@ class QrCodeScreen(
                         child = Container(
                             padding = 10.0,
                             alignment = Alignment.Center,
-                            child = if (!user.pictureUrl.isNullOrBlank())
-                                CircleAvatar(
-                                    radius = 32.0,
-                                    child = Image(
-                                        width = 64.0,
-                                        height = 64.0,
-                                        url = user.pictureUrl!!
-                                    )
-                                )
-                            else
-                                CircleAvatar(
-                                    radius = 32.0,
-                                    child = Text(
-                                        caption = StringUtil.initials(user.displayName),
-                                        size = 30.0,
-                                        bold = true
-                                    )
-                                )
+                            child = Avatar(
+                                radius = 32.0,
+                                pictureUrl = user.pictureUrl,
+                                text = user.displayName,
+                                textSize = 24.0
+                            )
                         ),
                     ),
                     Center(
