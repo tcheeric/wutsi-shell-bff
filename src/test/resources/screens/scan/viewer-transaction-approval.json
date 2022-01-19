@@ -19,6 +19,7 @@
                 "data": "xxxxxx",
                 "size": 230.0,
                 "padding": 10.0,
+                "embeddedImageUrl": "http://www.goole.com/images/1.png",
                 "embeddedImageSize": 64.0
               },
               "children": []
@@ -35,9 +36,9 @@
             {
               "type": "Icon",
               "attributes": {
-                "code": "e237",
+                "code": "e856",
                 "size": 64.0,
-                "color": "#8B0000"
+                "color": "#4CAF50"
               },
               "children": []
             }
@@ -53,7 +54,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Sorry! This QR code has expired.",
+                "caption": "The QR Code is valid",
                 "size": 16.0
               },
               "children": []
@@ -70,14 +71,14 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Close",
+                "caption": "Continue: Approve the Transaction",
                 "padding": 15.0,
-                "type": "Text"
+                "type": "Elevated"
               },
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "route:/~"
+                "url": "https://wutsi-gateway-test.herokuapp.com/cash/send/approval?transaction-id=xxxx"
               }
             }
           ]
