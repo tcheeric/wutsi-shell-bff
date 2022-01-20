@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
-import kotlin.test.Ignore
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class ScanViewerScreenTest : AbstractEndpointTest() {
@@ -84,7 +83,6 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    @Ignore
     fun transactionApproval() {
         // GIVEN
         val entity = Entity("transaction-approval", "xxxx")
