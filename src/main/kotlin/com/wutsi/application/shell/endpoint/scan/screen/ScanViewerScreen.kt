@@ -50,6 +50,7 @@ class ScanViewerScreen(
         logger.add("format", request.format)
 
         // Parse the qr-code
+        val tenant = tenantProvider.get()
         var error: String? = null
         var nextUrl: String? = null
         var entity: Entity? = null
@@ -88,7 +89,7 @@ class ScanViewerScreen(
                             padding = 10.0,
                             embeddedImageSize = 64.0,
                             embeddedImageUrl = if (includeEmbeddedImage(entity))
-                                tenantProvider.get().logos.find { it.type == "PICTORIAL" }?.url
+                                tenantProvider.logo(tenant)
                             else
                                 null
                         )
@@ -128,7 +129,8 @@ class ScanViewerScreen(
         if (entity?.type == "payment-request")
             urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
         else if (entity?.type == "transaction-approval")
-            urlBuilder.build(cashUrl, "send/approval?transaction-id=${entity.id}")
+            urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
+//            urlBuilder.build(cashUrl, "send/approval?transaction-id=${entity.id}")
         else if (entity?.type == "account")
             urlBuilder.build("profile?id=${entity.id}")
         else if (entity?.type == "url")

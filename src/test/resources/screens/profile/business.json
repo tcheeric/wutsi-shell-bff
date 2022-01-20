@@ -184,17 +184,25 @@
               "attributes": {},
               "children": [
                 {
-                  "type": "Button",
+                  "type": "Container",
                   "attributes": {
-                    "caption": "+ Contacts",
-                    "padding": 15.0,
-                    "type": "Outlined"
+                    "padding": 10.0
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Command",
-                    "url": "http://localhost:0/commands/add-contact?contact-id=5555"
-                  }
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "+ Contacts",
+                        "padding": 15.0,
+                        "type": "Outlined"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Command",
+                        "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+                      }
+                    }
+                  ]
                 }
               ]
             }

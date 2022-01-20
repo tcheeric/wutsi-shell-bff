@@ -121,7 +121,12 @@ class ProfileScreen(
 
         return Container(
             child = Column(
-                children = buttons
+                children = buttons.map {
+                    Container(
+                        padding = 10.0,
+                        child = it
+                    )
+                }
             )
         )
     }
