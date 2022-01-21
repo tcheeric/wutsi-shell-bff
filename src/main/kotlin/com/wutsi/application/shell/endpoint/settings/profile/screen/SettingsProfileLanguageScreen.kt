@@ -30,7 +30,7 @@ class SettingsProfileLanguageScreen(
         val user = securityContext.currentAccount()
         val locale = LocaleContextHolder.getLocale()
         return DropdownButton(
-            name = "language",
+            name = "value",
             value = user.language,
             required = true,
             children = tenant.languages.map {

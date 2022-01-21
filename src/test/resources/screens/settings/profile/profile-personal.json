@@ -42,7 +42,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/settings/profile/name"
+                "url": "http://localhost:0/settings/profile/display-name"
               }
             },
             {

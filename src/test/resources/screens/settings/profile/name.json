@@ -42,7 +42,7 @@
             {
               "type": "Input",
               "attributes": {
-                "name": "name",
+                "name": "value",
                 "hideText": false,
                 "required": true,
                 "caption": "",
@@ -77,7 +77,7 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/commands/update-profile-attribute?name=name"
+                "url": "http://localhost:0/commands/update-profile-attribute?name=display-name"
               }
             }
           ]

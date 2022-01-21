@@ -104,18 +104,6 @@ class SettingsScreen(
             ),
         )
 
-        if (togglesProvider.isBusinessAccountEnabled()) {
-            children.add(
-                listItem(
-                    "page.settings.listitem.business.caption",
-                    "page.settings.listitem.business.subcaption",
-                    Theme.ICON_BUSINESS,
-                    Theme.COLOR_PRIMARY,
-                    "settings/business"
-                ),
-            )
-        }
-
         if (togglesProvider.isAccountEnabled()) {
             children.add(
                 listItem(

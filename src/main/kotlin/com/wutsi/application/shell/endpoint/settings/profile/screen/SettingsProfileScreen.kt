@@ -47,7 +47,11 @@ class SettingsProfileScreen(
         val locale = LocaleContextHolder.getLocale()
         children.addAll(
             listOf(
-                listItem("page.settings.profile.attribute.name", account.displayName, "settings/profile/name"),
+                listItem(
+                    "page.settings.profile.attribute.display-name",
+                    account.displayName,
+                    "settings/profile/display-name"
+                ),
                 listItem(
                     "page.settings.profile.attribute.language",
                     StringUtil.capitalizeFirstLetter(

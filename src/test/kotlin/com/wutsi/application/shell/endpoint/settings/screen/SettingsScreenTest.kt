@@ -40,12 +40,6 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun businessEnabled() {
-        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
-        assertEndpointEquals("/screens/settings/settings-business-enabled.json", url)
-    }
-
-    @Test
     fun logoutEnabled() {
         doReturn(true).whenever(togglesProvider).isLogoutEnabled()
         assertEndpointEquals("/screens/settings/settings-logout-enabled.json", url)

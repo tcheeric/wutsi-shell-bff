@@ -42,7 +42,7 @@
             {
               "type": "DropdownButton",
               "attributes": {
-                "name": "language",
+                "name": "value",
                 "value": "en",
                 "required": true
               },

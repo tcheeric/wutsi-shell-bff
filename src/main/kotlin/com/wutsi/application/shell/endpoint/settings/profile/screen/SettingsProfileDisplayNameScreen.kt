@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/profile/name")
-class SettingsProfileNameScreen(
+@RequestMapping("/settings/profile/display-name")
+class SettingsProfileDisplayNameScreen(
     urlBuilder: URLBuilder,
     securityContext: SecurityContext
 ) : AbstractSettingsProfileAttributeScreen(urlBuilder, securityContext) {
-    override fun getAttributeName() = "name"
+    override fun getAttributeName() = "display-name"
 
     override fun getPageId() = Page.SETTINGS_PROFILE_NAME
 
     override fun getInputWidget(account: Account): WidgetAware = Input(
-        name = "name",
+        name = "value",
         value = account.street,
         maxLength = 100,
         required = true

@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SettingsProfileNameScreenTest : AbstractEndpointTest() {
+internal class SettingsProfileDisplayNameScreenTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -21,7 +21,7 @@ internal class SettingsProfileNameScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/settings/profile/name"
+        url = "http://localhost:$port/settings/profile/display-name"
     }
 
     @Test
@@ -30,6 +30,6 @@ internal class SettingsProfileNameScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/name.json", url)
+        assertEndpointEquals("/screens/settings/profile/display-name.json", url)
     }
 }
