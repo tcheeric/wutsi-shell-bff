@@ -39,57 +39,31 @@ class SettingsBusinessScreen(
         if (account.business) {
             children.addAll(
                 listOf(
-                    ListItem(
-                        caption = getText("page.settings.business.biography"),
-                        subCaption = account.biography,
-                        trailing = Icon(
-                            code = Theme.ICON_EDIT,
-                            size = 24.0,
-                            color = Theme.COLOR_BLACK
-                        ),
-                        action = Action(
-                            type = ActionType.Route,
-                            url = urlBuilder.build("settings/business/biography")
-                        )
+                    listItem(
+                        "page.settings.profile.attribute.biography",
+                        account.biography,
+                        "settings/profile/biography"
                     ),
-                    ListItem(
-                        caption = getText("page.settings.business.website"),
-                        subCaption = account.website,
-                        trailing = Icon(
-                            code = Theme.ICON_EDIT,
-                            size = 24.0,
-                            color = Theme.COLOR_BLACK
-                        ),
-                        action = Action(
-                            type = ActionType.Route,
-                            url = urlBuilder.build("settings/business/website")
-                        )
+                    listItem("page.settings.profile.attribute.website", account.website, "settings/profile/website"),
+                    listItem(
+                        "page.settings.profile.attribute.category",
+                        account.categoryId?.let { sharedUIMapper.toCategoryText(it) },
+                        "settings/profile/category"
                     ),
-                    ListItem(
-                        caption = getText("page.settings.business.category"),
-                        subCaption = account.categoryId?.let { sharedUIMapper.toCategoryText(it) },
-                        trailing = Icon(
-                            code = Theme.ICON_EDIT,
-                            size = 24.0,
-                            color = Theme.COLOR_BLACK
-                        ),
-                        action = Action(
-                            type = ActionType.Route,
-                            url = urlBuilder.build("settings/business/category")
-                        )
-                    ),
+                    listItem("page.settings.profile.attribute.whatsapp", account.whatsapp, "settings/profile/whatsapp"),
+                    listItem("page.settings.profile.attribute.street", account.street, "settings/profile/street"),
                 )
             )
         }
 
         children.add(
             ListItemSwitch(
-                caption = getText("page.settings.business.business-account"),
+                caption = getText("page.settings.profile.attribute.business"),
                 name = "value",
                 selected = account.business,
                 action = Action(
                     type = ActionType.Command,
-                    url = urlBuilder.build("commands/update-business-attribute?name=business")
+                    url = urlBuilder.build("commands/update-profile-attribute?name=business")
                 )
             )
         )
@@ -112,4 +86,19 @@ class SettingsBusinessScreen(
             )
         ).toWidget()
     }
+
+    private fun listItem(caption: String, value: Any?, commandUrl: String): ListItem =
+        ListItem(
+            caption = getText(caption),
+            subCaption = value?.toString(),
+            trailing = Icon(
+                code = Theme.ICON_EDIT,
+                size = 24.0,
+                color = Theme.COLOR_BLACK
+            ),
+            action = Action(
+                type = ActionType.Route,
+                url = urlBuilder.build(commandUrl)
+            )
+        )
 }

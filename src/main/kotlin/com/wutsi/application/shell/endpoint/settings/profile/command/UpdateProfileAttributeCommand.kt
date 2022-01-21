@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.endpoint.settings.business.command
+package com.wutsi.application.shell.endpoint.settings.profile.command
 
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.URLBuilder
@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/commands/update-business-attribute")
-class UpdateBusinessAttributeCommand(
+@RequestMapping("/commands/update-profile-attribute")
+class UpdateProfileAttributeCommand(
     private val accountApi: WutsiAccountApi,
     private val securityContext: SecurityContext,
-    private val urlBuilder: URLBuilder
+    private val urlBuilder: URLBuilder,
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): Action {

@@ -1,25 +1,26 @@
-package com.wutsi.application.shell.endpoint.settings.business.command
+package com.wutsi.application.shell.endpoint.settings.profile.command
 
 import com.nhaarman.mockitokotlin2.verify
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
+import kotlin.test.assertEquals
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class UpdateBusinessAttributeCommandTest : AbstractEndpointTest() {
+internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
     @Test
-    fun invoke() {
+    fun update() {
         // GIVEN
+        val name = "xxx"
         val request = UpdateAccountAttributeRequest(value = "oreoiroei")
-        val url = "http://localhost:$port/commands/update-business-attribute?name=biography"
+        val url = "http://localhost:$port/commands/update-profile-attribute?name=$name"
         val response = rest.postForEntity(url, request, Action::class.java)
 
         // THEN
@@ -29,14 +30,14 @@ internal class UpdateBusinessAttributeCommandTest : AbstractEndpointTest() {
         assertEquals("route:/..", action.url)
         assertEquals(false, action.replacement)
 
-        verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "biography", UpdateAccountAttributeRequest(request.value))
+        verify(accountApi).updateAccountAttribute(ACCOUNT_ID, name, UpdateAccountAttributeRequest(request.value))
     }
 
     @Test
     fun business() {
         // GIVEN
         val request = UpdateAccountAttributeRequest(value = "true")
-        val url = "http://localhost:$port/commands/update-business-attribute?name=business"
+        val url = "http://localhost:$port/commands/update-profile-attribute?name=business"
         val response = rest.postForEntity(url, request, Action::class.java)
 
         // THEN

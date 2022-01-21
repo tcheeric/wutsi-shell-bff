@@ -29,7 +29,7 @@ internal class SettingsBusinessScreenTest : AbstractEndpointTest() {
     @Test
     fun personal() {
         // THEN
-        assertEndpointEquals("/screens/settings/business/business-off.json", url)
+        assertEndpointEquals("/screens/settings/business/personal.json", url)
     }
 
     @Test
@@ -54,6 +54,6 @@ internal class SettingsBusinessScreenTest : AbstractEndpointTest() {
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/business/business-on.json", url)
+        assertEndpointEquals("/screens/settings/business/business.json", url)
     }
 }

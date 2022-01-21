@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.endpoint.settings.business.screen
+package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SettingsBusinessBiographyScreenTest : AbstractEndpointTest() {
+internal class SettingsBusinessWebsiteScreenTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -21,7 +21,7 @@ internal class SettingsBusinessBiographyScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/settings/business/biography"
+        url = "http://localhost:$port/settings/profile/website"
     }
 
     @Test
@@ -30,6 +30,6 @@ internal class SettingsBusinessBiographyScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/business/biography.json", url)
+        assertEndpointEquals("/screens/settings/profile/website.json", url)
     }
 }

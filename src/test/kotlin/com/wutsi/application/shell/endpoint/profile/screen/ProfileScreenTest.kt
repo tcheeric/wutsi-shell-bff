@@ -78,7 +78,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
             biography = "This is my bio",
             categoryId = 1000L,
             website = "https://my.business.com/12432",
-            whatsapp = true
+            whatsapp = "+23500000000"
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 

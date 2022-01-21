@@ -1,4 +1,4 @@
-package com.wutsi.application.shell.endpoint.settings.business.screen
+package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
@@ -21,7 +21,7 @@ internal class SettingsBusinessCategoryScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/settings/business/category"
+        url = "http://localhost:$port/settings/profile/category"
     }
 
     @Test
@@ -30,6 +30,6 @@ internal class SettingsBusinessCategoryScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/business/category.json", url)
+        assertEndpointEquals("/screens/settings/profile/category.json", url)
     }
 }
