@@ -10,11 +10,9 @@ import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
-import com.wutsi.flutter.sdui.ListItemSwitch
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
-import com.wutsi.flutter.sdui.enums.ActionType.Command
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.platform.account.dto.Account
 import org.springframework.beans.factory.annotation.Value
@@ -43,18 +41,6 @@ class SettingsSecurityScreen(
             ),
             child = ListView(
                 children = listOf(
-                    Divider(color = Theme.COLOR_DIVIDER),
-                    ListItemSwitch(
-                        caption = getText("page.settings.security.list-item.transfer-secured.caption"),
-                        subCaption = getText("page.settings.security.list-item.transfer-secured.sub-caption"),
-                        selected = me.transferSecured,
-                        action = Action(
-                            type = Command,
-                            url = urlBuilder.build("commands/transfer-secured")
-                        ),
-                        name = "value"
-                    ),
-                    Divider(color = Theme.COLOR_DIVIDER),
                     Container(
                         padding = 10.0,
                         child = Button(

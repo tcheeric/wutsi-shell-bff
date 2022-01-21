@@ -3,11 +3,16 @@ package com.wutsi.application.shell.endpoint.settings.profile.screen
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
+import com.wutsi.platform.account.dto.Phone
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -17,6 +22,9 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
 
     private lateinit var url: String
 
+    @MockBean
+    private lateinit var togglesProvider: TogglesProvider
+
     @BeforeEach
     override fun setUp() {
         super.setUp()
@@ -25,11 +33,46 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun profile() {
+    fun personal() {
         // GIVEN
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         // THEN
-        assertEndpointEquals("/screens/settings/profile/profile.json", url)
+        assertEndpointEquals("/screens/settings/profile/profile-personal.json", url)
+    }
+
+    @Test
+    fun business() {
+        // WHEN
+        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
+
+        val account = Account(
+            id = ACCOUNT_ID,
+            displayName = "Ray Sponsible",
+            country = "CM",
+            language = "en",
+            status = "ACTIVE",
+            phone = Phone(
+                id = 1,
+                number = "+1237666666666",
+                country = "CM"
+            ),
+            business = true,
+            website = "https://www.google.ca",
+            biography = "Thsi is my bio",
+            categoryId = 1000,
+            cityId = 2233100,
+            whatsapp = "+1237666666666",
+            street = "3030 Linton",
+            retail = true,
+            pictureUrl = "https://www.img.com/1.png"
+        )
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        // GIVEN
+        doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
+
+        // THEN
+        assertEndpointEquals("/screens/settings/profile/profile-business.json", url)
     }
 }

@@ -1,9 +1,10 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.CategoryService
+import com.wutsi.application.shared.service.CityService
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -24,53 +25,54 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/profile/category")
-class SettingsProfileCategoryScreen(
+@RequestMapping("/settings/profile/city")
+class SettingsProfileCityScreen(
     private val urlBuilder: URLBuilder,
     private val securityContext: SecurityContext,
-    private val categoryService: CategoryService,
+    private val cityService: CityService,
+    private val tenantProvider: TenantProvider,
     private val sharedUIMapper: SharedUIMapper,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         val user = securityContext.currentAccount()
-        val category = categoryService.get(user.categoryId)
+        val tenant = tenantProvider.get()
         val items = mutableListOf<DropdownMenuItem>()
         items.add(
             DropdownMenuItem("", "")
         )
         items.addAll(
-            categoryService.all()
-                .sortedBy { sharedUIMapper.toCategoryText(it) }
+            cityService.search(null, tenant.countries)
+                .sortedBy { sharedUIMapper.toLocationText(it, user.country) }
                 .map {
                     DropdownMenuItem(
-                        caption = sharedUIMapper.toCategoryText(it) ?: "",
+                        caption = sharedUIMapper.toLocationText(it, user.country),
                         value = it.id.toString()
                     )
                 }
         )
 
         return Screen(
-            id = Page.SETTINGS_PROFILE_CATEGORY,
+            id = Page.SETTINGS_PROFILE_CITY,
             backgroundColor = Theme.COLOR_WHITE,
             appBar = AppBar(
                 elevation = 0.0,
                 backgroundColor = Theme.COLOR_WHITE,
                 foregroundColor = Theme.COLOR_BLACK,
-                title = getText("page.settings.profile.attribute.category"),
+                title = getText("page.settings.profile.attribute.city"),
             ),
             child = Form(
                 children = listOf(
                     Container(
                         padding = 10.0,
-                        child = Text(getText("page.settings.profile.attribute.category.description"))
+                        child = Text(getText("page.settings.profile.attribute.city.description"))
                     ),
                     Container(padding = 20.0),
                     Container(
                         padding = 10.0,
                         child = DropdownButton(
                             name = "value",
-                            value = category?.id?.toString(),
+                            value = user.cityId?.toString(),
                             children = items
                         ),
                     ),
@@ -82,7 +84,7 @@ class SettingsProfileCategoryScreen(
                             caption = getText("page.settings.profile.attribute.button.submit"),
                             action = Action(
                                 type = ActionType.Command,
-                                url = urlBuilder.build("commands/update-profile-attribute?name=category-id")
+                                url = urlBuilder.build("commands/update-city")
                             )
                         ),
                     ),

@@ -10,34 +10,6 @@
       "attributes": {},
       "children": [
         {
-          "type": "Divider",
-          "attributes": {
-            "color": "#8c8c8c"
-          },
-          "children": []
-        },
-        {
-          "type": "ListItemSwitch",
-          "attributes": {
-            "caption": "Security Lock",
-            "subCaption": "Require PIN to transfer funds",
-            "name": "value",
-            "selected": true
-          },
-          "children": [],
-          "action": {
-            "type": "Command",
-            "url": "http://localhost:0/commands/transfer-secured"
-          }
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "color": "#8c8c8c"
-          },
-          "children": []
-        },
-        {
           "type": "Container",
           "attributes": {
             "padding": 10.0

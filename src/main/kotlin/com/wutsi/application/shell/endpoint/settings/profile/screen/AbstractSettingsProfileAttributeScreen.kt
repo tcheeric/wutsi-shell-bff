@@ -20,8 +20,8 @@ import com.wutsi.platform.account.dto.Account
 import org.springframework.web.bind.annotation.PostMapping
 
 abstract class AbstractSettingsProfileAttributeScreen(
-    private val urlBuilder: URLBuilder,
-    private val securityContext: SecurityContext
+    protected val urlBuilder: URLBuilder,
+    protected val securityContext: SecurityContext
 ) : AbstractQuery() {
     abstract fun getAttributeName(): String
 
@@ -57,7 +57,7 @@ abstract class AbstractSettingsProfileAttributeScreen(
                         child = getInputWidget(user),
                     ),
                     Container(
-                        padding = 20.0,
+                        padding = 10.0,
                         child = Input(
                             name = "submit",
                             type = InputType.Submit,

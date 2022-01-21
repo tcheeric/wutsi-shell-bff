@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/profile/website")
-class SettingsBusinessWebsiteScreen(
+class SettingsProfileWebsiteScreen(
     urlBuilder: URLBuilder,
     securityContext: SecurityContext
 ) : AbstractSettingsProfileAttributeScreen(urlBuilder, securityContext) {

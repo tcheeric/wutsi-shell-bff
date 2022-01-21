@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.settings.profile.whatsapp",
+    "id": "page.settings.profile.name",
     "safe": false,
     "backgroundColor": "#FFFFFF"
   },
@@ -20,7 +20,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter your WhatsApp phone number to help people to contact you"
+                "caption": "Enter your Name"
               },
               "children": []
             }
@@ -42,14 +42,14 @@
             {
               "type": "Input",
               "attributes": {
-                "name": "value",
+                "name": "name",
                 "hideText": false,
-                "required": false,
+                "required": true,
                 "caption": "",
                 "enabled": true,
                 "readOnly": false,
-                "type": "Phone",
-                "maxLength": 30,
+                "type": "Text",
+                "maxLength": 100,
                 "minLength": 0
               },
               "children": []
@@ -77,7 +77,7 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/commands/update-profile-attribute?name=whatsapp"
+                "url": "http://localhost:0/commands/update-profile-attribute?name=name"
               }
             }
           ]
@@ -88,7 +88,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "WhatsApp",
+      "title": "Name",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

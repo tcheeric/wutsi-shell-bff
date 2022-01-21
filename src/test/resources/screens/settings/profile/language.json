@@ -1,7 +1,7 @@
 {
   "type": "Screen",
   "attributes": {
-    "id": "page.settings.profile.whatsapp",
+    "id": "page.settings.profile.language",
     "safe": false,
     "backgroundColor": "#FFFFFF"
   },
@@ -20,7 +20,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Enter your WhatsApp phone number to help people to contact you"
+                "caption": "Choose your Language"
               },
               "children": []
             }
@@ -40,19 +40,32 @@
           },
           "children": [
             {
-              "type": "Input",
+              "type": "DropdownButton",
               "attributes": {
-                "name": "value",
-                "hideText": false,
-                "required": false,
-                "caption": "",
-                "enabled": true,
-                "readOnly": false,
-                "type": "Phone",
-                "maxLength": 30,
-                "minLength": 0
+                "name": "language",
+                "value": "en",
+                "required": true
               },
-              "children": []
+              "children": [
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
+                    "caption": "English",
+                    "enabled": true,
+                    "value": "en"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
+                    "caption": "French",
+                    "enabled": true,
+                    "value": "fr"
+                  },
+                  "children": []
+                }
+              ]
             }
           ]
         },
@@ -77,7 +90,7 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/commands/update-profile-attribute?name=whatsapp"
+                "url": "http://localhost:0/commands/update-profile-attribute?name=language"
               }
             }
           ]
@@ -88,7 +101,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "WhatsApp",
+      "title": "Language",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"

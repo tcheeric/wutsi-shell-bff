@@ -44,7 +44,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         assertEquals(200, response.statusCodeValue)
         val action = response.body
         assertEquals(ActionType.Route, action.type)
-        assertEquals("http://localhost:0/settings/business", action.url)
+        assertEquals("http://localhost:0/settings/profile", action.url)
         assertEquals(true, action.replacement)
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "business", UpdateAccountAttributeRequest(request.value))
