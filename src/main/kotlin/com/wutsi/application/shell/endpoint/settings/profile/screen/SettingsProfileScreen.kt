@@ -2,6 +2,7 @@ package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -65,7 +66,7 @@ class SettingsProfileScreen(
                             required = true,
                             children = tenant.languages.map {
                                 DropdownMenuItem(
-                                    caption = capitalizeFirstLetter(Locale(it).getDisplayLanguage(locale)),
+                                    caption = StringUtil.capitalizeFirstLetter(Locale(it).getDisplayLanguage(locale)),
                                     value = it
                                 )
                             }
@@ -103,7 +104,4 @@ class SettingsProfileScreen(
             ),
         ).toWidget()
     }
-
-    private fun capitalizeFirstLetter(str: String): String =
-        str.uppercase().substring(0, 1) + str.substring(1)
 }

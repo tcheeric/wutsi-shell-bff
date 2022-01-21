@@ -2,6 +2,7 @@ package com.wutsi.application.shell.endpoint.qr.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -27,7 +28,8 @@ import org.springframework.web.bind.annotation.RestController
 class QrCodeScreen(
     private val qrApi: WutsiQrApi,
     private val tenantProvider: TenantProvider,
-    private val securityContext: SecurityContext
+    private val securityContext: SecurityContext,
+    private val sharedUIMapper: SharedUIMapper,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -57,9 +59,7 @@ class QrCodeScreen(
                             alignment = Alignment.Center,
                             child = Avatar(
                                 radius = 32.0,
-                                pictureUrl = user.pictureUrl,
-                                text = user.displayName,
-                                textSize = 24.0
+                                model = sharedUIMapper.toAccountModel(user)
                             )
                         ),
                     ),

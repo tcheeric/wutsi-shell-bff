@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.settings.business.screen
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.CategoryService
 import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -28,6 +29,7 @@ class SettingsBusinessCategoryScreen(
     private val urlBuilder: URLBuilder,
     private val securityContext: SecurityContext,
     private val categoryService: CategoryService,
+    private val sharedUIMapper: SharedUIMapper,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -57,10 +59,10 @@ class SettingsBusinessCategoryScreen(
                             name = "value",
                             value = category?.id?.toString(),
                             children = categoryService.all()
-                                .sortedBy { categoryService.getTitle(it) }
+                                .sortedBy { sharedUIMapper.toCategoryText(it) }
                                 .map {
                                     DropdownMenuItem(
-                                        caption = categoryService.getTitle(it) ?: "",
+                                        caption = sharedUIMapper.toCategoryText(it) ?: "",
                                         value = it.id.toString()
                                     )
                                 }

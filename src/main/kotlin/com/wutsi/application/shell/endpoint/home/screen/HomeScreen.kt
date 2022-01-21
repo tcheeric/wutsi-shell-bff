@@ -2,6 +2,8 @@ package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.SharedUIMapper
+import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
@@ -59,6 +61,7 @@ class HomeScreen(
     private val tenantProvider: TenantProvider,
     private val togglesProvider: TogglesProvider,
     private val accountApi: WutsiAccountApi,
+    private val sharedUIMapper: SharedUIMapper,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
@@ -332,33 +335,28 @@ class HomeScreen(
                 "recipient-id" to recipient.id.toString()
             )
         )
-
         return Column(
             children = listOf(
                 Avatar(
                     radius = 24.0,
-                    text = recipient.displayName,
-                    pictureUrl = recipient.pictureUrl,
-                    textSize = 20.0,
-                    action = action
+                    model = sharedUIMapper.toAccountModel(recipient),
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "/send"),
+                        parameters = mapOf(
+                            "recipient-id" to recipient.id.toString()
+                        )
+                    )
                 ),
                 Button(
                     type = ButtonType.Text,
-                    caption = firstName(recipient.displayName),
+                    caption = StringUtil.firstName(recipient.displayName),
                     action = action,
                     stretched = false,
                     padding = 1.0,
                 )
             )
         )
-    }
-
-    private fun firstName(displayName: String?): String {
-        if (displayName == null)
-            return ""
-
-        val i = displayName.indexOf(' ')
-        return if (i > 0) displayName.substring(0, i) else displayName
     }
 
     // Transactions

@@ -1,8 +1,8 @@
 package com.wutsi.application.shell.endpoint.settings.business.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.CategoryService
 import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController
 class SettingsBusinessScreen(
     private val urlBuilder: URLBuilder,
     private val securityContext: SecurityContext,
-    private val categoryService: CategoryService,
+    private val sharedUIMapper: SharedUIMapper,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -67,7 +67,7 @@ class SettingsBusinessScreen(
                     ),
                     ListItem(
                         caption = getText("page.settings.business.category"),
-                        subCaption = categoryService.getTitle(account),
+                        subCaption = account.categoryId?.let { sharedUIMapper.toCategoryText(it) },
                         trailing = Icon(
                             code = Theme.ICON_EDIT,
                             size = 24.0,
@@ -78,15 +78,6 @@ class SettingsBusinessScreen(
                             url = urlBuilder.build("settings/business/category")
                         )
                     ),
-//                    ListItemSwitch(
-//                        caption = getText("page.settings.business.whatsapp"),
-//                        name = "value",
-//                        selected = account.whatsapp,
-//                        action = Action(
-//                            type = ActionType.Command,
-//                            url = urlBuilder.build("commands/update-business-attribute?name=whatsapp")
-//                        )
-//                    )
                 )
             )
         }

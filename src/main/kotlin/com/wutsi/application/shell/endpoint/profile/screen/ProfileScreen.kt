@@ -1,9 +1,8 @@
 package com.wutsi.application.shell.endpoint.profile.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.CategoryService
 import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.TogglesProvider
+import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -37,9 +36,8 @@ class ProfileScreen(
     private val urlBuilder: URLBuilder,
     private val accountApi: WutsiAccountApi,
     private val contactApi: WutsiContactApi,
-    private val categoryService: CategoryService,
     private val securityContext: SecurityContext,
-    private val togglesProvider: TogglesProvider,
+    private val sharedUIMapper: SharedUIMapper,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
@@ -61,10 +59,7 @@ class ProfileScreen(
                 crossAxisAlignment = CrossAxisAlignment.start,
                 children = listOf(
                     ProfileCard(
-                        account = user,
-                        phoneNumber = user.phone?.number,
-                        categoryService = categoryService,
-                        togglesProvider = togglesProvider
+                        model = sharedUIMapper.toAccountModel(user)
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     buttons(user)
