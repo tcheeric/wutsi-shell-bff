@@ -21,7 +21,7 @@ class SettingsProfileDisplayNameScreen(
 
     override fun getInputWidget(account: Account): WidgetAware = Input(
         name = "value",
-        value = account.street,
+        value = account.displayName,
         maxLength = 100,
         required = true
     )

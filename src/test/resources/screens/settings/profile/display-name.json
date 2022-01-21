@@ -43,6 +43,7 @@
               "type": "Input",
               "attributes": {
                 "name": "value",
+                "value": "Ray Sponsible",
                 "hideText": false,
                 "required": true,
                 "caption": "",
