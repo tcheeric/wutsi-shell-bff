@@ -5,6 +5,10 @@
 ![](https://img.shields.io/badge/language-kotlin-blue.svg)
 
 # wutsi-shell-bff
+
 `wutsi-shell-bff` provide the experience for:
+
 - Front page
-- Managing app settings
+- Contacts
+- QR Code Scanner
+- Settings
