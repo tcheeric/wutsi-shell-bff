@@ -125,7 +125,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/contact"
+                    "url": "http://localhost:0/contact"
                   }
                 }
               ]

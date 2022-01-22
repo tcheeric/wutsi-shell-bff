@@ -272,7 +272,7 @@ class HomeScreen(
                     icon = Theme.ICON_CONTACT,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build(cashUrl, "contact")
+                        url = urlBuilder.build("contact")
                     )
                 )
             )
