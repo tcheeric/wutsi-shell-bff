@@ -3,6 +3,7 @@ package com.wutsi.application.shell.endpoint.profile.screen
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -38,6 +39,7 @@ class ProfileScreen(
     private val contactApi: WutsiContactApi,
     private val securityContext: SecurityContext,
     private val sharedUIMapper: SharedUIMapper,
+    private val togglesProvider: TogglesProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
@@ -82,6 +84,25 @@ class ProfileScreen(
                 )
             )
 
+        if (user.business && togglesProvider.isBusinessAccountEnabled()) {
+            var phone = user.whatsapp
+            if (!phone.isNullOrEmpty()) {
+                if (phone.startsWith("+"))
+                    phone = phone.substring(1)
+
+                buttons.add(
+                    Button(
+                        type = ButtonType.Outlined,
+                        caption = "WhatsApp",
+                        action = Action(
+                            type = ActionType.Navigate,
+                            url = "https://wa.me/$phone"
+                        ),
+                    )
+                )
+            }
+        }
+
         if (!user.business)
             buttons.add(
                 Button(
@@ -93,26 +114,6 @@ class ProfileScreen(
                     ),
                 )
             )
-
-//        if (user.business && user.whatsapp && togglesProvider.isBusinessAccountEnabled()) {
-//            var phone = user.phone?.number
-//            if (!phone.isNullOrEmpty()) {
-//                if (phone.startsWith("+"))
-//                    phone = phone.substring(1)
-//
-//                buttons.add(
-//                    Button(
-//                        caption = "WhatsApp",
-//                        padding = 5.0,
-//                        stretched = false,
-//                        action = Action(
-//                            type = ActionType.Navigate,
-//                            url = "https://wa.me/$phone"
-//                        ),
-//                    )
-//                )
-//            }
-//        }
 
         return Container(
             child = Column(
