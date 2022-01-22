@@ -99,6 +99,13 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         assertEndpointEquals("/screens/home-account-enabled.json", url)
     }
 
+    @Test
+    fun homeContactEnabled() {
+        doReturn(true).whenever(togglesProvider).isContactEnabled()
+
+        assertEndpointEquals("/screens/home-contact-enabled.json", url)
+    }
+
     private fun createTransferTransactionSummary(
         accountId: Long,
         recipientId: Long,

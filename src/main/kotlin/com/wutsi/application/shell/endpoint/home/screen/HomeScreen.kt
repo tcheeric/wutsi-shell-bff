@@ -265,6 +265,18 @@ class HomeScreen(
                 )
             )
         }
+        if (togglesProvider.isContactEnabled()) {
+            buttons.add(
+                applicationButton(
+                    caption = getText("page.home.button.contact"),
+                    icon = Theme.ICON_CONTACT,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "contact")
+                    )
+                )
+            )
+        }
 
         return buttons
     }
