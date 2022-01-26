@@ -138,9 +138,10 @@
               },
               "children": [
                 {
-                  "type": "Row",
+                  "type": "Wrap",
                   "attributes": {
-                    "mainAxisAlignment": "spaceAround"
+                    "spacing": 10.0,
+                    "runSpacing": 10.0
                   },
                   "children": [
                     {
