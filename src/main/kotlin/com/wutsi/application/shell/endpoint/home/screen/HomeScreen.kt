@@ -8,6 +8,7 @@ import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.Avatar
+import com.wutsi.application.shared.ui.TransactionListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -32,7 +33,6 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
-import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.AccountSummary
@@ -45,12 +45,10 @@ import com.wutsi.platform.payment.dto.TransactionSummary
 import com.wutsi.platform.tenant.dto.Tenant
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.i18n.LocaleContextHolder
+import org.springframework.context.MessageSource
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
-import java.time.format.DateTimeFormatter
 
 @RestController
 @RequestMapping("/")
@@ -62,6 +60,7 @@ class HomeScreen(
     private val togglesProvider: TogglesProvider,
     private val accountApi: WutsiAccountApi,
     private val sharedUIMapper: SharedUIMapper,
+    private val messageSource: MessageSource,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
@@ -381,7 +380,23 @@ class HomeScreen(
         return Flexible(
             child = ListView(
                 separator = true,
-                children = txs.map { toListItem(it, accounts, paymentMethods, tenant) }
+                children = txs.map {
+                    TransactionListItem(
+                        model = sharedUIMapper.toTransactionModel(
+                            obj = it,
+                            tenant = tenant,
+                            tenantProvider = tenantProvider,
+                            messageSource = messageSource,
+                            paymentMethod = it.paymentMethodToken?.let { paymentMethods[it] },
+                            currentUserId = securityContext.currentAccountId(),
+                            accounts = accounts
+                        ),
+                        action = Action(
+                            type = Route,
+                            url = urlBuilder.build(cashUrl, "transaction?id=${it.id}")
+                        )
+                    )
+                }
             )
         )
     }
@@ -431,157 +446,6 @@ class HomeScreen(
                 limit = accountIds.size
             )
         ).accounts.map { it.id to it }.toMap()
-    }
-
-    private fun toListItem(
-        tx: TransactionSummary,
-        accounts: Map<Long, AccountSummary>,
-        paymentMethods: Map<String, PaymentMethodSummary>,
-        tenant: Tenant
-    ): WidgetAware =
-        Container(
-            padding = 10.0,
-            child = Row(
-                crossAxisAlignment = CrossAxisAlignment.start,
-                mainAxisAlignment = MainAxisAlignment.start,
-                children = listOf(
-                    Flexible(
-                        flex = 8,
-                        child = Container(
-                            alignment = Alignment.TopLeft,
-                            child = caption(tx, accounts, paymentMethods),
-                            padding = 5.0,
-                        ),
-                    ),
-                    Flexible(
-                        flex = 4,
-                        child = Container(
-                            alignment = Alignment.TopRight,
-                            child = amount(tx, tenant),
-                            padding = 5.0,
-                        ),
-                    ),
-                )
-            )
-        )
-
-    private fun caption(
-        tx: TransactionSummary,
-        accounts: Map<Long, AccountSummary>,
-        paymentMethods: Map<String, PaymentMethodSummary>
-    ): WidgetAware {
-        val children = mutableListOf<WidgetAware>(
-            Text(
-                caption = toCaption1(tx)
-            ),
-        )
-
-        val caption2 = toCaption2(tx, accounts, paymentMethods)
-        if (caption2 != null) {
-            children.add(
-                Text(caption = caption2, color = Theme.COLOR_GRAY)
-            )
-        }
-
-        if (tx.status != "SUCCESSFUL") {
-            children.add(
-                Text(
-                    caption = getText("transaction.status.${tx.status}"),
-                    bold = true,
-                    color = toColor(tx),
-                    size = Theme.TEXT_SIZE_SMALL
-                )
-            )
-        }
-        return Column(
-            mainAxisAlignment = MainAxisAlignment.spaceBetween,
-            crossAxisAlignment = CrossAxisAlignment.start,
-            children = children,
-        )
-    }
-
-    private fun amount(tx: TransactionSummary, tenant: Tenant): WidgetAware {
-        val moneyFormat = DecimalFormat(tenant.monetaryFormat)
-        val locale = LocaleContextHolder.getLocale()
-        val dateFormat = DateTimeFormatter.ofPattern(tenant.dateFormat, locale)
-        return Column(
-            mainAxisAlignment = MainAxisAlignment.spaceBetween,
-            crossAxisAlignment = CrossAxisAlignment.end,
-            children = listOf(
-                Text(
-                    caption = moneyFormat.format(toDisplayAmount(tx)),
-                    bold = true,
-                    color = toColor(tx),
-                    alignment = TextAlignment.Right
-                ),
-                Text(
-                    caption = tx.created.format(dateFormat),
-                    size = Theme.TEXT_SIZE_SMALL,
-                    alignment = TextAlignment.Right
-                )
-            ),
-        )
-    }
-
-    private fun toDisplayAmount(tx: TransactionSummary): Double {
-        val amount = if (tx.recipientId == securityContext.currentAccountId())
-            tx.net
-        else
-            tx.amount
-
-        return when (tx.type.uppercase()) {
-            "CASHOUT" -> -amount
-            "CASHIN" -> amount
-            else -> if (tx.recipientId == securityContext.currentAccountId())
-                amount
-            else
-                -amount
-        }
-    }
-
-    private fun toColor(tx: TransactionSummary): String =
-        when (tx.status.uppercase()) {
-            "FAILED" -> Theme.COLOR_DANGER
-            "PENDING" -> Theme.COLOR_WARNING
-            else -> when (tx.type.uppercase()) {
-                "CASHIN" -> Theme.COLOR_SUCCESS
-                "CASHOUT" -> Theme.COLOR_DANGER
-                else -> if (tx.recipientId == securityContext.currentAccountId())
-                    Theme.COLOR_SUCCESS
-                else
-                    Theme.COLOR_DANGER
-            }
-        }
-
-    private fun toCaption1(
-        tx: TransactionSummary
-    ): String {
-        if (tx.type == "CASHIN") {
-            return getText("page.home.cashin.caption")
-        } else if (tx.type == "CASHOUT") {
-            return getText("page.home.cashout.caption")
-        } else if (tx.type == "PAYMENT") {
-            return getText("page.home.payment.caption")
-        } else {
-            return if (tx.accountId == securityContext.currentAccountId())
-                getText("page.home.transfer.to.caption")
-            else
-                getText("page.home.transfer.from.caption")
-        }
-    }
-
-    private fun toCaption2(
-        tx: TransactionSummary,
-        accounts: Map<Long, AccountSummary>,
-        paymentMethods: Map<String, PaymentMethodSummary>
-    ): String? {
-        if (tx.type == "CASHIN" || tx.type == "CASHOUT") {
-            val paymentMethod = paymentMethods[tx.paymentMethodToken]
-            return getPhoneNumber(paymentMethod)
-        } else {
-            val account = getAccount(tx, accounts)
-            return account?.displayName
-        }
     }
 
     private fun getPhoneNumber(paymentMethod: PaymentMethodSummary?): String =
