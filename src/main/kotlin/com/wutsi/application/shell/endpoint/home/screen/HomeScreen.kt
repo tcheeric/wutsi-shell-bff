@@ -252,7 +252,7 @@ class HomeScreen(
     private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (togglesProvider.isPaymentEnabled(me)) {
+        if (togglesProvider.isPaymentEnabled(me))
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.payment"),
@@ -263,8 +263,8 @@ class HomeScreen(
                     )
                 )
             )
-        }
-        if (togglesProvider.isContactEnabled()) {
+
+        if (togglesProvider.isContactEnabled())
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.contact"),
@@ -275,7 +275,18 @@ class HomeScreen(
                     )
                 )
             )
-        }
+
+        if (togglesProvider.isFeedbackEnabled())
+            buttons.add(
+                applicationButton(
+                    caption = getText("page.home.button.feedback"),
+                    icon = Theme.ICON_FEEDBACK,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build("feedback")
+                    )
+                )
+            )
 
         return buttons
     }
