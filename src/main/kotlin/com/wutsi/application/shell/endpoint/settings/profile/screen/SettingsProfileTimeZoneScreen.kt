@@ -36,9 +36,11 @@ class SettingsProfileTimeZoneScreen(
             DropdownMenuItem("", "")
         )
         items.addAll(
-            TimeZone.getAvailableIDs().map {
-                DropdownMenuItem(it, it)
-            }.sortedBy { it.caption }
+            TimeZone.getAvailableIDs()
+                .filter { it.contains("/") }
+                .map {
+                    DropdownMenuItem(it, it)
+                }.sortedBy { it.caption }
         )
 
         return Screen(
