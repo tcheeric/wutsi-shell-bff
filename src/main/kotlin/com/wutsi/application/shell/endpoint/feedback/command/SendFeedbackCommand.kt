@@ -71,7 +71,10 @@ class SendFeedbackCommand(
                     subject = "User Feedback",
                     body = """
                         ${request.message}
+
+
                         --------------------------------------
+
                         User: ${user.id} - ${user.displayName}
                         Device-ID: ${tracingContext.deviceId()}
                         Trace-ID: ${tracingContext.traceId()}
