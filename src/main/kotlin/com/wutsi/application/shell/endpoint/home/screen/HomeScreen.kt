@@ -388,6 +388,7 @@ class HomeScreen(
 
         val accounts = findAccounts(txs)
         val paymentMethods = findPaymentMethods()
+        val account = securityContext.currentAccount()
         return Flexible(
             child = ListView(
                 separator = true,
@@ -399,7 +400,7 @@ class HomeScreen(
                             tenantProvider = tenantProvider,
                             messageSource = messageSource,
                             paymentMethod = it.paymentMethodToken?.let { paymentMethods[it] },
-                            currentUserId = securityContext.currentAccountId(),
+                            currentUser = account,
                             accounts = accounts
                         ),
                         action = Action(

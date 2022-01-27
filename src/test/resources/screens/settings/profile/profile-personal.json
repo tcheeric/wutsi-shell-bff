@@ -106,6 +106,27 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/profile/city"
               }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "Timezone",
+                "subCaption": "Africa/Douala",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile/timezone"
+              }
             }
           ]
         }

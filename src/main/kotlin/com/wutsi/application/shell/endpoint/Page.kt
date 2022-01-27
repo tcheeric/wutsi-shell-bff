@@ -20,6 +20,7 @@ object Page {
     const val SETTINGS_PROFILE_STREET = "page.settings.profile.street"
     const val SETTINGS_PROFILE_LANGUAGE = "page.settings.profile.language"
     const val SETTINGS_PROFILE_NAME = "page.settings.profile.name"
+    const val SETTINGS_PROFILE_TIMEZONE = "page.settings.profile.timezone"
     const val SETTINGS_PROFILE_WEBSITE = "page.settings.profile.website"
     const val SETTINGS_PROFILE_WHATSAPP = "page.settings.profile.whatsapp"
     const val SETTINGS_SECURITY = "page.settings.security"

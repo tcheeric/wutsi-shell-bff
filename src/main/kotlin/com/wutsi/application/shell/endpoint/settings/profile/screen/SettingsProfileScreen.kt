@@ -65,6 +65,11 @@ class SettingsProfileScreen(
                     sharedUIMapper.toLocationText(city, account.country),
                     "settings/profile/city"
                 ),
+                listItem(
+                    "page.settings.profile.attribute.timezone",
+                    account.timezoneId,
+                    "settings/profile/timezone"
+                ),
             )
         )
 
