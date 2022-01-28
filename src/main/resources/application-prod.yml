@@ -14,10 +14,3 @@ wutsi:
       type: aws
       aws:
         bucket: int-wutsi
-  toggles:
-    send-sms-code: true
-    verify-sms-code: true
-    account: false
-    logout: false
-    test-user-ids: [ ]
-    test-phone-numbers: [ ]
