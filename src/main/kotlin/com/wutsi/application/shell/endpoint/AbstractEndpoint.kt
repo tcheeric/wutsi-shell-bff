@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
-import org.springframework.web.bind.annotation.ExceptionHandler
 import java.net.URLEncoder
 
 abstract class AbstractEndpoint {
@@ -22,10 +21,6 @@ abstract class AbstractEndpoint {
 
     @Autowired
     private lateinit var phoneNumberUtil: PhoneNumberUtil
-
-    @ExceptionHandler(Throwable::class)
-    fun onThrowable(ex: Throwable): Action =
-        createErrorAction(ex, "prompt.error.unexpected-error")
 
     protected fun createErrorAction(e: Throwable?, messageKey: String): Action {
         val action = Action(
