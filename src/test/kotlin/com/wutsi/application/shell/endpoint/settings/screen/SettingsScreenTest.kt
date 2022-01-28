@@ -40,6 +40,12 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun catalogEnabled() {
+        doReturn(true).whenever(togglesProvider).isCatalogEnabled()
+        assertEndpointEquals("/screens/settings/settings-catalog-enabled.json", url)
+    }
+
+    @Test
     fun logoutEnabled() {
         doReturn(true).whenever(togglesProvider).isLogoutEnabled()
         assertEndpointEquals("/screens/settings/settings-logout-enabled.json", url)

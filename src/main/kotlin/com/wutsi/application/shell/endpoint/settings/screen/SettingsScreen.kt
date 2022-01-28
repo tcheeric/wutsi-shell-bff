@@ -42,7 +42,8 @@ class SettingsScreen(
     private val securityContext: SecurityContext,
     private val togglesProvider: TogglesProvider,
 
-    @Value("\${wutsi.application.login-url}") private val loginUrl: String
+    @Value("\${wutsi.application.login-url}") private val loginUrl: String,
+    @Value("\${wutsi.application.catalog-url}") private val catalogUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(
@@ -104,7 +105,7 @@ class SettingsScreen(
             ),
         )
 
-        if (togglesProvider.isAccountEnabled()) {
+        if (togglesProvider.isAccountEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.account.caption",
@@ -114,7 +115,17 @@ class SettingsScreen(
                     "settings/account"
                 ),
             )
-        }
+
+        if (togglesProvider.isCatalogEnabled())
+            children.add(
+                listItem(
+                    "page.settings.listitem.store.caption",
+                    "page.settings.listitem.store.subcaption",
+                    Theme.ICON_STORE,
+                    Theme.COLOR_PRIMARY,
+                    urlBuilder.build(catalogUrl, "settings/catalog")
+                ),
+            )
 
         children.addAll(
             listOf(

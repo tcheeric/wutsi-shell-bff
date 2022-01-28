@@ -66,6 +66,6 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
     @Test
     fun index() {
         // THEN
-        assertEndpointEquals("/screens/settings/account.json", url)
+        assertEndpointEquals("/screens/settings/accounts/account.json", url)
     }
 }
