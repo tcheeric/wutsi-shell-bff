@@ -45,6 +45,5 @@ class UpdateProfileAttributeCommand(
                     replacement = name == "business"
                 )
             )
-
     }
 }

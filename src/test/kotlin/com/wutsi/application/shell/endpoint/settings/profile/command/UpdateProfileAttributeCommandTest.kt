@@ -50,7 +50,6 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "business", UpdateAccountAttributeRequest(request.value))
     }
 
-
     @Test
     fun language() {
         // GIVEN
