@@ -7,6 +7,8 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
+import org.springframework.http.HttpHeaders
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -21,7 +23,7 @@ class UpdateProfileAttributeCommand(
     private val urlBuilder: URLBuilder,
 ) : AbstractCommand() {
     @PostMapping
-    fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): Action {
+    fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): ResponseEntity<Action> {
         accountApi.updateAccountAttribute(
             id = securityContext.currentAccountId(),
             name = name,
@@ -29,10 +31,20 @@ class UpdateProfileAttributeCommand(
                 value = request.value
             )
         )
-        return Action(
-            type = ActionType.Route,
-            url = if (name == "business") urlBuilder.build("settings/profile") else "route:/..",
-            replacement = name == "business"
-        )
+
+        val headers = HttpHeaders()
+        if (name == "language")
+            headers["x-language"] = request.value
+        return ResponseEntity
+            .ok()
+            .headers(headers)
+            .body(
+                Action(
+                    type = ActionType.Route,
+                    url = if (name == "business") urlBuilder.build("settings/profile") else "route:/..",
+                    replacement = name == "business"
+                )
+            )
+
     }
 }

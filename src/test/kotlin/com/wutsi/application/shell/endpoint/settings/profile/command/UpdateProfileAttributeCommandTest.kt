@@ -49,4 +49,24 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "business", UpdateAccountAttributeRequest(request.value))
     }
+
+
+    @Test
+    fun language() {
+        // GIVEN
+        val request = UpdateAccountAttributeRequest(value = "en")
+        val url = "http://localhost:$port/commands/update-profile-attribute?name=language"
+        val response = rest.postForEntity(url, request, Action::class.java)
+
+        // THEN
+        assertEquals(200, response.statusCodeValue)
+        val action = response.body
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("route:/..", action.url)
+        assertEquals(false, action.replacement)
+
+        assertEquals(true, response.headers["x-language"]?.contains("en"))
+
+        verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "language", UpdateAccountAttributeRequest(request.value))
+    }
 }
