@@ -43,7 +43,7 @@ class SettingsScreen(
     private val togglesProvider: TogglesProvider,
 
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
-    @Value("\${wutsi.application.catalog-url}") private val catalogUrl: String,
+    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(
@@ -101,7 +101,7 @@ class SettingsScreen(
                 "page.settings.listitem.personal.subcaption",
                 Theme.ICON_VERIFIED_USER,
                 Theme.COLOR_PRIMARY,
-                "settings/profile"
+                urlBuilder.build("settings/profile")
             ),
         )
 
@@ -112,7 +112,7 @@ class SettingsScreen(
                     "page.settings.listitem.account.subcaption",
                     Theme.ICON_MONEY,
                     Theme.COLOR_SUCCESS,
-                    "settings/account"
+                    urlBuilder.build("settings/account")
                 ),
             )
 
@@ -123,7 +123,7 @@ class SettingsScreen(
                     "page.settings.listitem.store.subcaption",
                     Theme.ICON_STORE,
                     Theme.COLOR_PRIMARY,
-                    urlBuilder.build(catalogUrl, "settings/catalog")
+                    urlBuilder.build(storeUrl, "settings/store")
                 ),
             )
 
@@ -134,14 +134,14 @@ class SettingsScreen(
                     "page.settings.listitem.security.subcaption",
                     Theme.ICON_LOCK,
                     Theme.COLOR_DANGER,
-                    "settings/security"
+                    urlBuilder.build("settings/security")
                 ),
                 listItem(
                     "page.settings.listitem.about.caption",
                     null,
                     Theme.ICON_INFO,
                     Theme.COLOR_PRIMARY,
-                    "settings/about"
+                    urlBuilder.build("settings/about")
                 ),
             )
         )
@@ -180,7 +180,7 @@ class SettingsScreen(
         ),
         action = Action(
             type = Route,
-            url = urlBuilder.build(url)
+            url = url
         )
     )
 

@@ -149,7 +149,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "http://localhost:0/https://wutsi-gateway-test.herokuapp.com/catalog/settings/catalog"
+                "url": "https://wutsi-gateway-test.herokuapp.com/store/settings/store"
               }
             },
             {
