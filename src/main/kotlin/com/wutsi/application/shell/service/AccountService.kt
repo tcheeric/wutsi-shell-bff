@@ -6,7 +6,6 @@ import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
-import com.wutsi.application.shell.endpoint.settings.profile.dto.UpdateProfileRequest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
 import com.wutsi.application.shell.endpoint.settings.security.dto.UpdateAccountAttributeRequest
 import com.wutsi.application.shell.entity.SmsCodeEntity
@@ -19,7 +18,6 @@ import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.AddPaymentMethodRequest
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SavePasswordRequest
-import com.wutsi.platform.account.dto.UpdateAccountRequest
 import com.wutsi.platform.core.logging.KVLogger
 import com.wutsi.platform.core.tracing.DeviceIdProvider
 import com.wutsi.platform.payment.PaymentMethodProvider
@@ -143,17 +141,6 @@ class AccountService(
             name = "transfer-secured",
             request = com.wutsi.platform.account.dto.UpdateAccountAttributeRequest(
                 value = request.value
-            )
-        )
-    }
-
-    fun updateProfile(request: UpdateProfileRequest) {
-        accountApi.updateAccount(
-            id = currentUserId(),
-            request = UpdateAccountRequest(
-                displayName = request.displayName,
-                language = request.language,
-                country = request.country
             )
         )
     }
