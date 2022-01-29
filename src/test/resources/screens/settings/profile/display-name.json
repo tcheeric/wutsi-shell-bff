@@ -50,7 +50,7 @@
                 "enabled": true,
                 "readOnly": false,
                 "type": "Text",
-                "maxLength": 100,
+                "maxLength": 50,
                 "minLength": 0
               },
               "children": []

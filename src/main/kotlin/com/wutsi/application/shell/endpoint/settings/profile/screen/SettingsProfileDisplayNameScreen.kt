@@ -22,7 +22,7 @@ class SettingsProfileDisplayNameScreen(
     override fun getInputWidget(account: Account): WidgetAware = Input(
         name = "value",
         value = account.displayName,
-        maxLength = 100,
+        maxLength = 50,
         required = true
     )
 }
