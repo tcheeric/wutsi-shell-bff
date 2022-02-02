@@ -125,25 +125,31 @@ class HomeScreen(
         val txs = findRecentTransactions(20)
         val userId = securityContext.currentAccountId()
         if (txs.isNotEmpty()) {
-            val recipientIds = txs
-                .map { it.recipientId }
-                .filterNotNull()
-                .filter { it != userId }
-                .toSet()
-                .take(3)
-            if (recipientIds.isNotEmpty()) {
-                val recipients = findRecipients(recipientIds.toList())
-                children.addAll(
-                    listOf(
-                        Container(
-                            padding = 5.0,
-                            child = Text(getText("page.home.send_to"), bold = true),
-                        ),
-                        recipientsWidget(recipients),
-                        Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+
+            // Recipients - for non business accounts
+            if (!me.business) {
+                val recipientIds = txs
+                    .map { it.recipientId }
+                    .filterNotNull()
+                    .filter { it != userId }
+                    .toSet()
+                    .take(3)
+                if (recipientIds.isNotEmpty()) {
+                    val recipients = findRecipients(recipientIds.toList())
+                    children.addAll(
+                        listOf(
+                            Container(
+                                padding = 5.0,
+                                child = Text(getText("page.home.send_to"), bold = true),
+                            ),
+                            recipientsWidget(recipients),
+                            Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
+                        )
                     )
-                )
+                }
             }
+
+            // Recent transactions
             children.addAll(
                 listOf(
                     Container(
