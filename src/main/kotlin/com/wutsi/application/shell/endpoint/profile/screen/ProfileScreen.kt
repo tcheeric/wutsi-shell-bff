@@ -87,17 +87,17 @@ class ProfileScreen(
                             Container(
                                 padding = 4.0,
                                 child = CircleAvatar(
-                                    radius = 16.0,
+                                    radius = 20.0,
                                     backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
                                     child = IconButton(
                                         icon = Theme.ICON_CHAT,
-                                        size = 16.0
-                                    )
+                                        size = 20.0,
+                                        action = Action(
+                                            type = ActionType.Navigate,
+                                            url = it,
+                                        )
+                                    ),
                                 ),
-                                action = Action(
-                                    type = ActionType.Navigate,
-                                    url = it,
-                                )
                             )
                         }
                     else
@@ -107,17 +107,17 @@ class ProfileScreen(
                         Container(
                             padding = 4.0,
                             child = CircleAvatar(
-                                radius = 16.0,
+                                radius = 20.0,
                                 backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
                                 child = IconButton(
                                     icon = Theme.ICON_ADD_PERSON,
-                                    size = 16.0
-                                )
+                                    size = 20.0,
+                                    action = Action(
+                                        type = ActionType.Command,
+                                        url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
+                                    )
+                                ),
                             ),
-                            action = Action(
-                                type = ActionType.Command,
-                                url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
-                            )
                         )
                     else
                         null,

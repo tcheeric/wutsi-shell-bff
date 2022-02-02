@@ -250,7 +250,7 @@
             {
               "type": "CircleAvatar",
               "attributes": {
-                "radius": 16.0,
+                "radius": 20.0,
                 "backgroundColor": "#e4edf7"
               },
               "children": [
@@ -258,17 +258,17 @@
                   "type": "IconButton",
                   "attributes": {
                     "icon": "e153",
-                    "size": 16.0
+                    "size": 20.0
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Navigate",
+                    "url": "https://wa.me/23500000000"
+                  }
                 }
               ]
             }
-          ],
-          "action": {
-            "type": "Navigate",
-            "url": "https://wa.me/23500000000"
-          }
+          ]
         },
         {
           "type": "Container",
@@ -279,7 +279,7 @@
             {
               "type": "CircleAvatar",
               "attributes": {
-                "radius": 16.0,
+                "radius": 20.0,
                 "backgroundColor": "#e4edf7"
               },
               "children": [
@@ -287,17 +287,17 @@
                   "type": "IconButton",
                   "attributes": {
                     "icon": "eb8b",
-                    "size": 16.0
+                    "size": 20.0
                   },
-                  "children": []
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+                  }
                 }
               ]
             }
-          ],
-          "action": {
-            "type": "Command",
-            "url": "http://localhost:0/commands/add-contact?contact-id=5555"
-          }
+          ]
         }
       ]
     },
