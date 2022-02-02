@@ -84,33 +84,40 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(SearchTransactionResponse()).whenever(paymentApi).searchTransaction(any())
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
-        assertEndpointEquals("/screens/home-empty.json", url)
+        assertEndpointEquals("/screens/home/home-empty.json", url)
     }
 
     @Test
     fun home() {
-        assertEndpointEquals("/screens/home.json", url)
+        assertEndpointEquals("/screens/home/home.json", url)
     }
 
     @Test
-    fun homeAccountEnabled() {
+    fun accountEnabled() {
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
 
-        assertEndpointEquals("/screens/home-account-enabled.json", url)
+        assertEndpointEquals("/screens/home/home-account-enabled.json", url)
     }
 
     @Test
-    fun homeContactEnabled() {
+    fun contactEnabled() {
         doReturn(true).whenever(togglesProvider).isContactEnabled()
 
-        assertEndpointEquals("/screens/home-contact-enabled.json", url)
+        assertEndpointEquals("/screens/home/home-contact-enabled.json", url)
     }
 
     @Test
-    fun homeFeedbackEnabled() {
+    fun feedbackEnabled() {
         doReturn(true).whenever(togglesProvider).isFeedbackEnabled()
 
-        assertEndpointEquals("/screens/home-feedback-enabled.json", url)
+        assertEndpointEquals("/screens/home/home-feedback-enabled.json", url)
+    }
+
+    @Test
+    fun storeEnabled() {
+        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+
+        assertEndpointEquals("/screens/home/home-store-enabled.json", url)
     }
 
     private fun createTransferTransactionSummary(

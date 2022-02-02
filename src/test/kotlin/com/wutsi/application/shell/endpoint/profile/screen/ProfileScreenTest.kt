@@ -8,10 +8,13 @@ import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.Phone
+import com.wutsi.platform.catalog.WutsiCatalogApi
+import com.wutsi.platform.catalog.dto.PictureSummary
+import com.wutsi.platform.catalog.dto.ProductSummary
+import com.wutsi.platform.catalog.dto.SearchProductResponse
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactResponse
 import org.junit.jupiter.api.Test
-import org.mockito.Mock
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
@@ -24,8 +27,11 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @MockBean
     private lateinit var contactApi: WutsiContactApi
 
-    @Mock
+    @MockBean
     private lateinit var togglesProvider: TogglesProvider
+
+    @MockBean
+    private lateinit var catalogApi: WutsiCatalogApi
 
     @Test
     fun personal() {
@@ -56,30 +62,34 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun businessStoreEnabled() {
+        // GIVEN
+        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
+        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+
+        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
+
+        val products = listOf(createProductSummary(1), createProductSummary(2))
+        doReturn(SearchProductResponse(products)).whenever(catalogApi).searchProduct(any())
+
+        val account = createAccount(5555, true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+
+        // WHEN
+        val url = "http://localhost:$port/profile?id=555"
+        val response = rest.postForEntity(url, null, Any::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/profile/business-store-enabled.json", response.body)
+    }
+
+    @Test
     fun business() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
-        val account = Account(
-            id = 5555,
-            displayName = "Ray Sponsible",
-            country = "CM",
-            language = "en",
-            status = "ACTIVE",
-            phone = Phone(
-                id = 1,
-                number = "+1237666666666",
-                country = "CM"
-            ),
-            pictureUrl = "https://img.com/1.png",
-            business = true,
-            retail = true,
-            biography = "This is my bio",
-            categoryId = 1000L,
-            website = "https://my.business.com/12432",
-            whatsapp = "+23500000000"
-        )
+        val account = createAccount(5555, true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
         // WHEN
@@ -89,4 +99,36 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         // THEN
         assertJsonEquals("/screens/profile/business.json", response.body)
     }
+
+    private fun createAccount(id: Long, business: Boolean) = Account(
+        id = id,
+        displayName = "Ray Sponsible",
+        country = "CM",
+        language = "en",
+        status = "ACTIVE",
+        phone = Phone(
+            id = 1,
+            number = "+1237666666666",
+            country = "CM"
+        ),
+        pictureUrl = "https://img.com/1.png",
+        business = business,
+        retail = true,
+        biography = "This is my bio",
+        categoryId = 1000L,
+        website = "https://my.business.com/12432",
+        whatsapp = "+23500000000"
+    )
+
+    protected fun createProductSummary(id: Long) = ProductSummary(
+        id = id,
+        title = "Sample product",
+        summary = "Summary of product",
+        price = 7000.0,
+        comparablePrice = 10000.0,
+        thumbnail = PictureSummary(
+            id = 3,
+            url = "https://www.imag.com/$id.png"
+        )
+    )
 }

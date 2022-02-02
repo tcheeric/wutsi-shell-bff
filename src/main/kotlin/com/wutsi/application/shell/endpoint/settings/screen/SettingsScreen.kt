@@ -116,7 +116,7 @@ class SettingsScreen(
                 ),
             )
 
-        if (togglesProvider.isCatalogEnabled())
+        if (togglesProvider.isStoreEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.store.caption",

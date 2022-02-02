@@ -63,6 +63,7 @@ class HomeScreen(
     private val messageSource: MessageSource,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
+    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(HomeScreen::class.java)
@@ -109,19 +110,20 @@ class HomeScreen(
         val applications = applicationButtons(me)
         if (applications.isNotEmpty()) {
             children.addAll(
-                listOf(
-                    Container(
-                        child = Row(
-                            mainAxisAlignment = spaceAround,
-                            children = applications,
+                toRows(applications, 4)
+                    .map {
+                        Container(
+                            child = Row(
+                                children = it,
+                                mainAxisAlignment = spaceAround
+                            )
                         )
-                    ),
-                    Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
-                )
+                    }
             )
+            children.add(Divider(color = Theme.COLOR_DIVIDER, height = 1.0))
         }
 
-        // Recipients and Transactions
+        // Recipients + Transactions
         val txs = findRecentTransactions(20)
         val userId = securityContext.currentAccountId()
         if (txs.isNotEmpty()) {
@@ -149,7 +151,7 @@ class HomeScreen(
                 }
             }
 
-            // Recent transactions
+            // Transactions
             children.addAll(
                 listOf(
                     Container(
@@ -258,6 +260,18 @@ class HomeScreen(
     private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
+        if (togglesProvider.isStoreEnabled())
+            buttons.add(
+                applicationButton(
+                    caption = getText("page.home.button.store"),
+                    icon = Theme.ICON_STORE,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(storeUrl, "catalog")
+                    )
+                )
+            )
+
         if (togglesProvider.isPaymentEnabled(me))
             buttons.add(
                 applicationButton(
@@ -302,7 +316,7 @@ class HomeScreen(
         caption = caption,
         icon = icon,
         stretched = false,
-        color = Theme.COLOR_BLACK,
+        color = Theme.COLOR_PRIMARY,
         iconColor = Theme.COLOR_PRIMARY,
         padding = 1.0,
         action = action
@@ -466,14 +480,18 @@ class HomeScreen(
         ).accounts.map { it.id to it }.toMap()
     }
 
-    private fun getPhoneNumber(paymentMethod: PaymentMethodSummary?): String =
-        formattedPhoneNumber(paymentMethod?.phone?.number, paymentMethod?.phone?.country)
-            ?: paymentMethod?.maskedNumber
-            ?: ""
-
-    private fun getAccount(tx: TransactionSummary, accounts: Map<Long, AccountSummary>): AccountSummary? =
-        if (tx.accountId == securityContext.currentAccountId())
-            accounts[tx.recipientId]
-        else
-            accounts[tx.accountId]
+    private fun toRows(products: List<WidgetAware>, size: Int): List<List<WidgetAware>> {
+        val rows = mutableListOf<List<WidgetAware>>()
+        var cur = mutableListOf<WidgetAware>()
+        products.forEach {
+            cur.add(it)
+            if (cur.size == size) {
+                rows.add(cur)
+                cur = mutableListOf()
+            }
+        }
+        if (cur.isNotEmpty())
+            rows.add(cur)
+        return rows
+    }
 }

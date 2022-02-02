@@ -4,8 +4,10 @@ import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.PhoneUtil
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
+import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
+import com.wutsi.application.shared.ui.ProductCard
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -16,18 +18,27 @@ import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
+import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.SingleChildScrollView
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.catalog.WutsiCatalogApi
+import com.wutsi.platform.catalog.dto.SearchProductRequest
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
+import com.wutsi.platform.tenant.dto.Tenant
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -40,16 +51,28 @@ class ProfileScreen(
     private val urlBuilder: URLBuilder,
     private val accountApi: WutsiAccountApi,
     private val contactApi: WutsiContactApi,
+    private val catalogApi: WutsiCatalogApi,
     private val securityContext: SecurityContext,
     private val sharedUIMapper: SharedUIMapper,
     private val togglesProvider: TogglesProvider,
+    private val tenantProvider: TenantProvider,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
+    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
 
     @PostMapping
     fun index(@RequestParam id: Long): Widget {
         val user = accountApi.getAccount(id).account
+        val tenant = tenantProvider.get()
+        val children = mutableListOf<WidgetAware>(
+            ProfileCard(
+                model = sharedUIMapper.toAccountModel(user)
+            )
+        )
+        addButtons(user, children)
+        addProducts(user, tenant, 2, children)
+
         return Screen(
             id = Page.PROFILE,
             backgroundColor = Theme.COLOR_WHITE,
@@ -100,45 +123,34 @@ class ProfileScreen(
                         null,
                 )
             ),
-            child = Column(
-                mainAxisAlignment = MainAxisAlignment.start,
-                crossAxisAlignment = CrossAxisAlignment.start,
-                children = listOf(
-                    ProfileCard(
-                        model = sharedUIMapper.toAccountModel(user)
-                    ),
-                    Divider(color = Theme.COLOR_DIVIDER),
-                    buttons(user)
+            child = SingleChildScrollView(
+                child = Column(
+                    children = children,
+                    mainAxisAlignment = MainAxisAlignment.start,
+                    crossAxisAlignment = CrossAxisAlignment.start,
                 )
             )
         ).toWidget()
     }
 
-    private fun buttons(user: Account): WidgetAware {
-        val buttons = mutableListOf<WidgetAware>()
-
+    private fun addButtons(user: Account, children: MutableList<WidgetAware>) {
         if (!user.business)
-            buttons.add(
-                Button(
-                    type = ButtonType.Outlined,
-                    caption = getText("page.profile.button.send"),
-                    action = Action(
-                        type = ActionType.Route,
-                        url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
-                    ),
-                )
-            )
-
-        return Container(
-            child = Column(
-                children = buttons.map {
+            children.addAll(
+                listOf(
+                    Divider(color = Theme.COLOR_DIVIDER),
                     Container(
                         padding = 10.0,
-                        child = it
+                        child = Button(
+                            type = ButtonType.Outlined,
+                            caption = getText("page.profile.button.send"),
+                            action = Action(
+                                type = ActionType.Route,
+                                url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
+                            ),
+                        )
                     )
-                }
+                )
             )
-        )
     }
 
     private fun canAddContact(user: Account): Boolean =
@@ -150,4 +162,59 @@ class ProfileScreen(
                     contactIds = listOf(user.id)
                 )
             ).contacts.isEmpty()
+
+    private fun addProducts(user: Account, tenant: Tenant, limit: Int, children: MutableList<WidgetAware>) {
+        if (!togglesProvider.isStoreEnabled())
+            return
+
+        val products = catalogApi.searchProduct(
+            request = SearchProductRequest(
+                accountId = user.id,
+                limit = limit
+            )
+        ).products
+        if (products.isEmpty())
+            return
+
+        children.addAll(
+            listOf(
+                Divider(color = Theme.COLOR_DIVIDER),
+                Container(
+                    alignment = Alignment.TopLeft,
+                    child = Column(
+                        children = listOf(
+                            Row(
+                                children = products.map {
+                                    Flexible(
+                                        child = ProductCard(
+                                            model = sharedUIMapper.toProductModel(it, tenant)
+                                        )
+                                    )
+                                }
+                            ),
+                        )
+                    )
+                ),
+                Container(
+                    child = Row(
+                        mainAxisAlignment = MainAxisAlignment.end,
+                        children = listOf(
+                            Container(
+                                padding = 10.0,
+                                child = Text(
+                                    caption = getText("page.profile.more-products"),
+                                    color = Theme.COLOR_PRIMARY,
+                                    decoration = TextDecoration.Underline
+                                ),
+                                action = Action(
+                                    type = ActionType.Route,
+                                    url = urlBuilder.build(storeUrl, "catalog?id=${user.id}")
+                                ),
+                            )
+                        )
+                    ),
+                ),
+            )
+        )
+    }
 }
