@@ -113,35 +113,35 @@
             {
               "type": "Container",
               "attributes": {
-                "alignment": "Center"
+                "alignment": "Center",
+                "padding": 10.0
               },
               "children": [
                 {
-                  "type": "Button",
+                  "type": "Text",
                   "attributes": {
                     "caption": "my.business.com/12432",
-                    "padding": 10.0,
-                    "type": "Text"
+                    "color": "#1D7EDF",
+                    "decoration": "Underline"
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Navigate",
-                    "url": "https://my.business.com/12432"
-                  }
+                  "children": []
                 }
-              ]
+              ],
+              "action": {
+                "type": "Navigate",
+                "url": "https://my.business.com/12432"
+              }
             },
             {
               "type": "Container",
-              "attributes": {
-                "padding": 10.0
-              },
+              "attributes": {},
               "children": [
                 {
                   "type": "Wrap",
                   "attributes": {
                     "spacing": 10.0,
-                    "runSpacing": 10.0
+                    "runSpacing": 10.0,
+                    "direction": "Horizontal"
                   },
                   "children": [
                     {
@@ -238,50 +238,7 @@
             {
               "type": "Column",
               "attributes": {},
-              "children": [
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "+ Contacts",
-                        "padding": 15.0,
-                        "type": "Outlined"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Command",
-                        "url": "http://localhost:0/commands/add-contact?contact-id=5555"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "WhatsApp",
-                        "padding": 15.0,
-                        "type": "Outlined"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Navigate",
-                        "url": "https://wa.me/23500000000"
-                      }
-                    }
-                  ]
-                }
-              ]
+              "children": []
             }
           ]
         }
@@ -294,7 +251,67 @@
       "title": "Profile",
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF"
+      "foregroundColor": "#FFFFFF",
+      "actions": [
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 4.0
+          },
+          "children": [
+            {
+              "type": "CircleAvatar",
+              "attributes": {
+                "radius": 16.0,
+                "backgroundColor": "#e4edf7"
+              },
+              "children": [
+                {
+                  "type": "IconButton",
+                  "attributes": {
+                    "icon": "e153",
+                    "size": 16.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ],
+          "action": {
+            "type": "Navigate",
+            "url": "https://wa.me/23500000000"
+          }
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 4.0
+          },
+          "children": [
+            {
+              "type": "CircleAvatar",
+              "attributes": {
+                "radius": 16.0,
+                "backgroundColor": "#e4edf7"
+              },
+              "children": [
+                {
+                  "type": "IconButton",
+                  "attributes": {
+                    "icon": "eb8b",
+                    "size": 16.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ],
+          "action": {
+            "type": "Command",
+            "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+          }
+        }
+      ]
     },
     "children": []
   }

@@ -100,7 +100,8 @@
                   "type": "Wrap",
                   "attributes": {
                     "spacing": 10.0,
-                    "runSpacing": 10.0
+                    "runSpacing": 10.0,
+                    "direction": "Horizontal"
                   },
                   "children": [
                     {
@@ -170,27 +171,6 @@
                     {
                       "type": "Button",
                       "attributes": {
-                        "caption": "+ Contacts",
-                        "padding": 15.0,
-                        "type": "Outlined"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Command",
-                        "url": "http://localhost:0/commands/add-contact?contact-id=5555"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "Container",
-                  "attributes": {
-                    "padding": 10.0
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
                         "caption": "Send Money",
                         "padding": 15.0,
                         "type": "Outlined"
@@ -216,7 +196,38 @@
       "title": "Profile",
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF"
+      "foregroundColor": "#FFFFFF",
+      "actions": [
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 4.0
+          },
+          "children": [
+            {
+              "type": "CircleAvatar",
+              "attributes": {
+                "radius": 16.0,
+                "backgroundColor": "#e4edf7"
+              },
+              "children": [
+                {
+                  "type": "IconButton",
+                  "attributes": {
+                    "icon": "eb8b",
+                    "size": 16.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          ],
+          "action": {
+            "type": "Command",
+            "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+          }
+        }
+      ]
     },
     "children": []
   }

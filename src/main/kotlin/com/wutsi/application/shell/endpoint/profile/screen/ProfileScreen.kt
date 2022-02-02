@@ -1,6 +1,7 @@
 package com.wutsi.application.shell.endpoint.profile.screen
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.PhoneUtil
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TogglesProvider
@@ -11,9 +12,11 @@ import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
+import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
@@ -55,6 +58,47 @@ class ProfileScreen(
                 backgroundColor = Theme.COLOR_PRIMARY,
                 foregroundColor = Theme.COLOR_WHITE,
                 title = getText("page.profile.app-bar.title"),
+                actions = listOfNotNull(
+                    if (user.business && togglesProvider.isBusinessAccountEnabled())
+                        PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
+                            Container(
+                                padding = 4.0,
+                                child = CircleAvatar(
+                                    radius = 16.0,
+                                    backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                                    child = IconButton(
+                                        icon = Theme.ICON_CHAT,
+                                        size = 16.0
+                                    )
+                                ),
+                                action = Action(
+                                    type = ActionType.Navigate,
+                                    url = it,
+                                )
+                            )
+                        }
+                    else
+                        null,
+
+                    if (canAddContact(user))
+                        Container(
+                            padding = 4.0,
+                            child = CircleAvatar(
+                                radius = 16.0,
+                                backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                                child = IconButton(
+                                    icon = Theme.ICON_ADD_PERSON,
+                                    size = 16.0
+                                )
+                            ),
+                            action = Action(
+                                type = ActionType.Command,
+                                url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
+                            )
+                        )
+                    else
+                        null,
+                )
             ),
             child = Column(
                 mainAxisAlignment = MainAxisAlignment.start,
@@ -72,36 +116,6 @@ class ProfileScreen(
 
     private fun buttons(user: Account): WidgetAware {
         val buttons = mutableListOf<WidgetAware>()
-        if (canAddContact(user))
-            buttons.add(
-                Button(
-                    type = ButtonType.Outlined,
-                    caption = getText("page.profile.button.add-contact"),
-                    action = Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
-                    ),
-                )
-            )
-
-        if (user.business && togglesProvider.isBusinessAccountEnabled()) {
-            var phone = user.whatsapp
-            if (!phone.isNullOrEmpty()) {
-                if (phone.startsWith("+"))
-                    phone = phone.substring(1)
-
-                buttons.add(
-                    Button(
-                        type = ButtonType.Outlined,
-                        caption = "WhatsApp",
-                        action = Action(
-                            type = ActionType.Navigate,
-                            url = "https://wa.me/$phone"
-                        ),
-                    )
-                )
-            }
-        }
 
         if (!user.business)
             buttons.add(
