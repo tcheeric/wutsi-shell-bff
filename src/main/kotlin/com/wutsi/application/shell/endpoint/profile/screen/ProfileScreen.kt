@@ -17,6 +17,7 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
@@ -30,6 +31,7 @@ import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
+import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.platform.account.WutsiAccountApi
@@ -114,7 +116,15 @@ class ProfileScreen(
                                     size = 20.0,
                                     action = Action(
                                         type = ActionType.Command,
-                                        url = urlBuilder.build("commands/add-contact?contact-id=${user.id}")
+                                        url = urlBuilder.build("commands/add-contact?contact-id=${user.id}"),
+                                        prompt = Dialog(
+                                            type = DialogType.Confirm,
+                                            title = getText("prompt.confirm.title"),
+                                            message = getText(
+                                                "page.profile.confirm-add-contact",
+                                                arrayOf(user.displayName ?: "")
+                                            )
+                                        ).toWidget(),
                                     )
                                 ),
                             ),

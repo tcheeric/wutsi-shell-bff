@@ -494,7 +494,7 @@
                         {
                           "type": "Text",
                           "attributes": {
-                            "caption": "More...",
+                            "caption": "More Products...",
                             "color": "#1D7EDF",
                             "decoration": "Underline"
                           },
@@ -574,7 +574,16 @@
                   "children": [],
                   "action": {
                     "type": "Command",
-                    "url": "http://localhost:0/commands/add-contact?contact-id=5555"
+                    "url": "http://localhost:0/commands/add-contact?contact-id=5555",
+                    "prompt": {
+                      "type": "Dialog",
+                      "attributes": {
+                        "type": "Confirm",
+                        "title": "Confirm",
+                        "message": "Add Ray Sponsible into your contact list?"
+                      },
+                      "children": []
+                    }
                   }
                 }
               ]

@@ -594,7 +594,7 @@
   "appBar": {
     "type": "AppBar",
     "attributes": {
-      "title": "Catégory",
+      "title": "Category",
       "elevation": 0.0,
       "backgroundColor": "#FFFFFF",
       "foregroundColor": "#000000"
