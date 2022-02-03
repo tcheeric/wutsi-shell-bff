@@ -120,6 +120,15 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
+                    "caption": "Bakery",
+                    "enabled": true,
+                    "value": "1057"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
                     "caption": "Beauty, Cosmetic and Personal Care",
                     "enabled": true,
                     "value": "1004"
@@ -456,6 +465,15 @@
                     "caption": "Residence",
                     "enabled": true,
                     "value": "1048"
+                  },
+                  "children": []
+                },
+                {
+                  "type": "DropdownMenuItem",
+                  "attributes": {
+                    "caption": "Restaurant",
+                    "enabled": true,
+                    "value": "1056"
                   },
                   "children": []
                 },
