@@ -13,6 +13,7 @@
         {
           "type": "Container",
           "attributes": {
+            "alignment": "Center",
             "padding": 10.0
           },
           "children": [
@@ -39,21 +40,12 @@
           },
           "children": [
             {
-              "type": "DropdownButton",
+              "type": "SearchableDropdown",
               "attributes": {
                 "name": "value",
                 "value": "1000"
               },
               "children": [
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "",
-                    "enabled": true,
-                    "value": ""
-                  },
-                  "children": []
-                },
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {

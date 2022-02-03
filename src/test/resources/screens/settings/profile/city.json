@@ -13,6 +13,7 @@
         {
           "type": "Container",
           "attributes": {
+            "alignment": "Center",
             "padding": 10.0
           },
           "children": [
@@ -39,20 +40,11 @@
           },
           "children": [
             {
-              "type": "DropdownButton",
+              "type": "SearchableDropdown",
               "attributes": {
                 "name": "value"
               },
               "children": [
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "",
-                    "enabled": true,
-                    "value": ""
-                  },
-                  "children": []
-                },
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
@@ -1176,7 +1168,7 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/commands/update-city"
+                "url": "http://localhost:0/commands/update-profile-attribute?name=city-id"
               }
             }
           ]

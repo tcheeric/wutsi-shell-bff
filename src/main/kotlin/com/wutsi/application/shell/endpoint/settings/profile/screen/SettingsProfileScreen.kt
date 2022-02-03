@@ -61,12 +61,12 @@ class SettingsProfileScreen(
                 ),
                 listItem("page.settings.profile.attribute.street", account.street, "settings/profile/street"),
                 listItem(
-                    "page.settings.profile.attribute.city",
+                    "page.settings.profile.attribute.city-id",
                     sharedUIMapper.toLocationText(city, account.country),
                     "settings/profile/city"
                 ),
                 listItem(
-                    "page.settings.profile.attribute.timezone",
+                    "page.settings.profile.attribute.timezone-id",
                     account.timezoneId,
                     "settings/profile/timezone"
                 ),
@@ -78,7 +78,7 @@ class SettingsProfileScreen(
                 children.addAll(
                     listOf(
                         listItem(
-                            "page.settings.profile.attribute.category",
+                            "page.settings.profile.attribute.category-id",
                             account.categoryId?.let { sharedUIMapper.toCategoryText(it) },
                             "settings/profile/category"
                         ),

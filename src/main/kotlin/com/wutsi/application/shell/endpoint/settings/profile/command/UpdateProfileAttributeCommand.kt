@@ -1,5 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.profile.command
 
+import com.wutsi.application.shared.service.CityService
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
@@ -21,6 +22,7 @@ class UpdateProfileAttributeCommand(
     private val accountApi: WutsiAccountApi,
     private val securityContext: SecurityContext,
     private val urlBuilder: URLBuilder,
+    private val cityService: CityService
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): ResponseEntity<Action> {
@@ -33,8 +35,21 @@ class UpdateProfileAttributeCommand(
         )
 
         val headers = HttpHeaders()
-        if (name == "language")
+        if (name == "language") {
             headers["x-language"] = request.value
+        } else if (name == "city-id" && !request.value.isNullOrEmpty()) {
+            // Update the country
+            val city = cityService.get(request.value?.toLong() ?: -1)
+            if (city != null)
+                accountApi.updateAccountAttribute(
+                    id = securityContext.currentAccountId(),
+                    name = "country",
+                    request = UpdateAccountAttributeRequest(
+                        value = city.country
+                    )
+                )
+        }
+
         return ResponseEntity
             .ok()
             .headers(headers)

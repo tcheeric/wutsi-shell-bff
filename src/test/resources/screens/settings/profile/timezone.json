@@ -13,6 +13,7 @@
         {
           "type": "Container",
           "attributes": {
+            "alignment": "Center",
             "padding": 10.0
           },
           "children": [
@@ -39,66 +40,12 @@
           },
           "children": [
             {
-              "type": "DropdownButton",
+              "type": "SearchableDropdown",
               "attributes": {
                 "name": "value",
                 "value": "Africa/Douala"
               },
               "children": [
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "",
-                    "enabled": true,
-                    "value": ""
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "ACT",
-                    "enabled": true,
-                    "value": "ACT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "AET",
-                    "enabled": true,
-                    "value": "AET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "AGT",
-                    "enabled": true,
-                    "value": "AGT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "ART",
-                    "enabled": true,
-                    "value": "ART"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "AST",
-                    "enabled": true,
-                    "value": "AST"
-                  },
-                  "children": []
-                },
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
@@ -3396,24 +3343,6 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "BET",
-                    "enabled": true,
-                    "value": "BET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "BST",
-                    "enabled": true,
-                    "value": "BST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
                     "caption": "Brazil/Acre",
                     "enabled": true,
                     "value": "Brazil/Acre"
@@ -3444,60 +3373,6 @@
                     "caption": "Brazil/West",
                     "enabled": true,
                     "value": "Brazil/West"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "CAT",
-                    "enabled": true,
-                    "value": "CAT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "CET",
-                    "enabled": true,
-                    "value": "CET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "CNT",
-                    "enabled": true,
-                    "value": "CNT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "CST",
-                    "enabled": true,
-                    "value": "CST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "CST6CDT",
-                    "enabled": true,
-                    "value": "CST6CDT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "CTT",
-                    "enabled": true,
-                    "value": "CTT"
                   },
                   "children": []
                 },
@@ -3588,78 +3463,6 @@
                     "caption": "Chile/EasterIsland",
                     "enabled": true,
                     "value": "Chile/EasterIsland"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Cuba",
-                    "enabled": true,
-                    "value": "Cuba"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "EAT",
-                    "enabled": true,
-                    "value": "EAT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "ECT",
-                    "enabled": true,
-                    "value": "ECT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "EET",
-                    "enabled": true,
-                    "value": "EET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "EST",
-                    "enabled": true,
-                    "value": "EST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "EST5EDT",
-                    "enabled": true,
-                    "value": "EST5EDT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Egypt",
-                    "enabled": true,
-                    "value": "Egypt"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Eire",
-                    "enabled": true,
-                    "value": "Eire"
                   },
                   "children": []
                 },
@@ -4548,96 +4351,6 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "GB",
-                    "enabled": true,
-                    "value": "GB"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "GB-Eire",
-                    "enabled": true,
-                    "value": "GB-Eire"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "GMT",
-                    "enabled": true,
-                    "value": "GMT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "GMT0",
-                    "enabled": true,
-                    "value": "GMT0"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Greenwich",
-                    "enabled": true,
-                    "value": "Greenwich"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "HST",
-                    "enabled": true,
-                    "value": "HST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Hongkong",
-                    "enabled": true,
-                    "value": "Hongkong"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "IET",
-                    "enabled": true,
-                    "value": "IET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "IST",
-                    "enabled": true,
-                    "value": "IST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Iceland",
-                    "enabled": true,
-                    "value": "Iceland"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
                     "caption": "Indian/Antananarivo",
                     "enabled": true,
                     "value": "Indian/Antananarivo"
@@ -4737,105 +4450,6 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "Iran",
-                    "enabled": true,
-                    "value": "Iran"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Israel",
-                    "enabled": true,
-                    "value": "Israel"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "JST",
-                    "enabled": true,
-                    "value": "JST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Jamaica",
-                    "enabled": true,
-                    "value": "Jamaica"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Japan",
-                    "enabled": true,
-                    "value": "Japan"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Kwajalein",
-                    "enabled": true,
-                    "value": "Kwajalein"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Libya",
-                    "enabled": true,
-                    "value": "Libya"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "MET",
-                    "enabled": true,
-                    "value": "MET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "MIT",
-                    "enabled": true,
-                    "value": "MIT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "MST",
-                    "enabled": true,
-                    "value": "MST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "MST7MDT",
-                    "enabled": true,
-                    "value": "MST7MDT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
                     "caption": "Mexico/BajaNorte",
                     "enabled": true,
                     "value": "Mexico/BajaNorte"
@@ -4857,105 +4471,6 @@
                     "caption": "Mexico/General",
                     "enabled": true,
                     "value": "Mexico/General"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "NET",
-                    "enabled": true,
-                    "value": "NET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "NST",
-                    "enabled": true,
-                    "value": "NST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "NZ",
-                    "enabled": true,
-                    "value": "NZ"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "NZ-CHAT",
-                    "enabled": true,
-                    "value": "NZ-CHAT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Navajo",
-                    "enabled": true,
-                    "value": "Navajo"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "PLT",
-                    "enabled": true,
-                    "value": "PLT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "PNT",
-                    "enabled": true,
-                    "value": "PNT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "PRC",
-                    "enabled": true,
-                    "value": "PRC"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "PRT",
-                    "enabled": true,
-                    "value": "PRT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "PST",
-                    "enabled": true,
-                    "value": "PST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "PST8PDT",
-                    "enabled": true,
-                    "value": "PST8PDT"
                   },
                   "children": []
                 },
@@ -5349,51 +4864,6 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "Poland",
-                    "enabled": true,
-                    "value": "Poland"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Portugal",
-                    "enabled": true,
-                    "value": "Portugal"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "ROK",
-                    "enabled": true,
-                    "value": "ROK"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "SST",
-                    "enabled": true,
-                    "value": "SST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Singapore",
-                    "enabled": true,
-                    "value": "Singapore"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
                     "caption": "SystemV/AST4",
                     "enabled": true,
                     "value": "SystemV/AST4"
@@ -5511,24 +4981,6 @@
                 {
                   "type": "DropdownMenuItem",
                   "attributes": {
-                    "caption": "Turkey",
-                    "enabled": true,
-                    "value": "Turkey"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "UCT",
-                    "enabled": true,
-                    "value": "UCT"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
                     "caption": "US/Alaska",
                     "enabled": true,
                     "value": "US/Alaska"
@@ -5640,60 +5092,6 @@
                     "caption": "US/Samoa",
                     "enabled": true,
                     "value": "US/Samoa"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "UTC",
-                    "enabled": true,
-                    "value": "UTC"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Universal",
-                    "enabled": true,
-                    "value": "Universal"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "VST",
-                    "enabled": true,
-                    "value": "VST"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "W-SU",
-                    "enabled": true,
-                    "value": "W-SU"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "WET",
-                    "enabled": true,
-                    "value": "WET"
-                  },
-                  "children": []
-                },
-                {
-                  "type": "DropdownMenuItem",
-                  "attributes": {
-                    "caption": "Zulu",
-                    "enabled": true,
-                    "value": "Zulu"
                   },
                   "children": []
                 }
