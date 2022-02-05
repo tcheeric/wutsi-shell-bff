@@ -114,7 +114,7 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "My Store",
+                    "caption": "Store",
                     "padding": 1.0,
                     "type": "Text",
                     "stretched": false,
