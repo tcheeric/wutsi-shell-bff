@@ -177,7 +177,7 @@ class ProfileScreen(
         if (!togglesProvider.isStoreEnabled())
             return
 
-        val products = catalogApi.searchProduct(
+        val products = catalogApi.searchProducts(
             request = SearchProductRequest(
                 accountId = user.id,
                 limit = limit
@@ -197,7 +197,7 @@ class ProfileScreen(
                                 children = products.map {
                                     Flexible(
                                         child = ProductCard(
-                                            model = sharedUIMapper.toProductModel(it, tenant)
+                                            model = sharedUIMapper.toProductModel(it, tenant, messages)
                                         )
                                     )
                                 }

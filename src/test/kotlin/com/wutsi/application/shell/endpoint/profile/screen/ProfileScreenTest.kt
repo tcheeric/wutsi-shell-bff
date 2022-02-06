@@ -70,7 +70,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
         val products = listOf(createProductSummary(1), createProductSummary(2))
-        doReturn(SearchProductResponse(products)).whenever(catalogApi).searchProduct(any())
+        doReturn(SearchProductResponse(products)).whenever(catalogApi).searchProducts(any())
 
         val account = createAccount(5555, true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
