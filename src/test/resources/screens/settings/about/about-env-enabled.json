@@ -388,6 +388,28 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "Button",
+              "attributes": {
+                "caption": "Switch to TEST",
+                "padding": 15.0,
+                "type": "Elevated"
+              },
+              "children": [],
+              "action": {
+                "type": "Command",
+                "url": "http://localhost:0/commands/switch-environment?environment=test",
+                "prompt": {
+                  "type": "Dialog",
+                  "attributes": {
+                    "type": "Confirm",
+                    "title": "Confirm",
+                    "message": "Are you sure you want to switch to TEST environment?"
+                  },
+                  "children": []
+                }
+              }
             }
           ]
         }

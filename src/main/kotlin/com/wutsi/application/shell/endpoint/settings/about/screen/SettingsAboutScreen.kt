@@ -3,10 +3,15 @@ package com.wutsi.application.shell.endpoint.settings.about.screen
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.TenantProvider
+import com.wutsi.application.shared.service.TogglesProvider
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
+import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListView
@@ -15,10 +20,13 @@ import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
+import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.TextAlignment
 import com.wutsi.platform.core.tracing.TracingContext
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import javax.servlet.http.HttpServletRequest
@@ -30,9 +38,13 @@ class SettingsAboutScreen(
     private val securityContext: SecurityContext,
     private val tracingContext: TracingContext,
     private val request: HttpServletRequest,
+    private val togglesProvider: TogglesProvider,
+    private val urlBuilder: URLBuilder,
 ) : AbstractQuery() {
     @PostMapping
-    fun index(): Widget {
+    fun index(
+        @RequestHeader(name = "X-Environment", required = false) env: String = "test"
+    ): Widget {
         val items = mutableListOf<WidgetAware>()
         val tenant = tenantProvider.get()
 
@@ -61,8 +73,30 @@ class SettingsAboutScreen(
                 listItem("page.settings.about.app-os", osInfo),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
                 listItem("page.settings.about.user-id", securityContext.currentAccountId().toString()),
+                listItem("page.settings.about.environment", env.uppercase() ?: "TEST"),
             )
         )
+
+        if (togglesProvider.isSwitchEnvironmentEnabled()) {
+            val nextEnv = if (env == "test") "prod" else "test"
+            items.add(
+                Button(
+                    caption = getText("page.settings.about.button.switch-environment", arrayOf(nextEnv.uppercase())),
+                    action = Action(
+                        type = ActionType.Command,
+                        url = urlBuilder.build("/commands/switch-environment?environment=$nextEnv"),
+                        prompt = Dialog(
+                            type = DialogType.Confirm,
+                            title = getText("prompt.confirm.title"),
+                            message = getText(
+                                "page.settings.about.switch-environment-confirm",
+                                arrayOf(nextEnv.uppercase())
+                            )
+                        ).toWidget()
+                    )
+                )
+            )
+        }
 
         return Screen(
             id = Page.SETTINGS_ABOUT,
