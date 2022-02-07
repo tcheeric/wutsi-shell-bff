@@ -80,19 +80,25 @@ class SettingsAboutScreen(
         if (togglesProvider.isSwitchEnvironmentEnabled()) {
             val nextEnv = if (env == "test") "prod" else "test"
             items.add(
-                Button(
-                    caption = getText("page.settings.about.button.switch-environment", arrayOf(nextEnv.uppercase())),
-                    action = Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build("/commands/switch-environment?environment=$nextEnv"),
-                        prompt = Dialog(
-                            type = DialogType.Confirm,
-                            title = getText("prompt.confirm.title"),
-                            message = getText(
-                                "page.settings.about.switch-environment-confirm",
-                                arrayOf(nextEnv.uppercase())
-                            )
-                        ).toWidget()
+                Container(
+                    padding = 10.0,
+                    child = Button(
+                        caption = getText(
+                            "page.settings.about.button.switch-environment",
+                            arrayOf(nextEnv.uppercase())
+                        ),
+                        action = Action(
+                            type = ActionType.Command,
+                            url = urlBuilder.build("/commands/switch-environment?environment=$nextEnv"),
+                            prompt = Dialog(
+                                type = DialogType.Confirm,
+                                title = getText("prompt.confirm.title"),
+                                message = getText(
+                                    "page.settings.about.switch-environment-confirm",
+                                    arrayOf(nextEnv.uppercase())
+                                )
+                            ).toWidget()
+                        )
                     )
                 )
             )
