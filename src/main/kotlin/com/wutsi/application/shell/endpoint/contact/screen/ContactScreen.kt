@@ -32,7 +32,6 @@ class ContactScreen(
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
-        val tenant = tenantProvider.get()
         val contacts = contactApi.searchContact(
             SearchContactRequest(
                 limit = 1000,

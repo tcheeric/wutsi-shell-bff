@@ -131,6 +131,22 @@ class ProfileScreen(
                         )
                     else
                         null,
+
+                    Container(
+                        padding = 4.0,
+                        child = CircleAvatar(
+                            radius = 20.0,
+                            backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                            child = IconButton(
+                                icon = Theme.ICON_SHARE,
+                                size = 20.0,
+                                action = Action(
+                                    type = ActionType.Share,
+                                    url = "${tenant.webappUrl}/profile?id=$id",
+                                )
+                            ),
+                        )
+                    ),
                 )
             ),
             child = SingleChildScrollView(
