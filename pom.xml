@@ -28,7 +28,6 @@
     <kotlin.version>1.6.10</kotlin.version>
     <kotlin-mockito.version>2.2.0</kotlin-mockito.version>
     <klint.version>0.43.2</klint.version>
-    <libphonenumber.version>8.12.40</libphonenumber.version>
     <maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
 
     <wutsi-mail.version>0.0.4</wutsi-mail.version>
@@ -47,11 +46,6 @@
       <version>${wutsi-mail.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.googlecode.libphonenumber</groupId>
-      <artifactId>libphonenumber</artifactId>
-      <version>${libphonenumber.version}</version>
-    </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
