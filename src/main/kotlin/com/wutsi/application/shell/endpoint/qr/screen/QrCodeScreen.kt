@@ -13,6 +13,7 @@ import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.QrImage
 import com.wutsi.flutter.sdui.Screen
@@ -97,17 +98,10 @@ class QrCodeScreen(
                             ),
                         ),
                     ),
-                    Container(
-                        padding = 20.0,
-                        margin = 20.0,
-                        alignment = Alignment.Center,
-                        background = Theme.COLOR_PRIMARY_LIGHT,
-                        border = 1.0,
-                        borderRadius = 5.0,
-                        child = Text(
-                            getText("page.qr-code.warning"),
-                            alignment = TextAlignment.Center
-                        )
+                    Divider(color = Theme.COLOR_DIVIDER),
+                    Text(
+                        getText("page.qr-code.message"),
+                        alignment = TextAlignment.Center
                     )
                 ),
             )
