@@ -132,7 +132,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Category",
-                "subCaption": "Advertising/Marketing",
+                "subCaption": "Marketing",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {

@@ -213,7 +213,7 @@ class ProfileScreen(
                                 children = products.map {
                                     Flexible(
                                         child = ProductCard(
-                                            model = sharedUIMapper.toProductModel(it, tenant, messages),
+                                            model = sharedUIMapper.toProductModel(it, tenant),
                                             action = Action(
                                                 type = ActionType.Route,
                                                 url = urlBuilder.build(storeUrl, "product?id=${it.id}")

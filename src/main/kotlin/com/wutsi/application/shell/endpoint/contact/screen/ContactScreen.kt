@@ -2,7 +2,6 @@ package com.wutsi.application.shell.endpoint.contact.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.SharedUIMapper
-import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.ProfileListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/contact")
 class ContactScreen(
     private val urlBuilder: URLBuilder,
-    private val tenantProvider: TenantProvider,
     private val accountApi: WutsiAccountApi,
     private val sharedUIMapper: SharedUIMapper,
     private val contactApi: WutsiContactApi,

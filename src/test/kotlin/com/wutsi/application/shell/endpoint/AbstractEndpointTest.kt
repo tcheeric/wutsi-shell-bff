@@ -6,7 +6,9 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
+import com.wutsi.platform.account.dto.GetCategoryResponse
 import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.core.security.SubjectType
 import com.wutsi.platform.core.security.SubjectType.USER
@@ -125,6 +127,11 @@ abstract class AbstractEndpointTest {
         )
         doReturn(GetTenantResponse(tenant)).whenever(tenantApi).getTenant(any())
 
+        val category = Category(
+            id = 1000,
+            title = "Marketing",
+            titleFrench = "Marketing"
+        )
         val account = Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
@@ -139,10 +146,11 @@ abstract class AbstractEndpointTest {
             business = false,
             website = "https://www.google.ca",
             biography = "Thsi is my bio",
-            categoryId = 1000,
+            category = category,
             timezoneId = "Africa/Douala",
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+        doReturn(GetCategoryResponse(category)).whenever(accountApi).getCategory(any())
 
         rest = createResTemplate()
     }

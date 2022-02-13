@@ -45,7 +45,6 @@ import com.wutsi.platform.payment.dto.TransactionSummary
 import com.wutsi.platform.tenant.dto.Tenant
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.context.MessageSource
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -60,7 +59,6 @@ class HomeScreen(
     private val togglesProvider: TogglesProvider,
     private val accountApi: WutsiAccountApi,
     private val sharedUIMapper: SharedUIMapper,
-    private val messageSource: MessageSource,
 
     @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
@@ -418,7 +416,6 @@ class HomeScreen(
                             obj = it,
                             tenant = tenant,
                             tenantProvider = tenantProvider,
-                            messageSource = messageSource,
                             paymentMethod = it.paymentMethodToken?.let { paymentMethods[it] },
                             currentUser = account,
                             accounts = accounts

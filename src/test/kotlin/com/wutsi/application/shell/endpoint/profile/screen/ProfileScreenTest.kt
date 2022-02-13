@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.catalog.WutsiCatalogApi
@@ -115,7 +116,11 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         business = business,
         retail = true,
         biography = "This is my bio",
-        categoryId = 1000L,
+        category = Category(
+            id = 1000,
+            title = "Marketing",
+            titleFrench = "Marketing"
+        ),
         website = "https://my.business.com/12432",
         whatsapp = "+23500000000"
     )

@@ -6,6 +6,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.Phone
@@ -60,7 +61,11 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
             business = true,
             website = "https://www.google.ca",
             biography = "Thsi is my bio",
-            categoryId = 1000,
+            category = Category(
+                id = 1000,
+                title = "Marketing",
+                titleFrench = "Marketing"
+            ),
             cityId = 2233100,
             whatsapp = "+1237666666666",
             street = "3030 Linton",
