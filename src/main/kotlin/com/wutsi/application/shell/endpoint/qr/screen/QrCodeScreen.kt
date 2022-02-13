@@ -99,10 +99,13 @@ class QrCodeScreen(
                         ),
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
-                    Text(
-                        getText("page.qr-code.message"),
-                        alignment = TextAlignment.Center
-                    )
+                    Container(
+                        padding = 10.0,
+                        child = Text(
+                            getText("page.qr-code.message"),
+                            alignment = TextAlignment.Center
+                        )
+                    ),
                 ),
             )
         ).toWidget()

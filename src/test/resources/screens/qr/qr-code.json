@@ -75,12 +75,20 @@
           "children": []
         },
         {
-          "type": "Text",
+          "type": "Container",
           "attributes": {
-            "caption": "Your QR code is private. If you want to share it with someone, that person can scan it to add you as a contact",
-            "alignment": "Center"
+            "padding": 10.0
           },
-          "children": []
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "Your QR code is private. If you want to share it with someone, that person can scan it to add you as a contact",
+                "alignment": "Center"
+              },
+              "children": []
+            }
+          ]
         }
       ]
     }
