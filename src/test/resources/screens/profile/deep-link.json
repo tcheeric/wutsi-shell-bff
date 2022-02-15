@@ -42,11 +42,9 @@
                           },
                           "children": [
                             {
-                              "type": "Text",
+                              "type": "Image",
                               "attributes": {
-                                "caption": "RS",
-                                "bold": true,
-                                "size": 24.0
+                                "url": "https://img.com/1.png"
                               },
                               "children": []
                             }
@@ -226,6 +224,7 @@
       "elevation": 0.0,
       "backgroundColor": "#1D7EDF",
       "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": true,
       "actions": [
         {
           "type": "Container",
@@ -294,7 +293,19 @@
             }
           ]
         }
-      ]
+      ],
+      "leading": {
+        "type": "IconButton",
+        "attributes": {
+          "icon": "e319"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~",
+          "replacement": true
+        }
+      }
     },
     "children": []
   }

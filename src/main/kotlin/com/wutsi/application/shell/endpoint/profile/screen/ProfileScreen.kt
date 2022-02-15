@@ -64,7 +64,10 @@ class ProfileScreen(
 ) : AbstractQuery() {
 
     @PostMapping
-    fun index(@RequestParam id: Long): Widget {
+    fun index(
+        @RequestParam id: Long,
+        @RequestParam(name = "deep-link", required = false) deepLink: Boolean? = null
+    ): Widget {
         val user = accountApi.getAccount(id).account
         val tenant = tenantProvider.get()
         val children = mutableListOf<WidgetAware>(
@@ -147,7 +150,19 @@ class ProfileScreen(
                             ),
                         )
                     ),
-                )
+                ),
+                automaticallyImplyLeading = deepLink,
+                leading = if (deepLink == null || deepLink == false)
+                    null
+                else
+                    IconButton(
+                        icon = Theme.ICON_HOME,
+                        action = Action(
+                            type = ActionType.Route,
+                            url = "route:/~",
+                            replacement = true
+                        )
+                    )
             ),
             child = SingleChildScrollView(
                 child = Column(

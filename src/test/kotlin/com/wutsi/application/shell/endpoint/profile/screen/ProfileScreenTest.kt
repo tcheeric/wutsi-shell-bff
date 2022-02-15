@@ -39,19 +39,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         // GIVEN
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
-        val account = Account(
-            id = 5555,
-            displayName = "Ray Sponsible",
-            country = "CM",
-            language = "en",
-            status = "ACTIVE",
-            phone = Phone(
-                id = 1,
-                number = "+1237666666666",
-                country = "CM"
-            ),
-            business = false,
-        )
+        val account = createAccount(5555, false, null)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
         // WHEN
@@ -60,6 +48,22 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
 
         // THEN
         assertJsonEquals("/screens/profile/personal.json", response.body)
+    }
+
+    @Test
+    fun deepLink() {
+        // GIVEN
+        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
+
+        val account = createAccount(5555, false)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+
+        // WHEN
+        val url = "http://localhost:$port/profile?id=555&deep-link=true"
+        val response = rest.postForEntity(url, null, Any::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/profile/deep-link.json", response.body)
     }
 
     @Test
@@ -101,7 +105,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         assertJsonEquals("/screens/profile/business.json", response.body)
     }
 
-    private fun createAccount(id: Long, business: Boolean) = Account(
+    private fun createAccount(id: Long, business: Boolean, pictureUrl: String? = "https://img.com/1.png") = Account(
         id = id,
         displayName = "Ray Sponsible",
         country = "CM",
@@ -112,9 +116,9 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
             number = "+1237666666666",
             country = "CM"
         ),
-        pictureUrl = "https://img.com/1.png",
+        pictureUrl = pictureUrl,
         business = business,
-        retail = true,
+        retail = business,
         biography = "This is my bio",
         category = Category(
             id = 1000,
