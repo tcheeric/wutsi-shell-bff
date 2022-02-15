@@ -123,7 +123,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         category = Category(
             id = 1000,
             title = "Marketing",
-            titleFrench = "Marketing"
         ),
         website = "https://my.business.com/12432",
         whatsapp = "+23500000000"

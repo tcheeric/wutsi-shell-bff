@@ -79,7 +79,7 @@ class SettingsProfileScreen(
                     listOf(
                         listItem(
                             "page.settings.profile.attribute.category-id",
-                            account.category?.let { sharedUIMapper.toTitle(it) },
+                            account.category?.let { it.title },
                             "settings/profile/category"
                         ),
                         listItem(

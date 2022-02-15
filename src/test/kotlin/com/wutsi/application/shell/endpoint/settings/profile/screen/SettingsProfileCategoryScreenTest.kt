@@ -28,9 +28,9 @@ internal class SettingsProfileCategoryScreenTest : AbstractEndpointTest() {
     fun index() {
         // GIVEN
         val categories = listOf(
-            Category(id = 1, title = "category1", titleFrench = "Category 1"),
-            Category(id = 2, title = "category2", titleFrench = "Category 2"),
-            Category(id = 3, title = "category3", titleFrench = "Category 3")
+            Category(id = 1, title = "category1"),
+            Category(id = 2, title = "category2"),
+            Category(id = 3, title = "category3")
         )
         doReturn(ListCategoryResponse(categories)).whenever(accountApi).listCategories()
 

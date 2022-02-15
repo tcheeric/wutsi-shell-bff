@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.DropdownMenuItem
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController
 class SettingsProfileCategoryScreen(
     urlBuilder: URLBuilder,
     securityContext: SecurityContext,
-    private val sharedUIMapper: SharedUIMapper,
     private val accountApi: WutsiAccountApi,
 ) : AbstractSettingsProfileAttributeScreen(urlBuilder, securityContext) {
     override fun getAttributeName() = "category-id"
@@ -30,10 +28,10 @@ class SettingsProfileCategoryScreen(
             name = "value",
             value = user.category?.id?.toString(),
             children = accountApi.listCategories().categories
-                .sortedBy { sharedUIMapper.toTitle(it) }
+                .sortedBy { it.title }
                 .map {
                     DropdownMenuItem(
-                        caption = sharedUIMapper.toTitle(it),
+                        caption = it.title,
                         value = it.id.toString()
                     )
                 }

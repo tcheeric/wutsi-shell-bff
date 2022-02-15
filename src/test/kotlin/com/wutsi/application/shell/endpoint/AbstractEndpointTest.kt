@@ -130,7 +130,6 @@ abstract class AbstractEndpointTest {
         val category = Category(
             id = 1000,
             title = "Marketing",
-            titleFrench = "Marketing"
         )
         val account = Account(
             id = ACCOUNT_ID,

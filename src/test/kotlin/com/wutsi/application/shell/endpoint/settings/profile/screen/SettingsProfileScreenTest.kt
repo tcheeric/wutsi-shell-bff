@@ -64,7 +64,6 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
             category = Category(
                 id = 1000,
                 title = "Marketing",
-                titleFrench = "Marketing"
             ),
             cityId = 2233100,
             whatsapp = "+1237666666666",
