@@ -98,7 +98,7 @@ class ScanViewerScreen(
                         padding = 10.0,
                         alignment = Alignment.Center,
                         child = if (error == null)
-                            Icon(Theme.ICON_CHECK, color = Theme.COLOR_SUCCESS, size = 64.0)
+                            Icon(Theme.ICON_CHECK_CIRCLE, color = Theme.COLOR_SUCCESS, size = 64.0)
                         else
                             Icon(Theme.ICON_ERROR, color = Theme.COLOR_DANGER, size = 64.0)
                     ),
