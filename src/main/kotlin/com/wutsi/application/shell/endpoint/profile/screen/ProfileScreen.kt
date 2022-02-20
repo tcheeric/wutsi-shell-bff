@@ -11,6 +11,8 @@ import com.wutsi.application.shared.ui.ProductCard
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.ecommerce.catalog.WutsiCatalogApi
+import com.wutsi.ecommerce.catalog.dto.SearchProductRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -36,8 +38,6 @@ import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.TextDecoration
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
-import com.wutsi.platform.catalog.WutsiCatalogApi
-import com.wutsi.platform.catalog.dto.SearchProductRequest
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
 import com.wutsi.platform.tenant.dto.Tenant
@@ -253,7 +253,7 @@ class ProfileScreen(
                                 ),
                                 action = Action(
                                     type = ActionType.Route,
-                                    url = urlBuilder.build(storeUrl, "catalog?id=${user.id}")
+                                    url = urlBuilder.build(storeUrl, "?id=${user.id}")
                                 ),
                             )
                         )

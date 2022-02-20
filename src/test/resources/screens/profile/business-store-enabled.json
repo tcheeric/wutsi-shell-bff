@@ -644,7 +644,7 @@
                       ],
                       "action": {
                         "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/store/catalog?id=5555"
+                        "url": "https://wutsi-gateway-test.herokuapp.com/store/?id=5555"
                       }
                     }
                   ]

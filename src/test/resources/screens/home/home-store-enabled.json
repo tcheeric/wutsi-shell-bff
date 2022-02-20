@@ -125,7 +125,7 @@
                   "children": [],
                   "action": {
                     "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/store/catalog"
+                    "url": "https://wutsi-gateway-test.herokuapp.com/store"
                   }
                 }
               ]

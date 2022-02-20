@@ -265,7 +265,7 @@ class HomeScreen(
                     icon = Theme.ICON_STORE,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build(storeUrl, "catalog")
+                        url = storeUrl
                     )
                 )
             )
