@@ -57,9 +57,7 @@
                   "attributes": {
                     "data": "xxxxx",
                     "size": 230.0,
-                    "padding": 10.0,
-                    "embeddedImageUrl": "http://www.goole.com/images/1.png",
-                    "embeddedImageSize": 64.0
+                    "padding": 10.0
                   },
                   "children": []
                 }

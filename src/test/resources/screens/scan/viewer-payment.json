@@ -78,7 +78,8 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/cash/pay/confirm?payment-request-id=1111"
+                "url": "https://wutsi-gateway-test.herokuapp.com/cash/pay/confirm?payment-request-id=1111",
+                "replacement": true
               }
             }
           ]

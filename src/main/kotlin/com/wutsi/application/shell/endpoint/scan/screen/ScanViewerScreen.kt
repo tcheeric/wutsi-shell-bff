@@ -158,7 +158,8 @@ class ScanViewerScreen(
                 },
                 action = Action(
                     type = if (entity?.type?.lowercase() == "url") ActionType.Navigate else ActionType.Route,
-                    url = nextUrl
+                    url = nextUrl,
+                    replacement = true
                 )
             )
 }

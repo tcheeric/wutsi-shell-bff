@@ -93,8 +93,6 @@ class QrCodeScreen(
                                 data = code,
                                 size = 230.0,
                                 padding = 10.0,
-                                embeddedImageSize = 64.0,
-                                embeddedImageUrl = tenant.logos.find { it.type == "PICTORIAL" }?.url
                             ),
                         ),
                     ),

@@ -77,7 +77,8 @@
               "children": [],
               "action": {
                 "type": "Navigate",
-                "url": "https://www.google.ca"
+                "url": "https://www.google.ca",
+                "replacement": true
               }
             }
           ]

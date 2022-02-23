@@ -78,7 +78,8 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/cash/send/approval?transaction-id=xxxx"
+                "url": "https://wutsi-gateway-test.herokuapp.com/cash/send/approval?transaction-id=xxxx",
+                "replacement": true
               }
             }
           ]
