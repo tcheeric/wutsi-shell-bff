@@ -51,22 +51,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun deepLink() {
-        // GIVEN
-        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
-
-        val account = createAccount(5555, false)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
-
-        // WHEN
-        val url = "http://localhost:$port/profile?id=555&deep-link=true"
-        val response = rest.postForEntity(url, null, Any::class.java)
-
-        // THEN
-        assertJsonEquals("/screens/profile/deep-link.json", response.body)
-    }
-
-    @Test
     fun businessStoreEnabled() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()

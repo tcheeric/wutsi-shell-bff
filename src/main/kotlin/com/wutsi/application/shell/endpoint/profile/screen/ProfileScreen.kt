@@ -9,6 +9,7 @@ import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.ProductCard
 import com.wutsi.application.shared.ui.ProfileCard
+import com.wutsi.application.shared.ui.ProfileCardType
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.ecommerce.catalog.WutsiCatalogApi
@@ -19,19 +20,21 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
+import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Dialog
 import com.wutsi.flutter.sdui.Divider
+import com.wutsi.flutter.sdui.DynamicWidget
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
-import com.wutsi.flutter.sdui.SingleChildScrollView
+import com.wutsi.flutter.sdui.TabBar
+import com.wutsi.flutter.sdui.TabBarView
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.Alignment
-import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.DialogType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
@@ -59,140 +62,134 @@ class ProfileScreen(
     private val togglesProvider: TogglesProvider,
     private val tenantProvider: TenantProvider,
 
-    @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
 
     @PostMapping
     fun index(
-        @RequestParam id: Long,
-        @RequestParam(name = "deep-link", required = false) deepLink: Boolean? = null
+        @RequestParam id: Long
     ): Widget {
         val user = accountApi.getAccount(id).account
         val tenant = tenantProvider.get()
-        val children = mutableListOf<WidgetAware>(
-            ProfileCard(
-                model = sharedUIMapper.toAccountModel(user)
+
+        val tabs = TabBar(
+            tabs = listOfNotNull(
+                Text(getText("page.profile.tab.about")),
+                if (user.business && togglesProvider.isStoreEnabled())
+                    Text(getText("page.profile.tab.store"))
+                else
+                    null
             )
         )
-        addButtons(user, children)
-        addProducts(user, tenant, 2, children)
+        val tabViews = TabBarView(
+            children = listOfNotNull(
+                aboutTab(user),
+                if (user.business && togglesProvider.isStoreEnabled())
+                    storeTab(user)
+                else
+                    null
+            )
+        )
 
-        return Screen(
-            id = Page.PROFILE,
-            backgroundColor = Theme.COLOR_WHITE,
-            appBar = AppBar(
-                elevation = 0.0,
-                backgroundColor = Theme.COLOR_PRIMARY,
-                foregroundColor = Theme.COLOR_WHITE,
-                title = getText("page.profile.app-bar.title"),
-                actions = listOfNotNull(
-                    if (user.business && togglesProvider.isBusinessAccountEnabled())
-                        PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
+        return DefaultTabController(
+            length = tabs.tabs.size,
+            child = Screen(
+                id = Page.PROFILE,
+                backgroundColor = Theme.COLOR_WHITE,
+                appBar = AppBar(
+                    elevation = 0.0,
+                    backgroundColor = Theme.COLOR_PRIMARY,
+                    foregroundColor = Theme.COLOR_WHITE,
+                    title = user.displayName ?: getText("page.profile.app-bar.title"),
+                    actions = listOfNotNull(
+                        if (user.business && togglesProvider.isBusinessAccountEnabled())
+                            PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
+                                Container(
+                                    padding = 4.0,
+                                    child = CircleAvatar(
+                                        radius = 20.0,
+                                        backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                                        child = IconButton(
+                                            icon = Theme.ICON_CHAT,
+                                            size = 20.0,
+                                            action = Action(
+                                                type = ActionType.Navigate,
+                                                url = it,
+                                            )
+                                        ),
+                                    ),
+                                )
+                            }
+                        else
+                            null,
+
+                        if (canAddContact(user))
                             Container(
                                 padding = 4.0,
                                 child = CircleAvatar(
                                     radius = 20.0,
                                     backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
                                     child = IconButton(
-                                        icon = Theme.ICON_CHAT,
+                                        icon = Theme.ICON_ADD_PERSON,
                                         size = 20.0,
                                         action = Action(
-                                            type = ActionType.Navigate,
-                                            url = it,
+                                            type = ActionType.Command,
+                                            url = urlBuilder.build("commands/add-contact?contact-id=${user.id}"),
+                                            prompt = Dialog(
+                                                type = DialogType.Confirm,
+                                                title = getText("prompt.confirm.title"),
+                                                message = getText(
+                                                    "page.profile.confirm-add-contact",
+                                                    arrayOf(user.displayName ?: "")
+                                                )
+                                            ).toWidget(),
                                         )
                                     ),
                                 ),
                             )
-                        }
-                    else
-                        null,
+                        else
+                            null,
 
-                    if (canAddContact(user))
                         Container(
                             padding = 4.0,
                             child = CircleAvatar(
                                 radius = 20.0,
                                 backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
                                 child = IconButton(
-                                    icon = Theme.ICON_ADD_PERSON,
+                                    icon = Theme.ICON_SHARE,
                                     size = 20.0,
                                     action = Action(
-                                        type = ActionType.Command,
-                                        url = urlBuilder.build("commands/add-contact?contact-id=${user.id}"),
-                                        prompt = Dialog(
-                                            type = DialogType.Confirm,
-                                            title = getText("prompt.confirm.title"),
-                                            message = getText(
-                                                "page.profile.confirm-add-contact",
-                                                arrayOf(user.displayName ?: "")
-                                            )
-                                        ).toWidget(),
+                                        type = ActionType.Share,
+                                        url = "${tenant.webappUrl}/profile?id=$id",
                                     )
                                 ),
-                            ),
-                        )
-                    else
-                        null,
-
-                    Container(
-                        padding = 4.0,
-                        child = CircleAvatar(
-                            radius = 20.0,
-                            backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
-                            child = IconButton(
-                                icon = Theme.ICON_SHARE,
-                                size = 20.0,
-                                action = Action(
-                                    type = ActionType.Share,
-                                    url = "${tenant.webappUrl}/profile?id=$id",
-                                )
-                            ),
-                        )
+                            )
+                        ),
                     ),
+                    bottom = tabs
                 ),
-                automaticallyImplyLeading = deepLink,
-                leading = if (deepLink == null || deepLink == false)
-                    null
-                else
-                    IconButton(
-                        icon = Theme.ICON_HOME,
-                        action = Action(
-                            type = ActionType.Route,
-                            url = "route:/~",
-                            replacement = true
-                        )
-                    )
-            ),
-            child = SingleChildScrollView(
-                child = Column(
-                    children = children,
-                    mainAxisAlignment = MainAxisAlignment.start,
-                    crossAxisAlignment = CrossAxisAlignment.start,
-                )
+                child = tabViews
             )
         ).toWidget()
     }
 
-    private fun addButtons(user: Account, children: MutableList<WidgetAware>) {
-        if (!user.business)
-            children.addAll(
-                listOf(
-                    Divider(color = Theme.COLOR_DIVIDER),
-                    Container(
-                        padding = 10.0,
-                        child = Button(
-                            type = ButtonType.Outlined,
-                            caption = getText("page.profile.button.send"),
-                            action = Action(
-                                type = ActionType.Route,
-                                url = urlBuilder.build(cashUrl, "send?recipient-id=${user.id}")
-                            ),
-                        )
-                    )
-                )
+    private fun aboutTab(user: Account): WidgetAware {
+        val children = mutableListOf<WidgetAware>(
+            ProfileCard(
+                model = sharedUIMapper.toAccountModel(user),
+                type = ProfileCardType.Full
             )
+        )
+        return Column(
+            children = children,
+            mainAxisAlignment = MainAxisAlignment.start,
+            crossAxisAlignment = CrossAxisAlignment.start,
+        )
     }
+
+    private fun storeTab(user: Account) = DynamicWidget(
+        url = urlBuilder.build(storeUrl, "widget?id=${user.id}")
+    )
 
     private fun canAddContact(user: Account): Boolean =
         if (user.id == securityContext.currentAccountId())

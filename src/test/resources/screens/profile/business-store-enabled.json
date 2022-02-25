@@ -1,767 +1,321 @@
 {
-  "type": "Screen",
-  "attributes": {
-    "id": "page.profile",
-    "safe": false,
-    "backgroundColor": "#FFFFFF"
+  "type" : "DefaultTabController",
+  "attributes" : {
+    "length" : 2
   },
-  "children": [
-    {
-      "type": "SingleChildScrollView",
-      "attributes": {},
-      "children": [
-        {
-          "type": "Column",
-          "attributes": {
-            "mainAxisAlignment": "start",
-            "crossAxisAlignment": "start"
-          },
-          "children": [
-            {
-              "type": "Center",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "Column",
-                  "attributes": {
-                    "mainAxisAlignment": "center",
-                    "crossAxisAlignment": "center"
-                  },
-                  "children": [
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 10.0
-                      },
-                      "children": [
-                        {
-                          "type": "CircleAvatar",
-                          "attributes": {
-                            "radius": 32.0
-                          },
-                          "children": [
-                            {
-                              "type": "Image",
-                              "attributes": {
-                                "url": "https://img.com/1.png"
-                              },
-                              "children": []
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center"
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "Ray Sponsible",
-                            "color": "#1D7EDF",
-                            "bold": true,
-                            "size": 16.0,
-                            "alignment": "Center"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 10.0
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "Marketing",
-                            "alignment": "Center"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center"
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "+1 237666666666",
-                            "color": "#95A5A6",
-                            "alignment": "Center"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center",
-                        "padding": 10.0
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "This is my bio",
-                            "alignment": "Center"
-                          },
-                          "children": []
-                        }
-                      ]
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "alignment": "Center"
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "my.business.com/12432",
-                            "color": "#1D7EDF",
-                            "decoration": "Underline"
-                          },
-                          "children": []
-                        }
-                      ],
-                      "action": {
-                        "type": "Navigate",
-                        "url": "https://my.business.com/12432"
-                      }
-                    },
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "padding": 10.0
-                      },
-                      "children": [
-                        {
-                          "type": "Wrap",
-                          "attributes": {
-                            "spacing": 10.0,
-                            "runSpacing": 10.0,
-                            "direction": "Horizontal"
-                          },
-                          "children": [
-                            {
-                              "type": "Container",
-                              "attributes": {},
-                              "children": [
-                                {
-                                  "type": "Row",
-                                  "attributes": {
-                                    "mainAxisSize": "min"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "e4c9",
-                                        "size": 16.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 2.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "Cameroon",
-                                        "color": "#95A5A6"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            },
-                            {
-                              "type": "Container",
-                              "attributes": {},
-                              "children": [
-                                {
-                                  "type": "Row",
-                                  "attributes": {
-                                    "mainAxisSize": "min"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Icon",
-                                      "attributes": {
-                                        "code": "ef0b",
-                                        "size": 16.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "padding": 2.0
-                                      },
-                                      "children": []
-                                    },
-                                    {
-                                      "type": "Text",
-                                      "attributes": {
-                                        "caption": "Marketing",
-                                        "color": "#95A5A6"
-                                      },
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Divider",
-              "attributes": {
-                "color": "#8c8c8c"
-              },
-              "children": []
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "alignment": "TopLeft"
-              },
-              "children": [
-                {
-                  "type": "Column",
-                  "attributes": {},
-                  "children": [
-                    {
-                      "type": "Row",
-                      "attributes": {},
-                      "children": [
-                        {
-                          "type": "Flexible",
-                          "attributes": {
-                            "flex": 1,
-                            "fit": "Tight"
-                          },
-                          "children": [
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "margin": 2.0,
-                                "border": 0.2,
-                                "borderColor": "#8c8c8c"
-                              },
-                              "children": [
-                                {
-                                  "type": "Column",
-                                  "attributes": {
-                                    "mainAxisAlignment": "start",
-                                    "crossAxisAlignment": "start"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "background": "#e8e8e8"
-                                      },
-                                      "children": [
-                                        {
-                                          "type": "Stack",
-                                          "attributes": {},
-                                          "children": [
-                                            {
-                                              "type": "Container",
-                                              "attributes": {
-                                                "padding": 10.0
-                                              },
-                                              "children": [
-                                                {
-                                                  "type": "AspectRatio",
-                                                  "attributes": {
-                                                    "aspectRatio": 1.3333333333333333
-                                                  },
-                                                  "children": [
-                                                    {
-                                                      "type": "Container",
-                                                      "attributes": {},
-                                                      "children": [
-                                                        {
-                                                          "type": "Image",
-                                                          "attributes": {
-                                                            "url": "https://www.imag.com/1.png",
-                                                            "fit": "fitHeight"
-                                                          },
-                                                          "children": []
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "Positioned",
-                                              "attributes": {
-                                                "bottom": 5.0,
-                                                "left": 5.0
-                                              },
-                                              "children": [
-                                                {
-                                                  "type": "Container",
-                                                  "attributes": {
-                                                    "padding": 4.0,
-                                                    "background": "#4CAF50",
-                                                    "borderRadius": 4.0
-                                                  },
-                                                  "children": [
-                                                    {
-                                                      "type": "Text",
-                                                      "attributes": {
-                                                        "caption": "30% off",
-                                                        "color": "#FFFFFF",
-                                                        "size": 10.0
-                                                      },
-                                                      "children": []
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "alignment": "Center",
-                                        "padding": 5.0,
-                                        "height": 96.0
-                                      },
-                                      "children": [
-                                        {
-                                          "type": "Column",
-                                          "attributes": {
-                                            "mainAxisAlignment": "start",
-                                            "crossAxisAlignment": "start"
-                                          },
-                                          "children": [
-                                            {
-                                              "type": "Row",
-                                              "attributes": {
-                                                "mainAxisAlignment": "start",
-                                                "crossAxisAlignment": "end"
-                                              },
-                                              "children": [
-                                                {
-                                                  "type": "Text",
-                                                  "attributes": {
-                                                    "caption": "7,000 CFA",
-                                                    "color": "#1D7EDF",
-                                                    "bold": true
-                                                  },
-                                                  "children": []
-                                                },
-                                                {
-                                                  "type": "Container",
-                                                  "attributes": {
-                                                    "width": 2.0
-                                                  },
-                                                  "children": []
-                                                },
-                                                {
-                                                  "type": "Text",
-                                                  "attributes": {
-                                                    "caption": "10,000 CFA",
-                                                    "color": "#95A5A6",
-                                                    "size": 10.0,
-                                                    "overflow": "Elipsis",
-                                                    "decoration": "Strikethrough"
-                                                  },
-                                                  "children": []
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "Container",
-                                              "attributes": {
-                                                "padding": 5.0
-                                              },
-                                              "children": []
-                                            },
-                                            {
-                                              "type": "Text",
-                                              "attributes": {
-                                                "caption": "Sample product",
-                                                "overflow": "Elipsis",
-                                                "maxLines": 3
-                                              },
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ],
-                              "action": {
-                                "type": "Route",
-                                "url": "https://wutsi-gateway-test.herokuapp.com/store/product?id=1"
-                              }
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Flexible",
-                          "attributes": {
-                            "flex": 1,
-                            "fit": "Tight"
-                          },
-                          "children": [
-                            {
-                              "type": "Container",
-                              "attributes": {
-                                "margin": 2.0,
-                                "border": 0.2,
-                                "borderColor": "#8c8c8c"
-                              },
-                              "children": [
-                                {
-                                  "type": "Column",
-                                  "attributes": {
-                                    "mainAxisAlignment": "start",
-                                    "crossAxisAlignment": "start"
-                                  },
-                                  "children": [
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "background": "#e8e8e8"
-                                      },
-                                      "children": [
-                                        {
-                                          "type": "Stack",
-                                          "attributes": {},
-                                          "children": [
-                                            {
-                                              "type": "Container",
-                                              "attributes": {
-                                                "padding": 10.0
-                                              },
-                                              "children": [
-                                                {
-                                                  "type": "AspectRatio",
-                                                  "attributes": {
-                                                    "aspectRatio": 1.3333333333333333
-                                                  },
-                                                  "children": [
-                                                    {
-                                                      "type": "Container",
-                                                      "attributes": {},
-                                                      "children": [
-                                                        {
-                                                          "type": "Image",
-                                                          "attributes": {
-                                                            "url": "https://www.imag.com/2.png",
-                                                            "fit": "fitHeight"
-                                                          },
-                                                          "children": []
-                                                        }
-                                                      ]
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "Positioned",
-                                              "attributes": {
-                                                "bottom": 5.0,
-                                                "left": 5.0
-                                              },
-                                              "children": [
-                                                {
-                                                  "type": "Container",
-                                                  "attributes": {
-                                                    "padding": 4.0,
-                                                    "background": "#4CAF50",
-                                                    "borderRadius": 4.0
-                                                  },
-                                                  "children": [
-                                                    {
-                                                      "type": "Text",
-                                                      "attributes": {
-                                                        "caption": "30% off",
-                                                        "color": "#FFFFFF",
-                                                        "size": 10.0
-                                                      },
-                                                      "children": []
-                                                    }
-                                                  ]
-                                                }
-                                              ]
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    },
-                                    {
-                                      "type": "Container",
-                                      "attributes": {
-                                        "alignment": "Center",
-                                        "padding": 5.0,
-                                        "height": 96.0
-                                      },
-                                      "children": [
-                                        {
-                                          "type": "Column",
-                                          "attributes": {
-                                            "mainAxisAlignment": "start",
-                                            "crossAxisAlignment": "start"
-                                          },
-                                          "children": [
-                                            {
-                                              "type": "Row",
-                                              "attributes": {
-                                                "mainAxisAlignment": "start",
-                                                "crossAxisAlignment": "end"
-                                              },
-                                              "children": [
-                                                {
-                                                  "type": "Text",
-                                                  "attributes": {
-                                                    "caption": "7,000 CFA",
-                                                    "color": "#1D7EDF",
-                                                    "bold": true
-                                                  },
-                                                  "children": []
-                                                },
-                                                {
-                                                  "type": "Container",
-                                                  "attributes": {
-                                                    "width": 2.0
-                                                  },
-                                                  "children": []
-                                                },
-                                                {
-                                                  "type": "Text",
-                                                  "attributes": {
-                                                    "caption": "10,000 CFA",
-                                                    "color": "#95A5A6",
-                                                    "size": 10.0,
-                                                    "overflow": "Elipsis",
-                                                    "decoration": "Strikethrough"
-                                                  },
-                                                  "children": []
-                                                }
-                                              ]
-                                            },
-                                            {
-                                              "type": "Container",
-                                              "attributes": {
-                                                "padding": 5.0
-                                              },
-                                              "children": []
-                                            },
-                                            {
-                                              "type": "Text",
-                                              "attributes": {
-                                                "caption": "Sample product",
-                                                "overflow": "Elipsis",
-                                                "maxLines": 3
-                                              },
-                                              "children": []
-                                            }
-                                          ]
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ],
-                              "action": {
-                                "type": "Route",
-                                "url": "https://wutsi-gateway-test.herokuapp.com/store/product?id=2"
-                              }
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "end"
-                  },
-                  "children": [
-                    {
-                      "type": "Container",
-                      "attributes": {
-                        "padding": 10.0
-                      },
-                      "children": [
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "More Products...",
-                            "color": "#1D7EDF",
-                            "decoration": "Underline"
-                          },
-                          "children": []
-                        }
-                      ],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/store/?id=5555"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Profile",
-      "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF",
-      "actions": [
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 4.0
-          },
-          "children": [
-            {
-              "type": "CircleAvatar",
-              "attributes": {
-                "radius": 20.0,
-                "backgroundColor": "#e4edf7"
-              },
-              "children": [
-                {
-                  "type": "IconButton",
-                  "attributes": {
-                    "icon": "e153",
-                    "size": 20.0
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Navigate",
-                    "url": "https://wa.me/23500000000"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 4.0
-          },
-          "children": [
-            {
-              "type": "CircleAvatar",
-              "attributes": {
-                "radius": 20.0,
-                "backgroundColor": "#e4edf7"
-              },
-              "children": [
-                {
-                  "type": "IconButton",
-                  "attributes": {
-                    "icon": "eb8b",
-                    "size": 20.0
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Command",
-                    "url": "http://localhost:0/commands/add-contact?contact-id=5555",
-                    "prompt": {
-                      "type": "Dialog",
-                      "attributes": {
-                        "type": "Confirm",
-                        "title": "Confirm",
-                        "message": "Add Ray Sponsible into your contact list?"
-                      },
-                      "children": []
-                    }
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "padding": 4.0
-          },
-          "children": [
-            {
-              "type": "CircleAvatar",
-              "attributes": {
-                "radius": 20.0,
-                "backgroundColor": "#e4edf7"
-              },
-              "children": [
-                {
-                  "type": "IconButton",
-                  "attributes": {
-                    "icon": "ea47",
-                    "size": 20.0
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Share",
-                    "url": "/profile?id=555"
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
+  "children" : [ {
+    "type" : "Screen",
+    "attributes" : {
+      "id" : "page.profile",
+      "safe" : false,
+      "backgroundColor" : "#FFFFFF"
     },
-    "children": []
-  }
+    "children" : [ {
+      "type" : "TabBarView",
+      "attributes" : { },
+      "children" : [ {
+        "type" : "Column",
+        "attributes" : {
+          "mainAxisAlignment" : "start",
+          "crossAxisAlignment" : "start"
+        },
+        "children" : [ {
+          "type" : "Center",
+          "attributes" : { },
+          "children" : [ {
+            "type" : "Column",
+            "attributes" : {
+              "mainAxisAlignment" : "center",
+              "crossAxisAlignment" : "center"
+            },
+            "children" : [ {
+              "type" : "Container",
+              "attributes" : {
+                "alignment" : "Center",
+                "padding" : 10.0
+              },
+              "children" : [ {
+                "type" : "CircleAvatar",
+                "attributes" : {
+                  "radius" : 32.0
+                },
+                "children" : [ {
+                  "type" : "Image",
+                  "attributes" : {
+                    "url" : "https://img.com/1.png"
+                  },
+                  "children" : [ ]
+                } ]
+              } ]
+            }, {
+              "type" : "Container",
+              "attributes" : {
+                "alignment" : "Center"
+              },
+              "children" : [ {
+                "type" : "Text",
+                "attributes" : {
+                  "caption" : "Ray Sponsible",
+                  "color" : "#1D7EDF",
+                  "bold" : true,
+                  "size" : 16.0,
+                  "alignment" : "Center"
+                },
+                "children" : [ ]
+              } ]
+            }, {
+              "type" : "Container",
+              "attributes" : {
+                "alignment" : "Center",
+                "padding" : 10.0
+              },
+              "children" : [ {
+                "type" : "Text",
+                "attributes" : {
+                  "caption" : "Marketing",
+                  "alignment" : "Center"
+                },
+                "children" : [ ]
+              } ]
+            }, {
+              "type" : "Container",
+              "attributes" : {
+                "alignment" : "Center"
+              },
+              "children" : [ {
+                "type" : "Text",
+                "attributes" : {
+                  "caption" : "+1 237666666666",
+                  "color" : "#95A5A6",
+                  "alignment" : "Center"
+                },
+                "children" : [ ]
+              } ]
+            }, {
+              "type" : "Container",
+              "attributes" : {
+                "alignment" : "Center",
+                "padding" : 10.0
+              },
+              "children" : [ {
+                "type" : "Text",
+                "attributes" : {
+                  "caption" : "This is my bio",
+                  "alignment" : "Center"
+                },
+                "children" : [ ]
+              } ]
+            }, {
+              "type" : "Container",
+              "attributes" : {
+                "alignment" : "Center"
+              },
+              "children" : [ {
+                "type" : "Text",
+                "attributes" : {
+                  "caption" : "my.business.com/12432",
+                  "color" : "#1D7EDF",
+                  "decoration" : "Underline"
+                },
+                "children" : [ ]
+              } ],
+              "action" : {
+                "type" : "Navigate",
+                "url" : "https://my.business.com/12432"
+              }
+            }, {
+              "type" : "Container",
+              "attributes" : {
+                "padding" : 10.0
+              },
+              "children" : [ {
+                "type" : "Wrap",
+                "attributes" : {
+                  "spacing" : 10.0,
+                  "runSpacing" : 10.0,
+                  "direction" : "Horizontal"
+                },
+                "children" : [ {
+                  "type" : "Container",
+                  "attributes" : { },
+                  "children" : [ {
+                    "type" : "Row",
+                    "attributes" : {
+                      "mainAxisSize" : "min"
+                    },
+                    "children" : [ {
+                      "type" : "Icon",
+                      "attributes" : {
+                        "code" : "e4c9",
+                        "size" : 16.0
+                      },
+                      "children" : [ ]
+                    }, {
+                      "type" : "Container",
+                      "attributes" : {
+                        "padding" : 2.0
+                      },
+                      "children" : [ ]
+                    }, {
+                      "type" : "Text",
+                      "attributes" : {
+                        "caption" : "Cameroon",
+                        "color" : "#95A5A6"
+                      },
+                      "children" : [ ]
+                    } ]
+                  } ]
+                }, {
+                  "type" : "Container",
+                  "attributes" : { },
+                  "children" : [ {
+                    "type" : "Row",
+                    "attributes" : {
+                      "mainAxisSize" : "min"
+                    },
+                    "children" : [ {
+                      "type" : "Icon",
+                      "attributes" : {
+                        "code" : "ef0b",
+                        "size" : 16.0
+                      },
+                      "children" : [ ]
+                    }, {
+                      "type" : "Container",
+                      "attributes" : {
+                        "padding" : 2.0
+                      },
+                      "children" : [ ]
+                    }, {
+                      "type" : "Text",
+                      "attributes" : {
+                        "caption" : "Marketing",
+                        "color" : "#95A5A6"
+                      },
+                      "children" : [ ]
+                    } ]
+                  } ]
+                } ]
+              } ]
+            } ]
+          } ]
+        } ]
+      }, {
+        "type" : "DynamicWidget",
+        "attributes" : {
+          "url" : "https://wutsi-gateway-test.herokuapp.com/store/widget?id=5555"
+        },
+        "children" : [ ]
+      } ]
+    } ],
+    "appBar" : {
+      "type" : "AppBar",
+      "attributes" : {
+        "title" : "Ray Sponsible",
+        "elevation" : 0.0,
+        "backgroundColor" : "#1D7EDF",
+        "foregroundColor" : "#FFFFFF",
+        "actions" : [ {
+          "type" : "Container",
+          "attributes" : {
+            "padding" : 4.0
+          },
+          "children" : [ {
+            "type" : "CircleAvatar",
+            "attributes" : {
+              "radius" : 20.0,
+              "backgroundColor" : "#e4edf7"
+            },
+            "children" : [ {
+              "type" : "IconButton",
+              "attributes" : {
+                "icon" : "e153",
+                "size" : 20.0
+              },
+              "children" : [ ],
+              "action" : {
+                "type" : "Navigate",
+                "url" : "https://wa.me/23500000000"
+              }
+            } ]
+          } ]
+        }, {
+          "type" : "Container",
+          "attributes" : {
+            "padding" : 4.0
+          },
+          "children" : [ {
+            "type" : "CircleAvatar",
+            "attributes" : {
+              "radius" : 20.0,
+              "backgroundColor" : "#e4edf7"
+            },
+            "children" : [ {
+              "type" : "IconButton",
+              "attributes" : {
+                "icon" : "eb8b",
+                "size" : 20.0
+              },
+              "children" : [ ],
+              "action" : {
+                "type" : "Command",
+                "url" : "http://localhost:0/commands/add-contact?contact-id=5555",
+                "prompt" : {
+                  "type" : "Dialog",
+                  "attributes" : {
+                    "type" : "Confirm",
+                    "title" : "Confirm",
+                    "message" : "Add Ray Sponsible into your contact list?"
+                  },
+                  "children" : [ ]
+                }
+              }
+            } ]
+          } ]
+        }, {
+          "type" : "Container",
+          "attributes" : {
+            "padding" : 4.0
+          },
+          "children" : [ {
+            "type" : "CircleAvatar",
+            "attributes" : {
+              "radius" : 20.0,
+              "backgroundColor" : "#e4edf7"
+            },
+            "children" : [ {
+              "type" : "IconButton",
+              "attributes" : {
+                "icon" : "ea47",
+                "size" : 20.0
+              },
+              "children" : [ ],
+              "action" : {
+                "type" : "Share",
+                "url" : "/profile?id=555"
+              }
+            } ]
+          } ]
+        } ],
+        "bottom" : {
+          "type" : "TabBar",
+          "attributes" : { },
+          "children" : [ {
+            "type" : "Text",
+            "attributes" : {
+              "caption" : "About"
+            },
+            "children" : [ ]
+          }, {
+            "type" : "Text",
+            "attributes" : {
+              "caption" : "Store"
+            },
+            "children" : [ ]
+          } ]
+        }
+      },
+      "children" : [ ]
+    }
+  } ]
 }
