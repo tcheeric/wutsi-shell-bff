@@ -113,7 +113,7 @@
         "children" : [ ],
         "action" : {
           "type" : "Route",
-          "url" : "https://wutsi-gateway-test.herokuapp.com/store/settings/orders"
+          "url" : "https://wutsi-gateway-test.herokuapp.com/store/purchases"
         }
       }, {
         "type" : "Container",

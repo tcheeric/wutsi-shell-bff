@@ -274,7 +274,7 @@ class HomeScreen(
                         icon = Theme.ICON_ORDER,
                         action = Action(
                             type = Route,
-                            url = "$storeUrl/orders/merchant"
+                            url = "$storeUrl/orders"
                         )
                     )
                 )

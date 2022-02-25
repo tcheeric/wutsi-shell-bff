@@ -116,7 +116,7 @@ class SettingsScreen(
             children.add(
                 listItem(
                     "page.settings.listitem.my-purchases.caption",
-                    urlBuilder.build(storeUrl, "settings/orders")
+                    urlBuilder.build(storeUrl, "purchases")
                 ),
             )
 
