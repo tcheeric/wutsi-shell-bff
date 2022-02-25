@@ -73,9 +73,9 @@ class ProfileScreen(
 
         val tabs = TabBar(
             tabs = listOfNotNull(
-                Text(getText("page.profile.tab.about").uppercase(), bold=true),
+                Text(getText("page.profile.tab.about").uppercase(), bold = true),
                 if (user.business && togglesProvider.isStoreEnabled())
-                    Text(getText("page.profile.tab.store").uppercase(), bold=true)
+                    Text(getText("page.profile.tab.store").uppercase(), bold = true)
                 else
                     null
             )
