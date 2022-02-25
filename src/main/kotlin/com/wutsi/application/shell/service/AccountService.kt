@@ -7,7 +7,6 @@ import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
-import com.wutsi.application.shell.endpoint.settings.security.dto.UpdateAccountAttributeRequest
 import com.wutsi.application.shell.entity.SmsCodeEntity
 import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
 import com.wutsi.application.shell.exception.InvalidPhoneNumberException
@@ -131,16 +130,6 @@ class AccountService(
             id = currentUserId(),
             request = SavePasswordRequest(
                 password = request.pin
-            )
-        )
-    }
-
-    fun setTransferSecured(request: UpdateAccountAttributeRequest) {
-        accountApi.updateAccountAttribute(
-            id = currentUserId(),
-            name = "transfer-secured",
-            request = com.wutsi.platform.account.dto.UpdateAccountAttributeRequest(
-                value = request.value
             )
         )
     }

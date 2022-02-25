@@ -96,57 +96,59 @@ class SettingsScreen(
                     ),
                 ),
             ),
+        )
+
+        // General
+        children.add(
             listItem(
                 "page.settings.listitem.personal.caption",
-                "page.settings.listitem.personal.subcaption",
-                Theme.ICON_VERIFIED_USER,
-                Theme.COLOR_PRIMARY,
                 urlBuilder.build("settings/profile")
             ),
         )
-
         if (togglesProvider.isAccountEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.account.caption",
-                    "page.settings.listitem.account.subcaption",
-                    Theme.ICON_MONEY,
-                    Theme.COLOR_SUCCESS,
                     urlBuilder.build("settings/account")
                 ),
             )
-
         if (togglesProvider.isStoreEnabled())
             children.add(
                 listItem(
-                    "page.settings.listitem.store.caption",
-                    "page.settings.listitem.store.subcaption",
-                    Theme.ICON_STORE,
-                    Theme.COLOR_PRIMARY,
-                    urlBuilder.build(storeUrl, "settings/store")
+                    "page.settings.listitem.my-purchases.caption",
+                    urlBuilder.build(storeUrl, "settings/orders")
                 ),
             )
 
+        // Applications
+        if (user.business) {
+            children.add(
+                Container(padding = 20.0)
+            )
+            if (togglesProvider.isStoreEnabled())
+                children.add(
+                    listItem(
+                        "page.settings.listitem.store.caption",
+                        urlBuilder.build(storeUrl, "settings/store")
+                    ),
+                )
+        }
+
+        // Security/About
         children.addAll(
             listOf(
+                Container(padding = 20.0),
                 listItem(
                     "page.settings.listitem.security.caption",
-                    "page.settings.listitem.security.subcaption",
-                    Theme.ICON_LOCK,
-                    Theme.COLOR_DANGER,
                     urlBuilder.build("settings/security")
                 ),
                 listItem(
                     "page.settings.listitem.about.caption",
-                    null,
-                    Theme.ICON_INFO,
-                    Theme.COLOR_PRIMARY,
                     urlBuilder.build("settings/about")
                 ),
             )
         )
-
-        if (togglesProvider.isLogoutEnabled()) {
+        if (togglesProvider.isLogoutEnabled())
             children.add(
                 Container(
                     padding = 20.0,
@@ -160,19 +162,13 @@ class SettingsScreen(
                     )
                 )
             )
-        }
+
         return children
     }
 
-    private fun listItem(caption: String, subCaption: String?, icon: String, color: String, url: String) = ListItem(
+    private fun listItem(caption: String, url: String) = ListItem(
         padding = 5.0,
         caption = getText(caption),
-        subCaption = subCaption?.let { getText(it) },
-        leading = Icon(
-            code = icon,
-            size = 32.0,
-            color = color
-        ),
         trailing = Icon(
             code = Theme.ICON_CHEVRON_RIGHT,
             size = 24.0,

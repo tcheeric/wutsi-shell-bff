@@ -43,7 +43,7 @@ class SettingsAboutScreen(
 ) : AbstractQuery() {
     @PostMapping
     fun index(
-        @RequestHeader(name = "X-Environment", required = false) env: String = "test"
+        @RequestHeader(name = "X-Environment", required = false) env: String? = null
     ): Widget {
         val items = mutableListOf<WidgetAware>()
         val tenant = tenantProvider.get()
@@ -73,7 +73,7 @@ class SettingsAboutScreen(
                 listItem("page.settings.about.app-os", osInfo),
                 listItem("page.settings.about.device-id", tracingContext.deviceId()),
                 listItem("page.settings.about.user-id", securityContext.currentAccountId().toString()),
-                listItem("page.settings.about.environment", env.uppercase() ?: "TEST"),
+                listItem("page.settings.about.environment", env?.uppercase() ?: "TEST"),
             )
         )
 
