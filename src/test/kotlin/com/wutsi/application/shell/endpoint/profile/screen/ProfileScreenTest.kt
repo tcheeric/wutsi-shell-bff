@@ -5,10 +5,6 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.ecommerce.catalog.WutsiCatalogApi
-import com.wutsi.ecommerce.catalog.dto.PictureSummary
-import com.wutsi.ecommerce.catalog.dto.ProductSummary
-import com.wutsi.ecommerce.catalog.dto.SearchProductResponse
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
@@ -30,9 +26,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
-
-    @MockBean
-    private lateinit var catalogApi: WutsiCatalogApi
 
     @Test
     fun personal() {
@@ -57,9 +50,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
-
-        val products = listOf(createProductSummary(1), createProductSummary(2))
-        doReturn(SearchProductResponse(products)).whenever(catalogApi).searchProducts(any())
 
         val account = createAccount(5555, true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
@@ -110,17 +100,5 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         ),
         website = "https://my.business.com/12432",
         whatsapp = "+23500000000"
-    )
-
-    protected fun createProductSummary(id: Long) = ProductSummary(
-        id = id,
-        title = "Sample product",
-        summary = "Summary of product",
-        price = 7000.0,
-        comparablePrice = 10000.0,
-        thumbnail = PictureSummary(
-            id = 3,
-            url = "https://www.imag.com/$id.png"
-        )
     )
 }
