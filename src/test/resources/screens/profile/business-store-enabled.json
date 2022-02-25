@@ -303,13 +303,15 @@
           "children" : [ {
             "type" : "Text",
             "attributes" : {
-              "caption" : "About"
+              "caption" : "ABOUT",
+              "bold" : true
             },
             "children" : [ ]
           }, {
             "type" : "Text",
             "attributes" : {
-              "caption" : "Store"
+              "caption" : "STORE",
+              "bold" : true
             },
             "children" : [ ]
           } ]

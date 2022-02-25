@@ -245,7 +245,8 @@
           "children" : [ {
             "type" : "Text",
             "attributes" : {
-              "caption" : "About"
+              "caption" : "ABOUT",
+              "bold" : true
             },
             "children" : [ ]
           } ]

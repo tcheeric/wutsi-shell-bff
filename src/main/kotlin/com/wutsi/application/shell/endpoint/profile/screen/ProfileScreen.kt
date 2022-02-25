@@ -16,7 +16,6 @@ import com.wutsi.ecommerce.catalog.WutsiCatalogApi
 import com.wutsi.ecommerce.catalog.dto.SearchProductRequest
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
-import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
@@ -74,9 +73,9 @@ class ProfileScreen(
 
         val tabs = TabBar(
             tabs = listOfNotNull(
-                Text(getText("page.profile.tab.about")),
+                Text(getText("page.profile.tab.about").uppercase(), bold=true),
                 if (user.business && togglesProvider.isStoreEnabled())
-                    Text(getText("page.profile.tab.store"))
+                    Text(getText("page.profile.tab.store").uppercase(), bold=true)
                 else
                     null
             )
