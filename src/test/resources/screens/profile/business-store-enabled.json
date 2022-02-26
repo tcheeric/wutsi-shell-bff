@@ -201,23 +201,11 @@
           } ]
         } ]
       }, {
-        "type" : "Container",
+        "type" : "DynamicWidget",
         "attributes" : {
-          "alignment" : "Center"
+          "url" : "https://wutsi-gateway-test.herokuapp.com/store/widget?id=5555"
         },
-        "children" : [ {
-          "type" : "Button",
-          "attributes" : {
-            "caption" : "Open Store",
-            "padding" : 15.0,
-            "type" : "Elevated"
-          },
-          "children" : [ ],
-          "action" : {
-            "type" : "Route",
-            "url" : "https://wutsi-gateway-test.herokuapp.com/store/?id=5555"
-          }
-        } ]
+        "children" : [ ]
       } ]
     } ],
     "appBar" : {

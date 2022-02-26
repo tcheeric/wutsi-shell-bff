@@ -19,6 +19,7 @@ import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.DefaultTabController
 import com.wutsi.flutter.sdui.Dialog
+import com.wutsi.flutter.sdui.DynamicWidget
 import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.TabBar
@@ -177,19 +178,19 @@ class ProfileScreen(
         )
     }
 
-    private fun storeTab(user: Account) = Container(
-        alignment = Alignment.Center,
-        child = Button(
-            caption = "Open Store",
-            action = Action(
-                type = ActionType.Route,
-                url = urlBuilder.build(storeUrl, "?id=${user.id}")
-            )
-        )
-    )
-//    DynamicWidget(
-//    url = urlBuilder.build(storeUrl, "widget?id=${user.id}")
+//    private fun storeTab(user: Account) = Container(
+//        alignment = Alignment.Center,
+//        child = Button(
+//            caption = "Open Store",
+//            action = Action(
+//                type = ActionType.Route,
+//                url = urlBuilder.build(storeUrl, "?id=${user.id}")
+//            )
+//        )
 //    )
+    private fun storeTab(user: Account) = DynamicWidget(
+        url = urlBuilder.build(storeUrl, "widget?id=${user.id}")
+    )
 
     private fun canAddContact(user: Account): Boolean =
         if (user.id == securityContext.currentAccountId())
