@@ -88,21 +88,31 @@ class SettingsScreen(
         children.add(
             listItem(
                 "page.settings.listitem.personal.caption",
-                urlBuilder.build("settings/profile")
+                urlBuilder.build("settings/profile"),
+                icon = Theme.ICON_CONTACT
             ),
         )
         if (togglesProvider.isAccountEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.account.caption",
-                    urlBuilder.build("settings/account")
+                    urlBuilder.build("settings/account"),
+                    icon = Theme.ICON_ACCOUNT
                 ),
             )
+        children.add(
+            listItem(
+                "page.settings.listitem.my-transactions.caption",
+                urlBuilder.build(cashUrl, "history"),
+                icon = Theme.ICON_HISTORY
+            ),
+        )
         if (togglesProvider.isStoreEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.my-purchases.caption",
-                    urlBuilder.build(storeUrl, "purchases")
+                    urlBuilder.build(storeUrl, "purchases"),
+                    icon = Theme.ICON_SHOPPING_BAG
                 ),
             )
 
@@ -115,7 +125,8 @@ class SettingsScreen(
                 children.add(
                     listItem(
                         "page.settings.listitem.store.caption",
-                        urlBuilder.build(storeUrl, "settings/store")
+                        urlBuilder.build(storeUrl, "settings/store"),
+                        icon = Theme.ICON_STORE
                     ),
                 )
         }
@@ -126,11 +137,13 @@ class SettingsScreen(
                 Container(padding = 20.0),
                 listItem(
                     "page.settings.listitem.security.caption",
-                    urlBuilder.build("settings/security")
+                    urlBuilder.build("settings/security"),
+                    icon = Theme.ICON_LOCK
                 ),
                 listItem(
                     "page.settings.listitem.about.caption",
-                    urlBuilder.build("settings/about")
+                    urlBuilder.build("settings/about"),
+                    icon = Theme.ICON_INFO
                 ),
             )
         )
@@ -152,8 +165,9 @@ class SettingsScreen(
         return children
     }
 
-    private fun listItem(caption: String, url: String) = ListItem(
+    private fun listItem(caption: String, url: String, icon: String? = null) = ListItem(
         padding = 5.0,
+        leading = icon?.let { Icon(code = icon, size = 24.0, color = Theme.COLOR_BLACK) },
         caption = getText(caption),
         trailing = Icon(
             code = Theme.ICON_CHEVRON_RIGHT,

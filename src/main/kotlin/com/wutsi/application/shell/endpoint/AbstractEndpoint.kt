@@ -59,17 +59,17 @@ abstract class AbstractEndpoint {
                     url = urlBuilder.build("profile?id=${securityContext.currentAccountId()}"),
                 )
             ),
-            BottomNavigationBarItem(
-                icon = Theme.ICON_HISTORY,
-                caption = getText("page.home.bottom-nav-bar.transactions"),
-                action = Action(
-                    type = ActionType.Route,
-                    url = urlBuilder.build(cashUrl, "history")
-                )
-            ),
+//            BottomNavigationBarItem(
+//                icon = Theme.ICON_HISTORY,
+//                caption = getText("page.home.bottom-nav-bar.transactions"),
+//                action = Action(
+//                    type = ActionType.Route,
+//                    url = urlBuilder.build(cashUrl, "history")
+//                )
+//            ),
             BottomNavigationBarItem(
                 icon = Theme.ICON_SETTINGS,
-                caption = "xx",
+                caption = getText("page.home.bottom-nav-bar.settings"),
                 action = Action(
                     type = ActionType.Route,
                     url = urlBuilder.build("settings")
