@@ -231,14 +231,6 @@ class HomeScreen(
                         url = urlBuilder.build(cashUrl, "send")
                     )
                 ),
-                primaryButton(
-                    caption = getText("page.home.button.qr-code"),
-                    icon = Theme.ICON_QR_CODE,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("qr-code")
-                    )
-                )
             )
         )
         return buttons

@@ -67,22 +67,6 @@
             "type" : "Route",
             "url" : "https://wutsi-gateway-test.herokuapp.com/cash/send"
           }
-        }, {
-          "type" : "Button",
-          "attributes" : {
-            "caption" : "QR Code",
-            "padding" : 1.0,
-            "type" : "Text",
-            "stretched" : false,
-            "icon" : "e4f5",
-            "iconColor" : "#FFFFFF",
-            "color" : "#FFFFFF"
-          },
-          "children" : [ ],
-          "action" : {
-            "type" : "Route",
-            "url" : "http://localhost:0/qr-code"
-          }
         } ]
       } ]
     }, {
