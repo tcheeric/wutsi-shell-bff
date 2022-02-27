@@ -1,7 +1,7 @@
 {
   "type" : "DefaultTabController",
   "attributes" : {
-    "length" : 1
+    "length" : 2
   },
   "children" : [ {
     "type" : "Screen",
@@ -200,6 +200,12 @@
             } ]
           } ]
         } ]
+      }, {
+        "type" : "DynamicWidget",
+        "attributes" : {
+          "url" : "http://localhost:0/profile/qr-code-widget?id=5555"
+        },
+        "children" : [ ]
       } ]
     } ],
     "appBar" : {
@@ -298,6 +304,13 @@
             "type" : "Text",
             "attributes" : {
               "caption" : "ABOUT",
+              "bold" : true
+            },
+            "children" : [ ]
+          }, {
+            "type" : "Text",
+            "attributes" : {
+              "caption" : "QR CODE",
               "bold" : true
             },
             "children" : [ ]

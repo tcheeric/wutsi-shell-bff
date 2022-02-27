@@ -64,19 +64,25 @@ class ProfileScreen(
         val tabs = TabBar(
             tabs = listOfNotNull(
                 Text(getText("page.profile.tab.about").uppercase(), bold = true),
+
                 if (user.business && togglesProvider.isStoreEnabled())
                     Text(getText("page.profile.tab.store").uppercase(), bold = true)
                 else
-                    null
+                    null,
+
+                Text(getText("page.profile.tab.qr-code").uppercase(), bold = true),
             )
         )
         val tabViews = TabBarView(
             children = listOfNotNull(
                 aboutTab(user),
+
                 if (user.business && togglesProvider.isStoreEnabled())
                     storeTab(user)
                 else
-                    null
+                    null,
+
+                qrCodeTab(user)
             )
         )
 
@@ -176,18 +182,12 @@ class ProfileScreen(
         )
     }
 
-//    private fun storeTab(user: Account) = Container(
-//        alignment = Alignment.Center,
-//        child = Button(
-//            caption = "Open Store",
-//            action = Action(
-//                type = ActionType.Route,
-//                url = urlBuilder.build(storeUrl, "?id=${user.id}")
-//            )
-//        )
-//    )
     private fun storeTab(user: Account) = DynamicWidget(
         url = urlBuilder.build(storeUrl, "widget?id=${user.id}")
+    )
+
+    private fun qrCodeTab(user: Account) = DynamicWidget(
+        url = urlBuilder.build("profile/qr-code-widget?id=${user.id}")
     )
 
     private fun canAddContact(user: Account): Boolean =

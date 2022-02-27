@@ -1,7 +1,7 @@
 {
   "type" : "DefaultTabController",
   "attributes" : {
-    "length" : 2
+    "length" : 3
   },
   "children" : [ {
     "type" : "Screen",
@@ -206,6 +206,12 @@
           "url" : "https://wutsi-gateway-test.herokuapp.com/store/widget?id=5555"
         },
         "children" : [ ]
+      }, {
+        "type" : "DynamicWidget",
+        "attributes" : {
+          "url" : "http://localhost:0/profile/qr-code-widget?id=5555"
+        },
+        "children" : [ ]
       } ]
     } ],
     "appBar" : {
@@ -311,6 +317,13 @@
             "type" : "Text",
             "attributes" : {
               "caption" : "STORE",
+              "bold" : true
+            },
+            "children" : [ ]
+          }, {
+            "type" : "Text",
+            "attributes" : {
+              "caption" : "QR CODE",
               "bold" : true
             },
             "children" : [ ]
