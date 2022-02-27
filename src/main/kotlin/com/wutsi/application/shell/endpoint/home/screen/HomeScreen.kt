@@ -234,7 +234,7 @@ class HomeScreen(
                 listOf(
                     applicationButton(
                         caption = getText("page.home.button.orders"),
-                        icon = Theme.ICON_ORDER,
+                        icon = Theme.ICON_ORDERS,
                         action = Action(
                             type = Route,
                             url = "$storeUrl/orders"
@@ -260,7 +260,7 @@ class HomeScreen(
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.contact"),
-                    icon = Theme.ICON_CONTACT,
+                    icon = Theme.ICON_GROUP,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build("contact")

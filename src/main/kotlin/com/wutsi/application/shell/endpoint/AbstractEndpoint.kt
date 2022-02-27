@@ -52,21 +52,21 @@ abstract class AbstractEndpoint {
                 )
             ),
             BottomNavigationBarItem(
-                icon = Theme.ICON_CONTACT,
+                icon = Theme.ICON_PERSON,
                 caption = getText("page.home.bottom-nav-bar.me"),
                 action = Action(
                     type = ActionType.Route,
                     url = urlBuilder.build("profile?id=${securityContext.currentAccountId()}"),
                 )
             ),
-//            BottomNavigationBarItem(
-//                icon = Theme.ICON_HISTORY,
-//                caption = getText("page.home.bottom-nav-bar.transactions"),
-//                action = Action(
-//                    type = ActionType.Route,
-//                    url = urlBuilder.build(cashUrl, "history")
-//                )
-//            ),
+            BottomNavigationBarItem(
+                icon = Theme.ICON_HISTORY,
+                caption = getText("page.home.bottom-nav-bar.transactions"),
+                action = Action(
+                    type = ActionType.Route,
+                    url = urlBuilder.build(cashUrl, "history")
+                )
+            ),
             BottomNavigationBarItem(
                 icon = Theme.ICON_SETTINGS,
                 caption = getText("page.home.bottom-nav-bar.settings"),
@@ -74,7 +74,7 @@ abstract class AbstractEndpoint {
                     type = ActionType.Route,
                     url = urlBuilder.build("settings")
                 )
-            )
+            ),
         )
     )
 

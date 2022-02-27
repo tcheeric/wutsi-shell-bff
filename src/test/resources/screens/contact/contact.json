@@ -1,93 +1,160 @@
 {
-  "type" : "Screen",
-  "attributes" : {
-    "id" : "page.contacts",
-    "safe" : false
+  "type": "Screen",
+  "attributes": {
+    "id": "page.contacts",
+    "safe": false
   },
-  "children" : [ {
-    "type" : "ListView",
-    "attributes" : {
-      "separator" : true,
-      "separatorColor" : "#8c8c8c"
-    },
-    "children" : [ {
-      "type" : "ListItem",
-      "attributes" : {
-        "caption" : "Omam Mbiyick",
-        "iconRight" : "e15f",
-        "padding" : 10.0,
-        "trailing" : {
-          "type" : "Icon",
-          "attributes" : {
-            "code" : "e15f"
-          },
-          "children" : [ ]
-        },
-        "leading" : {
-          "type" : "CircleAvatar",
-          "attributes" : {
-            "radius" : 24.0
-          },
-          "children" : [ {
-            "type" : "Text",
-            "attributes" : {
-              "caption" : "OM",
-              "bold" : true,
-              "size" : 16.0
+  "children": [
+    {
+      "type": "ListView",
+      "attributes": {
+        "separator": true,
+        "separatorColor": "#8c8c8c"
+      },
+      "children": [
+        {
+          "type": "ListItem",
+          "attributes": {
+            "caption": "Omam Mbiyick",
+            "iconRight": "e15f",
+            "padding": 10.0,
+            "trailing": {
+              "type": "Icon",
+              "attributes": {
+                "code": "e15f"
+              },
+              "children": []
             },
-            "children" : [ ]
-          } ]
+            "leading": {
+              "type": "CircleAvatar",
+              "attributes": {
+                "radius": 24.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "OM",
+                    "bold": true,
+                    "size": 16.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/profile?id=101"
+          }
+        },
+        {
+          "type": "ListItem",
+          "attributes": {
+            "caption": "Roger Milla",
+            "iconRight": "e15f",
+            "padding": 10.0,
+            "trailing": {
+              "type": "Icon",
+              "attributes": {
+                "code": "e15f"
+              },
+              "children": []
+            },
+            "leading": {
+              "type": "CircleAvatar",
+              "attributes": {
+                "radius": 24.0
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "attributes": {
+                    "caption": "RM",
+                    "bold": true,
+                    "size": 16.0
+                  },
+                  "children": []
+                }
+              ]
+            }
+          },
+          "children": [],
+          "action": {
+            "type": "Route",
+            "url": "http://localhost:0/profile?id=100"
+          }
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "title": "My Contacts",
+      "elevation": 0.0,
+      "backgroundColor": "#FFFFFF",
+      "foregroundColor": "#000000"
+    },
+    "children": []
+  },
+  "bottomNavigationBar": {
+    "type": "BottomNavigationBar",
+    "attributes": {
+      "background": "#1D7EDF",
+      "selectedItemColor": "#FFFFFF",
+      "unselectedItemColor": "#FFFFFF"
+    },
+    "children": [
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e319",
+          "caption": "Home"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~"
         }
       },
-      "children" : [ ],
-      "action" : {
-        "type" : "Route",
-        "url" : "http://localhost:0/profile?id=101"
-      }
-    }, {
-      "type" : "ListItem",
-      "attributes" : {
-        "caption" : "Roger Milla",
-        "iconRight" : "e15f",
-        "padding" : 10.0,
-        "trailing" : {
-          "type" : "Icon",
-          "attributes" : {
-            "code" : "e15f"
-          },
-          "children" : [ ]
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e491",
+          "caption": "Me"
         },
-        "leading" : {
-          "type" : "CircleAvatar",
-          "attributes" : {
-            "radius" : 24.0
-          },
-          "children" : [ {
-            "type" : "Text",
-            "attributes" : {
-              "caption" : "RM",
-              "bold" : true,
-              "size" : 16.0
-            },
-            "children" : [ ]
-          } ]
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/profile?id=77777"
         }
       },
-      "children" : [ ],
-      "action" : {
-        "type" : "Route",
-        "url" : "http://localhost:0/profile?id=100"
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e314",
+          "caption": "Transactions"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e57f",
+          "caption": "Settings"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/settings"
+        }
       }
-    } ]
-  } ],
-  "appBar" : {
-    "type" : "AppBar",
-    "attributes" : {
-      "title" : "My Contacts",
-      "elevation" : 0.0,
-      "backgroundColor" : "#FFFFFF",
-      "foregroundColor" : "#000000"
-    },
-    "children" : [ ]
+    ]
   }
 }

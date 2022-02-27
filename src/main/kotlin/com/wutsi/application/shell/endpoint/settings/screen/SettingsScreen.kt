@@ -55,7 +55,8 @@ class SettingsScreen(
                 separatorColor = Theme.COLOR_DIVIDER,
                 children = listItems()
             ),
-        )
+        ),
+        bottomNavigationBar = bottomNavigationBar()
     ).toWidget()
 
     private fun listItems(): List<WidgetAware> {
@@ -89,7 +90,7 @@ class SettingsScreen(
             listItem(
                 "page.settings.listitem.personal.caption",
                 urlBuilder.build("settings/profile"),
-                icon = Theme.ICON_CONTACT
+                icon = Theme.ICON_PERSON
             ),
         )
         if (togglesProvider.isAccountEnabled())

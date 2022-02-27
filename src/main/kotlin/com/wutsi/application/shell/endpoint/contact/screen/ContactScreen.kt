@@ -66,7 +66,8 @@ class ContactScreen(
                         )
                     )
                 },
-            )
+            ),
+            bottomNavigationBar = bottomNavigationBar(),
         ).toWidget()
     }
 }
