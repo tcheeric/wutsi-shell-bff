@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.account.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.service.AccountService
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/accounts/verify/mobile")
 class VerifyAccountMobileScreen(
-    private val urlBuilder: URLBuilder,
     private val service: AccountService,
 ) : AbstractQuery() {
     @PostMapping

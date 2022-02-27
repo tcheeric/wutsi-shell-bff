@@ -1,8 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
@@ -19,10 +17,7 @@ import com.wutsi.flutter.sdui.enums.InputType
 import com.wutsi.platform.account.dto.Account
 import org.springframework.web.bind.annotation.PostMapping
 
-abstract class AbstractSettingsProfileAttributeScreen(
-    protected val urlBuilder: URLBuilder,
-    protected val securityContext: SecurityContext
-) : AbstractQuery() {
+abstract class AbstractSettingsProfileAttributeScreen : AbstractQuery() {
     abstract fun getAttributeName(): String
 
     abstract fun getPageId(): String

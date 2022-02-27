@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.security.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -21,9 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/security/confirm-pin")
-class SettingsConfirmPINScreen(
-    private val urlBuilder: URLBuilder
-) : AbstractQuery() {
+class SettingsConfirmPINScreen : AbstractQuery() {
     @PostMapping
     fun index(@RequestParam pin: String) = Screen(
         id = Page.SETTINGS_SECURITY_PIN_CONFIRM,

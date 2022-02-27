@@ -1,8 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.picture.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -27,10 +25,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/picture")
-class SettingsPictureScreen(
-    private val urlBuilder: URLBuilder,
-    private val securityContext: SecurityContext
-) : AbstractQuery() {
+class SettingsPictureScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         val me = securityContext.currentAccount()

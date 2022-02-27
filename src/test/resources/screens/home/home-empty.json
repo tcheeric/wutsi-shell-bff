@@ -1,106 +1,158 @@
 {
-  "type" : "Screen",
-  "attributes" : {
-    "id" : "page.home",
-    "safe" : false
+  "type": "Screen",
+  "attributes": {
+    "id": "page.home",
+    "safe": false
   },
-  "children" : [ {
-    "type" : "Column",
-    "attributes" : { },
-    "children" : [ {
-      "type" : "Container",
-      "attributes" : {
-        "alignment" : "Center",
-        "background" : "#1D7EDF"
-      },
-      "children" : [ {
-        "type" : "Center",
-        "attributes" : { },
-        "children" : [ {
-          "type" : "Column",
-          "attributes" : {
-            "mainAxisAlignment" : "center",
-            "crossAxisAlignment" : "center"
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "background": "#1D7EDF"
           },
-          "children" : [ {
-            "type" : "Text",
-            "attributes" : {
-              "caption" : "Balance",
-              "color" : "#FFFFFF"
-            },
-            "children" : [ ]
-          }, {
-            "type" : "MoneyText",
-            "attributes" : {
-              "value" : 0.0,
-              "color" : "#FFFFFF",
-              "currency" : "CFA",
-              "numberFormat" : "#,###,##0"
-            },
-            "children" : [ ]
-          } ]
-        } ]
-      } ]
-    }, {
-      "type" : "Container",
-      "attributes" : {
-        "background" : "#1D7EDF"
-      },
-      "children" : [ {
-        "type" : "Row",
-        "attributes" : {
-          "mainAxisAlignment" : "spaceAround"
+          "children": [
+            {
+              "type": "Center",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisAlignment": "center",
+                    "crossAxisAlignment": "center"
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Balance",
+                        "color": "#FFFFFF"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 0.0,
+                        "color": "#FFFFFF",
+                        "currency": "CFA",
+                        "numberFormat": "#,###,##0"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
-        "children" : [ {
-          "type" : "Button",
-          "attributes" : {
-            "caption" : "Send",
-            "padding" : 1.0,
-            "type" : "Text",
-            "stretched" : false,
-            "icon" : "eaf0",
-            "iconColor" : "#FFFFFF",
-            "color" : "#FFFFFF"
+        {
+          "type": "Container",
+          "attributes": {
+            "background": "#1D7EDF"
           },
-          "children" : [ ],
-          "action" : {
-            "type" : "Route",
-            "url" : "https://wutsi-gateway-test.herokuapp.com/cash/send"
-          }
-        } ]
-      } ]
-    } ]
-  } ],
-  "appBar" : {
-    "type" : "AppBar",
-    "attributes" : {
-      "elevation" : 0.0,
-      "backgroundColor" : "#1D7EDF",
-      "foregroundColor" : "#FFFFFF",
-      "automaticallyImplyLeading" : false,
-      "actions" : [ {
-        "type" : "IconButton",
-        "attributes" : {
-          "icon" : "e57f"
-        },
-        "children" : [ ],
-        "action" : {
-          "type" : "Route",
-          "url" : "http://localhost:0/settings"
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround"
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Send",
+                    "padding": 1.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "eaf0",
+                    "iconColor": "#FFFFFF",
+                    "color": "#FFFFFF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
+                  }
+                }
+              ]
+            }
+          ]
         }
-      } ],
-      "leading" : {
-        "type" : "IconButton",
-        "attributes" : {
-          "icon" : "e314"
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": false
+    },
+    "children": []
+  },
+  "bottomNavigationBar": {
+    "type": "BottomNavigationBar",
+    "attributes": {
+      "background": "#1D7EDF",
+      "selectedItemColor": "#FFFFFF",
+      "unselectedItemColor": "#FFFFFF"
+    },
+    "children": [
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e319",
+          "caption": "Home"
         },
-        "children" : [ ],
-        "action" : {
-          "type" : "Route",
-          "url" : "https://wutsi-gateway-test.herokuapp.com/cash/history"
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "eb93",
+          "caption": "Me"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/profile?id=77777"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e314",
+          "caption": "Transactions"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+        }
+      },
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e57f",
+          "caption": "xx"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/settings"
         }
       }
-    },
-    "children" : [ ]
+    ]
   }
 }

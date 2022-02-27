@@ -1,9 +1,7 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.DropdownButton
 import com.wutsi.flutter.sdui.DropdownMenuItem
@@ -17,10 +15,8 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/profile/language")
 class SettingsProfileLanguageScreen(
-    urlBuilder: URLBuilder,
-    securityContext: SecurityContext,
     private val tenantProvider: TenantProvider
-) : AbstractSettingsProfileAttributeScreen(urlBuilder, securityContext) {
+) : AbstractSettingsProfileAttributeScreen() {
     override fun getAttributeName() = "language"
 
     override fun getPageId() = Page.SETTINGS_PROFILE_LANGUAGE

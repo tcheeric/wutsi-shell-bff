@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.profile.command
 
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/add-contact")
 class AddContactCommand(
     private val contactApi: WutsiContactApi,
-    private val urlBuilder: URLBuilder
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam(name = "contact-id") contactId: Long): Action {

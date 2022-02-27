@@ -2,11 +2,9 @@ package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.CityService
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TogglesProvider
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -29,8 +27,6 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/profile")
 class SettingsProfileScreen(
-    private val urlBuilder: URLBuilder,
-    private val securityContext: SecurityContext,
     private val sharedUIMapper: SharedUIMapper,
     private val cityService: CityService,
     private val togglesProvider: TogglesProvider

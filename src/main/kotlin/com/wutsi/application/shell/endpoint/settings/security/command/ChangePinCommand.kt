@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.security.command
 
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
 import com.wutsi.flutter.sdui.Action
@@ -12,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/commands/change-pin")
-class ChangePinCommand(
-    private val urlBuilder: URLBuilder,
-) : AbstractCommand() {
+class ChangePinCommand : AbstractCommand() {
     @PostMapping
     fun index(@RequestBody request: ChangePinRequest): Action =
         Action(

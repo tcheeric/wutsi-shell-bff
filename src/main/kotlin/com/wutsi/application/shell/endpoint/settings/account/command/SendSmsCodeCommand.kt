@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.exception.InvalidPhoneNumberException
@@ -17,7 +16,6 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/commands/send-sms-code")
 class SendSmsCodeCommand(
-    private val urlBuilder: URLBuilder,
     private val service: AccountService
 ) : AbstractCommand() {
     @PostMapping

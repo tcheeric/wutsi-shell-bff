@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.exception.AccountAlreadyLinkedException
 import com.wutsi.application.shell.service.AccountService
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/link-account")
 class LinkAccountCommand(
     private val service: AccountService,
-    private val urlBuilder: URLBuilder
 ) : AbstractCommand() {
     @PostMapping
     fun index(): Action {

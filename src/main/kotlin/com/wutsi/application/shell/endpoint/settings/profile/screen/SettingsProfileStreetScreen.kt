@@ -1,7 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
-import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Input
 import com.wutsi.flutter.sdui.WidgetAware
@@ -11,10 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/settings/profile/street")
-class SettingsProfileStreetScreen(
-    urlBuilder: URLBuilder,
-    securityContext: SecurityContext
-) : AbstractSettingsProfileAttributeScreen(urlBuilder, securityContext) {
+class SettingsProfileStreetScreen : AbstractSettingsProfileAttributeScreen() {
     override fun getAttributeName() = "street"
 
     override fun getPageId() = Page.SETTINGS_PROFILE_STREET

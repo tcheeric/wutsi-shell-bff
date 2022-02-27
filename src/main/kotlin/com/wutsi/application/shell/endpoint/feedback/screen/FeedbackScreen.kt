@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.feedback.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -24,9 +23,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/feedback")
-class FeedbackScreen(
-    private val urlBuilder: URLBuilder,
-) : AbstractQuery() {
+class FeedbackScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(
         id = Page.FEEDBACK,

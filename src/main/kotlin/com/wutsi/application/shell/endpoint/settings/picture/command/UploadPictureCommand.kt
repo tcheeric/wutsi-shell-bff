@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.picture.command
 
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
@@ -19,7 +18,6 @@ import java.util.UUID
 class UploadPictureCommand(
     private val accountApi: WutsiAccountApi,
     private val storageService: StorageService,
-    private val securityContext: SecurityContext,
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam file: MultipartFile) {

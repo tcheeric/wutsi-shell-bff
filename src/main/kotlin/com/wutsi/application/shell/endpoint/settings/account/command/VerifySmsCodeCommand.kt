@@ -1,8 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
@@ -22,8 +20,6 @@ import javax.validation.Valid
 @RequestMapping("/commands/verify-sms-code")
 class VerifySmsCodeCommand(
     private val service: AccountService,
-    private val securityContext: SecurityContext,
-    private val urlBuilder: URLBuilder,
 
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
 ) : AbstractCommand() {

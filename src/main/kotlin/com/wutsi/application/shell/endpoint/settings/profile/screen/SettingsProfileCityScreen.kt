@@ -1,10 +1,8 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.service.CityService
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.DropdownMenuItem
 import com.wutsi.flutter.sdui.SearchableDropdown
@@ -16,12 +14,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/profile/city")
 class SettingsProfileCityScreen(
-    urlBuilder: URLBuilder,
-    securityContext: SecurityContext,
     private val cityService: CityService,
     private val tenantProvider: TenantProvider,
     private val sharedUIMapper: SharedUIMapper,
-) : AbstractSettingsProfileAttributeScreen(urlBuilder, securityContext) {
+) : AbstractSettingsProfileAttributeScreen() {
     override fun getAttributeName() = "city-id"
 
     override fun getPageId() = Page.SETTINGS_PROFILE_CITY

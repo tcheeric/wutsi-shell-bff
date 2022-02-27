@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.feedback.command
 
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.feedback.dto.SendFeedbackRequest
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/send-feedback")
 class SendFeedbackCommand(
     private val mailApi: WutsiMailApi,
-    private val securityContext: SecurityContext,
     private val tracingContext: TracingContext,
     private val tenantProvider: TenantProvider
 ) : AbstractCommand() {

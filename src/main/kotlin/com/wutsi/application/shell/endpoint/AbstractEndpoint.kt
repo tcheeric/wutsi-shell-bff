@@ -1,13 +1,20 @@
 package com.wutsi.application.shell.endpoint
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.SecurityContext
+import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.flutter.sdui.Action
+import com.wutsi.flutter.sdui.BottomNavigationBar
+import com.wutsi.flutter.sdui.BottomNavigationBarItem
 import com.wutsi.flutter.sdui.Dialog
+import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.flutter.sdui.enums.ActionType.Prompt
 import com.wutsi.flutter.sdui.enums.DialogType.Error
 import com.wutsi.platform.core.logging.KVLogger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.MessageSource
 import org.springframework.context.i18n.LocaleContextHolder
 import java.net.URLEncoder
@@ -21,6 +28,55 @@ abstract class AbstractEndpoint {
 
     @Autowired
     private lateinit var phoneNumberUtil: PhoneNumberUtil
+
+    @Autowired
+    protected lateinit var urlBuilder: URLBuilder
+
+    @Autowired
+    protected lateinit var securityContext: SecurityContext
+
+    @Value("\${wutsi.application.cash-url}")
+    protected lateinit var cashUrl: String
+
+    protected fun bottomNavigationBar() = BottomNavigationBar(
+        background = Theme.COLOR_PRIMARY,
+        selectedItemColor = Theme.COLOR_WHITE,
+        unselectedItemColor = Theme.COLOR_WHITE,
+        items = listOf(
+            BottomNavigationBarItem(
+                icon = Theme.ICON_HOME,
+                caption = getText("page.home.bottom-nav-bar.home"),
+                action = Action(
+                    type = ActionType.Route,
+                    url = "route:/~"
+                )
+            ),
+            BottomNavigationBarItem(
+                icon = Theme.ICON_CONTACT,
+                caption = getText("page.home.bottom-nav-bar.me"),
+                action = Action(
+                    type = ActionType.Route,
+                    url = urlBuilder.build("profile?id=${securityContext.currentAccountId()}"),
+                )
+            ),
+            BottomNavigationBarItem(
+                icon = Theme.ICON_HISTORY,
+                caption = getText("page.home.bottom-nav-bar.transactions"),
+                action = Action(
+                    type = ActionType.Route,
+                    url = urlBuilder.build(cashUrl, "history")
+                )
+            ),
+            BottomNavigationBarItem(
+                icon = Theme.ICON_SETTINGS,
+                caption = "xx",
+                action = Action(
+                    type = ActionType.Route,
+                    url = urlBuilder.build("settings")
+                )
+            )
+        )
+    )
 
     protected fun createErrorAction(e: Throwable?, messageKey: String): Action {
         val action = Action(

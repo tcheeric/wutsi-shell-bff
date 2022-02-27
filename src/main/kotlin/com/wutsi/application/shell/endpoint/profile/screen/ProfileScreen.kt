@@ -2,11 +2,9 @@ package com.wutsi.application.shell.endpoint.profile.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.PhoneUtil
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shared.ui.ProfileCardType
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -43,10 +41,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/profile")
 class ProfileScreen(
-    private val urlBuilder: URLBuilder,
     private val accountApi: WutsiAccountApi,
     private val contactApi: WutsiContactApi,
-    private val securityContext: SecurityContext,
     private val sharedUIMapper: SharedUIMapper,
     private val togglesProvider: TogglesProvider,
     private val tenantProvider: TenantProvider,
@@ -163,7 +159,8 @@ class ProfileScreen(
                     ),
                     bottom = tabs
                 ),
-                child = tabViews
+                child = tabViews,
+                bottomNavigationBar = bottomNavigationBar()
             )
         ).toWidget()
     }

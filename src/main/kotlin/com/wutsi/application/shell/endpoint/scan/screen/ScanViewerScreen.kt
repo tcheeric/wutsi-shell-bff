@@ -3,7 +3,6 @@ package com.wutsi.application.shell.endpoint.scan.screen
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
@@ -28,7 +27,6 @@ import com.wutsi.platform.qr.dto.DecodeQRCodeRequest
 import com.wutsi.platform.qr.dto.Entity
 import com.wutsi.platform.qr.error.ErrorURN
 import feign.FeignException
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -37,12 +35,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/scan/viewer")
 class ScanViewerScreen(
-    private val urlBuilder: URLBuilder,
     private val qrApi: WutsiQrApi,
     private val tenantProvider: TenantProvider,
     private val mapper: ObjectMapper,
-
-    @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(@RequestBody request: ScanRequest): Widget {

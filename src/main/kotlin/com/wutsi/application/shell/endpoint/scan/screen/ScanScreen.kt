@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.scan.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.AppBar
@@ -15,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/scan")
-class ScanScreen(
-    private val urlBuilder: URLBuilder,
-) : AbstractQuery() {
+class ScanScreen : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
         return Screen(

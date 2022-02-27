@@ -1,12 +1,10 @@
 package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shared.ui.Avatar
 import com.wutsi.application.shared.ui.TransactionListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -19,7 +17,6 @@ import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
-import com.wutsi.flutter.sdui.IconButton
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
@@ -52,15 +49,12 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/")
 class HomeScreen(
-    private val urlBuilder: URLBuilder,
     private val paymentApi: WutsiPaymentApi,
-    private val securityContext: SecurityContext,
     private val tenantProvider: TenantProvider,
     private val togglesProvider: TogglesProvider,
     private val accountApi: WutsiAccountApi,
     private val sharedUIMapper: SharedUIMapper,
 
-    @Value("\${wutsi.application.cash-url}") private val cashUrl: String,
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
     companion object {
@@ -173,24 +167,9 @@ class HomeScreen(
                 backgroundColor = Theme.COLOR_PRIMARY,
                 elevation = 0.0,
                 automaticallyImplyLeading = false,
-                actions = listOf(
-                    IconButton(
-                        icon = Theme.ICON_SETTINGS,
-                        action = Action(
-                            type = Route,
-                            url = urlBuilder.build("settings")
-                        )
-                    )
-                ),
-                leading = IconButton(
-                    icon = Theme.ICON_HISTORY,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build(cashUrl, "history")
-                    )
-                )
             ),
             child = Column(children = children),
+            bottomNavigationBar = bottomNavigationBar()
         ).toWidget()
     }
 
@@ -253,14 +232,6 @@ class HomeScreen(
         if (togglesProvider.isStoreEnabled()) {
             buttons.addAll(
                 listOf(
-                    applicationButton(
-                        caption = getText("page.home.button.store"),
-                        icon = Theme.ICON_STORE,
-                        action = Action(
-                            type = Route,
-                            url = storeUrl
-                        )
-                    ),
                     applicationButton(
                         caption = getText("page.home.button.orders"),
                         icon = Theme.ICON_ORDER,

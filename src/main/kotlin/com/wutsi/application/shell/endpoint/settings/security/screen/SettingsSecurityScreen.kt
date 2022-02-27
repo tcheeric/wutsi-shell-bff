@@ -1,8 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.security.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.SecurityContext
-import com.wutsi.application.shared.service.URLBuilder
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -23,9 +21,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings/security")
 class SettingsSecurityScreen(
-    private val urlBuilder: URLBuilder,
-    private val securityContext: SecurityContext,
-
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
 ) : AbstractQuery() {
     @PostMapping
