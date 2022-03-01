@@ -74,7 +74,7 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "History",
+                    "caption": "Transactions",
                     "padding": 15.0,
                     "type": "Text",
                     "stretched": false

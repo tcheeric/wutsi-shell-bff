@@ -123,36 +123,6 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My Transaction History",
-                "padding": 5.0,
-                "trailing": {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "e15f",
-                    "size": 24.0,
-                    "color": "#000000"
-                  },
-                  "children": []
-                },
-                "leading": {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "e314",
-                    "size": 24.0,
-                    "color": "#000000"
-                  },
-                  "children": []
-                }
-              },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
-              }
-            },
-            {
-              "type": "ListItem",
-              "attributes": {
                 "caption": "My Purchases",
                 "padding": 5.0,
                 "trailing": {
@@ -167,7 +137,7 @@
                 "leading": {
                   "type": "Icon",
                   "attributes": {
-                    "code": "f37d",
+                    "code": "f37a",
                     "size": 24.0,
                     "color": "#000000"
                   },

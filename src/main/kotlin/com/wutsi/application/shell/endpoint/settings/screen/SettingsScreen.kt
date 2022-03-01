@@ -101,19 +101,12 @@ class SettingsScreen(
                     icon = Theme.ICON_ACCOUNT
                 ),
             )
-        children.add(
-            listItem(
-                "page.settings.listitem.my-transactions.caption",
-                urlBuilder.build(cashUrl, "history"),
-                icon = Theme.ICON_HISTORY
-            ),
-        )
         if (togglesProvider.isStoreEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.my-purchases.caption",
                     urlBuilder.build(storeUrl, "purchases"),
-                    icon = Theme.ICON_SHOPPING_BAG
+                    icon = Theme.ICON_PURCHASES
                 ),
             )
 
