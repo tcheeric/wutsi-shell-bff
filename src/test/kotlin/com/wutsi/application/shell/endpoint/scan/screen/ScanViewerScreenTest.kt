@@ -10,6 +10,7 @@ import com.wutsi.flutter.sdui.Widget
 import com.wutsi.platform.qr.WutsiQrApi
 import com.wutsi.platform.qr.dto.DecodeQRCodeResponse
 import com.wutsi.platform.qr.dto.Entity
+import com.wutsi.platform.qr.entity.EntityType
 import com.wutsi.platform.qr.error.ErrorURN
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -37,7 +38,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     @Test
     fun payment() {
         // GIVEN
-        val entity = Entity("payment-request", "1111")
+        val entity = Entity(EntityType.PAYMENT_REQUEST.name, "1111")
         doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
 
         // WHEN
@@ -53,7 +54,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     @Test
     fun contact() {
         // GIVEN
-        val entity = Entity("contact", "1111")
+        val entity = Entity(EntityType.ACCOUNT.name, "1111")
         doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
 
         // WHEN
@@ -69,7 +70,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     @Test
     fun url() {
         // GIVEN
-        val entity = Entity("url", "https://www.google.ca")
+        val entity = Entity(EntityType.URL.name, "https://www.google.ca")
         doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
 
         // WHEN
@@ -85,7 +86,7 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     @Test
     fun transactionApproval() {
         // GIVEN
-        val entity = Entity("transaction-approval", "xxxx")
+        val entity = Entity(EntityType.TRANSACTION_APPROVAL.name, "xxxx")
         doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
 
         // WHEN

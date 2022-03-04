@@ -3,7 +3,6 @@ package com.wutsi.application.shell.endpoint.scan.screen
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.QrService
-import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.scan.dto.ScanRequest
@@ -26,6 +25,7 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.platform.qr.WutsiQrApi
 import com.wutsi.platform.qr.dto.DecodeQRCodeRequest
 import com.wutsi.platform.qr.dto.Entity
+import com.wutsi.platform.qr.entity.EntityType
 import com.wutsi.platform.qr.error.ErrorURN
 import feign.FeignException
 import org.springframework.web.bind.annotation.PostMapping
@@ -37,7 +37,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/scan/viewer")
 class ScanViewerScreen(
     private val qrApi: WutsiQrApi,
-    private val tenantProvider: TenantProvider,
     private val qrService: QrService,
     private val mapper: ObjectMapper,
 ) : AbstractQuery() {
@@ -47,7 +46,6 @@ class ScanViewerScreen(
         logger.add("format", request.format)
 
         // Parse the qr-code
-        val tenant = tenantProvider.get()
         var error: String? = null
         var nextUrl: String? = null
         var entity: Entity? = null
@@ -60,6 +58,11 @@ class ScanViewerScreen(
             ).entity
             nextUrl = nextUrl(entity)
             imageUrl = qrService.imageUrl(request.code)
+
+            logger.add("entity_type", entity.type)
+            logger.add("entity_id", entity.id)
+            logger.add("next_url", nextUrl)
+            logger.add("qr_code_url", imageUrl)
         } catch (ex: FeignException) {
             val response = ex.toErrorResponse(mapper)
             error = if (response?.error?.code == ErrorURN.EXPIRED.urn)
@@ -68,6 +71,8 @@ class ScanViewerScreen(
                 getText("prompt.error.malformed-qr-code")
             else
                 getText("prompt.error.unexpected-error")
+
+            logger.add("qr_code_error_code", response?.error?.code)
         }
 
         // Viewer
@@ -123,22 +128,17 @@ class ScanViewerScreen(
         ).toWidget()
     }
 
-    private fun includeEmbeddedImage(entity: Entity?): Boolean =
-        entity?.type == "payment-request" ||
-            entity?.type == "account" ||
-            entity?.type == "transaction-approval"
-
     private fun nextUrl(entity: Entity?): String? =
-        if (entity?.type == "payment-request")
-            urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
-        else if (entity?.type == "transaction-approval")
-            urlBuilder.build(cashUrl, "send/approval?transaction-id=${entity.id}")
-        else if (entity?.type == "account")
-            urlBuilder.build("profile?id=${entity.id}")
-        else if (entity?.type == "url")
-            entity.id
-        else
-            null
+        when (entity?.type?.uppercase()) {
+            EntityType.ACCOUNT.name -> urlBuilder.build("profile?id=${entity.id}")
+            EntityType.PAYMENT_REQUEST.name -> urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
+            EntityType.TRANSACTION_APPROVAL.name -> urlBuilder.build(
+                cashUrl,
+                "send/approval?transaction-id=${entity.id}"
+            )
+            EntityType.URL.name -> entity.id
+            else -> getText("page.scan-viewer.button.continue")
+        }
 
     private fun nextButton(nextUrl: String?, entity: Entity?): WidgetAware =
         if (nextUrl == null)
@@ -152,11 +152,11 @@ class ScanViewerScreen(
             )
         else
             Button(
-                caption = when (entity?.type?.lowercase()) {
-                    "account" -> getText("page.scan-viewer.button.continue-account")
-                    "payment-request" -> getText("page.scan-viewer.button.continue-payment")
-                    "transaction-approval" -> getText("page.scan-viewer.button.continue-transaction-approval")
-                    "url" -> getText("page.scan-viewer.button.continue-url")
+                caption = when (entity?.type?.uppercase()) {
+                    EntityType.ACCOUNT.name -> getText("page.scan-viewer.button.continue-account")
+                    EntityType.PAYMENT_REQUEST.name -> getText("page.scan-viewer.button.continue-payment")
+                    EntityType.TRANSACTION_APPROVAL.name -> getText("page.scan-viewer.button.continue-transaction-approval")
+                    EntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
                     else -> getText("page.scan-viewer.button.continue")
                 },
                 action = Action(

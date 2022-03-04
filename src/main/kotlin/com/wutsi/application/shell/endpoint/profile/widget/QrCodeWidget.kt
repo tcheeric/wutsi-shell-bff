@@ -49,21 +49,19 @@ class QrCodeWidget(
                 ),
                 Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                 Center(
-                    child = imageUrl?.let {
-                        Container(
-                            padding = 10.0,
-                            margin = 10.0,
-                            alignment = Alignment.Center,
-                            borderColor = Theme.COLOR_DIVIDER,
-                            border = 1.0,
-                            borderRadius = 5.0,
-                            child = Image(
-                                url = it,
-                                width = 230.0,
-                                height = 230.0
-                            ),
-                        )
-                    }
+                    child = Container(
+                        padding = 10.0,
+                        margin = 10.0,
+                        alignment = Alignment.Center,
+                        borderColor = Theme.COLOR_DIVIDER,
+                        border = 1.0,
+                        borderRadius = 5.0,
+                        child = Image(
+                            url = imageUrl,
+                            width = 230.0,
+                            height = 230.0
+                        ),
+                    )
                 ),
             ),
         ).toWidget()

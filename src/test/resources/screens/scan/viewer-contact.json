@@ -81,14 +81,15 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Close",
+                "caption": "Continue: View Profile",
                 "padding": 15.0,
-                "type": "Text"
+                "type": "Elevated"
               },
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "route:/~"
+                "url": "http://localhost:0/profile?id=1111",
+                "replacement": true
               }
             }
           ]
