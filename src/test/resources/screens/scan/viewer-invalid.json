@@ -12,18 +12,7 @@
         {
           "type": "Center",
           "attributes": {},
-          "children": [
-            {
-              "type": "QrImage",
-              "attributes": {
-                "data": "xxxxxx",
-                "size": 230.0,
-                "padding": 10.0,
-                "embeddedImageSize": 64.0
-              },
-              "children": []
-            }
-          ]
+          "children": []
         },
         {
           "type": "Container",

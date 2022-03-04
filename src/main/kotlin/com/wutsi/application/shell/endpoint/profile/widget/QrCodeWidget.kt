@@ -1,6 +1,7 @@
 package com.wutsi.application.shell.endpoint.profile.widget
 
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.QrService
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.ui.ProfileListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
@@ -8,12 +9,13 @@ import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
-import com.wutsi.flutter.sdui.QrImage
+import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.qr.WutsiQrApi
 import com.wutsi.platform.qr.dto.EncodeQRCodeRequest
+import com.wutsi.platform.qr.entity.EntityType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -25,18 +27,19 @@ class QrCodeWidget(
     private val qrApi: WutsiQrApi,
     private val accountApi: WutsiAccountApi,
     private val sharedUIMapper: SharedUIMapper,
+    private val qrService: QrService,
 ) : AbstractQuery() {
     @PostMapping
     fun index(
         @RequestParam id: Long
     ): Widget {
-        val code = qrApi.encode(
+        val token = qrApi.encode(
             EncodeQRCodeRequest(
-                type = "account",
+                type = EntityType.PRODUCT.name,
                 id = id.toString(),
-                timeToLive = 300
             )
         ).token
+        val imageUrl = qrService.imageUrl(token)
         val user = accountApi.getAccount(id).account
 
         return Column(
@@ -46,15 +49,21 @@ class QrCodeWidget(
                 ),
                 Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
                 Center(
-                    child = Container(
-                        padding = 10.0,
-                        alignment = Alignment.Center,
-                        child = QrImage(
-                            data = code,
-                            size = 230.0,
+                    child = imageUrl?.let {
+                        Container(
                             padding = 10.0,
-                        ),
-                    ),
+                            margin = 10.0,
+                            alignment = Alignment.Center,
+                            borderColor = Theme.COLOR_DIVIDER,
+                            border = 1.0,
+                            borderRadius = 5.0,
+                            child = Image(
+                                url = it,
+                                width = 230.0,
+                                height = 230.0
+                            ),
+                        )
+                    }
                 ),
             ),
         ).toWidget()

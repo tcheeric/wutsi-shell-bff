@@ -1,54 +1,68 @@
 {
-  "type" : "Column",
-  "attributes" : { },
-  "children" : [ {
-    "type" : "ListItem",
-    "attributes" : {
-      "caption" : "Ray Sponsible",
-      "subCaption" : "Marketing",
-      "padding" : 10.0,
-      "leading" : {
-        "type" : "CircleAvatar",
-        "attributes" : {
-          "radius" : 24.0
-        },
-        "children" : [ {
-          "type" : "Text",
-          "attributes" : {
-            "caption" : "RS",
-            "bold" : true,
-            "size" : 16.0
+  "type": "Column",
+  "attributes": {},
+  "children": [
+    {
+      "type": "ListItem",
+      "attributes": {
+        "caption": "Ray Sponsible",
+        "subCaption": "Marketing",
+        "padding": 10.0,
+        "leading": {
+          "type": "CircleAvatar",
+          "attributes": {
+            "radius": 24.0
           },
-          "children" : [ ]
-        } ]
-      }
-    },
-    "children" : [ ]
-  }, {
-    "type" : "Divider",
-    "attributes" : {
-      "height" : 1.0,
-      "color" : "#8c8c8c"
-    },
-    "children" : [ ]
-  }, {
-    "type" : "Center",
-    "attributes" : { },
-    "children" : [ {
-      "type" : "Container",
-      "attributes" : {
-        "alignment" : "Center",
-        "padding" : 10.0
+          "children": [
+            {
+              "type": "Text",
+              "attributes": {
+                "caption": "RS",
+                "bold": true,
+                "size": 16.0
+              },
+              "children": []
+            }
+          ]
+        }
       },
-      "children" : [ {
-        "type" : "QrImage",
-        "attributes" : {
-          "data" : "xxxxx",
-          "size" : 230.0,
-          "padding" : 10.0
-        },
-        "children" : [ ]
-      } ]
-    } ]
-  } ]
+      "children": []
+    },
+    {
+      "type": "Divider",
+      "attributes": {
+        "height": 1.0,
+        "color": "#8c8c8c"
+      },
+      "children": []
+    },
+    {
+      "type": "Center",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "padding": 10.0,
+            "margin": 10.0,
+            "border": 1.0,
+            "borderRadius": 5.0,
+            "borderColor": "#8c8c8c"
+          },
+          "children": [
+            {
+              "type": "Image",
+              "attributes": {
+                "url": "https://wutsi-qr-server-test.herokuapp.com/image/xxxxx.png",
+                "width": 230.0,
+                "height": 230.0
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

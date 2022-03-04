@@ -2,6 +2,7 @@ package com.wutsi.application.shell.endpoint.scan.screen
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.Theme
+import com.wutsi.application.shared.service.QrService
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -14,7 +15,7 @@ import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Icon
-import com.wutsi.flutter.sdui.QrImage
+import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
@@ -37,6 +38,7 @@ import org.springframework.web.bind.annotation.RestController
 class ScanViewerScreen(
     private val qrApi: WutsiQrApi,
     private val tenantProvider: TenantProvider,
+    private val qrService: QrService,
     private val mapper: ObjectMapper,
 ) : AbstractQuery() {
     @PostMapping
@@ -49,6 +51,7 @@ class ScanViewerScreen(
         var error: String? = null
         var nextUrl: String? = null
         var entity: Entity? = null
+        var imageUrl: String? = null
         try {
             entity = qrApi.decode(
                 DecodeQRCodeRequest(
@@ -56,6 +59,7 @@ class ScanViewerScreen(
                 )
             ).entity
             nextUrl = nextUrl(entity)
+            imageUrl = qrService.imageUrl(request.code)
         } catch (ex: FeignException) {
             val response = ex.toErrorResponse(mapper)
             error = if (response?.error?.code == ErrorURN.EXPIRED.urn)
@@ -78,16 +82,20 @@ class ScanViewerScreen(
             child = Column(
                 children = listOf(
                     Center(
-                        child = QrImage(
-                            data = request.code,
-                            size = 230.0,
-                            padding = 10.0,
-                            embeddedImageSize = 64.0,
-                            embeddedImageUrl = if (includeEmbeddedImage(entity))
-                                tenantProvider.logo(tenant)
-                            else
-                                null
-                        )
+                        child = imageUrl?.let {
+                            Container(
+                                padding = 10.0,
+                                alignment = Alignment.Center,
+                                borderColor = Theme.COLOR_DIVIDER,
+                                border = 1.0,
+                                borderRadius = 5.0,
+                                child = Image(
+                                    url = it,
+                                    width = 230.0,
+                                    height = 230.0
+                                ),
+                            )
+                        }
                     ),
                     Container(
                         padding = 10.0,

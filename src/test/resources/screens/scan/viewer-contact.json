@@ -14,14 +14,25 @@
           "attributes": {},
           "children": [
             {
-              "type": "QrImage",
+              "type": "Container",
               "attributes": {
-                "data": "xxxxxx",
-                "size": 230.0,
+                "alignment": "Center",
                 "padding": 10.0,
-                "embeddedImageSize": 64.0
+                "border": 1.0,
+                "borderRadius": 5.0,
+                "borderColor": "#8c8c8c"
               },
-              "children": []
+              "children": [
+                {
+                  "type": "Image",
+                  "attributes": {
+                    "url": "https://wutsi-qr-server-test.herokuapp.com/image/xxxxxx.png",
+                    "width": 230.0,
+                    "height": 230.0
+                  },
+                  "children": []
+                }
+              ]
             }
           ]
         },
