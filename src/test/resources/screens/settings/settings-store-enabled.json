@@ -99,17 +99,16 @@
                   "type": "Icon",
                   "attributes": {
                     "code": "e15f",
-                    "size": 24.0,
-                    "color": "#000000"
+                    "size": 24.0
                   },
                   "children": []
                 },
                 "leading": {
                   "type": "Icon",
                   "attributes": {
-                    "code": "e491",
+                    "code": "f27b",
                     "size": 24.0,
-                    "color": "#000000"
+                    "color": "#1D7EDF"
                   },
                   "children": []
                 }
@@ -129,17 +128,16 @@
                   "type": "Icon",
                   "attributes": {
                     "code": "e15f",
-                    "size": 24.0,
-                    "color": "#000000"
+                    "size": 24.0
                   },
                   "children": []
                 },
                 "leading": {
                   "type": "Icon",
                   "attributes": {
-                    "code": "f37a",
+                    "code": "f37b",
                     "size": 24.0,
-                    "color": "#000000"
+                    "color": "#1D7EDF"
                   },
                   "children": []
                 }
@@ -166,17 +164,16 @@
                   "type": "Icon",
                   "attributes": {
                     "code": "e15f",
-                    "size": 24.0,
-                    "color": "#000000"
+                    "size": 24.0
                   },
                   "children": []
                 },
                 "leading": {
                   "type": "Icon",
                   "attributes": {
-                    "code": "e3ae",
+                    "code": "f197",
                     "size": 24.0,
-                    "color": "#000000"
+                    "color": "#1D7EDF"
                   },
                   "children": []
                 }
@@ -196,17 +193,16 @@
                   "type": "Icon",
                   "attributes": {
                     "code": "e15f",
-                    "size": 24.0,
-                    "color": "#000000"
+                    "size": 24.0
                   },
                   "children": []
                 },
                 "leading": {
                   "type": "Icon",
                   "attributes": {
-                    "code": "f816",
+                    "code": "f128",
                     "size": 24.0,
-                    "color": "#000000"
+                    "color": "#1D7EDF"
                   },
                   "children": []
                 }
@@ -243,7 +239,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e319",
+          "icon": "f107",
           "caption": "Home"
         },
         "children": [],
@@ -255,7 +251,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e491",
+          "icon": "f27b",
           "caption": "Me"
         },
         "children": [],
@@ -279,7 +275,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e57f",
+          "icon": "f36e",
           "caption": "Settings"
         },
         "children": [],

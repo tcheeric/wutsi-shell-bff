@@ -101,7 +101,7 @@
                     "padding": 1.0,
                     "type": "Text",
                     "stretched": false,
-                    "icon": "e598",
+                    "icon": "f37a",
                     "iconColor": "#1D7EDF",
                     "color": "#1D7EDF"
                   },
@@ -610,7 +610,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e319",
+          "icon": "f107",
           "caption": "Home"
         },
         "children": [],
@@ -622,7 +622,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e491",
+          "icon": "f27b",
           "caption": "Me"
         },
         "children": [],
@@ -646,7 +646,7 @@
       {
         "type": "BottomNavigationBarItem",
         "attributes": {
-          "icon": "e57f",
+          "icon": "f36e",
           "caption": "Settings"
         },
         "children": [],

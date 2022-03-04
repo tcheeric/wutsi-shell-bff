@@ -90,7 +90,7 @@ class SettingsScreen(
             listItem(
                 "page.settings.listitem.personal.caption",
                 urlBuilder.build("settings/profile"),
-                icon = Theme.ICON_PERSON
+                icon = Theme.ICON_PERSON,
             ),
         )
         if (togglesProvider.isAccountEnabled())
@@ -161,12 +161,11 @@ class SettingsScreen(
 
     private fun listItem(caption: String, url: String, icon: String? = null) = ListItem(
         padding = 5.0,
-        leading = icon?.let { Icon(code = icon, size = 24.0, color = Theme.COLOR_BLACK) },
+        leading = icon?.let { Icon(code = icon, size = 24.0, color = Theme.COLOR_PRIMARY) },
         caption = getText(caption),
         trailing = Icon(
             code = Theme.ICON_CHEVRON_RIGHT,
             size = 24.0,
-            color = Theme.COLOR_BLACK
         ),
         action = Action(
             type = Route,
