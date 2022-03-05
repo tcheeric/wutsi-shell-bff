@@ -500,8 +500,8 @@
                       "type": "Image",
                       "attributes": {
                         "url": "",
-                        "width": 24.0,
-                        "height": 24.0
+                        "width": 48.0,
+                        "height": 48.0
                       },
                       "children": []
                     }
@@ -548,8 +548,8 @@
                       "type": "Image",
                       "attributes": {
                         "url": "",
-                        "width": 24.0,
-                        "height": 24.0
+                        "width": 48.0,
+                        "height": 48.0
                       },
                       "children": []
                     }
