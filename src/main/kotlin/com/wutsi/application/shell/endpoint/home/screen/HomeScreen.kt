@@ -37,6 +37,7 @@ import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
+import com.wutsi.platform.payment.core.Status
 import com.wutsi.platform.payment.dto.SearchTransactionRequest
 import com.wutsi.platform.payment.dto.TransactionSummary
 import com.wutsi.platform.tenant.dto.Tenant
@@ -409,6 +410,10 @@ class HomeScreen(
             paymentApi.searchTransaction(
                 SearchTransactionRequest(
                     accountId = securityContext.currentAccountId(),
+                    status = listOf(
+                        Status.PENDING.name,
+                        Status.SUCCESSFUL.name
+                    ),
                     limit = limit,
                     offset = 0
                 )
