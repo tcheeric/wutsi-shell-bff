@@ -230,7 +230,7 @@ class HomeScreen(
     private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (togglesProvider.isStoreEnabled()) {
+        if (togglesProvider.isStoreEnabled() && me.business) {
             buttons.addAll(
                 listOf(
                     applicationButton(

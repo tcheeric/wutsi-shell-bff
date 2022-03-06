@@ -5,7 +5,9 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.AccountSummary
+import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SearchAccountResponse
@@ -115,6 +117,13 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun storeEnabled() {
+        val account = Account(
+            id = ACCOUNT_ID,
+            displayName = "Ray Sponsible",
+            business = true
+        )
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
         assertEndpointEquals("/screens/home/home-store-enabled.json", url)
