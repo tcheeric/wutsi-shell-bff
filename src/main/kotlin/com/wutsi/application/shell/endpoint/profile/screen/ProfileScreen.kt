@@ -5,10 +5,13 @@ import com.wutsi.application.shared.service.PhoneUtil
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
+import com.wutsi.application.shared.ui.CartIcon
 import com.wutsi.application.shared.ui.ProfileCard
 import com.wutsi.application.shared.ui.ProfileCardType
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.ecommerce.cart.WutsiCartApi
+import com.wutsi.ecommerce.cart.dto.Cart
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.CircleAvatar
@@ -32,6 +35,7 @@ import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactRequest
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -43,12 +47,16 @@ import org.springframework.web.bind.annotation.RestController
 class ProfileScreen(
     private val accountApi: WutsiAccountApi,
     private val contactApi: WutsiContactApi,
+    private val cartApi: WutsiCartApi,
     private val sharedUIMapper: SharedUIMapper,
     private val togglesProvider: TogglesProvider,
     private val tenantProvider: TenantProvider,
 
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
+    companion object {
+        private val LOGGER = LoggerFactory.getLogger(ProfileScreen::class.java)
+    }
 
     @PostMapping
     fun index(
@@ -56,6 +64,10 @@ class ProfileScreen(
     ): Widget {
         val user = accountApi.getAccount(id).account
         val tenant = tenantProvider.get()
+        val cart = if (togglesProvider.isCartEnabled())
+            getCart(user)
+        else
+            null
 
         val tabs = TabBar(
             tabs = listOfNotNull(
@@ -156,6 +168,25 @@ class ProfileScreen(
                                 ),
                             )
                         ),
+
+                        if (cart != null && cart.products.isNotEmpty())
+                            Container(
+                                padding = 4.0,
+                                child = CircleAvatar(
+                                    radius = 20.0,
+                                    backgroundColor = Theme.COLOR_PRIMARY_LIGHT,
+                                    child = CartIcon(
+                                        productCount = cart.products.size,
+                                        size = 20.0,
+                                        action = Action(
+                                            type = ActionType.Route,
+                                            url = urlBuilder.build(storeUrl, "cart?merchant-id=${user.id}")
+                                        )
+                                    ),
+                                )
+                            )
+                        else
+                            null
                     ),
                     bottom = tabs
                 ),
@@ -196,4 +227,15 @@ class ProfileScreen(
                     contactIds = listOf(user.id)
                 )
             ).contacts.isEmpty()
+
+    private fun getCart(merchant: Account): Cart? =
+        if (merchant.business && togglesProvider.isCartEnabled() && togglesProvider.isCartEnabled())
+            try {
+                cartApi.getCart(merchant.id).cart
+            } catch (ex: Exception) {
+                LOGGER.warn("Unable to resolve the Cart for Merchant #${merchant.id}", ex)
+                null
+            }
+        else
+            null
 }

@@ -5,6 +5,10 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.ecommerce.cart.WutsiCartApi
+import com.wutsi.ecommerce.cart.dto.Cart
+import com.wutsi.ecommerce.cart.dto.GetCartResponse
+import com.wutsi.ecommerce.cart.dto.Product
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.Category
 import com.wutsi.platform.account.dto.GetAccountResponse
@@ -27,6 +31,9 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
 
+    @MockBean
+    private lateinit var cartApi: WutsiCartApi
+
     @Test
     fun personal() {
         // GIVEN
@@ -44,7 +51,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun businessStoreEnabled() {
+    fun storeEnabled() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
@@ -59,7 +66,32 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Any::class.java)
 
         // THEN
-        assertJsonEquals("/screens/profile/business-store-enabled.json", response.body)
+        assertJsonEquals("/screens/profile/store-enabled.json", response.body)
+    }
+
+    @Test
+    fun cartEnabled() {
+        // GIVEN
+        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
+        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+        doReturn(true).whenever(togglesProvider).isCartEnabled()
+
+        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
+
+        val cart = Cart(
+            products = listOf(Product(), Product())
+        )
+        doReturn(GetCartResponse(cart)).whenever(cartApi).getCart(any())
+
+        val account = createAccount(5555, true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+
+        // WHEN
+        val url = "http://localhost:$port/profile?id=555"
+        val response = rest.postForEntity(url, null, Any::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/profile/cart-enabled.json", response.body)
     }
 
     @Test
