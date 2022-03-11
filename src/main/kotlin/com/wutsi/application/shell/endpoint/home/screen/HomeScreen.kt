@@ -154,7 +154,7 @@ class HomeScreen(
                     transactionsWidget(txs.take(3), tenant)
                 )
             )
-        } else if (togglesProvider.isPaymentEnabled(me)) {
+        } else if (me.business && togglesProvider.isPaymentEnabled()) {
             val paymentMethods = findPaymentMethods()
             if (paymentMethods.isEmpty()) {
                 children.add(linkFirstAccountWidget())
@@ -230,7 +230,7 @@ class HomeScreen(
     private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (togglesProvider.isStoreEnabled() && me.business && me.hasStore) {
+        if (me.business && me.hasStore && togglesProvider.isStoreEnabled())
             buttons.addAll(
                 listOf(
                     applicationButton(
@@ -243,9 +243,8 @@ class HomeScreen(
                     )
                 )
             )
-        }
 
-        if (togglesProvider.isPaymentEnabled(me) && me.business)
+        if (me.business && togglesProvider.isPaymentEnabled())
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.payment"),
