@@ -6,6 +6,7 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/commands/update-profile-attribute")
 class UpdateProfileAttributeCommand(
     private val accountApi: WutsiAccountApi,
-    private val cityService: CityService
+    private val cityService: CityService,
+
+    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): ResponseEntity<Action> {
@@ -52,9 +55,17 @@ class UpdateProfileAttributeCommand(
             .body(
                 Action(
                     type = ActionType.Route,
-                    url = if (name == "business") urlBuilder.build("settings/profile") else "route:/..",
+                    url = nextUrl(name),
                     replacement = name == "business"
                 )
             )
     }
+
+    private fun nextUrl(name: String): String =
+        if (name == "business")
+            urlBuilder.build("settings/profile")
+        else if (name == "has-store")
+            urlBuilder.build(storeUrl, "settings/store")
+        else
+            "route:/.."
 }

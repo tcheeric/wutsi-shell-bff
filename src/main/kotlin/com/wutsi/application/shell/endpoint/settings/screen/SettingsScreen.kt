@@ -14,12 +14,14 @@ import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Icon
 import com.wutsi.flutter.sdui.Image
 import com.wutsi.flutter.sdui.ListItem
+import com.wutsi.flutter.sdui.ListItemSwitch
 import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.Screen
 import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType
+import com.wutsi.flutter.sdui.enums.ActionType.Command
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
@@ -116,13 +118,23 @@ class SettingsScreen(
                 Container(padding = 20.0)
             )
             if (togglesProvider.isStoreEnabled())
-                children.add(
-                    listItem(
-                        "page.settings.listitem.store.caption",
-                        urlBuilder.build(storeUrl, "settings/store"),
-                        icon = Theme.ICON_STORE
-                    ),
-                )
+                if (user.hasStore)
+                    children.add(
+                        listItem(
+                            "page.settings.listitem.store.caption",
+                            urlBuilder.build(storeUrl, "settings/store"),
+                            icon = Theme.ICON_STORE
+                        ),
+                    )
+                else
+                    children.add(
+                        listItemSwitch(
+                            "page.settings.listitem.store.caption",
+                            urlBuilder.build("/commands/update-profile-attribute?name=has-store"),
+                            icon = Theme.ICON_STORE,
+                            subCaption = "page.settings.listitem.store.sub-caption"
+                        ),
+                    )
         }
 
         // Security/About
@@ -172,6 +184,25 @@ class SettingsScreen(
             url = url
         )
     )
+
+    private fun listItemSwitch(
+        caption: String,
+        url: String,
+        icon: String? = null,
+        selected: Boolean = false,
+        subCaption: String? = null
+    ) =
+        ListItemSwitch(
+            name = "value",
+            icon = icon,
+            caption = getText(caption),
+            subCaption = subCaption?.let { getText(subCaption) },
+            selected = selected,
+            action = Action(
+                type = Command,
+                url = url
+            )
+        )
 
     private fun formattedPhoneNumber(user: Account): String? {
         val phone = user.phone ?: return null

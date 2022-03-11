@@ -73,7 +73,7 @@ class ProfileScreen(
             tabs = listOfNotNull(
                 Text(getText("page.profile.tab.about").uppercase(), bold = true),
 
-                if (user.business && togglesProvider.isStoreEnabled())
+                if (user.business && togglesProvider.isStoreEnabled() && user.hasStore)
                     Text(getText("page.profile.tab.store").uppercase(), bold = true)
                 else
                     null,
@@ -85,7 +85,7 @@ class ProfileScreen(
             children = listOfNotNull(
                 aboutTab(user),
 
-                if (user.business && togglesProvider.isStoreEnabled())
+                if (user.business && togglesProvider.isStoreEnabled() && user.hasStore)
                     storeTab(user)
                 else
                     null,
@@ -229,7 +229,7 @@ class ProfileScreen(
             ).contacts.isEmpty()
 
     private fun getCart(merchant: Account): Cart? =
-        if (merchant.business && togglesProvider.isCartEnabled() && togglesProvider.isCartEnabled())
+        if (merchant.business && togglesProvider.isCartEnabled() && togglesProvider.isCartEnabled() && merchant.hasStore)
             try {
                 cartApi.getCart(merchant.id).cart
             } catch (ex: Exception) {

@@ -68,4 +68,21 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
 
         verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "language", UpdateAccountAttributeRequest(request.value))
     }
+
+    @Test
+    fun enableStore() {
+        // GIVEN
+        val request = UpdateAccountAttributeRequest(value = "true")
+        val url = "http://localhost:$port/commands/update-profile-attribute?name=has-store"
+        val response = rest.postForEntity(url, request, Action::class.java)
+
+        // THEN
+        assertEquals(200, response.statusCodeValue)
+        val action = response.body
+        assertEquals(ActionType.Route, action.type)
+        assertEquals("https://wutsi-gateway-test.herokuapp.com/store/settings/store", action.url)
+        assertEquals(false, action.replacement)
+
+        verify(accountApi).updateAccountAttribute(ACCOUNT_ID, "has-store", UpdateAccountAttributeRequest(request.value))
+    }
 }

@@ -58,7 +58,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
 
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
-        val account = createAccount(5555, true)
+        val account = createAccount(5555, true, hasStore = true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
         // WHEN
@@ -83,7 +83,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         )
         doReturn(GetCartResponse(cart)).whenever(cartApi).getCart(any())
 
-        val account = createAccount(5555, true)
+        val account = createAccount(5555, true, hasStore = true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
         // WHEN
@@ -111,7 +111,12 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         assertJsonEquals("/screens/profile/business.json", response.body)
     }
 
-    private fun createAccount(id: Long, business: Boolean, pictureUrl: String? = "https://img.com/1.png") = Account(
+    private fun createAccount(
+        id: Long,
+        business: Boolean,
+        pictureUrl: String? = "https://img.com/1.png",
+        hasStore: Boolean = false
+    ) = Account(
         id = id,
         displayName = "Ray Sponsible",
         country = "CM",
@@ -131,6 +136,7 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
             title = "Marketing",
         ),
         website = "https://my.business.com/12432",
-        whatsapp = "+23500000000"
+        whatsapp = "+23500000000",
+        hasStore = hasStore
     )
 }

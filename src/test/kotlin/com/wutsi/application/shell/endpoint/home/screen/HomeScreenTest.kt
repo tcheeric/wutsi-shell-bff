@@ -120,7 +120,8 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         val account = Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
-            business = true
+            business = true,
+            hasStore = true
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 

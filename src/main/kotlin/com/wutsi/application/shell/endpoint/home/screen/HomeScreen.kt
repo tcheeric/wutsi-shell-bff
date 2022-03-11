@@ -230,7 +230,7 @@ class HomeScreen(
     private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (togglesProvider.isStoreEnabled() && me.business) {
+        if (togglesProvider.isStoreEnabled() && me.business && me.hasStore) {
             buttons.addAll(
                 listOf(
                     applicationButton(
@@ -245,11 +245,11 @@ class HomeScreen(
             )
         }
 
-        if (togglesProvider.isPaymentEnabled(me))
+        if (togglesProvider.isPaymentEnabled(me) && me.business)
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.payment"),
-                    icon = Theme.ICON_PAYMENT,
+                    icon = Theme.ICON_POINT_OF_SALES,
                     action = Action(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "pay")
