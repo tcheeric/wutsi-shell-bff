@@ -56,7 +56,7 @@
                         {
                           "type": "Button",
                           "attributes": {
-                            "caption": "Change Picture",
+                            "caption": "Change picture",
                             "padding": 10.0,
                             "type": "Text"
                           },
@@ -93,7 +93,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My Profile",
+                "caption": "My profile",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",

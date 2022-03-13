@@ -43,7 +43,7 @@
                 {
                   "type": "Text",
                   "attributes": {
-                    "caption": "You will receive a SMS to confirm you are the owner of the account",
+                    "caption": "You will receive an SMS to confirm you are the owner of the account.",
                     "alignment": "Center"
                   },
                   "children": []
@@ -123,7 +123,7 @@
                         "name": "command",
                         "hideText": false,
                         "required": false,
-                        "caption": "Link Account",
+                        "caption": "Link an account",
                         "enabled": true,
                         "readOnly": false,
                         "type": "Submit",

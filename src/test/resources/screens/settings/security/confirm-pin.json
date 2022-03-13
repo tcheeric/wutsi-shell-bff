@@ -26,7 +26,7 @@
                 {
                   "type": "Text",
                   "attributes": {
-                    "caption": "Re-enter your 6 digits code",
+                    "caption": "Re-enter your 6-digit code",
                     "color": "#FFFFFF",
                     "size": 16.0,
                     "alignment": "Center"

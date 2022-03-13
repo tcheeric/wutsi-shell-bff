@@ -322,7 +322,7 @@
                           "attributes": {
                             "type": "Confirm",
                             "title": "Confirm",
-                            "message": "Add Ray Sponsible into your contact list?"
+                            "message": "Add Ray Sponsible into your contacts list?"
                           },
                           "children": []
                         }
