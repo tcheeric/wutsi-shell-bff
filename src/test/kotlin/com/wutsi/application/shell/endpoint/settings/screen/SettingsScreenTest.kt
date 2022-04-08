@@ -40,9 +40,9 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun storeEnabbled() {
-        doReturn(true).whenever(togglesProvider).isStoreEnabled()
-        assertEndpointEquals("/screens/settings/settings-store-enabled.json", url)
+    fun orderEnabled() {
+        doReturn(true).whenever(togglesProvider).isOrderEnabled()
+        assertEndpointEquals("/screens/settings/settings-order-enabled.json", url)
     }
 
     @Test

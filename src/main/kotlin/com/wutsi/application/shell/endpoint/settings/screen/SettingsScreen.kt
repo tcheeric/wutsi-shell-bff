@@ -103,7 +103,7 @@ class SettingsScreen(
                     icon = Theme.ICON_ACCOUNT
                 ),
             )
-        if (togglesProvider.isStoreEnabled())
+        if (togglesProvider.isOrderEnabled())
             children.add(
                 listItem(
                     "page.settings.listitem.my-purchases.caption",

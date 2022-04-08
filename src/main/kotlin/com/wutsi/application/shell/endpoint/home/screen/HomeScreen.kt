@@ -230,7 +230,21 @@ class HomeScreen(
     private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
-        if (me.business && me.hasStore && togglesProvider.isStoreEnabled())
+        if (togglesProvider.isStoreEnabled())
+            buttons.addAll(
+                listOf(
+                    applicationButton(
+                        caption = getText("page.home.button.marketplace"),
+                        icon = Theme.ICON_CART,
+                        action = Action(
+                            type = Route,
+                            url = "$storeUrl/marketplace"
+                        )
+                    )
+                )
+            )
+
+        if (me.business && me.hasStore && togglesProvider.isOrderEnabled())
             buttons.addAll(
                 listOf(
                     applicationButton(

@@ -117,6 +117,13 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun storeEnabled() {
+        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+
+        assertEndpointEquals("/screens/home/home-store-enabled.json", url)
+    }
+
+    @Test
+    fun orderEnabled() {
         val account = Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
@@ -125,9 +132,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
-        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+        doReturn(true).whenever(togglesProvider).isOrderEnabled()
 
-        assertEndpointEquals("/screens/home/home-store-enabled.json", url)
+        assertEndpointEquals("/screens/home/home-order-enabled.json", url)
     }
 
     private fun createTransferTransactionSummary(
