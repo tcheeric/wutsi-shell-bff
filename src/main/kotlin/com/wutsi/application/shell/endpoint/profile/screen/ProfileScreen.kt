@@ -64,10 +64,7 @@ class ProfileScreen(
     ): Widget {
         val user = accountApi.getAccount(id).account
         val tenant = tenantProvider.get()
-        val cart = if (togglesProvider.isCartEnabled())
-            getCart(user)
-        else
-            null
+        val cart = getCart(user)
 
         val tabs = TabBar(
             tabs = listOfNotNull(
@@ -229,7 +226,7 @@ class ProfileScreen(
             ).contacts.isEmpty()
 
     private fun getCart(merchant: Account): Cart? =
-        if (merchant.business && togglesProvider.isCartEnabled() && togglesProvider.isCartEnabled() && merchant.hasStore)
+        if (merchant.business && togglesProvider.isCartEnabled() && merchant.hasStore)
             try {
                 cartApi.getCart(merchant.id).cart
             } catch (ex: Exception) {
