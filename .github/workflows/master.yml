@@ -36,6 +36,7 @@ jobs:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_TEST }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY_TEST }}
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY_TEST }}
+          CLOUDAMQP_URL: ${{secrets.CLOUDAMQP_URL_TEST}}
           HEROKU_APP: wutsi-shell-bff-test
         run: |
           heroku apps | grep ${HEROKU_APP} && echo 'app: ${HEROKU_APP} exists' ||  heroku apps:create ${HEROKU_APP}
@@ -44,6 +45,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} APP_PROFILE=test
           heroku config:set --app ${HEROKU_APP} AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
           heroku config:set --app ${HEROKU_APP} AWS_SECRET_KEY=${AWS_SECRET_KEY}
+          heroku config:set --app ${HEROKU_APP} CLOUDAMQP_URL=${CLOUDAMQP_URL}
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
           heroku addons -a ${HEROKU_APP} | grep memcachier && echo 'addon: memcachier exists' ||  heroku addons:create memcachier -a ${HEROKU_APP}
           heroku deploy:jar target/wutsi-shell-bff.jar --app ${HEROKU_APP}
@@ -65,6 +67,7 @@ jobs:
           heroku config:set --app ${HEROKU_APP} APP_PROFILE=prod
           heroku config:set --app ${HEROKU_APP} AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
           heroku config:set --app ${HEROKU_APP} AWS_SECRET_KEY=${AWS_SECRET_KEY}
+          heroku config:set --app ${HEROKU_APP} CLOUDAMQP_URL=${CLOUDAMQP_URL}
           heroku addons -a ${HEROKU_APP} | grep papertrail && echo 'addon: papertrail exists' ||  heroku addons:create papertrail -a ${HEROKU_APP}
           heroku addons -a ${HEROKU_APP} | grep memcachier && echo 'addon: memcachier exists' ||  heroku addons:create memcachier -a ${HEROKU_APP}
           heroku deploy:jar target/wutsi-shell-bff.jar --app ${HEROKU_APP}

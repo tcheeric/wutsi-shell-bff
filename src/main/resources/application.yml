@@ -50,6 +50,9 @@ wutsi:
       type: jwt
     tracing:
       client-id: ${wutsi.application.name}
+    stream:
+      name: ${wutsi.application.name}
+      type: local
     storage:
       type: local
 
