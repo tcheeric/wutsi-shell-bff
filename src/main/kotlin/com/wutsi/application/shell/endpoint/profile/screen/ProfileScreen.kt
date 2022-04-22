@@ -60,7 +60,8 @@ class ProfileScreen(
 
     @PostMapping
     fun index(
-        @RequestParam id: Long
+        @RequestParam id: Long,
+        @RequestParam(required = false) tab: String? = null
     ): Widget {
         val user = accountApi.getAccount(id).account
         val tenant = tenantProvider.get()
@@ -82,7 +83,7 @@ class ProfileScreen(
             children = listOfNotNull(
                 aboutTab(user),
 
-                if (user.business && togglesProvider.isStoreEnabled() && user.hasStore)
+                if (isStoreEnabled(user))
                     storeTab(user)
                 else
                     null,
@@ -93,6 +94,10 @@ class ProfileScreen(
 
         return DefaultTabController(
             length = tabs.tabs.size,
+            initialIndex = if (tab == "store" && isStoreEnabled(user))
+                1
+            else
+                null,
             child = Screen(
                 id = Page.PROFILE,
                 backgroundColor = Theme.COLOR_WHITE,
@@ -192,6 +197,9 @@ class ProfileScreen(
             )
         ).toWidget()
     }
+
+    private fun isStoreEnabled(user: Account): Boolean =
+        user.business && togglesProvider.isStoreEnabled() && user.hasStore
 
     private fun aboutTab(user: Account): WidgetAware {
         val children = mutableListOf<WidgetAware>(

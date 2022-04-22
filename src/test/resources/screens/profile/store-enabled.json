@@ -1,7 +1,8 @@
 {
   "type": "DefaultTabController",
   "attributes": {
-    "length": 3
+    "length": 3,
+    "initialIndex": 1
   },
   "children": [
     {
