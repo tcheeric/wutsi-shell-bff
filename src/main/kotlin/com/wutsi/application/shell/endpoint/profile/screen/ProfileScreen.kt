@@ -205,7 +205,7 @@ class ProfileScreen(
         val children = mutableListOf<WidgetAware>(
             ProfileCard(
                 model = sharedUIMapper.toAccountModel(user),
-                type = ProfileCardType.Full
+                type = ProfileCardType.FULL
             )
         )
         return Column(
