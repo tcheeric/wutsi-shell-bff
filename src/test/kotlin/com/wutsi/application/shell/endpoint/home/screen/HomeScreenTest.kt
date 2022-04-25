@@ -15,14 +15,11 @@ import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
 import com.wutsi.platform.payment.dto.SearchTransactionResponse
-import com.wutsi.platform.payment.dto.TransactionSummary
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class HomeScreenTest : AbstractEndpointTest() {
@@ -47,17 +44,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             .getBalance(
                 any()
             )
-
-        val txs = listOf(
-            createTransferTransactionSummary(102, USER_ID, type = "PAYMENT"),
-            createCashInOutTransactionSummary(true, "A", "FAILED"),
-            createCashInOutTransactionSummary(true, "A"),
-            createTransferTransactionSummary(USER_ID, 100),
-            createTransferTransactionSummary(101, USER_ID, "PENDING"),
-            createTransferTransactionSummary(101, USER_ID),
-            createCashInOutTransactionSummary(false, "B")
-        )
-        doReturn(SearchTransactionResponse(txs)).whenever(paymentApi).searchTransaction(any())
 
         val paymentMethods = listOf(
             createPaymentMethodSummary("A", "11111"),
@@ -136,38 +122,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
         assertEndpointEquals("/screens/home/home-order-enabled.json", url)
     }
-
-    private fun createTransferTransactionSummary(
-        accountId: Long,
-        recipientId: Long,
-        status: String = "SUCCESSFUL",
-        type: String = "TRANSFER"
-    ) =
-        TransactionSummary(
-            accountId = accountId,
-            recipientId = recipientId,
-            type = type,
-            status = status,
-            net = 10000.0,
-            amount = 10000.0,
-            description = "Sample description",
-            created = OffsetDateTime.of(2021, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC)
-        )
-
-    private fun createCashInOutTransactionSummary(
-        cashin: Boolean,
-        paymentMethodToken: String,
-        status: String = "SUCCESSFUL"
-    ) = TransactionSummary(
-        accountId = USER_ID,
-        type = if (cashin) "CASHIN" else "CASHOUT",
-        status = status,
-        net = 10000.0,
-        amount = 10000.0,
-        paymentMethodToken = paymentMethodToken,
-        description = "Sample description",
-        created = OffsetDateTime.of(2021, 1, 1, 1, 1, 1, 1, ZoneOffset.UTC)
-    )
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
         token = token,

@@ -1,12 +1,8 @@
 package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
-import com.wutsi.application.shared.service.SharedUIMapper
-import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
-import com.wutsi.application.shared.ui.Avatar
-import com.wutsi.application.shared.ui.TransactionListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -16,8 +12,6 @@ import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Divider
-import com.wutsi.flutter.sdui.Flexible
-import com.wutsi.flutter.sdui.ListView
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
@@ -30,18 +24,10 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
-import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.Account
-import com.wutsi.platform.account.dto.AccountSummary
-import com.wutsi.platform.account.dto.PaymentMethodSummary
-import com.wutsi.platform.account.dto.SearchAccountRequest
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
-import com.wutsi.platform.payment.core.Status
-import com.wutsi.platform.payment.dto.SearchTransactionRequest
-import com.wutsi.platform.payment.dto.TransactionSummary
 import com.wutsi.platform.tenant.dto.Tenant
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -53,15 +39,9 @@ class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
     private val tenantProvider: TenantProvider,
     private val togglesProvider: TogglesProvider,
-    private val accountApi: WutsiAccountApi,
-    private val sharedUIMapper: SharedUIMapper,
 
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
-    companion object {
-        private val LOGGER = LoggerFactory.getLogger(HomeScreen::class.java)
-    }
-
     @PostMapping
     fun index(): Widget {
         val tenant = tenantProvider.get()
@@ -116,51 +96,6 @@ class HomeScreen(
             children.add(Divider(color = Theme.COLOR_DIVIDER, height = 1.0))
         }
 
-        // Recipients + Transactions
-        val txs = findRecentTransactions(20)
-        val userId = securityContext.currentAccountId()
-        if (txs.isNotEmpty()) {
-
-            // Recipients - for non business accounts
-            if (!me.business) {
-                val recipientIds = txs
-                    .map { it.recipientId }
-                    .filterNotNull()
-                    .filter { it != userId }
-                    .toSet()
-                    .take(3)
-                if (recipientIds.isNotEmpty()) {
-                    val recipients = findRecipients(recipientIds.toList())
-                    children.addAll(
-                        listOf(
-                            Container(
-                                padding = 5.0,
-                                child = Text(getText("page.home.send_to"), bold = true),
-                            ),
-                            recipientsWidget(recipients),
-                            Divider(color = Theme.COLOR_DIVIDER, height = 1.0),
-                        )
-                    )
-                }
-            }
-
-            // Transactions
-            children.addAll(
-                listOf(
-                    Container(
-                        padding = 5.0,
-                        child = Text(getText("page.home.transactions"), bold = true),
-                    ),
-                    transactionsWidget(txs.take(3), tenant)
-                )
-            )
-        } else if (me.business && togglesProvider.isPaymentEnabled()) {
-            val paymentMethods = findPaymentMethods()
-            if (paymentMethods.isEmpty()) {
-                children.add(linkFirstAccountWidget())
-            }
-        }
-
         return Screen(
             id = Page.HOME,
             appBar = AppBar(
@@ -213,6 +148,18 @@ class HomeScreen(
                 ),
             )
         )
+        if (togglesProvider.isPaymentEnabled())
+            buttons.add(
+                primaryButton(
+                    caption = getText("page.home.button.payment"),
+                    icon = Theme.ICON_MONEY,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "pay")
+                    )
+                )
+            )
+
         return buttons
     }
 
@@ -254,18 +201,6 @@ class HomeScreen(
                             type = Route,
                             url = "$storeUrl/orders"
                         )
-                    )
-                )
-            )
-
-        if (me.business && togglesProvider.isPaymentEnabled())
-            buttons.add(
-                applicationButton(
-                    caption = getText("page.home.button.payment"),
-                    icon = Theme.ICON_POINT_OF_SALES,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build(cashUrl, "pay")
                     )
                 )
             )
@@ -319,154 +254,6 @@ class HomeScreen(
         } catch (ex: Throwable) {
             return Money(currency = tenant.currency)
         }
-    }
-
-    // Payment method
-    private fun linkFirstAccountWidget() = Container(
-        margin = 10.0,
-        padding = 20.0,
-        border = 1.0,
-        borderRadius = 5.0,
-        borderColor = Theme.COLOR_PRIMARY,
-        background = Theme.COLOR_PRIMARY_LIGHT,
-        alignment = Alignment.Center,
-        child = Column(
-            mainAxisAlignment = spaceAround,
-            crossAxisAlignment = CrossAxisAlignment.center,
-            children = listOf(
-                Text(getText("page.home.no-account-1"), bold = true),
-                Text(getText("page.home.no-account-2")),
-                Button(
-                    caption = getText("page.home.button.link-account"),
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("/settings/accounts/link/mobile")
-                    )
-                ),
-            )
-        )
-    )
-
-    // Recipients
-    private fun recipientsWidget(recipients: List<AccountSummary>): WidgetAware {
-        return Row(
-            mainAxisAlignment = MainAxisAlignment.spaceAround,
-            children = recipients.map { recipientWidget(it) }
-        )
-    }
-
-    private fun recipientWidget(recipient: AccountSummary): WidgetAware {
-        val action = Action(
-            type = Route,
-            url = urlBuilder.build(cashUrl, "/send"),
-            parameters = mapOf(
-                "recipient-id" to recipient.id.toString()
-            )
-        )
-        return Column(
-            children = listOf(
-                Avatar(
-                    radius = 24.0,
-                    model = sharedUIMapper.toAccountModel(recipient),
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build(cashUrl, "/send"),
-                        parameters = mapOf(
-                            "recipient-id" to recipient.id.toString()
-                        )
-                    )
-                ),
-                Button(
-                    type = ButtonType.Text,
-                    caption = StringUtil.firstName(recipient.displayName),
-                    action = action,
-                    stretched = false,
-                    padding = 1.0,
-                )
-            )
-        )
-    }
-
-    // Transactions
-    private fun transactionsWidget(txs: List<TransactionSummary>, tenant: Tenant): WidgetAware {
-        if (txs.isEmpty())
-            return Container()
-
-        val accounts = findAccounts(txs)
-        val paymentMethods = findPaymentMethods()
-        val account = securityContext.currentAccount()
-        return Flexible(
-            child = ListView(
-                separator = true,
-                children = txs.map {
-                    TransactionListItem(
-                        model = sharedUIMapper.toTransactionModel(
-                            obj = it,
-                            tenant = tenant,
-                            tenantProvider = tenantProvider,
-                            paymentMethod = it.paymentMethodToken?.let { paymentMethods[it] },
-                            currentUser = account,
-                            accounts = accounts
-                        ),
-                        action = Action(
-                            type = Route,
-                            url = urlBuilder.build(cashUrl, "transaction?id=${it.id}")
-                        )
-                    )
-                }
-            )
-        )
-    }
-
-    private fun findRecentTransactions(limit: Int): List<TransactionSummary> =
-        try {
-            paymentApi.searchTransaction(
-                SearchTransactionRequest(
-                    accountId = securityContext.currentAccountId(),
-                    status = listOf(
-                        Status.PENDING.name,
-                        Status.SUCCESSFUL.name
-                    ),
-                    limit = limit,
-                    offset = 0
-                )
-            ).transactions
-        } catch (ex: Exception) {
-            LOGGER.warn("Unable to find the recent transactions", ex)
-            emptyList()
-        }
-
-    private fun findRecipients(recipientIds: List<Long>): List<AccountSummary> =
-        try {
-            accountApi.searchAccount(
-                SearchAccountRequest(
-                    ids = recipientIds,
-                    limit = recipientIds.size
-                )
-            ).accounts
-        } catch (ex: Exception) {
-            LOGGER.warn("Unable to find the recipients", ex)
-            emptyList()
-        }
-
-    private fun findPaymentMethods(): Map<String, PaymentMethodSummary> =
-        accountApi.listPaymentMethods(securityContext.currentAccountId())
-            .paymentMethods
-            .map { it.token to it }.toMap()
-
-    private fun findAccounts(txs: List<TransactionSummary>): Map<Long, AccountSummary> {
-        if (txs.isEmpty())
-            return emptyMap()
-
-        val accountIds = txs.map { it.accountId }.toMutableSet()
-        accountIds.addAll(txs.mapNotNull { it.recipientId })
-
-        return accountApi.searchAccount(
-            SearchAccountRequest(
-                ids = accountIds.toList(),
-                limit = accountIds.size
-            )
-        ).accounts.map { it.id to it }.toMap()
     }
 
     private fun toRows(products: List<WidgetAware>, size: Int): List<List<WidgetAware>> {
