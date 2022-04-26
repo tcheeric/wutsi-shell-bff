@@ -5,6 +5,7 @@ import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
+import com.wutsi.application.shell.endpoint.profile.strength.ProfileStrengthContainer
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
@@ -39,6 +40,7 @@ class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
     private val tenantProvider: TenantProvider,
     private val togglesProvider: TogglesProvider,
+    private val profileStrength: ProfileStrengthContainer,
 
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
@@ -95,6 +97,10 @@ class HomeScreen(
             )
             children.add(Divider(color = Theme.COLOR_DIVIDER, height = 1.0))
         }
+
+        val strength = profileStrength.toWidget(me)
+        if (strength != null)
+            children.add(strength)
 
         return Screen(
             id = Page.HOME,

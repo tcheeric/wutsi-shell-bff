@@ -100,7 +100,7 @@ class SettingsScreen(
                 listItem(
                     "page.settings.listitem.account.caption",
                     urlBuilder.build("settings/account"),
-                    icon = Theme.ICON_ACCOUNT
+                    icon = Theme.ICON_PAYMENT
                 ),
             )
         if (togglesProvider.isOrderEnabled())

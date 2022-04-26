@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.application.shell.endpoint.profile.strength.ProfileStrengthContainer
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.GetAccountResponse
@@ -33,6 +34,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
+
+    @MockBean
+    private lateinit var strength: ProfileStrengthContainer
 
     @BeforeEach
     override fun setUp() {
@@ -73,6 +77,8 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
         assertEndpointEquals("/screens/home/home-empty.json", url)
+
+        doReturn(null).whenever(strength).toWidget(any())
     }
 
     @Test
