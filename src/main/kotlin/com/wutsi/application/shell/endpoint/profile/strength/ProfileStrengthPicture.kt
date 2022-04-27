@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
 @Service
 class ProfileStrengthPicture : AbstractProfileStrengthWidget() {
     override fun shouldShow(account: Account): Boolean =
-        account.pictureUrl?.isNullOrEmpty() == true
+        account.pictureUrl.isNullOrEmpty()
 
     override fun getIcon(account: Account, size: Double) =
         Icon(code = Theme.ICON_PICTURE, size = size, color = Theme.COLOR_PRIMARY)

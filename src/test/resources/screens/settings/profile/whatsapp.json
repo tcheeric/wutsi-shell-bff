@@ -43,6 +43,7 @@
               "type": "Input",
               "attributes": {
                 "name": "value",
+                "value": "+1237666666666",
                 "hideText": false,
                 "required": false,
                 "caption": "",

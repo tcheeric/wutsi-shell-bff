@@ -5,7 +5,6 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.application.shell.endpoint.profile.strength.ProfileStrengthContainer
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.GetAccountResponse
@@ -34,9 +33,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
-
-    @MockBean
-    private lateinit var strength: ProfileStrengthContainer
 
     @BeforeEach
     override fun setUp() {
@@ -67,7 +63,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun empty() {
+    fun noAccount() {
         doReturn(GetBalanceResponse(balance = Balance(amount = 0.0, currency = "XAF"))).whenever(paymentApi)
             .getBalance(
                 any()
@@ -76,9 +72,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(SearchTransactionResponse()).whenever(paymentApi).searchTransaction(any())
         doReturn(ListPaymentMethodResponse()).whenever(accountApi).listPaymentMethods(any())
 
-        assertEndpointEquals("/screens/home/home-empty.json", url)
-
-        doReturn(null).whenever(strength).toWidget(any())
+        assertEndpointEquals("/screens/home/home-no-account.json", url)
     }
 
     @Test
@@ -120,13 +114,47 @@ internal class HomeScreenTest : AbstractEndpointTest() {
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
             business = true,
-            hasStore = true
+            hasStore = true,
+            whatsapp = "11111",
+            pictureUrl = "https://www.google.ca"
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         doReturn(true).whenever(togglesProvider).isOrderEnabled()
 
         assertEndpointEquals("/screens/home/home-order-enabled.json", url)
+    }
+
+    @Test
+    fun noWhatsapp() {
+        val account = Account(
+            id = ACCOUNT_ID,
+            displayName = "Ray Sponsible",
+            business = true,
+            hasStore = true,
+            pictureUrl = "https://www.google.ca",
+            whatsapp = null
+        )
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
+
+        assertEndpointEquals("/screens/home/home-no-whatsapp.json", url)
+    }
+
+    @Test
+    fun noPicture() {
+        val account = Account(
+            id = ACCOUNT_ID,
+            displayName = "Ray Sponsible",
+            business = false,
+            hasStore = true,
+            pictureUrl = null,
+            whatsapp = null
+        )
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        assertEndpointEquals("/screens/home/home-no-picture.json", url)
     }
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(

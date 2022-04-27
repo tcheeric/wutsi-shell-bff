@@ -147,6 +147,8 @@ abstract class AbstractEndpointTest {
             biography = "Thsi is my bio",
             category = category,
             timezoneId = "Africa/Douala",
+            whatsapp = "+1237666666666",
+            pictureUrl = "http://img.com/1.png"
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
         doReturn(GetCategoryResponse(category)).whenever(accountApi).getCategory(any())

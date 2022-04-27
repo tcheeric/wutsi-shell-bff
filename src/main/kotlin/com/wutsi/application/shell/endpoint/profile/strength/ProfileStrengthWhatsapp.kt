@@ -19,7 +19,7 @@ class ProfileStrengthWhatsapp(
     private val phoneNumberUtil: PhoneNumberUtil
 ) : AbstractProfileStrengthWidget() {
     override fun shouldShow(account: Account): Boolean =
-        account.business && account.whatsapp?.isNullOrEmpty() == true
+        account.business && account.whatsapp.isNullOrEmpty()
 
     override fun getIcon(account: Account, size: Double) =
         Icon(code = Theme.ICON_WHATSAPP, size = size, color = Theme.COLOR_WHATSAPP)
@@ -61,5 +61,4 @@ class ProfileStrengthWhatsapp(
         val phoneNumber = phoneNumberUtil.parse(number, country)
         return phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
     }
-
 }

@@ -15,11 +15,9 @@
           },
           "children": [
             {
-              "type": "Text",
+              "type": "Image",
               "attributes": {
-                "caption": "RS",
-                "bold": true,
-                "size": 16.0
+                "url": "http://img.com/1.png"
               },
               "children": []
             }
