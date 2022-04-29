@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.profile.strength
 
 import com.wutsi.application.shared.service.URLBuilder
-import com.wutsi.flutter.sdui.CircleAvatar
 import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.Icon
@@ -32,10 +31,7 @@ abstract class AbstractProfileStrengthWidget : ProfileStrengthWidget {
                     getIcon(account, 24.0)?.let {
                         Container(
                             padding = 5.0,
-                            child = CircleAvatar(
-                                radius = 32.0,
-                                child = it
-                            )
+                            child = it
                         )
                     },
                     Flexible(

@@ -86,7 +86,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
         assertEndpointEquals("/screens/home/home-account-enabled.json", url)
     }
-    
+
     @Test
     fun storeEnabled() {
         doReturn(true).whenever(togglesProvider).isStoreEnabled()

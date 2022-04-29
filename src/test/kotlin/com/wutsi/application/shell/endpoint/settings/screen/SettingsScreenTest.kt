@@ -48,7 +48,6 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
         setUpBusinessAccount()
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
-
         assertEndpointEquals("/screens/settings/settings-store-enabled.json", url)
     }
 

@@ -147,21 +147,13 @@
                   },
                   "children": [
                     {
-                      "type": "CircleAvatar",
+                      "type": "Icon",
                       "attributes": {
-                        "radius": 32.0
+                        "code": "f120",
+                        "size": 24.0,
+                        "color": "#1D7EDF"
                       },
-                      "children": [
-                        {
-                          "type": "Icon",
-                          "attributes": {
-                            "code": "f120",
-                            "size": 24.0,
-                            "color": "#1D7EDF"
-                          },
-                          "children": []
-                        }
-                      ]
+                      "children": []
                     }
                   ]
                 },
