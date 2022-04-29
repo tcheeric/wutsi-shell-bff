@@ -53,7 +53,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun storeEnabled() {
         // GIVEN
-        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
@@ -72,7 +71,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun cartEnabled() {
         // GIVEN
-        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
         doReturn(true).whenever(togglesProvider).isCartEnabled()
 
@@ -97,7 +95,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun business() {
         // GIVEN
-        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
         doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
         val account = createAccount(5555, true)

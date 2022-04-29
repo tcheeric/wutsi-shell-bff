@@ -45,8 +45,6 @@ internal class SettingsProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun business() {
         // WHEN
-        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
-
         val account = Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",

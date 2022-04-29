@@ -17,6 +17,8 @@ import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.AddPaymentMethodRequest
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.SavePasswordRequest
+import com.wutsi.platform.core.error.Error
+import com.wutsi.platform.core.error.exception.NotFoundException
 import com.wutsi.platform.core.logging.KVLogger
 import com.wutsi.platform.core.tracing.DeviceIdProvider
 import com.wutsi.platform.payment.PaymentMethodProvider
@@ -144,7 +146,17 @@ class AccountService(
         tenant.mobileCarriers.find { it.code.equals(paymentMethod.provider, true) }
 
     fun getSmsCodeEntity(): SmsCodeEntity =
-        cache.get(cacheKey(), SmsCodeEntity::class.java)
+        cacheKey().let {
+            cache.get(it, SmsCodeEntity::class.java)
+                ?: throw NotFoundException(
+                    error = Error(
+                        code = "phone-not-found",
+                        data = mapOf(
+                            "cache-key" to it
+                        )
+                    )
+                )
+        }
 
     private fun storeVerificationNumber(phoneNumber: String, verificationId: Long, carrier: String) {
         cache.put(

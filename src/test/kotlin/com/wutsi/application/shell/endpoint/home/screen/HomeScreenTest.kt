@@ -137,8 +137,6 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         )
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
-        doReturn(true).whenever(togglesProvider).isBusinessAccountEnabled()
-
         assertEndpointEquals("/screens/home/home-no-whatsapp.json", url)
     }
 

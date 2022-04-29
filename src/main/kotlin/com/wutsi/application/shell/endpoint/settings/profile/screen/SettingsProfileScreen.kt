@@ -69,45 +69,43 @@ class SettingsProfileScreen(
             )
         )
 
-        if (togglesProvider.isBusinessAccountEnabled()) {
-            if (account.business)
-                children.addAll(
-                    listOf(
-                        listItem(
-                            "page.settings.profile.attribute.category-id",
-                            account.category?.let { it.title },
-                            "settings/profile/category"
-                        ),
-                        listItem(
-                            "page.settings.profile.attribute.biography",
-                            account.biography,
-                            "settings/profile/biography"
-                        ),
-                        listItem(
-                            "page.settings.profile.attribute.website",
-                            account.website,
-                            "settings/profile/website"
-                        ),
-                        listItem(
-                            "page.settings.profile.attribute.whatsapp",
-                            account.whatsapp,
-                            "settings/profile/whatsapp"
-                        ),
-                    )
-                )
-
-            children.add(
-                ListItemSwitch(
-                    caption = getText("page.settings.profile.attribute.business"),
-                    name = "value",
-                    selected = account.business,
-                    action = Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build("commands/update-profile-attribute?name=business")
-                    )
+        if (account.business)
+            children.addAll(
+                listOf(
+                    listItem(
+                        "page.settings.profile.attribute.category-id",
+                        account.category?.let { it.title },
+                        "settings/profile/category"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.biography",
+                        account.biography,
+                        "settings/profile/biography"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.website",
+                        account.website,
+                        "settings/profile/website"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.whatsapp",
+                        account.whatsapp,
+                        "settings/profile/whatsapp"
+                    ),
                 )
             )
-        }
+
+        children.add(
+            ListItemSwitch(
+                caption = getText("page.settings.profile.attribute.business"),
+                name = "value",
+                selected = account.business,
+                action = Action(
+                    type = ActionType.Command,
+                    url = urlBuilder.build("commands/update-profile-attribute?name=business")
+                )
+            )
+        )
 
         return Screen(
             id = Page.SETTINGS_PROFILE,

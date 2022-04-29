@@ -107,7 +107,7 @@ class ProfileScreen(
                     foregroundColor = Theme.COLOR_WHITE,
                     title = user.displayName ?: getText("page.profile.app-bar.title"),
                     actions = listOfNotNull(
-                        if (user.business && togglesProvider.isBusinessAccountEnabled())
+                        if (user.business)
                             PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
                                 Container(
                                     padding = 4.0,
