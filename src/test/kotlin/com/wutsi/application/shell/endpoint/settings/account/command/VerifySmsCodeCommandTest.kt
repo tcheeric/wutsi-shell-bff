@@ -64,7 +64,7 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals(
             "https://wutsi-gateway-test.herokuapp.com/login/?phone=%2B1237666666666&icon=f197&screen-id=page.settings.account.link.pin&title=Authorization&sub-title=Enter+your+PIN+to+link+the+account&auth=false&return-to-route=false&return-url=http%3A%2F%2Flocalhost%3A0%2Fcommands%2Flink-account",
@@ -86,7 +86,7 @@ internal class VerifySmsCodeCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(

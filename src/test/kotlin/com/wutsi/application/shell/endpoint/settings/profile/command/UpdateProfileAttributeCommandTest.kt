@@ -25,7 +25,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
 
         // THEN
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("route:/..", action.url)
         assertEquals(false, action.replacement)
@@ -42,7 +42,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
 
         // THEN
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("http://localhost:0/settings/profile", action.url)
         assertEquals(true, action.replacement)
@@ -59,7 +59,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
 
         // THEN
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("route:/..", action.url)
         assertEquals(false, action.replacement)
@@ -78,7 +78,7 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
 
         // THEN
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("https://wutsi-gateway-test.herokuapp.com/store/settings/store", action.url)
         assertEquals(false, action.replacement)

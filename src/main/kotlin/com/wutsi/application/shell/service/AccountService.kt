@@ -73,15 +73,13 @@ class AccountService(
         log(state)
         logger.add("verification_code", request.code)
 
-        if (togglesProvider.isVerifySmsCodeEnabled(state.phoneNumber)) {
-            try {
-                smsApi.validateVerification(
-                    id = state.verificationId,
-                    code = request.code
-                )
-            } catch (ex: Exception) {
-                throw SmsCodeMismatchException(ex)
-            }
+        try {
+            smsApi.validateVerification(
+                id = state.verificationId,
+                code = request.code
+            )
+        } catch (ex: Exception) {
+            throw SmsCodeMismatchException(ex)
         }
     }
 
@@ -172,17 +170,13 @@ class AccountService(
     private fun toPaymentProvider(carrier: String): PaymentMethodProvider? =
         PaymentMethodProvider.values().find { it.name.equals(carrier, ignoreCase = true) }
 
-    private fun sendVerificationCode(phoneNumber: String): Long {
-        if (!togglesProvider.isSendSmsCodeEnabled(phoneNumber))
-            return -1
-
-        return smsApi.sendVerification(
+    private fun sendVerificationCode(phoneNumber: String): Long =
+        smsApi.sendVerification(
             SendVerificationRequest(
                 phoneNumber = phoneNumber,
                 language = localeResolver.resolveLocale(httpServletRequest).language
             )
         ).id
-    }
 
     private fun findCarrier(phoneNumber: String, tenant: Tenant): MobileCarrier? {
         val carriers = tenantProvider.mobileCarriers(tenant)

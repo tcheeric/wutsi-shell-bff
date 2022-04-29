@@ -35,7 +35,7 @@ internal class ChangePinCommandTest : AbstractEndpointTest() {
         // THEN
         assertEquals(200, response.statusCodeValue)
 
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("http://localhost:0/settings/security/confirm-pin?pin=${request.pin}", action.url)
         assertEquals(true, action.replacement)

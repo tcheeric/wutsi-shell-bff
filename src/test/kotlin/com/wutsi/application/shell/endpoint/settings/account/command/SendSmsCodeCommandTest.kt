@@ -53,7 +53,7 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("http://localhost:0/settings/accounts/verify/mobile", action.url)
 
@@ -73,7 +73,7 @@ internal class SendSmsCodeCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
 

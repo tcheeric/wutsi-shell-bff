@@ -43,7 +43,7 @@ internal class ConfirmPinCommandTest : AbstractEndpointTest() {
         verify(accountApi).savePassword(eq(ACCOUNT_ID), req.capture())
         kotlin.test.assertEquals(request.pin, req.firstValue.password)
 
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("route:/..", action.url)
     }
@@ -63,7 +63,7 @@ internal class ConfirmPinCommandTest : AbstractEndpointTest() {
         verify(accountApi).savePassword(eq(ACCOUNT_ID), req.capture())
         kotlin.test.assertEquals(request.pin, req.firstValue.password)
 
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("route:/..", action.url)
     }

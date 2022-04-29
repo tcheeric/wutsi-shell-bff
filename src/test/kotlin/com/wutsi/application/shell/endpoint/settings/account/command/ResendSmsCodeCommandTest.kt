@@ -55,7 +55,7 @@ internal class ResendSmsCodeCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, request, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Information.name, action.prompt?.attributes?.get("type"))
 

@@ -1,9 +1,13 @@
 package com.wutsi.application.shell.endpoint.settings.screen
 
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.platform.account.dto.Account
+import com.wutsi.platform.account.dto.GetAccountResponse
+import com.wutsi.platform.account.dto.Phone
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -40,14 +44,38 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun orderEnabled() {
-        doReturn(true).whenever(togglesProvider).isOrderEnabled()
-        assertEndpointEquals("/screens/settings/settings-order-enabled.json", url)
+    fun storeEnabled() {
+        setUpBusinessAccount()
+        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+
+
+        assertEndpointEquals("/screens/settings/settings-store-enabled.json", url)
     }
 
     @Test
-    fun logoutEnabled() {
-        doReturn(true).whenever(togglesProvider).isLogoutEnabled()
-        assertEndpointEquals("/screens/settings/settings-logout-enabled.json", url)
+    fun orderEnabled() {
+        setUpBusinessAccount()
+        doReturn(true).whenever(togglesProvider).isStoreEnabled()
+        doReturn(true).whenever(togglesProvider).isOrderEnabled()
+
+        assertEndpointEquals("/screens/settings/settings-order-enabled.json", url)
+    }
+
+    private fun setUpBusinessAccount(hasStore: Boolean = true) {
+        val account = Account(
+            id = ACCOUNT_ID,
+            displayName = "Ray Sponsible",
+            country = "CM",
+            language = "en",
+            status = "ACTIVE",
+            phone = Phone(
+                id = 1,
+                number = "+1237666666666",
+                country = "CM"
+            ),
+            business = true,
+            hasStore = hasStore
+        )
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
     }
 }

@@ -43,11 +43,11 @@
                           },
                           "children": [
                             {
-                              "type": "Image",
+                              "type": "Text",
                               "attributes": {
-                                "url": "http://img.com/1.png",
-                                "width": 64.0,
-                                "height": 64.0
+                                "caption": "RS",
+                                "bold": true,
+                                "size": 30.0
                               },
                               "children": []
                             }
@@ -120,9 +120,16 @@
               }
             },
             {
+              "type": "Container",
+              "attributes": {
+                "padding": 20.0
+              },
+              "children": []
+            },
+            {
               "type": "ListItem",
               "attributes": {
-                "caption": "My purchases",
+                "caption": "My store",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",
@@ -135,7 +142,7 @@
                 "leading": {
                   "type": "Icon",
                   "attributes": {
-                    "code": "f37b",
+                    "code": "f3ee",
                     "size": 24.0,
                     "color": "#1D7EDF"
                   },
@@ -145,7 +152,36 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/purchases"
+                "url": "https://wutsi-gateway-test.herokuapp.com/store/settings/store"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "My orders",
+                "padding": 5.0,
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e15f",
+                    "size": 24.0
+                  },
+                  "children": []
+                },
+                "leading": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "f37a",
+                    "size": 24.0,
+                    "color": "#1D7EDF"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "https://wutsi-gateway-test.herokuapp.com/store/orders"
               }
             },
             {
@@ -212,6 +248,27 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/about"
               }
+            },
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 20.0
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Logout",
+                    "padding": 15.0,
+                    "type": "Outlined"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Command",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/login/commands/logout"
+                  }
+                }
+              ]
             }
           ]
         }

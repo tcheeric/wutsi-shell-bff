@@ -1,216 +1,309 @@
 {
-  "type" : "Screen",
-  "attributes" : {
-    "id" : "page.home",
-    "safe" : false
+  "type": "Screen",
+  "attributes": {
+    "id": "page.home",
+    "safe": false
   },
-  "children" : [ {
-    "type" : "Column",
-    "attributes" : { },
-    "children" : [ {
-      "type" : "Container",
-      "attributes" : {
-        "alignment" : "Center",
-        "background" : "#1D7EDF"
-      },
-      "children" : [ {
-        "type" : "Center",
-        "attributes" : { },
-        "children" : [ {
-          "type" : "Column",
-          "attributes" : {
-            "mainAxisAlignment" : "center",
-            "crossAxisAlignment" : "center"
+  "children": [
+    {
+      "type": "Column",
+      "attributes": {},
+      "children": [
+        {
+          "type": "Container",
+          "attributes": {
+            "alignment": "Center",
+            "background": "#1D7EDF"
           },
-          "children" : [ {
-            "type" : "Text",
-            "attributes" : {
-              "caption" : "Balance",
-              "color" : "#FFFFFF"
-            },
-            "children" : [ ]
-          }, {
-            "type" : "MoneyText",
-            "attributes" : {
-              "value" : 10000.0,
-              "color" : "#FFFFFF",
-              "currency" : "CFA",
-              "numberFormat" : "#,###,##0"
-            },
-            "children" : [ ]
-          } ]
-        } ]
-      } ]
-    }, {
-      "type" : "Container",
-      "attributes" : {
-        "background" : "#1D7EDF"
-      },
-      "children" : [ {
-        "type" : "Row",
-        "attributes" : {
-          "mainAxisAlignment" : "spaceAround"
+          "children": [
+            {
+              "type": "Center",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Column",
+                  "attributes": {
+                    "mainAxisAlignment": "center",
+                    "crossAxisAlignment": "center"
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Balance",
+                        "color": "#FFFFFF"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 10000.0,
+                        "color": "#FFFFFF",
+                        "currency": "CFA",
+                        "numberFormat": "#,###,##0"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         },
-        "children" : [ {
-          "type" : "Button",
-          "attributes" : {
-            "caption" : "Send",
-            "padding" : 1.0,
-            "type" : "Text",
-            "stretched" : false,
-            "icon" : "f355",
-            "iconColor" : "#FFFFFF",
-            "color" : "#FFFFFF"
+        {
+          "type": "Container",
+          "attributes": {
+            "background": "#1D7EDF"
           },
-          "children" : [ ],
-          "action" : {
-            "type" : "Route",
-            "url" : "https://wutsi-gateway-test.herokuapp.com/cash/send"
-          }
-        } ]
-      } ]
-    }, {
-      "type" : "Container",
-      "attributes" : {
-        "padding" : 10.0,
-        "margin" : 10.0,
-        "background" : "#e4edf7",
-        "border" : 1.0,
-        "borderRadius" : 5.0,
-        "borderColor" : "#1D7EDF"
-      },
-      "children" : [ {
-        "type" : "Row",
-        "attributes" : {
-          "mainAxisAlignment" : "start",
-          "crossAxisAlignment" : "start"
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround"
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Send",
+                    "padding": 1.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "f355",
+                    "iconColor": "#FFFFFF",
+                    "color": "#FFFFFF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
+                  }
+                }
+              ]
+            }
+          ]
         },
-        "children" : [ {
-          "type" : "Container",
-          "attributes" : {
-            "padding" : 5.0
+        {
+          "type": "Container",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "spaceAround"
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Contacts",
+                    "padding": 1.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "f0d9",
+                    "iconColor": "#1D7EDF",
+                    "color": "#1D7EDF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/contact"
+                  }
+                },
+                {
+                  "type": "Button",
+                  "attributes": {
+                    "caption": "Feedback",
+                    "padding": 1.0,
+                    "type": "Text",
+                    "stretched": false,
+                    "icon": "f04f",
+                    "iconColor": "#1D7EDF",
+                    "color": "#1D7EDF"
+                  },
+                  "children": [],
+                  "action": {
+                    "type": "Route",
+                    "url": "http://localhost:0/feedback"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "Divider",
+          "attributes": {
+            "height": 1.0,
+            "color": "#8c8c8c"
           },
-          "children" : [ {
-            "type" : "CircleAvatar",
-            "attributes" : {
-              "radius" : 32.0
-            },
-            "children" : [ {
-              "type" : "Icon",
-              "attributes" : {
-                "code" : "f05a6",
-                "size" : 24.0,
-                "color" : "#075E54"
-              },
-              "children" : [ ]
-            } ]
-          } ]
-        }, {
-          "type" : "Flexible",
-          "attributes" : {
-            "flex" : 1,
-            "fit" : "Tight"
+          "children": []
+        },
+        {
+          "type": "Container",
+          "attributes": {
+            "padding": 10.0,
+            "margin": 10.0,
+            "background": "#e4edf7",
+            "border": 1.0,
+            "borderRadius": 5.0,
+            "borderColor": "#1D7EDF"
           },
-          "children" : [ {
-            "type" : "Column",
-            "attributes" : {
-              "mainAxisAlignment" : "start",
-              "crossAxisAlignment" : "start"
-            },
-            "children" : [ {
-              "type" : "Text",
-              "attributes" : {
-                "caption" : "Whatsapp",
-                "bold" : true
+          "children": [
+            {
+              "type": "Row",
+              "attributes": {
+                "mainAxisAlignment": "start",
+                "crossAxisAlignment": "start"
               },
-              "children" : [ ]
-            }, {
-              "type" : "Text",
-              "attributes" : {
-                "caption" : "Configure your Whatsapp number will enable your customers to contact you",
-                "maxLines" : 5
-              },
-              "children" : [ ]
-            }, {
-              "type" : "Button",
-              "attributes" : {
-                "caption" : "Configure Whatsapp",
-                "padding" : 10.0,
-                "type" : "Elevated",
-                "stretched" : false
-              },
-              "children" : [ ],
-              "action" : {
-                "type" : "Route",
-                "url" : "http://localhost:0/settings/profile/whatsapp"
-              }
-            } ]
-          } ]
-        } ]
-      } ]
-    } ]
-  } ],
-  "appBar" : {
-    "type" : "AppBar",
-    "attributes" : {
-      "elevation" : 0.0,
-      "backgroundColor" : "#1D7EDF",
-      "foregroundColor" : "#FFFFFF",
-      "automaticallyImplyLeading" : false
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 5.0
+                  },
+                  "children": [
+                    {
+                      "type": "CircleAvatar",
+                      "attributes": {
+                        "radius": 32.0
+                      },
+                      "children": [
+                        {
+                          "type": "Icon",
+                          "attributes": {
+                            "code": "f05a6",
+                            "size": 24.0,
+                            "color": "#075E54"
+                          },
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "Flexible",
+                  "attributes": {
+                    "flex": 1,
+                    "fit": "Tight"
+                  },
+                  "children": [
+                    {
+                      "type": "Column",
+                      "attributes": {
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "start"
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Whatsapp",
+                            "bold": true
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Configure your Whatsapp number will enable your customers to contact you",
+                            "maxLines": 5
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Button",
+                          "attributes": {
+                            "caption": "Configure Whatsapp",
+                            "padding": 10.0,
+                            "type": "Elevated",
+                            "stretched": false
+                          },
+                          "children": [],
+                          "action": {
+                            "type": "Route",
+                            "url": "http://localhost:0/settings/profile/whatsapp"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "appBar": {
+    "type": "AppBar",
+    "attributes": {
+      "elevation": 0.0,
+      "backgroundColor": "#1D7EDF",
+      "foregroundColor": "#FFFFFF",
+      "automaticallyImplyLeading": false
     },
-    "children" : [ ]
+    "children": []
   },
-  "bottomNavigationBar" : {
-    "type" : "BottomNavigationBar",
-    "attributes" : {
-      "background" : "#1D7EDF",
-      "selectedItemColor" : "#FFFFFF",
-      "unselectedItemColor" : "#FFFFFF"
+  "bottomNavigationBar": {
+    "type": "BottomNavigationBar",
+    "attributes": {
+      "background": "#1D7EDF",
+      "selectedItemColor": "#FFFFFF",
+      "unselectedItemColor": "#FFFFFF"
     },
-    "children" : [ {
-      "type" : "BottomNavigationBarItem",
-      "attributes" : {
-        "icon" : "f107",
-        "caption" : "Home"
+    "children": [
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f107",
+          "caption": "Home"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "route:/~"
+        }
       },
-      "children" : [ ],
-      "action" : {
-        "type" : "Route",
-        "url" : "route:/~"
-      }
-    }, {
-      "type" : "BottomNavigationBarItem",
-      "attributes" : {
-        "icon" : "f27b",
-        "caption" : "Me"
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f27b",
+          "caption": "Me"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/profile?id=77777"
+        }
       },
-      "children" : [ ],
-      "action" : {
-        "type" : "Route",
-        "url" : "http://localhost:0/profile?id=77777"
-      }
-    }, {
-      "type" : "BottomNavigationBarItem",
-      "attributes" : {
-        "icon" : "e314",
-        "caption" : "Transactions"
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "e314",
+          "caption": "Transactions"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+        }
       },
-      "children" : [ ],
-      "action" : {
-        "type" : "Route",
-        "url" : "https://wutsi-gateway-test.herokuapp.com/cash/history"
+      {
+        "type": "BottomNavigationBarItem",
+        "attributes": {
+          "icon": "f36e",
+          "caption": "Settings"
+        },
+        "children": [],
+        "action": {
+          "type": "Route",
+          "url": "http://localhost:0/settings"
+        }
       }
-    }, {
-      "type" : "BottomNavigationBarItem",
-      "attributes" : {
-        "icon" : "f36e",
-        "caption" : "Settings"
-      },
-      "children" : [ ],
-      "action" : {
-        "type" : "Route",
-        "url" : "http://localhost:0/settings"
-      }
-    } ]
+    ]
   }
 }

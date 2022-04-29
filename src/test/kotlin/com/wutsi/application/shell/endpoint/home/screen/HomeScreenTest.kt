@@ -88,41 +88,10 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun contactEnabled() {
-        doReturn(true).whenever(togglesProvider).isContactEnabled()
-
-        assertEndpointEquals("/screens/home/home-contact-enabled.json", url)
-    }
-
-    @Test
-    fun feedbackEnabled() {
-        doReturn(true).whenever(togglesProvider).isFeedbackEnabled()
-
-        assertEndpointEquals("/screens/home/home-feedback-enabled.json", url)
-    }
-
-    @Test
     fun storeEnabled() {
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
         assertEndpointEquals("/screens/home/home-store-enabled.json", url)
-    }
-
-    @Test
-    fun orderEnabled() {
-        val account = Account(
-            id = ACCOUNT_ID,
-            displayName = "Ray Sponsible",
-            business = true,
-            hasStore = true,
-            whatsapp = "11111",
-            pictureUrl = "https://www.google.ca"
-        )
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
-
-        doReturn(true).whenever(togglesProvider).isOrderEnabled()
-
-        assertEndpointEquals("/screens/home/home-order-enabled.json", url)
     }
 
     @Test

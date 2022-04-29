@@ -103,14 +103,6 @@ class SettingsScreen(
                     icon = Theme.ICON_PAYMENT
                 ),
             )
-        if (togglesProvider.isOrderEnabled())
-            children.add(
-                listItem(
-                    "page.settings.listitem.my-purchases.caption",
-                    urlBuilder.build(storeUrl, "purchases"),
-                    icon = Theme.ICON_PURCHASES
-                ),
-            )
 
         // Applications
         if (user.business) {
@@ -119,12 +111,23 @@ class SettingsScreen(
             )
             if (togglesProvider.isStoreEnabled())
                 if (user.hasStore)
-                    children.add(
-                        listItem(
-                            "page.settings.listitem.store.caption",
-                            urlBuilder.build(storeUrl, "settings/store"),
-                            icon = Theme.ICON_STORE
-                        ),
+                    children.addAll(
+                        listOfNotNull(
+                            listItem(
+                                "page.settings.listitem.store.caption",
+                                urlBuilder.build(storeUrl, "settings/store"),
+                                icon = Theme.ICON_STORE
+                            ),
+
+                            if (togglesProvider.isOrderEnabled())
+                                listItem(
+                                    "page.settings.listitem.order.caption",
+                                    urlBuilder.build(storeUrl, "orders"),
+                                    icon = Theme.ICON_ORDERS
+                                )
+                            else
+                                null,
+                        )
                     )
                 else
                     children.add(
@@ -153,20 +156,20 @@ class SettingsScreen(
                 ),
             )
         )
-        if (togglesProvider.isLogoutEnabled())
-            children.add(
-                Container(
-                    padding = 20.0,
-                    child = Button(
-                        caption = getText("page.settings.button.logout"),
-                        type = ButtonType.Outlined,
-                        action = Action(
-                            type = ActionType.Command,
-                            url = urlBuilder.build(loginUrl, "/commands/logout")
-                        )
+
+        children.add(
+            Container(
+                padding = 20.0,
+                child = Button(
+                    caption = getText("page.settings.button.logout"),
+                    type = ButtonType.Outlined,
+                    action = Action(
+                        type = ActionType.Command,
+                        url = urlBuilder.build(loginUrl, "/commands/logout")
                     )
                 )
             )
+        )
 
         return children
     }

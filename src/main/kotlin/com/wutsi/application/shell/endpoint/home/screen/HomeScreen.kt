@@ -197,43 +197,27 @@ class HomeScreen(
                 )
             )
 
-        if (me.business && me.hasStore && togglesProvider.isOrderEnabled())
-            buttons.addAll(
-                listOf(
-                    applicationButton(
-                        caption = getText("page.home.button.orders"),
-                        icon = Theme.ICON_ORDERS,
-                        action = Action(
-                            type = Route,
-                            url = "$storeUrl/orders"
-                        )
-                    )
+        buttons.add(
+            applicationButton(
+                caption = getText("page.home.button.contact"),
+                icon = Theme.ICON_GROUP,
+                action = Action(
+                    type = Route,
+                    url = urlBuilder.build("contact")
                 )
             )
+        )
 
-        if (togglesProvider.isContactEnabled())
-            buttons.add(
-                applicationButton(
-                    caption = getText("page.home.button.contact"),
-                    icon = Theme.ICON_GROUP,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("contact")
-                    )
+        buttons.add(
+            applicationButton(
+                caption = getText("page.home.button.feedback"),
+                icon = Theme.ICON_FEEDBACK,
+                action = Action(
+                    type = Route,
+                    url = urlBuilder.build("feedback")
                 )
             )
-
-        if (togglesProvider.isFeedbackEnabled())
-            buttons.add(
-                applicationButton(
-                    caption = getText("page.home.button.feedback"),
-                    icon = Theme.ICON_FEEDBACK,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("feedback")
-                    )
-                )
-            )
+        )
 
         return buttons
     }

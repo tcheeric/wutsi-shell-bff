@@ -62,7 +62,7 @@ internal class LinkCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Route, action.type)
         assertEquals("http://localhost:0/settings/accounts/link/success", action.url)
 
@@ -84,7 +84,7 @@ internal class LinkCommandTest : AbstractEndpointTest() {
         val response = rest.postForEntity(url, null, Action::class.java)
 
         assertEquals(200, response.statusCodeValue)
-        val action = response.body
+        val action = response.body!!
         assertEquals(ActionType.Prompt, action.type)
         assertEquals(DialogType.Error.name, action.prompt?.attributes?.get("type"))
         assertEquals(
