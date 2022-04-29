@@ -62,25 +62,7 @@
               "attributes": {
                 "mainAxisAlignment": "spaceAround"
               },
-              "children": [
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Send",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f355",
-                    "iconColor": "#FFFFFF",
-                    "color": "#FFFFFF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
-                  }
-                }
-              ]
+              "children": []
             }
           ]
         },

@@ -97,23 +97,6 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "Marketplace",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f37f",
-                    "iconColor": "#1D7EDF",
-                    "color": "#1D7EDF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/store/marketplace"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
                     "caption": "Contacts",
                     "padding": 1.0,
                     "type": "Text",

@@ -86,12 +86,19 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
         assertEndpointEquals("/screens/home/home-account-enabled.json", url)
     }
-
+    
     @Test
     fun storeEnabled() {
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
         assertEndpointEquals("/screens/home/home-store-enabled.json", url)
+    }
+
+    @Test
+    fun sendEnabled() {
+        doReturn(true).whenever(togglesProvider).isSendEnabled()
+
+        assertEndpointEquals("/screens/home/home-send-enabled.json", url)
     }
 
     @Test

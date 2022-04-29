@@ -130,7 +130,7 @@ class HomeScreen(
                 ),
             )
         }
-        if (togglesProvider.isAccountEnabled()) {
+        if (togglesProvider.isAccountEnabled())
             buttons.add(
                 primaryButton(
                     caption = getText("page.home.button.cashin"),
@@ -141,9 +141,9 @@ class HomeScreen(
                     )
                 ),
             )
-        }
-        buttons.addAll(
-            listOf(
+
+        if (togglesProvider.isSendEnabled())
+            buttons.add(
                 primaryButton(
                     caption = getText("page.home.button.send"),
                     icon = Theme.ICON_SEND,
@@ -151,9 +151,9 @@ class HomeScreen(
                         type = Route,
                         url = urlBuilder.build(cashUrl, "send")
                     )
-                ),
+                )
             )
-        )
+
         if (togglesProvider.isPaymentEnabled())
             buttons.add(
                 primaryButton(
