@@ -123,7 +123,8 @@ abstract class AbstractEndpointTest {
                         Logo(type = "PICTORIAL", url = "http://www.goole.com/images/orange.png")
                     )
                 )
-            )
+            ),
+            testUserIds = listOf(ACCOUNT_ID)
         )
         doReturn(GetTenantResponse(tenant)).whenever(tenantApi).getTenant(any())
 

@@ -43,6 +43,7 @@ class SettingsAboutScreen(
     ): Widget {
         val items = mutableListOf<WidgetAware>()
         val tenant = tenantProvider.get()
+        val userId = securityContext.currentAccountId()
 
         tenant.logos.find { it.type == "PICTORIAL" }
             ?.let {
@@ -73,7 +74,7 @@ class SettingsAboutScreen(
             )
         )
 
-        if (togglesProvider.isSwitchEnvironmentEnabled()) {
+        if (togglesProvider.isSwitchEnvironmentEnabled() && tenant.testUserIds.contains(userId)) {
             val nextEnv = if (env == "test") "prod" else "test"
             items.add(
                 Container(
