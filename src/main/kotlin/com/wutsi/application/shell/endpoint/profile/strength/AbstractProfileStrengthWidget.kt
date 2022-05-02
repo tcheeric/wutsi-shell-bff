@@ -28,12 +28,8 @@ abstract class AbstractProfileStrengthWidget : ProfileStrengthWidget {
         if (shouldShow(account))
             Row(
                 children = listOfNotNull(
-                    getIcon(account, 24.0)?.let {
-                        Container(
-                            padding = 5.0,
-                            child = it
-                        )
-                    },
+                    getIcon(account, 32.0),
+                    Container(padding = 5.0),
                     Flexible(
                         child = getContent(account)
                     )

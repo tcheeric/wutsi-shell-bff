@@ -48,6 +48,27 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Email",
+                "subCaption": "foo@bar.com",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile/email"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "Language",
                 "subCaption": "English",
                 "trailing": {
@@ -90,7 +111,7 @@
               "type": "ListItem",
               "attributes": {
                 "caption": "Location",
-                "subCaption": "Cameroon",
+                "subCaption": "Mouanko, Cameroon",
                 "trailing": {
                   "type": "Icon",
                   "attributes": {

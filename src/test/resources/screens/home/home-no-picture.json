@@ -123,83 +123,88 @@
           "children": []
         },
         {
-          "type": "Container",
-          "attributes": {
-            "padding": 10.0,
-            "margin": 10.0,
-            "background": "#e4edf7",
-            "border": 1.0,
-            "borderRadius": 5.0,
-            "borderColor": "#1D7EDF"
-          },
+          "type": "Column",
+          "attributes": {},
           "children": [
             {
-              "type": "Row",
+              "type": "Container",
               "attributes": {
-                "mainAxisAlignment": "start",
-                "crossAxisAlignment": "start"
+                "padding": 10.0,
+                "margin": 5.0,
+                "background": "#e8e8e8",
+                "border": 1.0,
+                "borderRadius": 5.0,
+                "borderColor": "#95A5A6"
               },
               "children": [
                 {
-                  "type": "Container",
+                  "type": "Row",
                   "attributes": {
-                    "padding": 5.0
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
                   },
                   "children": [
                     {
                       "type": "Icon",
                       "attributes": {
                         "code": "f120",
-                        "size": 24.0,
+                        "size": 32.0,
                         "color": "#1D7EDF"
                       },
                       "children": []
-                    }
-                  ]
-                },
-                {
-                  "type": "Flexible",
-                  "attributes": {
-                    "flex": 1,
-                    "fit": "Tight"
-                  },
-                  "children": [
+                    },
                     {
-                      "type": "Column",
+                      "type": "Container",
                       "attributes": {
-                        "mainAxisAlignment": "start",
-                        "crossAxisAlignment": "start"
+                        "padding": 5.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Flexible",
+                      "attributes": {
+                        "flex": 1,
+                        "fit": "Tight"
                       },
                       "children": [
                         {
-                          "type": "Text",
+                          "type": "Column",
                           "attributes": {
-                            "caption": "Picture",
-                            "bold": true
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
                           },
-                          "children": []
-                        },
-                        {
-                          "type": "Text",
-                          "attributes": {
-                            "caption": "Add your picture to help your contacts to know who you are",
-                            "maxLines": 5
-                          },
-                          "children": []
-                        },
-                        {
-                          "type": "Button",
-                          "attributes": {
-                            "caption": "Configure Picture",
-                            "padding": 10.0,
-                            "type": "Elevated",
-                            "stretched": false
-                          },
-                          "children": [],
-                          "action": {
-                            "type": "Route",
-                            "url": "http://localhost:0/settings/picture"
-                          }
+                          "children": [
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Picture",
+                                "bold": true
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Add your picture to help your contacts to know who you are",
+                                "maxLines": 5
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "Configure your Picture",
+                                "padding": 10.0,
+                                "type": "Elevated",
+                                "stretched": false
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Route",
+                                "url": "http://localhost:0/settings/picture"
+                              }
+                            }
+                          ]
                         }
                       ]
                     }

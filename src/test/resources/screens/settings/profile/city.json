@@ -42,7 +42,8 @@
             {
               "type": "SearchableDropdown",
               "attributes": {
-                "name": "value"
+                "name": "value",
+                "value": "2225940"
               },
               "children": [
                 {

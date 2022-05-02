@@ -48,6 +48,26 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Email",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile/email"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "Language",
                 "subCaption": "English",
                 "trailing": {

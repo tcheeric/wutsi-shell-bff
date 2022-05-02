@@ -121,6 +121,98 @@
             "color": "#8c8c8c"
           },
           "children": []
+        },
+        {
+          "type": "Column",
+          "attributes": {},
+          "children": [
+            {
+              "type": "Container",
+              "attributes": {
+                "padding": 10.0,
+                "margin": 5.0,
+                "background": "#e8e8e8",
+                "border": 1.0,
+                "borderRadius": 5.0,
+                "borderColor": "#95A5A6"
+              },
+              "children": [
+                {
+                  "type": "Row",
+                  "attributes": {
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
+                  },
+                  "children": [
+                    {
+                      "type": "Icon",
+                      "attributes": {
+                        "code": "f2ac",
+                        "size": 32.0,
+                        "color": "#1D7EDF"
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 5.0
+                      },
+                      "children": []
+                    },
+                    {
+                      "type": "Flexible",
+                      "attributes": {
+                        "flex": 1,
+                        "fit": "Tight"
+                      },
+                      "children": [
+                        {
+                          "type": "Column",
+                          "attributes": {
+                            "mainAxisAlignment": "start",
+                            "crossAxisAlignment": "start"
+                          },
+                          "children": [
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Location",
+                                "bold": true
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Text",
+                              "attributes": {
+                                "caption": "Configure the primary city where you are living",
+                                "maxLines": 5
+                              },
+                              "children": []
+                            },
+                            {
+                              "type": "Button",
+                              "attributes": {
+                                "caption": "Configure your Location",
+                                "padding": 10.0,
+                                "type": "Elevated",
+                                "stretched": false
+                              },
+                              "children": [],
+                              "action": {
+                                "type": "Route",
+                                "url": "http://localhost:0/settings/profile/location"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }
       ]
     }

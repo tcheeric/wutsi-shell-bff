@@ -49,6 +49,11 @@ class SettingsProfileScreen(
                     "settings/profile/display-name"
                 ),
                 listItem(
+                    "page.settings.profile.attribute.email",
+                    account.email,
+                    "settings/profile/email"
+                ),
+                listItem(
                     "page.settings.profile.attribute.language",
                     StringUtil.capitalizeFirstLetter(
                         Locale(account.language).getDisplayLanguage(locale)

@@ -30,6 +30,7 @@ import feign.Request
 import feign.RequestTemplate
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.cache.Cache
 import org.springframework.context.MessageSource
@@ -39,6 +40,7 @@ import java.nio.charset.Charset
 import java.util.UUID
 import kotlin.test.assertEquals
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 abstract class AbstractEndpointTest {
     companion object {
         const val USER_ID = 1L
@@ -71,8 +73,10 @@ abstract class AbstractEndpointTest {
 
     lateinit var traceId: String
 
+    lateinit var user: Account
+
     @BeforeEach
-    open fun setUp() {
+    fun setUp() {
         traceId = UUID.randomUUID().toString()
         doReturn(DEVICE_ID).whenever(tracingContext).deviceId()
         doReturn(traceId).whenever(tracingContext).traceId()
@@ -132,10 +136,11 @@ abstract class AbstractEndpointTest {
             id = 1000,
             title = "Marketing",
         )
-        val account = Account(
+        user = Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
             country = "CM",
+            cityId = 2225940L,
             language = "en",
             status = "ACTIVE",
             phone = Phone(
@@ -149,9 +154,10 @@ abstract class AbstractEndpointTest {
             category = category,
             timezoneId = "Africa/Douala",
             whatsapp = "+1237666666666",
-            pictureUrl = "http://img.com/1.png"
+            pictureUrl = "http://img.com/1.png",
+            email = "foo@bar.com",
         )
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
         doReturn(GetCategoryResponse(category)).whenever(accountApi).getCategory(any())
 
         rest = createResTemplate()

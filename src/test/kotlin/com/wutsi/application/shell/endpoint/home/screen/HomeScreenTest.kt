@@ -5,7 +5,6 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
-import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
@@ -103,14 +102,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun noWhatsapp() {
-        val account = Account(
-            id = ACCOUNT_ID,
-            displayName = "Ray Sponsible",
-            business = true,
-            hasStore = true,
-            pictureUrl = "https://www.google.ca",
-            whatsapp = null
-        )
+        val account = user.copy(whatsapp = null)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         assertEndpointEquals("/screens/home/home-no-whatsapp.json", url)
@@ -118,17 +110,26 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun noPicture() {
-        val account = Account(
-            id = ACCOUNT_ID,
-            displayName = "Ray Sponsible",
-            business = false,
-            hasStore = true,
-            pictureUrl = null,
-            whatsapp = null
-        )
+        val account = user.copy(pictureUrl = null)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         assertEndpointEquals("/screens/home/home-no-picture.json", url)
+    }
+
+    @Test
+    fun noEmail() {
+        val account = user.copy(email = null)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        assertEndpointEquals("/screens/home/home-no-email.json", url)
+    }
+
+    @Test
+    fun noCity() {
+        val account = user.copy(cityId = null)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        assertEndpointEquals("/screens/home/home-no-city.json", url)
     }
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
