@@ -88,7 +88,8 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "Marketing",
+                                "caption": "Business Account",
+                                "color": "#95A5A6",
                                 "alignment": "Center"
                               },
                               "children": []
@@ -105,7 +106,7 @@
                               "type": "Text",
                               "attributes": {
                                 "caption": "+1 237666666666",
-                                "color": "#95A5A6",
+                                "bold": true,
                                 "alignment": "Center"
                               },
                               "children": []
@@ -128,27 +129,6 @@
                               "children": []
                             }
                           ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center"
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "my.business.com/12432",
-                                "color": "#1D7EDF",
-                                "decoration": "Underline"
-                              },
-                              "children": []
-                            }
-                          ],
-                          "action": {
-                            "type": "Navigate",
-                            "url": "https://my.business.com/12432"
-                          }
                         },
                         {
                           "type": "Container",
@@ -237,6 +217,50 @@
                                       ]
                                     }
                                   ]
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "alignment": "Center"
+                                  },
+                                  "children": [
+                                    {
+                                      "type": "Row",
+                                      "attributes": {
+                                        "mainAxisSize": "min"
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Icon",
+                                          "attributes": {
+                                            "code": "f169",
+                                            "size": 16.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Container",
+                                          "attributes": {
+                                            "padding": 2.0
+                                          },
+                                          "children": []
+                                        },
+                                        {
+                                          "type": "Text",
+                                          "attributes": {
+                                            "caption": "my.business.com/12432",
+                                            "color": "#1D7EDF",
+                                            "decoration": "Underline"
+                                          },
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "action": {
+                                    "type": "Navigate",
+                                    "url": "https://my.business.com/12432"
+                                  }
                                 }
                               ]
                             }
@@ -268,7 +292,6 @@
       "appBar": {
         "type": "AppBar",
         "attributes": {
-          "title": "Ray Sponsible",
           "elevation": 0.0,
           "backgroundColor": "#1D7EDF",
           "foregroundColor": "#FFFFFF",

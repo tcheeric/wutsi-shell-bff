@@ -89,24 +89,8 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "Marketing",
-                                "alignment": "Center"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center"
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
                                 "caption": "+1 237666666666",
-                                "color": "#95A5A6",
+                                "bold": true,
                                 "alignment": "Center"
                               },
                               "children": []
@@ -115,47 +99,7 @@
                         },
                         {
                           "type": "Container",
-                          "attributes": {
-                            "alignment": "Center",
-                            "padding": 10.0
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "This is my bio",
-                                "alignment": "Center"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center"
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "my.business.com/12432",
-                                "color": "#1D7EDF",
-                                "decoration": "Underline"
-                              },
-                              "children": []
-                            }
-                          ],
-                          "action": {
-                            "type": "Navigate",
-                            "url": "https://my.business.com/12432"
-                          }
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "padding": 10.0
-                          },
+                          "attributes": {},
                           "children": [
                             {
                               "type": "Wrap",
@@ -225,7 +169,6 @@
       "appBar": {
         "type": "AppBar",
         "attributes": {
-          "title": "Ray Sponsible",
           "elevation": 0.0,
           "backgroundColor": "#1D7EDF",
           "foregroundColor": "#FFFFFF",

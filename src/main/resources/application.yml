@@ -42,6 +42,7 @@ wutsi:
     cash-url: ${wutsi.application.gateway-url}/cash
     login-url: ${wutsi.application.gateway-url}/login
     store-url: ${wutsi.application.gateway-url}/store
+    asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-web
   platform:
     cache:
       name: ${wutsi.application.name}

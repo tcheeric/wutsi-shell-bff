@@ -128,7 +128,7 @@ abstract class AbstractEndpointTest {
                     )
                 )
             ),
-            testUserIds = listOf(ACCOUNT_ID)
+            testUserIds = listOf(ACCOUNT_ID),
         )
         doReturn(GetTenantResponse(tenant)).whenever(tenantApi).getTenant(any())
 
@@ -156,6 +156,9 @@ abstract class AbstractEndpointTest {
             whatsapp = "+1237666666666",
             pictureUrl = "http://img.com/1.png",
             email = "foo@bar.com",
+            facebookId = "ray.sponsible",
+            twitterId = "ray-sponsible",
+            instagramId = "ray"
         )
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
         doReturn(GetCategoryResponse(category)).whenever(accountApi).getCategory(any())

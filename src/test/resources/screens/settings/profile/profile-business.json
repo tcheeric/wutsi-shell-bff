@@ -214,6 +214,66 @@
             {
               "type": "ListItem",
               "attributes": {
+                "caption": "Facebook",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile/facebook"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "Instagram",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile/instagram"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
+                "caption": "Twitter",
+                "trailing": {
+                  "type": "Icon",
+                  "attributes": {
+                    "code": "e21a",
+                    "size": 24.0,
+                    "color": "#000000"
+                  },
+                  "children": []
+                }
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "http://localhost:0/settings/profile/twitter"
+              }
+            },
+            {
+              "type": "ListItem",
+              "attributes": {
                 "caption": "WhatsApp",
                 "subCaption": "+1237666666666",
                 "trailing": {

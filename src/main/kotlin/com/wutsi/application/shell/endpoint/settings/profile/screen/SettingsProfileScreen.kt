@@ -4,7 +4,6 @@ import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.CityService
 import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.StringUtil
-import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -29,7 +28,6 @@ import java.util.Locale
 class SettingsProfileScreen(
     private val sharedUIMapper: SharedUIMapper,
     private val cityService: CityService,
-    private val togglesProvider: TogglesProvider
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {
@@ -91,6 +89,21 @@ class SettingsProfileScreen(
                         "page.settings.profile.attribute.website",
                         account.website,
                         "settings/profile/website"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.facebook-id",
+                        account.facebookId?.let { "https://www.facebook.com/${account.facebookId}" },
+                        "settings/profile/facebook"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.instagram-id",
+                        account.instagramId?.let { "https://www.instagram.com/${account.instagramId}" },
+                        "settings/profile/instagram"
+                    ),
+                    listItem(
+                        "page.settings.profile.attribute.twitter-id",
+                        account.twitterId?.let { "https://www.twitter.com/${account.twitterId}" },
+                        "settings/profile/twitter"
                     ),
                     listItem(
                         "page.settings.profile.attribute.whatsapp",

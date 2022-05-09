@@ -53,6 +53,7 @@ class ProfileScreen(
     private val tenantProvider: TenantProvider,
 
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
+    @Value("\${wutsi.application.asset-url}") private val assetUrl: String,
 ) : AbstractQuery() {
     companion object {
         private val LOGGER = LoggerFactory.getLogger(ProfileScreen::class.java)
@@ -105,7 +106,6 @@ class ProfileScreen(
                     elevation = 0.0,
                     backgroundColor = Theme.COLOR_PRIMARY,
                     foregroundColor = Theme.COLOR_WHITE,
-                    title = user.displayName ?: getText("page.profile.app-bar.title"),
                     actions = listOfNotNull(
                         if (user.business)
                             PhoneUtil.toWhatsAppUrl(user.whatsapp)?.let {
@@ -205,7 +205,8 @@ class ProfileScreen(
         val children = mutableListOf<WidgetAware>(
             ProfileCard(
                 model = sharedUIMapper.toAccountModel(user),
-                type = ProfileCardType.FULL
+                type = ProfileCardType.FULL,
+                assetUrl = assetUrl
             )
         )
         return Column(
