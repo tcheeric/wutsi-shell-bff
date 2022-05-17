@@ -93,7 +93,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My profile",
+                "caption": "Profile",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",
@@ -129,7 +129,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My store",
+                "caption": "Store",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",

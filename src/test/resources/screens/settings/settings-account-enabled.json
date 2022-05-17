@@ -93,7 +93,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My profile",
+                "caption": "Profile",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",
@@ -122,7 +122,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My accounts",
+                "caption": "Accounts",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",

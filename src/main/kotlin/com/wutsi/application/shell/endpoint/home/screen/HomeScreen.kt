@@ -20,7 +20,6 @@ import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
-import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
@@ -73,7 +72,7 @@ class HomeScreen(
             )
         )
         children.addAll(
-            toRows(applicationButtons(me), 4)
+            toRows(applicationButtons(), 4)
                 .map {
                     Container(
                         child = Row(
@@ -166,7 +165,7 @@ class HomeScreen(
         action = action
     )
 
-    private fun applicationButtons(me: Account): List<WidgetAware> {
+    private fun applicationButtons(): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
         if (togglesProvider.isStoreEnabled())

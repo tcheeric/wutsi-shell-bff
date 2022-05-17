@@ -93,7 +93,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My profile",
+                "caption": "Profile",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",
@@ -129,7 +129,7 @@
             {
               "type": "ListItem",
               "attributes": {
-                "caption": "My store",
+                "caption": "Store",
                 "padding": 5.0,
                 "trailing": {
                   "type": "Icon",
@@ -153,35 +153,6 @@
               "action": {
                 "type": "Route",
                 "url": "https://wutsi-gateway-test.herokuapp.com/store/settings/store"
-              }
-            },
-            {
-              "type": "ListItem",
-              "attributes": {
-                "caption": "My orders",
-                "padding": 5.0,
-                "trailing": {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "e15f",
-                    "size": 24.0
-                  },
-                  "children": []
-                },
-                "leading": {
-                  "type": "Icon",
-                  "attributes": {
-                    "code": "f37a",
-                    "size": 24.0,
-                    "color": "#1D7EDF"
-                  },
-                  "children": []
-                }
-              },
-              "children": [],
-              "action": {
-                "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/orders"
               }
             },
             {

@@ -108,23 +108,12 @@ class SettingsScreen(
             )
             if (togglesProvider.isStoreEnabled())
                 if (user.hasStore)
-                    children.addAll(
-                        listOfNotNull(
-                            listItem(
-                                "page.settings.listitem.store.caption",
-                                urlBuilder.build(storeUrl, "settings/store"),
-                                icon = Theme.ICON_STORE
-                            ),
-
-                            if (togglesProvider.isOrderEnabled())
-                                listItem(
-                                    "page.settings.listitem.order.caption",
-                                    urlBuilder.build(storeUrl, "orders"),
-                                    icon = Theme.ICON_ORDERS
-                                )
-                            else
-                                null,
-                        )
+                    children.add(
+                        listItem(
+                            "page.settings.listitem.store.caption",
+                            urlBuilder.build(storeUrl, "settings/store"),
+                            icon = Theme.ICON_STORE
+                        ),
                     )
                 else
                     children.add(
