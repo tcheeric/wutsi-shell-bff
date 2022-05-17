@@ -114,7 +114,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "/profile"
+          "url": "http://localhost:0/profile"
         }
       },
       {
@@ -126,7 +126,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "/settings"
+          "url": "http://localhost:0/settings"
         }
       }
     ]
