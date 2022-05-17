@@ -57,10 +57,12 @@ class ProfileScreen(
 
     @PostMapping
     fun index(
-        @RequestParam id: Long,
+        @RequestParam(required = false) id: Long? = null,
         @RequestParam(required = false) tab: String? = null
     ): Widget {
-        val user = accountApi.getAccount(id).account
+        val user = accountApi.getAccount(
+            id ?: securityContext.currentAccountId()
+        ).account
         val tenant = tenantProvider.get()
         val cart = getCart(user)
 
