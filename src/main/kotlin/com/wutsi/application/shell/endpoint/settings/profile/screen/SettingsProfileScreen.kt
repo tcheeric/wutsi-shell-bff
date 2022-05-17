@@ -2,7 +2,6 @@ package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.CityService
-import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.StringUtil
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
@@ -26,7 +25,6 @@ import java.util.Locale
 @RestController
 @RequestMapping("/settings/profile")
 class SettingsProfileScreen(
-    private val sharedUIMapper: SharedUIMapper,
     private val cityService: CityService,
 ) : AbstractQuery() {
     @PostMapping

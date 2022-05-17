@@ -2,7 +2,6 @@ package com.wutsi.application.shell.endpoint.home.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.profile.strength.ProfileStrengthContainer
@@ -12,18 +11,14 @@ import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
 import com.wutsi.flutter.sdui.Container
-import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
-import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
-import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
-import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
 import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.payment.WutsiPaymentApi
@@ -39,7 +34,6 @@ import org.springframework.web.bind.annotation.RestController
 class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
     private val tenantProvider: TenantProvider,
-    private val togglesProvider: TogglesProvider,
     private val profileStrength: ProfileStrengthContainer,
 
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
@@ -49,54 +43,46 @@ class HomeScreen(
         val tenant = tenantProvider.get()
         val balance = getBalance(tenant)
         val me = securityContext.currentAccount()
+        val children = mutableListOf<WidgetAware>()
 
         // Primary Buttons
-        val children = mutableListOf<WidgetAware>(
-            Container(
-                alignment = Alignment.Center,
-                background = Theme.COLOR_PRIMARY,
-                child = Center(
-                    child = Column(
-                        mainAxisAlignment = MainAxisAlignment.center,
-                        crossAxisAlignment = CrossAxisAlignment.center,
-                        children = listOf(
-                            Text(
-                                getText("page.home.balance"),
-                                color = Theme.COLOR_WHITE,
-                            ),
-                            MoneyText(
-                                color = Theme.COLOR_WHITE,
-                                value = balance.value,
-                                currency = tenant.currencySymbol,
-                                numberFormat = tenant.numberFormat,
-                            )
-                        ),
-                    )
-                ),
-            ),
+        if (togglesProvider.isAccountEnabled())
+            children.add(
+                Container(
+                    alignment = Alignment.Center,
+                    background = Theme.COLOR_PRIMARY,
+                    child = Center(
+                        child = MoneyText(
+                            color = Theme.COLOR_WHITE,
+                            value = balance.value,
+                            currency = tenant.currencySymbol,
+                            numberFormat = tenant.numberFormat,
+                        )
+                    ),
+                )
+            )
+
+        // Applications
+        children.add(
             Container(
                 background = Theme.COLOR_PRIMARY,
                 child = Row(
                     mainAxisAlignment = spaceAround,
                     children = primaryButtons(),
                 )
-            ),
-        )
-        val applications = applicationButtons(me)
-        if (applications.isNotEmpty()) {
-            children.addAll(
-                toRows(applications, 4)
-                    .map {
-                        Container(
-                            child = Row(
-                                children = it,
-                                mainAxisAlignment = spaceAround
-                            )
-                        )
-                    }
             )
-            children.add(Divider(color = Theme.COLOR_DIVIDER, height = 1.0))
-        }
+        )
+        children.addAll(
+            toRows(applicationButtons(me), 4)
+                .map {
+                    Container(
+                        child = Row(
+                            children = it,
+                            mainAxisAlignment = spaceAround
+                        )
+                    )
+                }
+        )
 
         val strength = profileStrength.toWidget(me)
         if (strength != null)
@@ -111,7 +97,7 @@ class HomeScreen(
                 automaticallyImplyLeading = false,
             ),
             child = Column(children = children),
-            bottomNavigationBar = bottomNavigationBar()
+            bottomNavigationBar = bottomNavigationBar(),
         ).toWidget()
     }
 

@@ -12,48 +12,6 @@
         {
           "type": "Container",
           "attributes": {
-            "alignment": "Center",
-            "background": "#1D7EDF"
-          },
-          "children": [
-            {
-              "type": "Center",
-              "attributes": {},
-              "children": [
-                {
-                  "type": "Column",
-                  "attributes": {
-                    "mainAxisAlignment": "center",
-                    "crossAxisAlignment": "center"
-                  },
-                  "children": [
-                    {
-                      "type": "Text",
-                      "attributes": {
-                        "caption": "Balance",
-                        "color": "#FFFFFF"
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "MoneyText",
-                      "attributes": {
-                        "value": 10000.0,
-                        "color": "#FFFFFF",
-                        "currency": "CFA",
-                        "numberFormat": "#,###,##0"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
             "background": "#1D7EDF"
           },
           "children": [
@@ -79,7 +37,7 @@
                 {
                   "type": "Button",
                   "attributes": {
-                    "caption": "Marketplace",
+                    "caption": "Market",
                     "padding": 1.0,
                     "type": "Text",
                     "stretched": false,
@@ -130,14 +88,6 @@
               ]
             }
           ]
-        },
-        {
-          "type": "Divider",
-          "attributes": {
-            "height": 1.0,
-            "color": "#8c8c8c"
-          },
-          "children": []
         }
       ]
     }
@@ -181,19 +131,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/profile?id=77777"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "e314",
-          "caption": "Transactions"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+          "url": "/profile"
         }
       },
       {
@@ -205,7 +143,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/settings"
+          "url": "/settings"
         }
       }
     ]

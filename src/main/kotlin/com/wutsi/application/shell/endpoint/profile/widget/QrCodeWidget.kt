@@ -2,7 +2,6 @@ package com.wutsi.application.shell.endpoint.profile.widget
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.QrService
-import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.ui.ProfileListItem
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.flutter.sdui.Center
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController
 class QrCodeWidget(
     private val qrApi: WutsiQrApi,
     private val accountApi: WutsiAccountApi,
-    private val sharedUIMapper: SharedUIMapper,
     private val qrService: QrService,
 ) : AbstractQuery() {
     @PostMapping

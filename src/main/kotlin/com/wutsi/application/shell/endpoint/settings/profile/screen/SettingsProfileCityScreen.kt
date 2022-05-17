@@ -1,7 +1,6 @@
 package com.wutsi.application.shell.endpoint.settings.profile.screen
 
 import com.wutsi.application.shared.service.CityService
-import com.wutsi.application.shared.service.SharedUIMapper
 import com.wutsi.application.shared.service.TenantProvider
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.DropdownMenuItem
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController
 class SettingsProfileCityScreen(
     private val cityService: CityService,
     private val tenantProvider: TenantProvider,
-    private val sharedUIMapper: SharedUIMapper,
 ) : AbstractSettingsProfileAttributeScreen() {
     override fun getAttributeName() = "city-id"
 

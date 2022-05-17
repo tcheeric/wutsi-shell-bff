@@ -2,7 +2,6 @@ package com.wutsi.application.shell.endpoint.settings.about.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -35,7 +34,6 @@ class SettingsAboutScreen(
     private val tenantProvider: TenantProvider,
     private val tracingContext: TracingContext,
     private val request: HttpServletRequest,
-    private val togglesProvider: TogglesProvider,
 ) : AbstractQuery() {
     @PostMapping
     fun index(

@@ -130,19 +130,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/profile?id=77777"
-        }
-      },
-      {
-        "type": "BottomNavigationBarItem",
-        "attributes": {
-          "icon": "e314",
-          "caption": "Transactions"
-        },
-        "children": [],
-        "action": {
-          "type": "Route",
-          "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
+          "url": "/profile"
         }
       },
       {
@@ -154,7 +142,7 @@
         "children": [],
         "action": {
           "type": "Route",
-          "url": "http://localhost:0/settings"
+          "url": "/settings"
         }
       }
     ]

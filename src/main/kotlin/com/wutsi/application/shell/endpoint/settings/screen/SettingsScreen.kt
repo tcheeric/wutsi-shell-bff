@@ -2,7 +2,6 @@ package com.wutsi.application.shell.endpoint.settings.screen
 
 import com.wutsi.application.shared.Theme
 import com.wutsi.application.shared.service.StringUtil
-import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.Action
@@ -37,8 +36,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/settings")
 class SettingsScreen(
-    private val togglesProvider: TogglesProvider,
-
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
     @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
