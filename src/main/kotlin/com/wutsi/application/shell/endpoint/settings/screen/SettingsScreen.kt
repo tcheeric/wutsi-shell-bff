@@ -100,6 +100,14 @@ class SettingsScreen(
                     icon = Theme.ICON_PAYMENT
                 ),
             )
+        if (togglesProvider.isOrderEnabled())
+            children.add(
+                listItem(
+                    "page.settings.listitem.my-orders.caption",
+                    urlBuilder.build(storeUrl, "me/orders"),
+                    icon = Theme.ICON_ORDERS
+                ),
+            )
 
         // Applications
         if (user.business) {

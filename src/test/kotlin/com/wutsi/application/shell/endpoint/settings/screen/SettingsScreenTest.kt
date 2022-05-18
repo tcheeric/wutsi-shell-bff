@@ -54,7 +54,6 @@ internal class SettingsScreenTest : AbstractEndpointTest() {
     @Test
     fun orderEnabled() {
         setUpBusinessAccount()
-        doReturn(true).whenever(togglesProvider).isStoreEnabled()
         doReturn(true).whenever(togglesProvider).isOrderEnabled()
 
         assertEndpointEquals("/screens/settings/settings-order-enabled.json", url)
