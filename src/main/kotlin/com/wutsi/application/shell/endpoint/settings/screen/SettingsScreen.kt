@@ -118,7 +118,7 @@ class SettingsScreen(
                 else
                     children.add(
                         listItemSwitch(
-                            "page.settings.listitem.store.caption",
+                            "page.settings.listitem.activate-store.caption",
                             urlBuilder.build("/commands/update-profile-attribute?name=has-store"),
                             icon = Theme.ICON_STORE,
                             subCaption = "page.settings.listitem.store.sub-caption"
