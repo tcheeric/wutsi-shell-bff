@@ -42,7 +42,7 @@ class ProfileStrengthLocationWidget : AbstractProfileStrengthWidget() {
                     caption = getText("profile-strength.location.button"),
                     action = Action(
                         type = ActionType.Route,
-                        url = urlBuilder.build("/settings/profile/location")
+                        url = urlBuilder.build("/settings/profile/city")
                     )
                 )
             ),
