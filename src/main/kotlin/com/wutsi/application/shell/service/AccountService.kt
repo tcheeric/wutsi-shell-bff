@@ -3,7 +3,6 @@ package com.wutsi.application.shell.service
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.wutsi.application.shared.service.SecurityContext
 import com.wutsi.application.shared.service.TenantProvider
-import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.settings.account.dto.SendSmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
 import com.wutsi.application.shell.endpoint.settings.security.dto.ChangePinRequest
@@ -41,7 +40,6 @@ class AccountService(
     private val deviceIdProvider: DeviceIdProvider,
     private val httpServletRequest: HttpServletRequest,
     private val localeResolver: LocaleResolver,
-    private val togglesProvider: TogglesProvider,
     private val securityContext: SecurityContext,
     private val logger: KVLogger,
     private val objectMapper: ObjectMapper,

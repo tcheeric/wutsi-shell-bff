@@ -136,35 +136,37 @@ abstract class AbstractEndpointTest {
             id = 1000,
             title = "Marketing",
         )
-        user = Account(
-            id = ACCOUNT_ID,
-            displayName = "Ray Sponsible",
-            country = "CM",
-            cityId = 2225940L,
-            language = "en",
-            status = "ACTIVE",
-            phone = Phone(
-                id = 1,
-                number = "+1237666666666",
-                country = "CM"
-            ),
-            business = false,
-            website = "https://www.google.ca",
-            biography = "Thsi is my bio",
-            category = category,
-            timezoneId = "Africa/Douala",
-            whatsapp = "+1237666666666",
-            pictureUrl = "http://img.com/1.png",
-            email = "foo@bar.com",
-            facebookId = "ray.sponsible",
-            twitterId = "ray-sponsible",
-            instagramId = "ray"
-        )
+        user = createAccount(false, category)
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
         doReturn(GetCategoryResponse(category)).whenever(accountApi).getCategory(any())
 
         rest = createResTemplate()
     }
+
+    protected fun createAccount(business: Boolean = false, category: Category? = null) = Account(
+        id = ACCOUNT_ID,
+        displayName = "Ray Sponsible",
+        country = "CM",
+        cityId = 2225940L,
+        language = "en",
+        status = "ACTIVE",
+        phone = Phone(
+            id = 1,
+            number = "+1237666666666",
+            country = "CM"
+        ),
+        business = business,
+        website = "https://www.google.ca",
+        biography = "This is my bio",
+        category = category,
+        timezoneId = "Africa/Douala",
+        whatsapp = "+1237666666666",
+        pictureUrl = "http://img.com/1.png",
+        email = "foo@bar.com",
+        facebookId = "ray.sponsible",
+        twitterId = "ray-sponsible",
+        instagramId = "ray"
+    )
 
     private fun createResTemplate(
         scope: List<String> = listOf(

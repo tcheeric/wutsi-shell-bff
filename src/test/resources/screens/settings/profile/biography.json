@@ -43,7 +43,7 @@
               "type": "Input",
               "attributes": {
                 "name": "value",
-                "value": "Thsi is my bio",
+                "value": "This is my bio",
                 "hideText": false,
                 "required": false,
                 "caption": "",

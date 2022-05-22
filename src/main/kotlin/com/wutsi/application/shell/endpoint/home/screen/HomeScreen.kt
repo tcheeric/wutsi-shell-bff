@@ -6,7 +6,6 @@ import com.wutsi.application.shell.endpoint.AbstractQuery
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.profile.strength.ProfileStrengthContainer
 import com.wutsi.flutter.sdui.Action
-import com.wutsi.flutter.sdui.AppBar
 import com.wutsi.flutter.sdui.Button
 import com.wutsi.flutter.sdui.Center
 import com.wutsi.flutter.sdui.Column
@@ -14,12 +13,17 @@ import com.wutsi.flutter.sdui.Container
 import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
+import com.wutsi.flutter.sdui.SingleChildScrollView
+import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
 import com.wutsi.flutter.sdui.enums.Alignment
 import com.wutsi.flutter.sdui.enums.ButtonType
+import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment.spaceAround
+import com.wutsi.flutter.sdui.enums.MainAxisAlignment.start
+import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
@@ -44,7 +48,26 @@ class HomeScreen(
         val me = securityContext.currentAccount()
         val children = mutableListOf<WidgetAware>()
 
-        // Primary Buttons
+        // Greetings
+        children.add(
+            Container(
+                padding = 10.0,
+                background = Theme.COLOR_PRIMARY,
+                alignment = Alignment.TopLeft,
+                child = Row(
+                    children = listOf(
+                        Text(
+                            caption = getText("page.home.greetings", arrayOf(me.displayName)),
+                            color = Theme.COLOR_WHITE
+                        )
+                    ),
+                    mainAxisAlignment = start,
+                    crossAxisAlignment = CrossAxisAlignment.start
+                )
+            ),
+        )
+
+        // Balance
         if (togglesProvider.isAccountEnabled())
             children.add(
                 Container(
@@ -61,16 +84,20 @@ class HomeScreen(
                 )
             )
 
-        // Applications
-        children.add(
-            Container(
-                background = Theme.COLOR_PRIMARY,
-                child = Row(
-                    mainAxisAlignment = spaceAround,
-                    children = primaryButtons(),
+        // Primary Applications
+        val primary = primaryButtons(me)
+        if (primary.isNotEmpty())
+            children.add(
+                Container(
+                    background = Theme.COLOR_PRIMARY,
+                    child = Row(
+                        mainAxisAlignment = spaceAround,
+                        children = primary,
+                    )
                 )
             )
-        )
+
+        // Secondary Apps
         children.addAll(
             toRows(applicationButtons(), 4)
                 .map {
@@ -89,19 +116,17 @@ class HomeScreen(
 
         return Screen(
             id = Page.HOME,
-            appBar = AppBar(
-                foregroundColor = Theme.COLOR_WHITE,
-                backgroundColor = Theme.COLOR_PRIMARY,
-                elevation = 0.0,
-                automaticallyImplyLeading = false,
+            appBar = null,
+            child = SingleChildScrollView(
+                child = Column(children = children)
             ),
-            child = Column(children = children),
             bottomNavigationBar = bottomNavigationBar(),
+            safe = true
         ).toWidget()
     }
 
     // Buttons
-    private fun primaryButtons(): List<WidgetAware> {
+    private fun primaryButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
         if (togglesProvider.isScanEnabled()) {
             buttons.add(
@@ -115,6 +140,7 @@ class HomeScreen(
                 ),
             )
         }
+
         if (togglesProvider.isAccountEnabled())
             buttons.add(
                 primaryButton(
@@ -151,6 +177,18 @@ class HomeScreen(
                 )
             )
 
+        if (me.business && me.hasStore && togglesProvider.isOrderEnabled())
+            buttons.add(
+                primaryButton(
+                    caption = getText("page.home.button.orders"),
+                    icon = Theme.ICON_ORDERS,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(storeUrl, "orders")
+                    )
+                )
+            )
+
         return buttons
     }
 
@@ -182,16 +220,17 @@ class HomeScreen(
                 )
             )
 
-        buttons.add(
-            applicationButton(
-                caption = getText("page.home.button.contact"),
-                icon = Theme.ICON_GROUP,
-                action = Action(
-                    type = Route,
-                    url = urlBuilder.build("contact")
+        if (togglesProvider.isContactEnabled())
+            buttons.add(
+                applicationButton(
+                    caption = getText("page.home.button.contact"),
+                    icon = Theme.ICON_GROUP,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build("contact")
+                    )
                 )
             )
-        )
 
         buttons.add(
             applicationButton(

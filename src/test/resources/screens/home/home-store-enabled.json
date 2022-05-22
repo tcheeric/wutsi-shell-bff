@@ -2,88 +2,89 @@
   "type": "Screen",
   "attributes": {
     "id": "page.home",
-    "safe": false
+    "safe": true
   },
   "children": [
     {
-      "type": "Column",
+      "type": "SingleChildScrollView",
       "attributes": {},
       "children": [
         {
-          "type": "Container",
-          "attributes": {
-            "background": "#1D7EDF"
-          },
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "Container",
+          "type": "Column",
           "attributes": {},
           "children": [
             {
-              "type": "Row",
+              "type": "Container",
               "attributes": {
-                "mainAxisAlignment": "spaceAround"
+                "alignment": "TopLeft",
+                "padding": 10.0,
+                "background": "#1D7EDF"
               },
               "children": [
                 {
-                  "type": "Button",
+                  "type": "Row",
                   "attributes": {
-                    "caption": "Market",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f37f",
-                    "iconColor": "#1D7EDF",
-                    "color": "#1D7EDF"
+                    "mainAxisAlignment": "start",
+                    "crossAxisAlignment": "start"
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/store/marketplace"
-                  }
-                },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "attributes": {
+                        "caption": "Hi Ray Sponsible",
+                        "color": "#FFFFFF"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {},
+              "children": [
                 {
-                  "type": "Button",
+                  "type": "Row",
                   "attributes": {
-                    "caption": "Contacts",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f0d9",
-                    "iconColor": "#1D7EDF",
-                    "color": "#1D7EDF"
+                    "mainAxisAlignment": "spaceAround"
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/contact"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Feedback",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f04f",
-                    "iconColor": "#1D7EDF",
-                    "color": "#1D7EDF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/feedback"
-                  }
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Market",
+                        "padding": 1.0,
+                        "type": "Text",
+                        "stretched": false,
+                        "icon": "f37f",
+                        "iconColor": "#1D7EDF",
+                        "color": "#1D7EDF"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "https://wutsi-gateway-test.herokuapp.com/store/marketplace"
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Feedback",
+                        "padding": 1.0,
+                        "type": "Text",
+                        "stretched": false,
+                        "icon": "f04f",
+                        "iconColor": "#1D7EDF",
+                        "color": "#1D7EDF"
+                      },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/feedback"
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -92,16 +93,6 @@
       ]
     }
   ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF",
-      "automaticallyImplyLeading": false
-    },
-    "children": []
-  },
   "bottomNavigationBar": {
     "type": "BottomNavigationBar",
     "attributes": {

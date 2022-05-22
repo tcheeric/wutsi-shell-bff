@@ -15,6 +15,7 @@ import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.Phone
 import com.wutsi.platform.contact.WutsiContactApi
 import com.wutsi.platform.contact.dto.SearchContactResponse
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -34,11 +35,15 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @MockBean
     private lateinit var cartApi: WutsiCartApi
 
+    @BeforeEach
+    override fun setUp() {
+        super.setUp()
+        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
+    }
+
     @Test
     fun personal() {
         // GIVEN
-        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
-
         val account = createAccount(5555, false, null)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
@@ -54,8 +59,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     fun storeEnabled() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
-
-        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
         val account = createAccount(5555, true, hasStore = true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
@@ -73,8 +76,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
         doReturn(true).whenever(togglesProvider).isCartEnabled()
-
-        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
 
         val cart = Cart(
             products = listOf(Product(), Product())
@@ -95,8 +96,6 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun business() {
         // GIVEN
-        doReturn(SearchContactResponse()).whenever(contactApi).searchContact(any())
-
         val account = createAccount(5555, true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
 
@@ -106,6 +105,22 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
 
         // THEN
         assertJsonEquals("/screens/profile/business.json", response.body)
+    }
+
+    @Test
+    fun contactEnabled() {
+        // GIVEN
+        doReturn(true).whenever(togglesProvider).isContactEnabled()
+
+        val account = createAccount(5555, true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+
+        // WHEN
+        val url = "http://localhost:$port/profile?id=555"
+        val response = rest.postForEntity(url, null, Any::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/profile/contact-enabled.json", response.body)
     }
 
     private fun createAccount(

@@ -101,6 +101,23 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun contactEnabled() {
+        doReturn(true).whenever(togglesProvider).isContactEnabled()
+
+        assertEndpointEquals("/screens/home/home-contact-enabled.json", url)
+    }
+
+    @Test
+    fun ordersEnabled() {
+        user = createAccount(true)
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+
+        doReturn(true).whenever(togglesProvider).isOrderEnabled()
+
+        assertEndpointEquals("/screens/home/home-orders-enabled.json", url)
+    }
+
+    @Test
     fun noWhatsapp() {
         val account = user.copy(whatsapp = null)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())

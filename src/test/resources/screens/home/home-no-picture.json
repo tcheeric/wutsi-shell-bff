@@ -2,76 +2,13 @@
   "type": "Screen",
   "attributes": {
     "id": "page.home",
-    "safe": false
+    "safe": true
   },
   "children": [
     {
-      "type": "Column",
+      "type": "SingleChildScrollView",
       "attributes": {},
       "children": [
-        {
-          "type": "Container",
-          "attributes": {
-            "background": "#1D7EDF"
-          },
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {},
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround"
-              },
-              "children": [
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Contacts",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f0d9",
-                    "iconColor": "#1D7EDF",
-                    "color": "#1D7EDF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/contact"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Feedback",
-                    "padding": 1.0,
-                    "type": "Text",
-                    "stretched": false,
-                    "icon": "f04f",
-                    "iconColor": "#1D7EDF",
-                    "color": "#1D7EDF"
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "http://localhost:0/feedback"
-                  }
-                }
-              ]
-            }
-          ]
-        },
         {
           "type": "Column",
           "attributes": {},
@@ -79,12 +16,9 @@
             {
               "type": "Container",
               "attributes": {
+                "alignment": "TopLeft",
                 "padding": 10.0,
-                "margin": 5.0,
-                "background": "#e8e8e8",
-                "border": 1.0,
-                "borderRadius": 5.0,
-                "borderColor": "#95A5A6"
+                "background": "#1D7EDF"
               },
               "children": [
                 {
@@ -95,64 +29,131 @@
                   },
                   "children": [
                     {
-                      "type": "Icon",
+                      "type": "Text",
                       "attributes": {
-                        "code": "f120",
-                        "size": 32.0,
+                        "caption": "Hi Ray Sponsible",
+                        "color": "#FFFFFF"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Row",
+                  "attributes": {
+                    "mainAxisAlignment": "spaceAround"
+                  },
+                  "children": [
+                    {
+                      "type": "Button",
+                      "attributes": {
+                        "caption": "Feedback",
+                        "padding": 1.0,
+                        "type": "Text",
+                        "stretched": false,
+                        "icon": "f04f",
+                        "iconColor": "#1D7EDF",
                         "color": "#1D7EDF"
                       },
-                      "children": []
-                    },
+                      "children": [],
+                      "action": {
+                        "type": "Route",
+                        "url": "http://localhost:0/feedback"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "attributes": {},
+              "children": [
+                {
+                  "type": "Container",
+                  "attributes": {
+                    "padding": 10.0,
+                    "margin": 5.0,
+                    "background": "#e8e8e8",
+                    "border": 1.0,
+                    "borderRadius": 5.0,
+                    "borderColor": "#95A5A6"
+                  },
+                  "children": [
                     {
-                      "type": "Container",
+                      "type": "Row",
                       "attributes": {
-                        "padding": 5.0
-                      },
-                      "children": []
-                    },
-                    {
-                      "type": "Flexible",
-                      "attributes": {
-                        "flex": 1,
-                        "fit": "Tight"
+                        "mainAxisAlignment": "start",
+                        "crossAxisAlignment": "start"
                       },
                       "children": [
                         {
-                          "type": "Column",
+                          "type": "Icon",
                           "attributes": {
-                            "mainAxisAlignment": "start",
-                            "crossAxisAlignment": "start"
+                            "code": "f120",
+                            "size": 32.0,
+                            "color": "#1D7EDF"
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Container",
+                          "attributes": {
+                            "padding": 5.0
+                          },
+                          "children": []
+                        },
+                        {
+                          "type": "Flexible",
+                          "attributes": {
+                            "flex": 1,
+                            "fit": "Tight"
                           },
                           "children": [
                             {
-                              "type": "Text",
+                              "type": "Column",
                               "attributes": {
-                                "caption": "Picture",
-                                "bold": true
+                                "mainAxisAlignment": "start",
+                                "crossAxisAlignment": "start"
                               },
-                              "children": []
-                            },
-                            {
-                              "type": "Text",
-                              "attributes": {
-                                "caption": "Add your picture to help your contacts to know who you are",
-                                "maxLines": 5
-                              },
-                              "children": []
-                            },
-                            {
-                              "type": "Button",
-                              "attributes": {
-                                "caption": "Configure your Picture",
-                                "padding": 10.0,
-                                "type": "Elevated",
-                                "stretched": false
-                              },
-                              "children": [],
-                              "action": {
-                                "type": "Route",
-                                "url": "http://localhost:0/settings/picture"
-                              }
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Picture",
+                                    "bold": true
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Text",
+                                  "attributes": {
+                                    "caption": "Add your picture to help your contacts to know who you are",
+                                    "maxLines": 5
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Button",
+                                  "attributes": {
+                                    "caption": "Configure your Picture",
+                                    "padding": 10.0,
+                                    "type": "Elevated",
+                                    "stretched": false
+                                  },
+                                  "children": [],
+                                  "action": {
+                                    "type": "Route",
+                                    "url": "http://localhost:0/settings/picture"
+                                  }
+                                }
+                              ]
                             }
                           ]
                         }
@@ -167,16 +168,6 @@
       ]
     }
   ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "elevation": 0.0,
-      "backgroundColor": "#1D7EDF",
-      "foregroundColor": "#FFFFFF",
-      "automaticallyImplyLeading": false
-    },
-    "children": []
-  },
   "bottomNavigationBar": {
     "type": "BottomNavigationBar",
     "attributes": {

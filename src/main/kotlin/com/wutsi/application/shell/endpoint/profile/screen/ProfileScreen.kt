@@ -126,7 +126,7 @@ class ProfileScreen(
                         else
                             null,
 
-                        if (canAddContact(user))
+                        if (togglesProvider.isContactEnabled() && canAddContact(user))
                             Container(
                                 padding = 4.0,
                                 child = CircleAvatar(
