@@ -37,7 +37,6 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/settings")
 class SettingsScreen(
     @Value("\${wutsi.application.login-url}") private val loginUrl: String,
-    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget = Screen(

@@ -27,7 +27,6 @@ import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -38,8 +37,6 @@ class HomeScreen(
     private val paymentApi: WutsiPaymentApi,
     private val tenantProvider: TenantProvider,
     private val profileStrength: ProfileStrengthContainer,
-
-    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractQuery() {
     @PostMapping
     fun index(): Widget {

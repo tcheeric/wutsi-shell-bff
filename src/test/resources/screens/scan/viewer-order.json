@@ -81,14 +81,14 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Continue: Approve the Transaction",
+                "caption": "Continer: View Order",
                 "padding": 15.0,
                 "type": "Elevated"
               },
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/cash/send/approval?transaction-id=xxxx",
+                "url": "https://wutsi-gateway-test.herokuapp.com/store/order/id=1111",
                 "replacement": true
               }
             }

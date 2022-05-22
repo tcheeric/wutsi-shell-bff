@@ -81,7 +81,7 @@
             {
               "type": "Button",
               "attributes": {
-                "caption": "Continue: View profile",
+                "caption": "Continue: View Profile",
                 "padding": 15.0,
                 "type": "Elevated"
               },

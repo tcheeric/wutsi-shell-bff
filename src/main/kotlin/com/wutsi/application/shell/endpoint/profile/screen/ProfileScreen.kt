@@ -48,7 +48,6 @@ class ProfileScreen(
     private val cartApi: WutsiCartApi,
     private val tenantProvider: TenantProvider,
 
-    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
     @Value("\${wutsi.application.asset-url}") private val assetUrl: String,
 ) : AbstractQuery() {
     companion object {

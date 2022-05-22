@@ -137,6 +137,7 @@ class ScanViewerScreen(
                 "send/approval?transaction-id=${entity.id}"
             )
             EntityType.URL.name -> entity.id
+            EntityType.ORDER.name -> urlBuilder.build(storeUrl, "order/id=${entity.id}")
             else -> getText("page.scan-viewer.button.continue")
         }
 
@@ -157,6 +158,7 @@ class ScanViewerScreen(
                     EntityType.PAYMENT_REQUEST.name -> getText("page.scan-viewer.button.continue-payment")
                     EntityType.TRANSACTION_APPROVAL.name -> getText("page.scan-viewer.button.continue-transaction-approval")
                     EntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
+                    EntityType.ORDER.name -> getText("page.scan-viewer.button.continue-order")
                     else -> getText("page.scan-viewer.button.continue")
                 },
                 action = Action(

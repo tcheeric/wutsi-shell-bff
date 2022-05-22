@@ -6,7 +6,6 @@ import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.enums.ActionType
 import com.wutsi.platform.account.WutsiAccountApi
 import com.wutsi.platform.account.dto.UpdateAccountAttributeRequest
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController
 class UpdateProfileAttributeCommand(
     private val accountApi: WutsiAccountApi,
     private val cityService: CityService,
-
-    @Value("\${wutsi.application.store-url}") private val storeUrl: String,
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestParam name: String, @RequestBody request: UpdateAccountAttributeRequest): ResponseEntity<Action> {
