@@ -9,6 +9,5 @@
 `wutsi-shell-bff` provide the experience for:
 
 - Front page
-- Contacts
 - QR Code Scanner
 - Settings
