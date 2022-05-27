@@ -79,6 +79,23 @@
                       "children": []
                     },
                     {
+                      "type": "Container",
+                      "attributes": {
+                        "padding": 10.0
+                      },
+                      "children": [
+                        {
+                          "type": "Text",
+                          "attributes": {
+                            "caption": "Business Account",
+                            "color": "#95A5A6",
+                            "alignment": "Center"
+                          },
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
                       "type": "Text",
                       "attributes": {
                         "caption": "+1 237666666666",

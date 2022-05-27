@@ -66,7 +66,7 @@ class SettingsScreen(
                     mainAxisSize = MainAxisSize.min,
                     crossAxisAlignment = CrossAxisAlignment.center,
                     mainAxisAlignment = MainAxisAlignment.spaceAround,
-                    children = listOf(
+                    children = listOfNotNull(
                         picture(user),
                         Text(
                             caption = user.displayName ?: "",
@@ -74,6 +74,19 @@ class SettingsScreen(
                             size = Theme.TEXT_SIZE_LARGE,
                             bold = true
                         ),
+
+                        if (user.business)
+                            Container(
+                                padding = 10.0,
+                                child = Text(
+                                    caption = getText("page.settings.business-account"),
+                                    alignment = TextAlignment.Center,
+                                    color = Theme.COLOR_GRAY,
+                                )
+                            )
+                        else
+                            null,
+
                         Text(
                             caption = formattedPhoneNumber(user) ?: "",
                             alignment = TextAlignment.Center,

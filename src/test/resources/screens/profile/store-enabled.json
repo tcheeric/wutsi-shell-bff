@@ -105,24 +105,6 @@
                             {
                               "type": "Text",
                               "attributes": {
-                                "caption": "+1 237666666666",
-                                "bold": true,
-                                "alignment": "Center"
-                              },
-                              "children": []
-                            }
-                          ]
-                        },
-                        {
-                          "type": "Container",
-                          "attributes": {
-                            "alignment": "Center",
-                            "padding": 10.0
-                          },
-                          "children": [
-                            {
-                              "type": "Text",
-                              "attributes": {
                                 "caption": "This is my bio",
                                 "alignment": "Center"
                               },
@@ -132,9 +114,7 @@
                         },
                         {
                           "type": "Container",
-                          "attributes": {
-                            "padding": 10.0
-                          },
+                          "attributes": {},
                           "children": [
                             {
                               "type": "Wrap",
@@ -221,7 +201,8 @@
                                 {
                                   "type": "Container",
                                   "attributes": {
-                                    "alignment": "Center"
+                                    "alignment": "Center",
+                                    "padding": 10.0
                                   },
                                   "children": [
                                     {
