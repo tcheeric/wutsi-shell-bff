@@ -14,6 +14,7 @@ class ProfileStrengthContainer(
     private val paymentMethod: ProfileStrengthPaymentMethod,
     private val email: ProfileStrengthEmailWidget,
     private val location: ProfileStrengthLocationWidget,
+    private val shipping: ProfileStrengthShipping
 ) : ProfileStrengthWidget {
     override fun toWidget(account: Account): WidgetAware? {
         val all = createComponents()
@@ -26,9 +27,9 @@ class ProfileStrengthContainer(
                 children = widgets.map {
                     Container(
                         padding = 10.0,
-                        margin = 5.0,
-                        background = Theme.COLOR_GRAY_LIGHT,
-                        borderColor = Theme.COLOR_GRAY,
+                        margin = 10.0,
+                        background = Theme.COLOR_PRIMARY_LIGHT,
+                        borderColor = Theme.COLOR_PRIMARY,
                         border = 1.0,
                         borderRadius = 5.0,
                         child = it
@@ -41,8 +42,9 @@ class ProfileStrengthContainer(
         listOf(
             paymentMethod,
             whatsapp,
-            email,
             location,
+            shipping,
+            email,
             picture,
         )
 }

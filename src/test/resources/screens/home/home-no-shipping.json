@@ -107,7 +107,7 @@
                             {
                               "type": "Icon",
                               "attributes": {
-                                "code": "f018",
+                                "code": "f18e",
                                 "size": 32.0,
                                 "color": "#1D7EDF"
                               },
@@ -139,7 +139,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "Email",
+                                    "caption": "Shipping",
                                     "bold": true,
                                     "size": 16.0
                                   },
@@ -155,7 +155,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "Configure your email. This email will be used by Wutsi to contact you when needed",
+                                    "caption": "Configure how to ship orders to your customers",
                                     "maxLines": 5
                                   },
                                   "children": []
@@ -170,7 +170,7 @@
                                 {
                                   "type": "Button",
                                   "attributes": {
-                                    "caption": "Configure your Email",
+                                    "caption": "Configure Shipping",
                                     "padding": 10.0,
                                     "type": "Elevated",
                                     "stretched": false
@@ -178,7 +178,7 @@
                                   "children": [],
                                   "action": {
                                     "type": "Route",
-                                    "url": "http://localhost:0/settings/profile/email"
+                                    "url": "https://wutsi-gateway-test.herokuapp.com/store/settings/store/shipping"
                                   }
                                 }
                               ]

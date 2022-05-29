@@ -79,11 +79,11 @@
                   "type": "Container",
                   "attributes": {
                     "padding": 10.0,
-                    "margin": 5.0,
-                    "background": "#e8e8e8",
+                    "margin": 10.0,
+                    "background": "#e4edf7",
                     "border": 1.0,
                     "borderRadius": 5.0,
-                    "borderColor": "#95A5A6"
+                    "borderColor": "#1D7EDF"
                   },
                   "children": [
                     {
@@ -94,13 +94,26 @@
                       },
                       "children": [
                         {
-                          "type": "Icon",
+                          "type": "Container",
                           "attributes": {
-                            "code": "f2ac",
-                            "size": 32.0,
-                            "color": "#1D7EDF"
+                            "background": "#FFFFFF",
+                            "border": 1.0,
+                            "borderRadius": 20.0,
+                            "borderColor": "#1D7EDF",
+                            "height": 40.0,
+                            "width": 40.0
                           },
-                          "children": []
+                          "children": [
+                            {
+                              "type": "Icon",
+                              "attributes": {
+                                "code": "f2ac",
+                                "size": 32.0,
+                                "color": "#1D7EDF"
+                              },
+                              "children": []
+                            }
+                          ]
                         },
                         {
                           "type": "Container",
@@ -127,7 +140,15 @@
                                   "type": "Text",
                                   "attributes": {
                                     "caption": "Location",
-                                    "bold": true
+                                    "bold": true,
+                                    "size": 16.0
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 5.0
                                   },
                                   "children": []
                                 },
@@ -136,6 +157,13 @@
                                   "attributes": {
                                     "caption": "Configure the primary city where you are living",
                                     "maxLines": 5
+                                  },
+                                  "children": []
+                                },
+                                {
+                                  "type": "Container",
+                                  "attributes": {
+                                    "padding": 10.0
                                   },
                                   "children": []
                                 },

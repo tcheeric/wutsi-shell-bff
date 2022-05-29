@@ -5,6 +5,8 @@ import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
 import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.ecommerce.shipping.WutsiShippingApi
+import com.wutsi.ecommerce.shipping.dto.ListShippingResponse
 import com.wutsi.platform.account.dto.AccountSummary
 import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
@@ -29,6 +31,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var paymentApi: WutsiPaymentApi
+
+    @MockBean
+    private lateinit var shippingApi: WutsiShippingApi
 
     @MockBean
     private lateinit var togglesProvider: TogglesProvider
@@ -119,7 +124,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun noWhatsapp() {
-        val account = user.copy(whatsapp = null)
+        val account = user.copy(whatsapp = null, business = true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         assertEndpointEquals("/screens/home/home-no-whatsapp.json", url)
@@ -147,6 +152,17 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         assertEndpointEquals("/screens/home/home-no-city.json", url)
+    }
+
+    @Test
+    fun noShipping() {
+        val account = user.copy(cityId = 111, business = true, hasStore = true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        doReturn(true).whenever(togglesProvider).isShippingEnabled()
+        doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
+
+        assertEndpointEquals("/screens/home/home-no-shipping.json", url)
     }
 
     private fun createPaymentMethodSummary(token: String, maskedNumber: String) = PaymentMethodSummary(
