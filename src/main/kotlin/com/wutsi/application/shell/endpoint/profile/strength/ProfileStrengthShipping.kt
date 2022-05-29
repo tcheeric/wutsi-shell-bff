@@ -18,7 +18,10 @@ class ProfileStrengthShipping(
 ) : AbstractProfileStrengthWidget() {
     override fun shouldShow(account: Account): Boolean =
         try {
-            togglesProvider.isShippingEnabled() && account.business && account.hasStore && shippingApi.listShipping().shippings.isEmpty()
+            togglesProvider.isShippingEnabled() &&
+                account.business &&
+                account.hasStore &&
+                shippingApi.listShipping().shippings.filter { it.enabled }.isEmpty()
         } catch (ex: Exception) {
             false
         }

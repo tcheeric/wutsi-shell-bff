@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.profile.strength
 
-import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.wutsi.application.shared.Theme
 import com.wutsi.flutter.sdui.Action
 import com.wutsi.flutter.sdui.Icon
@@ -9,9 +8,7 @@ import com.wutsi.platform.account.dto.Account
 import org.springframework.stereotype.Service
 
 @Service
-class ProfileStrengthWhatsapp(
-    private val phoneNumberUtil: PhoneNumberUtil
-) : AbstractProfileStrengthWidget() {
+class ProfileStrengthWhatsapp : AbstractProfileStrengthWidget() {
     override fun shouldShow(account: Account): Boolean =
         account.business && account.whatsapp.isNullOrEmpty()
 
