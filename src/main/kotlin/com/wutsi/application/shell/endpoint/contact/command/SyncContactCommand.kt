@@ -15,10 +15,11 @@ class SyncContactCommand(
 ) : AbstractCommand() {
     @PostMapping
     fun index(@RequestBody request: SyncContactRequest) {
-        contactApi.syncContacts(
-            SyncContactRequest(
-                phoneNumbers = request.phoneNumbers
+        if (togglesProvider.isContactEnabled())
+            contactApi.syncContacts(
+                SyncContactRequest(
+                    phoneNumbers = request.phoneNumbers
+                )
             )
-        )
     }
 }
