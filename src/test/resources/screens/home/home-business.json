@@ -43,31 +43,24 @@
             {
               "type": "Container",
               "attributes": {
+                "alignment": "Center",
+                "padding": 10.0,
                 "background": "#1D7EDF"
               },
               "children": [
                 {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
+                  "type": "Center",
+                  "attributes": {},
                   "children": [
                     {
-                      "type": "Button",
+                      "type": "MoneyText",
                       "attributes": {
-                        "caption": "Send",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "f355",
-                        "iconColor": "#FFFFFF",
-                        "color": "#FFFFFF"
+                        "value": 10000.0,
+                        "color": "#FFFFFF",
+                        "currency": "CFA",
+                        "numberFormat": "#,###,##0"
                       },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/send"
-                      }
+                      "children": []
                     }
                   ]
                 }

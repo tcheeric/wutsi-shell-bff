@@ -3,7 +3,10 @@ package com.wutsi.application.shell.endpoint.settings.account.screen
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.whenever
+import com.wutsi.application.shared.service.TogglesProvider
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
+import com.wutsi.platform.account.dto.Category
+import com.wutsi.platform.account.dto.GetAccountResponse
 import com.wutsi.platform.account.dto.ListPaymentMethodResponse
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.account.dto.Phone
@@ -12,6 +15,7 @@ import com.wutsi.platform.payment.PaymentMethodType
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -27,6 +31,9 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
 
     @MockBean
     private lateinit var paymentApi: WutsiPaymentApi
+
+    @MockBean
+    private lateinit var toggleProvider: TogglesProvider
 
     @BeforeEach
     override fun setUp() {
@@ -64,8 +71,29 @@ internal class SettingsAccountScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun index() {
+    fun `personnal account`() {
         // THEN
-        assertEndpointEquals("/screens/settings/accounts/account.json", url)
+        assertEndpointEquals("/screens/settings/accounts/account-personal.json", url)
+    }
+
+    @Test
+    fun `business account`() {
+        // GIVEN
+        user = createAccount(false, Category(id = 100, title = "Foo"))
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+
+        // THEN
+        assertEndpointEquals("/screens/settings/accounts/account-business.json", url)
+    }
+
+    @Test
+    fun `cashout enabled`() {
+        // GIVEN
+        user = createAccount(false, Category(id = 100, title = "Foo"))
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+        doReturn(true).whenever(toggleProvider).isToggleEnabled(ToggleName.CASHOUT)
+
+        // THEN
+        assertEndpointEquals("/screens/settings/accounts/account-cashout-enabled.json", url)
     }
 }

@@ -104,6 +104,7 @@ class SettingsScreen(
                 icon = Theme.ICON_PERSON,
             ),
         )
+
         if (togglesProvider.isAccountEnabled())
             children.add(
                 listItem(
@@ -112,6 +113,7 @@ class SettingsScreen(
                     icon = Theme.ICON_PAYMENT
                 ),
             )
+
         if (togglesProvider.isOrderEnabled())
             children.add(
                 listItem(

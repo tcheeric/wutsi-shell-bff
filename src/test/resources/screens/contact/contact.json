@@ -16,7 +16,6 @@
           "type": "ListItem",
           "attributes": {
             "caption": "Omam Mbiyick",
-            "subCaption": "Business Account",
             "iconRight": "e15f",
             "padding": 10.0,
             "trailing": {
@@ -54,7 +53,6 @@
           "type": "ListItem",
           "attributes": {
             "caption": "Roger Milla",
-            "subCaption": "Business Account",
             "iconRight": "e15f",
             "padding": 10.0,
             "trailing": {

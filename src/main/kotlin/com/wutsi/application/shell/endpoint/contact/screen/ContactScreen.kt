@@ -57,11 +57,12 @@ class ContactScreen(
                 separator = true,
                 children = accounts.map {
                     ProfileListItem(
+                        showAccountType = true,
                         model = sharedUIMapper.toAccountModel(it),
                         action = Action(
                             type = ActionType.Route,
                             url = urlBuilder.build("profile?id=${it.id}")
-                        )
+                        ),
                     )
                 },
             ),

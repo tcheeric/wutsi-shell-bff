@@ -42,64 +42,6 @@
             },
             {
               "type": "Container",
-              "attributes": {
-                "alignment": "Center",
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Center",
-                  "attributes": {},
-                  "children": [
-                    {
-                      "type": "MoneyText",
-                      "attributes": {
-                        "value": 10000.0,
-                        "color": "#FFFFFF",
-                        "currency": "CFA",
-                        "numberFormat": "#,###,##0"
-                      },
-                      "children": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Container",
-              "attributes": {
-                "background": "#1D7EDF"
-              },
-              "children": [
-                {
-                  "type": "Row",
-                  "attributes": {
-                    "mainAxisAlignment": "spaceAround"
-                  },
-                  "children": [
-                    {
-                      "type": "Button",
-                      "attributes": {
-                        "caption": "Add cash",
-                        "padding": 1.0,
-                        "type": "Text",
-                        "stretched": false,
-                        "icon": "e3f8",
-                        "iconColor": "#FFFFFF",
-                        "color": "#FFFFFF"
-                      },
-                      "children": [],
-                      "action": {
-                        "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "Container",
               "attributes": {},
               "children": [
                 {

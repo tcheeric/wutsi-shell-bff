@@ -20,70 +20,20 @@
           },
           "children": [
             {
-              "type": "Text",
+              "type": "Column",
               "attributes": {
-                "caption": "Your Balance: 150,000 CFA",
-                "size": 16.0
-              },
-              "children": []
-            }
-          ]
-        },
-        {
-          "type": "Container",
-          "attributes": {
-            "alignment": "Center",
-            "padding": 10.0
-          },
-          "children": [
-            {
-              "type": "Row",
-              "attributes": {
-                "mainAxisAlignment": "spaceAround",
+                "mainAxisAlignment": "center",
+                "mainAxisSize": "min",
                 "crossAxisAlignment": "center"
               },
               "children": [
                 {
-                  "type": "Button",
+                  "type": "Row",
                   "attributes": {
-                    "caption": "Add cash",
-                    "padding": 15.0,
-                    "type": "Text",
-                    "stretched": false
+                    "mainAxisAlignment": "spaceAround",
+                    "crossAxisAlignment": "center"
                   },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashin"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Cash Out",
-                    "padding": 15.0,
-                    "type": "Text",
-                    "stretched": false
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/cashout"
-                  }
-                },
-                {
-                  "type": "Button",
-                  "attributes": {
-                    "caption": "Transactions",
-                    "padding": 15.0,
-                    "type": "Text",
-                    "stretched": false
-                  },
-                  "children": [],
-                  "action": {
-                    "type": "Route",
-                    "url": "https://wutsi-gateway-test.herokuapp.com/cash/history"
-                  }
+                  "children": []
                 }
               ]
             }

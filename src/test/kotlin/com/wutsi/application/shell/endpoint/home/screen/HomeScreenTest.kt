@@ -16,6 +16,7 @@ import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.dto.Balance
 import com.wutsi.platform.payment.dto.GetBalanceResponse
 import com.wutsi.platform.payment.dto.SearchTransactionResponse
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -80,8 +81,20 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun home() {
-        assertEndpointEquals("/screens/home/home.json", url)
+    fun personal() {
+        val account = createAccount(business = false)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+
+        assertEndpointEquals("/screens/home/home-personal.json", url)
+    }
+
+    @Test
+    fun business() {
+        val account = createAccount(business = true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
+        doReturn(true).whenever(togglesProvider).isAccountEnabled()
+
+        assertEndpointEquals("/screens/home/home-business.json", url)
     }
 
     @Test
@@ -89,6 +102,14 @@ internal class HomeScreenTest : AbstractEndpointTest() {
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
 
         assertEndpointEquals("/screens/home/home-account-enabled.json", url)
+    }
+
+    @Test
+    fun cashinEnabled() {
+        doReturn(true).whenever(togglesProvider).isAccountEnabled()
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.CASHIN)
+
+        assertEndpointEquals("/screens/home/home-cashin-enabled.json", url)
     }
 
     @Test

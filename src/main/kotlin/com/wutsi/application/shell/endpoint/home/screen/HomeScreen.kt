@@ -27,6 +27,7 @@ import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.payment.WutsiPaymentApi
 import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -64,10 +65,11 @@ class HomeScreen(
             ),
         )
 
-        // Balance
-        if (togglesProvider.isAccountEnabled())
+        // Balance - for business account only
+        if (togglesProvider.isAccountEnabled() && me.business)
             children.add(
                 Container(
+                    padding = 10.0,
                     alignment = Alignment.Center,
                     background = Theme.COLOR_PRIMARY,
                     child = Center(
@@ -138,7 +140,7 @@ class HomeScreen(
             )
         }
 
-        if (togglesProvider.isAccountEnabled())
+        if (togglesProvider.isAccountEnabled() && togglesProvider.isToggleEnabled(ToggleName.CASHIN))
             buttons.add(
                 primaryButton(
                     caption = getText("page.home.button.cashin"),

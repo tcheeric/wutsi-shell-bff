@@ -15,9 +15,9 @@ import com.wutsi.flutter.sdui.Divider
 import com.wutsi.flutter.sdui.Flexible
 import com.wutsi.flutter.sdui.ListItem
 import com.wutsi.flutter.sdui.ListView
+import com.wutsi.flutter.sdui.MoneyText
 import com.wutsi.flutter.sdui.Row
 import com.wutsi.flutter.sdui.Screen
-import com.wutsi.flutter.sdui.Text
 import com.wutsi.flutter.sdui.Widget
 import com.wutsi.flutter.sdui.WidgetAware
 import com.wutsi.flutter.sdui.enums.ActionType.Route
@@ -26,13 +26,14 @@ import com.wutsi.flutter.sdui.enums.Alignment.Center
 import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
+import com.wutsi.flutter.sdui.enums.MainAxisSize
+import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.PaymentMethodSummary
-import com.wutsi.platform.payment.core.Money
 import com.wutsi.platform.tenant.dto.Tenant
+import com.wutsi.platform.tenant.entity.ToggleName
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.text.DecimalFormat
 
 @RestController
 @RequestMapping("/settings/account")
@@ -44,9 +45,8 @@ class SettingsAccountScreen(
     @PostMapping
     fun index(): Widget {
         val tenant = tenantProvider.get()
+        val account = securityContext.currentAccount()
         val paymentMethods = accountService.getPaymentMethods(tenant)
-        val balance = paymentService.getBalance(tenant)
-        val balanceText = DecimalFormat(tenant.monetaryFormat).format(balance.value)
 
         return Screen(
             id = Page.SETTINGS_ACCOUNT,
@@ -62,15 +62,7 @@ class SettingsAccountScreen(
                     Container(
                         padding = 10.0,
                         alignment = Center,
-                        child = Text(
-                            getText("page.settings.account.your-balance", arrayOf(balanceText)),
-                            size = Theme.TEXT_SIZE_LARGE
-                        )
-                    ),
-                    Container(
-                        padding = 10.0,
-                        alignment = Center,
-                        child = toolbar(balance, paymentMethods)
+                        child = toBalanceWidget(paymentMethods, tenant, account)
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     Flexible(
@@ -116,23 +108,63 @@ class SettingsAccountScreen(
         )
     }
 
-    private fun toolbar(balance: Money, paymentMethods: List<PaymentMethodSummary>): WidgetAware {
+    private fun toBalanceWidget(
+        paymentMethods: List<PaymentMethodSummary>,
+        tenant: Tenant,
+        account: Account
+    ): WidgetAware {
+        val balance = if (account.business)
+            paymentService.getBalance(tenant)
+        else
+            null
+
+        return Column(
+            children = listOfNotNull(
+                if (balance != null)
+                    Container(
+                        alignment = Center,
+                        padding = 10.0,
+                        child = MoneyText(
+                            value = balance.value,
+                            currency = balance.currency,
+                            color = Theme.COLOR_PRIMARY,
+                            numberFormat = tenant.numberFormat
+                        )
+                    )
+                else
+                    null,
+
+                toToolbarWidget(balance != null && balance.value > 0, paymentMethods, account)
+            ),
+            mainAxisAlignment = MainAxisAlignment.center,
+            crossAxisAlignment = CrossAxisAlignment.center,
+            mainAxisSize = MainAxisSize.min
+        )
+    }
+
+    private fun toToolbarWidget(
+        hasBalance: Boolean,
+        paymentMethods: List<PaymentMethodSummary>,
+        account: Account
+    ): WidgetAware {
         if (paymentMethods.isEmpty())
             return Container()
 
         val buttons = mutableListOf<WidgetAware>()
-        buttons.add(
-            Button(
-                type = ButtonType.Text,
-                caption = getText("page.settings.account.button.add-cash"),
-                stretched = false,
-                action = Action(
-                    type = Route,
-                    url = urlBuilder.build(cashUrl, "cashin")
-                ),
+        if (togglesProvider.isToggleEnabled(ToggleName.CASHIN))
+            buttons.add(
+                Button(
+                    type = ButtonType.Text,
+                    caption = getText("page.settings.account.button.add-cash"),
+                    stretched = false,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "cashin")
+                    ),
+                )
             )
-        )
-        if (balance.value > 0) {
+
+        if (account.business && hasBalance && togglesProvider.isToggleEnabled(ToggleName.CASHOUT))
             buttons.add(
                 Button(
                     type = ButtonType.Text,
@@ -144,18 +176,20 @@ class SettingsAccountScreen(
                     ),
                 )
             )
-        }
-        buttons.add(
-            Button(
-                type = ButtonType.Text,
-                caption = getText("page.settings.account.button.history"),
-                stretched = false,
-                action = Action(
-                    type = Route,
-                    url = urlBuilder.build(cashUrl, "history")
-                ),
+
+        if (togglesProvider.isToggleEnabled(ToggleName.TRANSACTION_HISTORY))
+            buttons.add(
+                Button(
+                    type = ButtonType.Text,
+                    caption = getText("page.settings.account.button.history"),
+                    stretched = false,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(cashUrl, "history")
+                    )
+                )
             )
-        )
+
         return Row(
             mainAxisAlignment = MainAxisAlignment.spaceAround,
             crossAxisAlignment = CrossAxisAlignment.center,
