@@ -52,7 +52,6 @@ internal class SyncContactCommandTest : AbstractEndpointTest() {
         assertEquals(request.phoneNumbers, req.firstValue.phoneNumbers)
     }
 
-
     @Test
     fun contactNotEnabled() {
         doReturn(false).whenever(togglesProvider).isContactEnabled()
