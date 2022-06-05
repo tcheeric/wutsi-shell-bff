@@ -131,11 +131,6 @@ class ScanViewerScreen(
     private fun nextUrl(entity: Entity?): String? =
         when (entity?.type?.uppercase()) {
             EntityType.ACCOUNT.name -> urlBuilder.build("profile?id=${entity.id}")
-            EntityType.PAYMENT_REQUEST.name -> urlBuilder.build(cashUrl, "pay/confirm?payment-request-id=${entity.id}")
-            EntityType.TRANSACTION_APPROVAL.name -> urlBuilder.build(
-                cashUrl,
-                "send/approval?transaction-id=${entity.id}"
-            )
             EntityType.URL.name -> entity.id
             EntityType.ORDER.name -> urlBuilder.build(storeUrl, "order/id=${entity.id}")
             else -> getText("page.scan-viewer.button.continue")
@@ -155,8 +150,6 @@ class ScanViewerScreen(
             Button(
                 caption = when (entity?.type?.uppercase()) {
                     EntityType.ACCOUNT.name -> getText("page.scan-viewer.button.continue-account")
-                    EntityType.PAYMENT_REQUEST.name -> getText("page.scan-viewer.button.continue-payment")
-                    EntityType.TRANSACTION_APPROVAL.name -> getText("page.scan-viewer.button.continue-transaction-approval")
                     EntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
                     EntityType.ORDER.name -> getText("page.scan-viewer.button.continue-order")
                     else -> getText("page.scan-viewer.button.continue")

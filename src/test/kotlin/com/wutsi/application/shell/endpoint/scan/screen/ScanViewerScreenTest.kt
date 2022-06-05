@@ -36,22 +36,6 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     }
 
     @Test
-    fun payment() {
-        // GIVEN
-        val entity = Entity(EntityType.PAYMENT_REQUEST.name, "1111")
-        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
-
-        // WHEN
-        val request = ScanRequest(
-            code = "xxxxxx"
-        )
-        val response = rest.postForEntity(url, request, Widget::class.java)
-
-        // THEN
-        assertJsonEquals("/screens/scan/viewer-payment.json", response.body)
-    }
-
-    @Test
     fun contact() {
         // GIVEN
         val entity = Entity(EntityType.ACCOUNT.name, "1111")
@@ -97,22 +81,6 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
 
         // THEN
         assertJsonEquals("/screens/scan/viewer-url.json", response.body)
-    }
-
-    @Test
-    fun transactionApproval() {
-        // GIVEN
-        val entity = Entity(EntityType.TRANSACTION_APPROVAL.name, "xxxx")
-        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
-
-        // WHEN
-        val request = ScanRequest(
-            code = "xxxxxx"
-        )
-        val response = rest.postForEntity(url, request, Widget::class.java)
-
-        // THEN
-        assertJsonEquals("/screens/scan/viewer-transaction-approval.json", response.body)
     }
 
     @Test
