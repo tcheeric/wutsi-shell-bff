@@ -111,17 +111,18 @@ class SettingsProfileScreen(
                 )
             )
 
-        children.add(
-            ListItemSwitch(
-                caption = getText("page.settings.profile.attribute.business"),
-                name = "value",
-                selected = account.business,
-                action = Action(
-                    type = ActionType.Command,
-                    url = urlBuilder.build("commands/update-profile-attribute?name=business")
+        if (!account.business)
+            children.add(
+                ListItemSwitch(
+                    caption = getText("page.settings.profile.attribute.business"),
+                    name = "value",
+                    selected = false,
+                    action = Action(
+                        type = ActionType.Command,
+                        url = urlBuilder.build("commands/update-profile-attribute?name=business")
+                    )
                 )
             )
-        )
 
         return Screen(
             id = Page.SETTINGS_PROFILE,
