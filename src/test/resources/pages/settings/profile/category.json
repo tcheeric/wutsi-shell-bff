@@ -1,9 +1,7 @@
 {
-  "type": "Screen",
+  "type": "Container",
   "attributes": {
-    "id": "page.settings.profile.category",
-    "safe": false,
-    "backgroundColor": "#FFFFFF"
+    "padding": 10.0
   },
   "children": [
     {
@@ -99,22 +97,12 @@
               "children": [],
               "action": {
                 "type": "Command",
-                "url": "http://localhost:0/commands/update-profile-attribute?name=category-id"
+                "url": "http://localhost:0/commands/update-business-attribute?name=category-id&page=3"
               }
             }
           ]
         }
       ]
     }
-  ],
-  "appBar": {
-    "type": "AppBar",
-    "attributes": {
-      "title": "Category",
-      "elevation": 0.0,
-      "backgroundColor": "#FFFFFF",
-      "foregroundColor": "#000000"
-    },
-    "children": []
-  }
+  ]
 }

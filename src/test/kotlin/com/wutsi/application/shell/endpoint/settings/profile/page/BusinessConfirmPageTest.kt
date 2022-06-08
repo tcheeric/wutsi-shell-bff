@@ -1,13 +1,13 @@
-package com.wutsi.application.shell.endpoint.settings.profile.screen
+package com.wutsi.application.shell.endpoint.settings.profile.page
 
 import com.wutsi.application.shell.endpoint.AbstractEndpointTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.web.server.LocalServerPort
+import org.springframework.boot.test.web.server.LocalServerPort
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-internal class SettingsProfileCityScreenTest : AbstractEndpointTest() {
+internal class BusinessConfirmPageTest : AbstractEndpointTest() {
     @LocalServerPort
     val port: Int = 0
 
@@ -17,11 +17,11 @@ internal class SettingsProfileCityScreenTest : AbstractEndpointTest() {
     override fun setUp() {
         super.setUp()
 
-        url = "http://localhost:$port/settings/profile/city"
+        url = "http://localhost:$port/settings/business/pages/confirm"
     }
 
     @Test
-    fun index() {
-        assertEndpointEquals("/screens/settings/profile/city.json", url)
+    fun invoke() {
+        assertEndpointEquals("/pages/settings/profile/confirm.json", url)
     }
 }

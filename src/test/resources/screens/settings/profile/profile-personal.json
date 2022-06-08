@@ -158,8 +158,8 @@
               },
               "children": [],
               "action": {
-                "type": "Command",
-                "url": "http://localhost:0/commands/update-profile-attribute?name=business"
+                "type": "Route",
+                "url": "route:/settings/business"
               }
             }
           ]

@@ -20,7 +20,7 @@
             {
               "type": "Text",
               "attributes": {
-                "caption": "Select your Timezone"
+                "caption": "Select your timezone"
               },
               "children": []
             }

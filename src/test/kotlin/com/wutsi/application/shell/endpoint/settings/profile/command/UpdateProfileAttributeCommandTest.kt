@@ -20,6 +20,8 @@ internal class UpdateProfileAttributeCommandTest : AbstractEndpointTest() {
         // GIVEN
         val name = "xxx"
         val request = UpdateAccountAttributeRequest(value = "oreoiroei")
+
+        // WHEN
         val url = "http://localhost:$port/commands/update-profile-attribute?name=$name"
         val response = rest.postForEntity(url, request, Action::class.java)
 

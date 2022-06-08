@@ -118,8 +118,8 @@ class SettingsProfileScreen(
                     name = "value",
                     selected = false,
                     action = Action(
-                        type = ActionType.Command,
-                        url = urlBuilder.build("commands/update-profile-attribute?name=business")
+                        type = ActionType.Route,
+                        url = "route:/settings/business"
                     )
                 )
             )

@@ -1,6 +1,5 @@
-package com.wutsi.application.shell.endpoint.settings.profile.screen
+package com.wutsi.application.shell.endpoint.settings.profile.page
 
-import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.flutter.sdui.DropdownMenuItem
 import com.wutsi.flutter.sdui.SearchableDropdown
 import com.wutsi.flutter.sdui.WidgetAware
@@ -10,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/settings/profile/category")
-class SettingsProfileCategoryScreen(
+@RequestMapping("/settings/business/pages/category")
+class SettingsBusinessCategoryPage(
     private val accountApi: WutsiAccountApi,
-) : AbstractSettingsProfileAttributeScreen() {
+) : AbstractBusinessAttributePage() {
     override fun getAttributeName() = "category-id"
-
-    override fun getPageId() = Page.SETTINGS_PROFILE_CATEGORY
+    override fun getPageIndex() = 3
 
     override fun getInputWidget(account: Account): WidgetAware {
         val user = securityContext.currentAccount()
