@@ -42,6 +42,32 @@
             },
             {
               "type": "Container",
+              "attributes": {
+                "alignment": "Center",
+                "padding": 10.0,
+                "background": "#1D7EDF"
+              },
+              "children": [
+                {
+                  "type": "Center",
+                  "attributes": {},
+                  "children": [
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 10000.0,
+                        "color": "#FFFFFF",
+                        "currency": "CFA",
+                        "numberFormat": "#,###,##0"
+                      },
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "Container",
               "attributes": {},
               "children": [
                 {

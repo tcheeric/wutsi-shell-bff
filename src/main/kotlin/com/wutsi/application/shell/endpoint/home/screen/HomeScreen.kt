@@ -66,7 +66,7 @@ class HomeScreen(
         )
 
         // Balance - for business account only
-        if (togglesProvider.isAccountEnabled() && me.business)
+        if (togglesProvider.isAccountEnabled())
             children.add(
                 Container(
                     padding = 10.0,
