@@ -111,18 +111,17 @@ class SettingsProfileScreen(
                 )
             )
 
-        if (!account.business)
-            children.add(
-                ListItemSwitch(
-                    caption = getText("page.settings.profile.attribute.business"),
-                    name = "value",
-                    selected = false,
-                    action = Action(
-                        type = ActionType.Route,
-                        url = "route:/settings/business"
-                    )
+        children.add(
+            ListItemSwitch(
+                caption = getText("page.settings.profile.attribute.business"),
+                name = "value",
+                selected = account.business,
+                action = Action(
+                    type = ActionType.Route,
+                    url = "route:/settings/business"
                 )
             )
+        )
 
         return Screen(
             id = Page.SETTINGS_PROFILE,

@@ -291,6 +291,19 @@
                 "type": "Route",
                 "url": "http://localhost:0/settings/profile/whatsapp"
               }
+            },
+            {
+              "type": "ListItemSwitch",
+              "attributes": {
+                "caption": "Business Account",
+                "name": "value",
+                "selected": true
+              },
+              "children": [],
+              "action": {
+                "type": "Route",
+                "url": "route:/settings/business"
+              }
             }
           ]
         }
