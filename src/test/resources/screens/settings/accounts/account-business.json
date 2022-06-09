@@ -28,6 +28,25 @@
               },
               "children": [
                 {
+                  "type": "Container",
+                  "attributes": {
+                    "alignment": "Center",
+                    "padding": 10.0
+                  },
+                  "children": [
+                    {
+                      "type": "MoneyText",
+                      "attributes": {
+                        "value": 150000.0,
+                        "color": "#1D7EDF",
+                        "currency": "XAF",
+                        "numberFormat": "#,###,##0"
+                      },
+                      "children": []
+                    }
+                  ]
+                },
+                {
                   "type": "Row",
                   "attributes": {
                     "mainAxisAlignment": "spaceAround",

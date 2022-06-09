@@ -27,7 +27,6 @@ import com.wutsi.flutter.sdui.enums.ButtonType
 import com.wutsi.flutter.sdui.enums.CrossAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisAlignment
 import com.wutsi.flutter.sdui.enums.MainAxisSize
-import com.wutsi.platform.account.dto.Account
 import com.wutsi.platform.account.dto.PaymentMethodSummary
 import com.wutsi.platform.tenant.dto.Tenant
 import com.wutsi.platform.tenant.entity.ToggleName
@@ -45,7 +44,6 @@ class SettingsAccountScreen(
     @PostMapping
     fun index(): Widget {
         val tenant = tenantProvider.get()
-        val account = securityContext.currentAccount()
         val paymentMethods = accountService.getPaymentMethods(tenant)
 
         return Screen(
@@ -62,7 +60,7 @@ class SettingsAccountScreen(
                     Container(
                         padding = 10.0,
                         alignment = Center,
-                        child = toBalanceWidget(paymentMethods, tenant, account)
+                        child = toBalanceWidget(paymentMethods, tenant)
                     ),
                     Divider(color = Theme.COLOR_DIVIDER),
                     Flexible(
@@ -111,12 +109,8 @@ class SettingsAccountScreen(
     private fun toBalanceWidget(
         paymentMethods: List<PaymentMethodSummary>,
         tenant: Tenant,
-        account: Account
     ): WidgetAware {
-        val balance = if (account.business)
-            paymentService.getBalance(tenant)
-        else
-            null
+        val balance = paymentService.getBalance(tenant)
 
         return Column(
             children = listOfNotNull(
@@ -134,7 +128,7 @@ class SettingsAccountScreen(
                 else
                     null,
 
-                toToolbarWidget(balance != null && balance.value > 0, paymentMethods, account)
+                toToolbarWidget(balance != null && balance.value > 0, paymentMethods)
             ),
             mainAxisAlignment = MainAxisAlignment.center,
             crossAxisAlignment = CrossAxisAlignment.center,
@@ -145,7 +139,6 @@ class SettingsAccountScreen(
     private fun toToolbarWidget(
         hasBalance: Boolean,
         paymentMethods: List<PaymentMethodSummary>,
-        account: Account
     ): WidgetAware {
         if (paymentMethods.isEmpty())
             return Container()
@@ -164,7 +157,7 @@ class SettingsAccountScreen(
                 )
             )
 
-        if (account.business && hasBalance && togglesProvider.isToggleEnabled(ToggleName.CASHOUT))
+        if (hasBalance && togglesProvider.isToggleEnabled(ToggleName.CASHOUT))
             buttons.add(
                 Button(
                     type = ButtonType.Text,
