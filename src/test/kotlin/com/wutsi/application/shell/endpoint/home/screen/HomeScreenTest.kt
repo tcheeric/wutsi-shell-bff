@@ -90,7 +90,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun business() {
-        val account = createAccount(business = true)
+        val account = createAccount(business = true, hasStore = true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
         doReturn(true).whenever(togglesProvider).isAccountEnabled()
 
@@ -135,7 +135,7 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun ordersEnabled() {
-        user = createAccount(true)
+        user = createAccount(business = true, hasStore = true)
         doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
 
         doReturn(true).whenever(togglesProvider).isOrderEnabled()

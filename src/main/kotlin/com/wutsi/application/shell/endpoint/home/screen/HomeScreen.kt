@@ -84,7 +84,7 @@ class HomeScreen(
             )
 
         // Primary Applications
-        val primary = primaryButtons(me)
+        val primary = primaryButtons()
         if (primary.isNotEmpty())
             children.add(
                 Container(
@@ -98,7 +98,7 @@ class HomeScreen(
 
         // Secondary Apps
         children.addAll(
-            toRows(applicationButtons(), 4)
+            toRows(applicationButtons(me), 4)
                 .map {
                     Container(
                         child = Row(
@@ -125,7 +125,7 @@ class HomeScreen(
     }
 
     // Buttons
-    private fun primaryButtons(me: Account): List<WidgetAware> {
+    private fun primaryButtons(): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
         if (togglesProvider.isScanEnabled()) {
             buttons.add(
@@ -176,18 +176,6 @@ class HomeScreen(
                 )
             )
 
-        if (me.business && me.hasStore && togglesProvider.isOrderEnabled())
-            buttons.add(
-                primaryButton(
-                    caption = getText("page.home.button.orders"),
-                    icon = Theme.ICON_ORDERS,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build(storeUrl, "orders")
-                    )
-                )
-            )
-
         return buttons
     }
 
@@ -202,7 +190,7 @@ class HomeScreen(
         action = action
     )
 
-    private fun applicationButtons(): List<WidgetAware> {
+    private fun applicationButtons(me: Account): List<WidgetAware> {
         val buttons = mutableListOf<WidgetAware>()
 
         if (togglesProvider.isStoreEnabled())
@@ -215,6 +203,18 @@ class HomeScreen(
                             type = Route,
                             url = "$storeUrl/marketplace"
                         )
+                    )
+                )
+            )
+
+        if (me.business && me.hasStore && togglesProvider.isOrderEnabled())
+            buttons.add(
+                applicationButton(
+                    caption = getText("page.home.button.orders"),
+                    icon = Theme.ICON_ORDERS,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(storeUrl, "orders")
                     )
                 )
             )
