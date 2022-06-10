@@ -302,7 +302,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "route:/settings/business"
+                "url": "http://localhost:0/commands/update-profile-attribute?name=business"
               }
             }
           ]

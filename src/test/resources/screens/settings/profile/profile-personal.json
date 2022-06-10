@@ -159,7 +159,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "route:/settings/business"
+                "url": "http://localhost:0/settings/business"
               }
             }
           ]
