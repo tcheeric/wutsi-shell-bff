@@ -31,7 +31,7 @@ class SettingsBusinessScreen : AbstractQuery() {
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/category")),
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/city")),
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/street")),
-                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/whatstapp")),
+                    com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/whatsapp")),
                     com.wutsi.flutter.sdui.Page(url = urlBuilder.build("/settings/business/pages/confirm")),
                 )
             )

@@ -56,7 +56,7 @@
         {
           "type": "Page",
           "attributes": {
-            "url": "http://localhost:0/settings/business/pages/whatstapp"
+            "url": "http://localhost:0/settings/business/pages/whatsapp"
           },
           "children": []
         },
