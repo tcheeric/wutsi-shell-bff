@@ -21,20 +21,22 @@ class ProfileStrengthContainer(
         val widgets = all.mapNotNull { it.toWidget(account) }
 
         return if (widgets.isEmpty())
-            return null
+            null
         else
             Column(
-                children = widgets.map {
-                    Container(
-                        padding = 10.0,
-                        margin = 10.0,
-                        background = Theme.COLOR_PRIMARY_LIGHT,
-                        borderColor = Theme.COLOR_PRIMARY,
-                        border = 1.0,
-                        borderRadius = 5.0,
-                        child = it
-                    )
-                }
+                children = listOf(
+                    widgets.random().let {
+                        Container(
+                            padding = 10.0,
+                            margin = 10.0,
+                            background = Theme.COLOR_PRIMARY_LIGHT,
+                            borderColor = Theme.COLOR_PRIMARY,
+                            border = 1.0,
+                            borderRadius = 5.0,
+                            child = it
+                        )
+                    }
+                )
             )
     }
 
