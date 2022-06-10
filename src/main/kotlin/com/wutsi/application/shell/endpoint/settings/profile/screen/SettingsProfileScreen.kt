@@ -116,13 +116,16 @@ class SettingsProfileScreen(
                 caption = getText("page.settings.profile.attribute.business"),
                 name = "value",
                 selected = account.business,
-                action = Action(
-                    type = ActionType.Route,
-                    url = if (account.business)
-                        urlBuilder.build("/commands/update-profile-attribute?name=business")
-                    else
-                        urlBuilder.build("/settings/business")
-                )
+                action = if (account.business)
+                    Action(
+                        type = ActionType.Command,
+                        url = urlBuilder.build("/commands/update-profile-attribute?name=business")
+                    )
+                else
+                    Action(
+                        type = ActionType.Route,
+                        url = urlBuilder.build("/settings/business")
+                    )
             )
         )
 
