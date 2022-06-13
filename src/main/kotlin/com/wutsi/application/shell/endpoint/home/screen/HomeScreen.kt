@@ -214,7 +214,7 @@ class HomeScreen(
                     icon = Theme.ICON_ORDERS,
                     action = Action(
                         type = Route,
-                        url = urlBuilder.build(storeUrl, "orders")
+                        url = urlBuilder.build(storeUrl, "orders?merchant=true")
                     )
                 )
             )

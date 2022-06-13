@@ -162,7 +162,7 @@
               "children": [],
               "action": {
                 "type": "Route",
-                "url": "https://wutsi-gateway-test.herokuapp.com/store/me/orders"
+                "url": "https://wutsi-gateway-test.herokuapp.com/store/orders"
               }
             },
             {

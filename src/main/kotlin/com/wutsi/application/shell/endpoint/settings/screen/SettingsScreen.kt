@@ -118,7 +118,7 @@ class SettingsScreen(
             children.add(
                 listItem(
                     "page.settings.listitem.my-orders.caption",
-                    urlBuilder.build(storeUrl, "me/orders"),
+                    urlBuilder.build(storeUrl, "orders"),
                     icon = Theme.ICON_ORDERS
                 ),
             )

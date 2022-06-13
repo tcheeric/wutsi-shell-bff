@@ -64,7 +64,7 @@
                       "children": [],
                       "action": {
                         "type": "Route",
-                        "url": "https://wutsi-gateway-test.herokuapp.com/store/orders"
+                        "url": "https://wutsi-gateway-test.herokuapp.com/store/orders?merchant=true"
                       }
                     },
                     {
