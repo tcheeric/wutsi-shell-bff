@@ -132,7 +132,7 @@ class ScanViewerScreen(
         when (entity?.type?.uppercase()) {
             EntityType.ACCOUNT.name -> urlBuilder.build("profile?id=${entity.id}")
             EntityType.URL.name -> entity.id
-            EntityType.ORDER.name -> urlBuilder.build(storeUrl, "order/id=${entity.id}")
+            EntityType.ORDER.name -> urlBuilder.build(storeUrl, "order?id=${entity.id}")
             else -> getText("page.scan-viewer.button.continue")
         }
 
