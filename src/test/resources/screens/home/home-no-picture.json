@@ -155,7 +155,7 @@
                                 {
                                   "type": "Text",
                                   "attributes": {
-                                    "caption": "Add your picture to your profile",
+                                    "caption": "Add a picture to your profile",
                                     "maxLines": 5
                                   },
                                   "children": []
