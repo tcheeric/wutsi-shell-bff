@@ -255,7 +255,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "http://localhost:0/profile/qr-code-widget?id=5555"
+                "url": "http://localhost:0/profile/qr-code-widget?id=555"
               },
               "children": []
             }

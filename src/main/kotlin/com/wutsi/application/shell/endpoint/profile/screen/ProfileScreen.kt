@@ -162,7 +162,7 @@ class ProfileScreen(
                                     size = 20.0,
                                     action = Action(
                                         type = ActionType.Share,
-                                        url = "${tenant.webappUrl}/profile?id=$id",
+                                        url = "${tenant.webappUrl}/profile?id=${user.id}",
                                     )
                                 ),
                             )

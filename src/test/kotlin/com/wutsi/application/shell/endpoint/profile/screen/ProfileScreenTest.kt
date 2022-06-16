@@ -44,8 +44,8 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun personal() {
         // GIVEN
-        val account = createAccount(5555, false, null)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+        val account = createAccount(555, false, null)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // WHEN
         val url = "http://localhost:$port/profile?id=555"
@@ -60,8 +60,8 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isStoreEnabled()
 
-        val account = createAccount(5555, true, hasStore = true)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+        val account = createAccount(555, true, hasStore = true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // WHEN
         val url = "http://localhost:$port/profile?id=555&tab=store"
@@ -82,8 +82,8 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         )
         doReturn(GetCartResponse(cart)).whenever(cartApi).getCart(any())
 
-        val account = createAccount(5555, true, hasStore = true)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+        val account = createAccount(555, true, hasStore = true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // WHEN
         val url = "http://localhost:$port/profile?id=555"
@@ -96,8 +96,8 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
     @Test
     fun business() {
         // GIVEN
-        val account = createAccount(5555, true)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+        val account = createAccount(555, true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // WHEN
         val url = "http://localhost:$port/profile?id=555"
@@ -112,8 +112,8 @@ internal class ProfileScreenTest : AbstractEndpointTest() {
         // GIVEN
         doReturn(true).whenever(togglesProvider).isContactEnabled()
 
-        val account = createAccount(5555, true)
-        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(555L)
+        val account = createAccount(555, true)
+        doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())
 
         // WHEN
         val url = "http://localhost:$port/profile?id=555"

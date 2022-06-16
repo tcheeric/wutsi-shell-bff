@@ -255,7 +255,7 @@
             {
               "type": "DynamicWidget",
               "attributes": {
-                "url": "http://localhost:0/profile/qr-code-widget?id=5555"
+                "url": "http://localhost:0/profile/qr-code-widget?id=555"
               },
               "children": []
             }
@@ -320,7 +320,7 @@
                       "children": [],
                       "action": {
                         "type": "Command",
-                        "url": "http://localhost:0/commands/add-contact?contact-id=5555",
+                        "url": "http://localhost:0/commands/add-contact?contact-id=555",
                         "prompt": {
                           "type": "Dialog",
                           "attributes": {
