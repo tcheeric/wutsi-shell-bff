@@ -218,7 +218,7 @@ class HomeScreen(
                     )
                 )
             )
-        
+
         buttons.add(
             applicationButton(
                 caption = getText("page.home.button.feedback"),
