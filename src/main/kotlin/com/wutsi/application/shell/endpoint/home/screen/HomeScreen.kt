@@ -218,19 +218,7 @@ class HomeScreen(
                     )
                 )
             )
-
-        if (togglesProvider.isContactEnabled())
-            buttons.add(
-                applicationButton(
-                    caption = getText("page.home.button.contact"),
-                    icon = Theme.ICON_GROUP,
-                    action = Action(
-                        type = Route,
-                        url = urlBuilder.build("contact")
-                    )
-                )
-            )
-
+        
         buttons.add(
             applicationButton(
                 caption = getText("page.home.button.feedback"),
