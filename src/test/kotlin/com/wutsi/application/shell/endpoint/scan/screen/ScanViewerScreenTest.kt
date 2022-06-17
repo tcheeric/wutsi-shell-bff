@@ -68,6 +68,22 @@ internal class ScanViewerScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun product() {
+        // GIVEN
+        val entity = Entity(EntityType.PRODUCT.name, "1111")
+        doReturn(DecodeQRCodeResponse(entity)).whenever(qrApi).decode(any())
+
+        // WHEN
+        val request = ScanRequest(
+            code = "xxxxxx"
+        )
+        val response = rest.postForEntity(url, request, Widget::class.java)
+
+        // THEN
+        assertJsonEquals("/screens/scan/viewer-product.json", response.body)
+    }
+
+    @Test
     fun url() {
         // GIVEN
         val entity = Entity(EntityType.URL.name, "https://www.google.ca")

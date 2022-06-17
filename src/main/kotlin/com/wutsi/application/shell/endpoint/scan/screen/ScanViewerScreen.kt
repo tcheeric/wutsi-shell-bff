@@ -131,9 +131,10 @@ class ScanViewerScreen(
     private fun nextUrl(entity: Entity?): String? =
         when (entity?.type?.uppercase()) {
             EntityType.ACCOUNT.name -> urlBuilder.build("profile?id=${entity.id}")
-            EntityType.URL.name -> entity.id
             EntityType.ORDER.name -> urlBuilder.build(storeUrl, "order?id=${entity.id}")
-            else -> getText("page.scan-viewer.button.continue")
+            EntityType.PRODUCT.name -> urlBuilder.build(storeUrl, "product?id=${entity.id}")
+            EntityType.URL.name -> entity.id
+            else -> null
         }
 
     private fun nextButton(nextUrl: String?, entity: Entity?): WidgetAware =
@@ -150,8 +151,9 @@ class ScanViewerScreen(
             Button(
                 caption = when (entity?.type?.uppercase()) {
                     EntityType.ACCOUNT.name -> getText("page.scan-viewer.button.continue-account")
-                    EntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
                     EntityType.ORDER.name -> getText("page.scan-viewer.button.continue-order")
+                    EntityType.PRODUCT.name -> getText("page.scan-viewer.button.continue-product")
+                    EntityType.URL.name -> getText("page.scan-viewer.button.continue-url")
                     else -> getText("page.scan-viewer.button.continue")
                 },
                 action = Action(

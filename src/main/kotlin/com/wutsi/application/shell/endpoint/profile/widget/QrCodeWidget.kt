@@ -33,7 +33,7 @@ class QrCodeWidget(
     ): Widget {
         val token = qrApi.encode(
             EncodeQRCodeRequest(
-                type = EntityType.PRODUCT.name,
+                type = EntityType.ACCOUNT.name,
                 id = id.toString(),
             )
         ).token
