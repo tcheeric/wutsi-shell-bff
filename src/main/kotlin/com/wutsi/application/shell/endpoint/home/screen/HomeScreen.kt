@@ -219,7 +219,7 @@ class HomeScreen(
                 )
             )
 
-        if (togglesProvider.isToggleEnabled(ToggleName.NEWS))
+        if (me.superUser && togglesProvider.isToggleEnabled(ToggleName.NEWS))
             buttons.add(
                 applicationButton(
                     caption = getText("page.home.button.news"),

@@ -150,6 +150,9 @@ internal class HomeScreenTest : AbstractEndpointTest() {
 
     @Test
     fun newsEnabled() {
+        val user = createAccount(superUser = true)
+        doReturn(GetAccountResponse(user)).whenever(accountApi).getAccount(any())
+
         doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.NEWS)
         doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
 

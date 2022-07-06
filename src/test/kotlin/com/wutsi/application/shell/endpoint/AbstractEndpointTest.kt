@@ -143,7 +143,12 @@ abstract class AbstractEndpointTest {
         rest = createResTemplate()
     }
 
-    protected fun createAccount(business: Boolean = false, category: Category? = null, hasStore: Boolean = false) =
+    protected fun createAccount(
+        business: Boolean = false,
+        category: Category? = null,
+        hasStore: Boolean = false,
+        superUser: Boolean = false
+    ) =
         Account(
             id = ACCOUNT_ID,
             displayName = "Ray Sponsible",
@@ -167,7 +172,8 @@ abstract class AbstractEndpointTest {
             facebookId = "ray.sponsible",
             twitterId = "ray-sponsible",
             instagramId = "ray",
-            hasStore = hasStore
+            hasStore = hasStore,
+            superUser = superUser
         )
 
     private fun createResTemplate(

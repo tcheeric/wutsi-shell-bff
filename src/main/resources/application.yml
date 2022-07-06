@@ -51,6 +51,8 @@ wutsi:
     security:
       type: jwt
       api-key: "d779ed54-dadf-11ec-94e8-127037cd15a7"
+      public-endpoints:
+        - "POST /shell/track/**"
     tracing:
       client-id: ${wutsi.application.name}
     stream:
