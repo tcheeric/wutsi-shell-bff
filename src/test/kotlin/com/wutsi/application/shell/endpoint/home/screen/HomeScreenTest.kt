@@ -149,6 +149,14 @@ internal class HomeScreenTest : AbstractEndpointTest() {
     }
 
     @Test
+    fun newsEnabled() {
+        doReturn(true).whenever(togglesProvider).isToggleEnabled(ToggleName.NEWS)
+        doReturn(ListShippingResponse()).whenever(shippingApi).listShipping()
+
+        assertEndpointEquals("/screens/home/home-news-enabled.json", url)
+    }
+
+    @Test
     fun noWhatsapp() {
         val account = user.copy(whatsapp = null, business = true)
         doReturn(GetAccountResponse(account)).whenever(accountApi).getAccount(any())

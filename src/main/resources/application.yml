@@ -41,6 +41,7 @@ wutsi:
     gateway-url: https://wutsi-gateway-test.herokuapp.com
     cash-url: ${wutsi.application.gateway-url}/cash
     login-url: ${wutsi.application.gateway-url}/login
+    news-url: ${wutsi.application.gateway-url}/news
     store-url: ${wutsi.application.gateway-url}/store
     asset-url: https://int-wutsi.s3.amazonaws.com/static/wutsi-web
   platform:

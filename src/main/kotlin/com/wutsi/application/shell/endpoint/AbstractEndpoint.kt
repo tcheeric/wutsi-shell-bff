@@ -40,6 +40,9 @@ abstract class AbstractEndpoint {
     @Value("\${wutsi.application.store-url}")
     protected lateinit var storeUrl: String
 
+    @Value("\${wutsi.application.news-url}")
+    protected lateinit var newsUrl: String
+
     @Autowired
     protected lateinit var sharedUIMapper: SharedUIMapper
 

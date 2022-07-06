@@ -219,6 +219,18 @@ class HomeScreen(
                 )
             )
 
+        if (togglesProvider.isToggleEnabled(ToggleName.NEWS))
+            buttons.add(
+                applicationButton(
+                    caption = getText("page.home.button.news"),
+                    icon = Theme.ICON_NEWSPAPER,
+                    action = Action(
+                        type = Route,
+                        url = urlBuilder.build(newsUrl, "")
+                    )
+                )
+            )
+
         buttons.add(
             applicationButton(
                 caption = getText("page.home.button.feedback"),
