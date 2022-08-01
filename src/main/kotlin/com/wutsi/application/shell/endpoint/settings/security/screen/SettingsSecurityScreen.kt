@@ -54,7 +54,6 @@ class SettingsSecurityScreen(
 
     private fun loginUrlPath(me: Account): String {
         return "?phone=" + encodeURLParam(me.phone!!.number) +
-            "&icon=" + Theme.ICON_LOCK +
             "&screen-id=" + Page.SETTINGS_SECURITY_PIN_LOGIN +
             "&title=" + encodeURLParam(getText("page.settings.security.pin-login.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.security.pin-login.sub-title")) +

@@ -1,6 +1,5 @@
 package com.wutsi.application.shell.endpoint.settings.account.command
 
-import com.wutsi.application.shared.Theme
 import com.wutsi.application.shell.endpoint.AbstractCommand
 import com.wutsi.application.shell.endpoint.Page
 import com.wutsi.application.shell.endpoint.settings.account.dto.VerifySmsCodeRequest
@@ -39,16 +38,12 @@ class VerifySmsCodeCommand(
     private fun getSubmitUrl(): String {
         val me = securityContext.currentAccount()
         return "?phone=" + encodeURLParam(me.phone!!.number) +
-            "&icon=" + Theme.ICON_LOCK +
             "&screen-id=" + Page.SETTINGS_ACCOUNT_LINK_PIN +
             "&title=" + encodeURLParam(getText("page.settings.account-pin.title")) +
             "&sub-title=" + encodeURLParam(getText("page.settings.account-pin.sub-title")) +
             "&auth=false" +
             "&return-to-route=false" +
-            "&return-url=" + encodeURLParam(
-            urlBuilder.build(
-                "commands/link-account"
-            )
-        )
+            "&dark-mode=true"
+        "&return-url=" + encodeURLParam(urlBuilder.build("commands/link-account"))
     }
 }
